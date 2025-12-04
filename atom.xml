@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://tespera.github.io</id>
+    <title>述尔</title>
+    <updated>2025-12-04T01:54:04.501Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://tespera.github.io"/>
+    <link rel="self" href="https://tespera.github.io/atom.xml"/>
+    <subtitle>温故而知新</subtitle>
+    <logo>https://tespera.github.io/images/avatar.png</logo>
+    <icon>https://tespera.github.io/favicon.ico</icon>
+    <rights>All rights reserved 2025, 述尔</rights>
+    <entry>
+        <title type="html"><![CDATA[232485]]></title>
+        <id>https://tespera.github.io/post/o9-Qkv1CQ/</id>
+        <link href="https://tespera.github.io/post/o9-Qkv1CQ/">
+        </link>
+        <updated>2025-12-02T12:31:43.000Z</updated>
+        <content type="html"><![CDATA[<p>速度快放假<br>
+水电费空间<br>
+塞德里克房间号<br>
+塑料袋咖啡机<br>
+京东方</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[国行 Mac 无损开启 Apple Intelligence 和 ChatGPT]]></title>
+        <id>https://tespera.github.io/post/HiO9F-l2kf/</id>
+        <link href="https://tespera.github.io/post/HiO9F-l2kf/">
+        </link>
+        <updated>2025-11-18T04:27:35.000Z</updated>
+        <summary type="html"><![CDATA[<p>难产的苹果智能至今未能登陆国行 Mac。等，是可以等的。国内苹果智能最终上线后，无非是百度和阿里的混血，谁的基因多一点还不知道。所以期待感不高。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>难产的苹果智能至今未能登陆国行 Mac。等，是可以等的。国内苹果智能最终上线后，无非是百度和阿里的混血，谁的基因多一点还不知道。所以期待感不高。</p>
+<!-- more -->
+<p>网上一直有流传国行 Mac 打开苹果智能的方法。这些方法基本都需要关闭系统完整性也就是 SIP 检查，并且保持关闭的状态。我不想这么做。</p>
+<p>Mac 对我来说，更重要的是一台可以信赖，稳定工作的工具。我有 ChatGPT Plus，有 Gemini One 套装，对苹果智能的需求并不急迫。</p>
+<p>昨天刘韧在群里分享了 github 上的开源脚本，我好奇点进去看了一下。新方法出现于 5 周前，是一个老外手搓的 Shell 脚本。这个方法只需要修改苹果的 plist 文件，将不支持的国家和地区改成支持即可。</p>
+<p>虽然在脚本运行时也需要关闭 SIP，但执行之后即可重启开启，不需要一直保持裸奔的状态。<br>
+最重要的是，这个方法无需美区账号，无需设置英文语言，无需改地区。<br>
+下午找时间试了试，确实在我的国行 Mac 上开启了苹果智能以及免费的 ChatGPT。</p>
+<p>整体过程不复杂。重启Mac，按住电源键进入恢复模式，在上方工具栏中选择终端，然后在终端窗口中输入：csrutil disable</p>
+<p>系统会提示输入密码。成功关闭 SIP 后也会提示。之后，重启，运行脚本。再重启，即可在设置界面看到 Apple 智能的选项。</p>
+<p>搞定之后，再重启，长按电源键进入恢复模式，进入终端重新开启 SIP：csrutil enable<br>
+两个相关项目地址：英文：https://github.com/hyderay/AiOnMac中文：https://github.com/kanshurichard/enableAppleAI<br>
+注意：这俩不是一个项目。<br>
+下载好本地模型之后，跟 Siri 聊一下 ChatGPT，系统会弹出对话框问我是否需要打开 ChatGPT 插件。我当然选择是。然后选择有账户登陆或者无账户登陆。选择后者，对话均以匿名的状态发送给 ChatGPT，内容不会被当作训练材料。我有账号，于是在系统里选了匿名。两不相干。</p>
+<p>实际使用的效果，ChatGPT 在备忘录里改写，总结，摘要，基本正常，创作不行，会提示错误。不知道是这种开启苹果智能的方式不够完美，还是其他什么原因。<br>
+不过，这些问题对我来说不重要。我开启苹果智能唯一的目的是提前适应系统级的 AI，熟悉在什么情况下可以方便的调用它们。至于功能使用效果，目前期望不高。<br>
+如果想要深度使用，有一定期待，推荐认真看看中文项目，再决定自己是否愿意为地球版苹果智能承担SIP 关闭，长期裸奔的代价。<br>
+对资深果粉来说，关闭 SIP 的问题不大。前提是你每次安装软件的时候，都知道自己在干嘛。如果对上述概念搞不太清，甚至进入 Mac 恢复界面都吃力，那还是不要挑战自己了。没必要。再等 3、5 个月，国行苹果智能怎么也该来了。<br>
+我要补充的是，即使正式版苹果智能来了，即使你开启了地球版苹果智能，用了一阵子可能也会骂这什么玩意儿。<br>
+目前操作系统级别的 AI工具没有像样的。它们距离深度整合电脑各项能力的用户期待还很远。想通过口述指令让 Siri 帮你完成一些复杂的操作任务，我觉得至少要等到26 年下半年才有可能看到曙光。<br>
+现在的 AI 大模型的核心是内容生成，通过数学方法完成句子，它的精确度还有待提高。虽然我每天都在用 AI，但我还是不得不说，用 AI 操作电脑还没脱离脱裤子放屁的阶段。<br>
+即便如此，我依旧相信 AI 已经开启了另一扇大门。10 年前我们没想过智能手机会普及到让人们彻底抛弃钱包，10 年后，AI 会是什么样子，谁知道呢。<br>
+在 Mac 上的苹果智能，我个人的预测，它会是系统级 AI 的终极形态。和苹果其他产品一样，内置功能将会把只好那么一点点的第三方工具的市场挤压到足够小。苹果最擅长在产品上做价值增值，它的系统功能会比 Windows 更有侵略性。<br>
+天气 App，计算器 App，无数事例证明了，如果和苹果想做的功能重叠，你就会像大树底下的草，永远也长不高。<br>
+我怀疑 OpenAI 的奥特曼深知这一点，所以不停在 ChatGPT 上加功能，未来未必不会有 OpenAI OS，OpenAI 电脑。苹果也深知这一点，与其养头白眼狼不如和谷歌合作。未来 Siri 会采用 Gemini，可能有部分原因正是基于上面的考量。<br>
+总结，如果你现在对苹果智能感兴趣，想要体验环大陆版的效果，又有一定动手能力，那么今天的新方法值得试一试。<br>
+最后扯点别的。昨天我写了一篇路由器的文章。我猜到那个《完美路由器》的标题会吸引一批中年老登。但我没猜到评论区登味儿会那么浓。<br>
+哪些教育我太年轻，瞎折腾的评论，我看完倒满高兴。我无比希望自己还在 20 多岁被人叫小伙的年纪。这些评论告诉我，我的心态还年轻，我还有勇气和热情。<br>
+至于技术水平，作为一名拥有 Cisco 网络专家认证的前工程师，微软认证前工程师，写过多个数据中心灾备方案的前工程师，我只能笑笑不说话。</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[10分钟搭好一个能赚钱的个人博客？]]></title>
+        <id>https://tespera.github.io/post/dWtw61MhRO/</id>
+        <link href="https://tespera.github.io/post/dWtw61MhRO/">
+        </link>
+        <updated>2025-11-13T06:28:46.000Z</updated>
+        <summary type="html"><![CDATA[<p>“都2025年了，谁还写博客？”</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>“都2025年了，谁还写博客？”</p>
+<!-- more -->
+<p>——这句话我每周都能在群里看到。可诡异的是，小红书#博客复盘#话题浏览量破3.8亿，Github上静态博客项目star数一路狂飙。</p>
+<p>原因很简单：平台越来越卷，公众号流量池半死不活，知乎回答被算法埋了，抖音一条视频没投流就500播放；公司要你出“技术影响力”，简历上放个个人域名，面试官立刻高看一眼；副业刚需，独立站+联盟广告+数字产品，一个月多赚3000块房租钱，比炒币踏实多了。可一提起建站，很多人头都大了：<br>
+“服务器一年几百块贵死了！”<br>
+“WordPress动不动被爆破，插件一更新全白屏！”<br>
+“数据库备份太麻烦，睡一觉起来网站变404！”直到我上周刷Github trending，发现了Gridea——一款把“静态博客”做成桌面客户端的国产开源神器。不用买服务器、不用碰命令行、写完一键同步到Github Pages，免费、中文、跨平台，颜值还爆表。我抱着试试看的心态折腾了一晚上，结果10分钟上线，第二天被搜索引擎收录，第三天接到第一个广告合作。今天这篇文章，就把全流程+隐藏彩蛋+变现思路一次性讲透。收藏+转存，错过真的血亏。</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[超火的自动化浏览器，15000+ GitHub Star！]]></title>
+        <id>https://tespera.github.io/post/chao-huo-de-zi-dong-hua-liu-lan-qi-15000-github-star/</id>
+        <link href="https://tespera.github.io/post/chao-huo-de-zi-dong-hua-liu-lan-qi-15000-github-star/">
+        </link>
+        <updated>2025-11-13T06:18:10.000Z</updated>
+        <summary type="html"><![CDATA[<p>以前写浏览器自动化脚本的时候，经常被一个问题折磨：辛辛苦苦写好的脚本，刚过几天，就突然间无法运行。然后一查发现，爬取的网站又进行了改版，之前代码里写的定位元素全变，接着改代码、测试等，这种情况极其痛苦。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>以前写浏览器自动化脚本的时候，经常被一个问题折磨：辛辛苦苦写好的脚本，刚过几天，就突然间无法运行。然后一查发现，爬取的网站又进行了改版，之前代码里写的定位元素全变，接着改代码、测试等，这种情况极其痛苦。</p>
+<!-- more -->
+<p>无独有偶，近日在 GitHub 上找到一个开源的自动化浏览器  Skyvern，一看竟然斩获了 15000+ GitHub Star。</p>
+<p>用 AI 理解网页，不靠固定选择器以前传统的浏览器自动化工具，大部分都是使用 Selenium，需要我们精确指定每个元素的位置。</p>
+<p>而 Skyvern 的做法不一样，它通过如 Gemini 这些多模态大模型来识别理解页面上的元素。</p>
+<p>通俗的理解，就是它能 “看到” 整个页面的截图内容，自我判断哪里是按钮、哪里是输入框、该点哪里、该填什么。</p>
+<p>这样就完美解决了，网站改版导致自动化脚本失效问题，不需要我们重新去找 XPath 或者 CSS 选择器。</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Hello Gridea Pro]]></title>
+        <id>https://tespera.github.io/post/hello-gridea/</id>
+        <link href="https://tespera.github.io/post/hello-gridea/">
+        </link>
+        <updated>2018-12-11T16:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
+✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
+✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...</p>
+<!-- more -->
+<p><a href="https://github.com/getgridea/gridea">Github</a><br>
+<a href="https://gridea.dev/">Gridea 主页</a><br>
+<a href="https://fehey.com/">示例网站</a></p>
+<h2 id="特性">特性👇</h2>
+<p>📝  你可以使用最酷的 <strong>Markdown</strong> 语法，进行快速创作</p>
+<p>🌉  你可以给文章配上精美的封面图和在文章任意位置插入图片</p>
+<p>🏷️  你可以对文章进行标签分组</p>
+<p>📋  你可以自定义菜单，甚至可以创建外部链接菜单</p>
+<p>💻  你可以在 <strong>Windows</strong>，<strong>MacOS</strong> 或 <strong>Linux</strong> 设备上使用此客户端</p>
+<p>🌎  你可以使用 <strong>𝖦𝗂𝗍𝗁𝗎𝖻 𝖯𝖺𝗀𝖾𝗌</strong> 或 <strong>Coding Pages</strong> 向世界展示，未来将支持更多平台</p>
+<p>💬  你可以进行简单的配置，接入 <a href="https://github.com/gitalk/gitalk">Gitalk</a> 或 <a href="https://github.com/SukkaW/DisqusJS">DisqusJS</a> 评论系统</p>
+<p>🇬🇧  你可以使用<strong>中文简体</strong>或<strong>英语</strong></p>
+<p>🌁  你可以任意使用应用内默认主题或任意第三方主题，强大的主题自定义能力</p>
+<p>🖥  你可以自定义源文件夹，利用 OneDrive、百度网盘、iCloud、Dropbox 等进行多设备同步</p>
+<p>🌱 当然 <strong>Gridea</strong> 还很年轻，有很多不足，但请相信，它会不停向前 🏃</p>
+<p>未来，它一定会成为你离不开的伙伴</p>
+<p>尽情发挥你的才华吧！</p>
+<p>😘 Enjoy~</p>
+]]></content>
+    </entry>
+</feed>

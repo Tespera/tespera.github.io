@@ -1,0 +1,209 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>国行 Mac 无损开启 Apple Intelligence 和 ChatGPT | 述尔</title>
+<link rel="shortcut icon" href="https://tespera.github.io/favicon.ico?v=1764813122988">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://tespera.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="国行 Mac 无损开启 Apple Intelligence 和 ChatGPT | 述尔 - Atom Feed" href="https://tespera.github.io/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="难产的苹果智能至今未能登陆国行 Mac。等，是可以等的。国内苹果智能最终上线后，无非是百度和阿里的混血，谁的基因多一点还不知道。所以期待感不高。
+
+网上一直有流传国行 Mac 打开苹果智能的方法。这些方法基本都需要关闭系统完整性也就是 SI..." />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.5.1/build/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://tespera.github.io">
+  <img class="avatar" src="https://tespera.github.io/images/avatar.png?v=1764813122988" alt="">
+  </a>
+  <h1 class="site-title">
+    述尔
+  </h1>
+  <p class="site-description">
+    温故而知新
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/Tespera" target="_blank">
+          <i class="ri-github-line"></i>
+        </a>
+      
+    
+      
+    
+      
+        <a href="https://weibo.com/u/5364722640" target="_blank">
+          <i class="ri-weibo-line"></i>
+        </a>
+      
+    
+      
+        <a href="https://www.zhihu.com/people/zheng-hao-feng-xiang-bei" target="_blank">
+          <i class="ri-zhihu-line"></i>
+        </a>
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              国行 Mac 无损开启 Apple Intelligence 和 ChatGPT
+            </h2>
+            <div class="post-info">
+              <span>
+                2025-11-18
+              </span>
+              <span>
+                6 min read
+              </span>
+              
+            </div>
+            
+              <img class="post-feature-image" src="https://tespera.github.io/post-images/HiO9F-l2kf.png" alt="">
+            
+            <div class="post-content-wrapper">
+              <div class="post-content" v-pre>
+                <p>难产的苹果智能至今未能登陆国行 Mac。等，是可以等的。国内苹果智能最终上线后，无非是百度和阿里的混血，谁的基因多一点还不知道。所以期待感不高。</p>
+<!-- more -->
+<p>网上一直有流传国行 Mac 打开苹果智能的方法。这些方法基本都需要关闭系统完整性也就是 SIP 检查，并且保持关闭的状态。我不想这么做。</p>
+<p>Mac 对我来说，更重要的是一台可以信赖，稳定工作的工具。我有 ChatGPT Plus，有 Gemini One 套装，对苹果智能的需求并不急迫。</p>
+<p>昨天刘韧在群里分享了 github 上的开源脚本，我好奇点进去看了一下。新方法出现于 5 周前，是一个老外手搓的 Shell 脚本。这个方法只需要修改苹果的 plist 文件，将不支持的国家和地区改成支持即可。</p>
+<p>虽然在脚本运行时也需要关闭 SIP，但执行之后即可重启开启，不需要一直保持裸奔的状态。<br>
+最重要的是，这个方法无需美区账号，无需设置英文语言，无需改地区。<br>
+下午找时间试了试，确实在我的国行 Mac 上开启了苹果智能以及免费的 ChatGPT。</p>
+<p>整体过程不复杂。重启Mac，按住电源键进入恢复模式，在上方工具栏中选择终端，然后在终端窗口中输入：csrutil disable</p>
+<p>系统会提示输入密码。成功关闭 SIP 后也会提示。之后，重启，运行脚本。再重启，即可在设置界面看到 Apple 智能的选项。</p>
+<p>搞定之后，再重启，长按电源键进入恢复模式，进入终端重新开启 SIP：csrutil enable<br>
+两个相关项目地址：英文：https://github.com/hyderay/AiOnMac中文：https://github.com/kanshurichard/enableAppleAI<br>
+注意：这俩不是一个项目。<br>
+下载好本地模型之后，跟 Siri 聊一下 ChatGPT，系统会弹出对话框问我是否需要打开 ChatGPT 插件。我当然选择是。然后选择有账户登陆或者无账户登陆。选择后者，对话均以匿名的状态发送给 ChatGPT，内容不会被当作训练材料。我有账号，于是在系统里选了匿名。两不相干。</p>
+<p>实际使用的效果，ChatGPT 在备忘录里改写，总结，摘要，基本正常，创作不行，会提示错误。不知道是这种开启苹果智能的方式不够完美，还是其他什么原因。<br>
+不过，这些问题对我来说不重要。我开启苹果智能唯一的目的是提前适应系统级的 AI，熟悉在什么情况下可以方便的调用它们。至于功能使用效果，目前期望不高。<br>
+如果想要深度使用，有一定期待，推荐认真看看中文项目，再决定自己是否愿意为地球版苹果智能承担SIP 关闭，长期裸奔的代价。<br>
+对资深果粉来说，关闭 SIP 的问题不大。前提是你每次安装软件的时候，都知道自己在干嘛。如果对上述概念搞不太清，甚至进入 Mac 恢复界面都吃力，那还是不要挑战自己了。没必要。再等 3、5 个月，国行苹果智能怎么也该来了。<br>
+我要补充的是，即使正式版苹果智能来了，即使你开启了地球版苹果智能，用了一阵子可能也会骂这什么玩意儿。<br>
+目前操作系统级别的 AI工具没有像样的。它们距离深度整合电脑各项能力的用户期待还很远。想通过口述指令让 Siri 帮你完成一些复杂的操作任务，我觉得至少要等到26 年下半年才有可能看到曙光。<br>
+现在的 AI 大模型的核心是内容生成，通过数学方法完成句子，它的精确度还有待提高。虽然我每天都在用 AI，但我还是不得不说，用 AI 操作电脑还没脱离脱裤子放屁的阶段。<br>
+即便如此，我依旧相信 AI 已经开启了另一扇大门。10 年前我们没想过智能手机会普及到让人们彻底抛弃钱包，10 年后，AI 会是什么样子，谁知道呢。<br>
+在 Mac 上的苹果智能，我个人的预测，它会是系统级 AI 的终极形态。和苹果其他产品一样，内置功能将会把只好那么一点点的第三方工具的市场挤压到足够小。苹果最擅长在产品上做价值增值，它的系统功能会比 Windows 更有侵略性。<br>
+天气 App，计算器 App，无数事例证明了，如果和苹果想做的功能重叠，你就会像大树底下的草，永远也长不高。<br>
+我怀疑 OpenAI 的奥特曼深知这一点，所以不停在 ChatGPT 上加功能，未来未必不会有 OpenAI OS，OpenAI 电脑。苹果也深知这一点，与其养头白眼狼不如和谷歌合作。未来 Siri 会采用 Gemini，可能有部分原因正是基于上面的考量。<br>
+总结，如果你现在对苹果智能感兴趣，想要体验环大陆版的效果，又有一定动手能力，那么今天的新方法值得试一试。<br>
+最后扯点别的。昨天我写了一篇路由器的文章。我猜到那个《完美路由器》的标题会吸引一批中年老登。但我没猜到评论区登味儿会那么浓。<br>
+哪些教育我太年轻，瞎折腾的评论，我看完倒满高兴。我无比希望自己还在 20 多岁被人叫小伙的年纪。这些评论告诉我，我的心态还年轻，我还有勇气和热情。<br>
+至于技术水平，作为一名拥有 Cisco 网络专家认证的前工程师，微软认证前工程师，写过多个数据中心灾备方案的前工程师，我只能笑笑不说话。</p>
+
+              </div>
+              <div class="toc-container">
+                
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://tespera.github.io/post/dWtw61MhRO/">
+              <h3 class="post-title">
+                10分钟搭好一个能赚钱的个人博客？
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank"> Gridea</a>
+  <a class="rss" href="https://tespera.github.io/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>
