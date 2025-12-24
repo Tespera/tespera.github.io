@@ -1,0 +1,790 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport"
+        content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, width=device-width" />
+    <meta name="renderer" content="webkit">
+    <meta name="format-detection" content="telephone=no, email=no, address=no">
+
+    <title>CodeBuddy ，腾讯云自家的 AI 编码助手 | 述尔</title>
+    
+    
+    <meta name="keywords" content="AI,SEO,CodeBuddy,述尔,Gridea" />
+    <meta name="description" content="目前 2 大主流 AI 编程工具，Cursor 和 Trae 已经广为人知。
+作为程序员超多的鹅厂，其实我还蛮想看看他出手的。
+这不，看了昨晚 CodeBuddy 的直播，我就知道其实腾讯都有一直在悄咪咪出手。
+
+CodeBuddy 是腾讯...">
+
+    <!-- Social Media Meta Tags -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://tespera.github.io/post/6XIIRf0YGH/">
+    <meta property="og:title" content="CodeBuddy ，腾讯云自家的 AI 编码助手 | 述尔">
+    <meta property="og:description" content="目前 2 大主流 AI 编程工具，Cursor 和 Trae 已经广为人知。
+作为程序员超多的鹅厂，其实我还蛮想看看他出手的。
+这不，看了昨晚 CodeBuddy 的直播，我就知道其实腾讯都有一直在悄咪咪出手。
+
+CodeBuddy 是腾讯...">
+    <meta property="og:image" content="">
+    <meta property="og:site_name" content="述尔">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://tespera.github.io/post/6XIIRf0YGH/">
+    <meta name="twitter:title" content="CodeBuddy ，腾讯云自家的 AI 编码助手 | 述尔">
+    <meta name="twitter:description" content="目前 2 大主流 AI 编程工具，Cursor 和 Trae 已经广为人知。
+作为程序员超多的鹅厂，其实我还蛮想看看他出手的。
+这不，看了昨晚 CodeBuddy 的直播，我就知道其实腾讯都有一直在悄咪咪出手。
+
+CodeBuddy 是腾讯...">
+    <meta name="twitter:image" content="">
+
+    <!-- Structured Data (JSON-LD) -->
+    
+    <script type="application/ld+json">
+        {"@context":"https://schema.org","@type":"BlogPosting","headline":"CodeBuddy ，腾讯云自家的 AI 编码助手 | 述尔","description":"目前 2 大主流 AI 编程工具，Cursor 和 Trae 已经广为人知。\n作为程序员超多的鹅厂，其实我还蛮想看看他出手的。\n这不，看了昨晚 CodeBuddy 的直播，我就知道其实腾讯都有一直在悄咪咪出手。\n\nCodeBuddy 是腾讯...","image":"","author":{"@type":"Person","name":"述尔"},"publisher":{"@type":"Organization","name":"述尔","logo":{"@type":"ImageObject","url":""}},"datePublished":"2025-12-16T10:25:37.000Z","dateModified":"2025-12-16T10:25:37.000Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://tespera.github.io/post/6XIIRf0YGH/"}}
+    </script>
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#292a2d" media="(prefers-color-scheme: dark)">
+
+    
+    
+    <link rel="shortcut icon" href="https://tespera.github.io/media/images/favicon.ico">
+    
+    <link rel="stylesheet" href="https://tespera.github.io/styles/main.css">
+    
+    <script>
+    // 自动为所有 target="_blank" 的链接添加 rel="noopener noreferrer"
+    document.addEventListener('DOMContentLoaded', function() {
+        var links = document.querySelectorAll('a[target="_blank"]');
+        links.forEach(function(link) {
+            var rel = link.getAttribute('rel') || '';
+            if (rel.indexOf('noopener') === -1) {
+                rel += ' noopener';
+            }
+            if (rel.indexOf('noreferrer') === -1) {
+                rel += ' noreferrer';
+            }
+            link.setAttribute('rel', rel.trim());
+        });
+    });
+</script>
+
+
+<script>
+/**
+ * 作用：将 GitHub Pages 的原图链接替换为 jsDelivr CDN 链接，加速图片加载
+ */
+(function() {
+    // === 配置区域，需要替换成自己的 GitHub 用户名和仓库名 ===
+    const CONFIG = {
+        githubUser: 'tespera',
+        repoName:   'tespera.github.io',
+        branch:     'master',
+        cdnDomain:  'https://cdn.jsdelivr.net/gh',
+    };
+
+    // === 主逻辑 ===
+    function optimizeImages() {
+        // 如果没有配置 GitHub 信息，则直接返回
+        if (!CONFIG.githubUser || !CONFIG.repoName) {
+            return;
+        }
+
+        // 1. 获取页面上所有图片
+        const images = document.querySelectorAll('img');
+        
+        // 2. 构造旧域名的匹配规则 (强制转小写以避免大小写不匹配)
+        const oldDomain = `${CONFIG.githubUser}.github.io`.toLowerCase();
+        // 获取当前站点域名 (处理自定义域名的情况，如 are.ink)
+        const currentDomain = window.location.host.toLowerCase(); 
+
+        images.forEach((img) => {
+            // 获取当前图片的 src
+            let src = img.getAttribute('src'); 
+            
+            // 忽略空值、Base64图片、已经是CDN的链接
+            if (!src || src.startsWith('data:') || src.includes(CONFIG.cdnDomain)) {
+                return;
+            }
+
+            // 为了匹配检查，构造一个用于比较的 src
+            const srcForCheck = src.toLowerCase();
+
+            let relativePath = null;
+
+            // Case A: 包含 github.io 域名 (标准 GitHub Pages)
+            if (srcForCheck.includes(oldDomain)) {
+                const startIndex = srcForCheck.indexOf(oldDomain);
+                if (startIndex !== -1) {
+                    relativePath = src.substring(startIndex + oldDomain.length);
+                }
+            }
+            // Case B: 包含当前域名 (自定义域名 或 Localhost)
+            else if (srcForCheck.includes(currentDomain)) {
+                try {
+                    // 尝试解析 URL 获取 pathname
+                    const url = new URL(src, window.location.href);
+                    relativePath = decodeURIComponent(url.pathname);
+                } catch (e) {
+                    // 降级处理
+                    const parts = src.split(currentDomain);
+                    if (parts.length > 1) relativePath = parts[1];
+                }
+            }
+            // Case C: 相对路径 (以 / 开头，且不包含 //)
+            else if (src.startsWith('/') && !src.startsWith('//')) {
+                relativePath = src;
+            }
+
+            // 如果成功提取到了相对路径
+            if (relativePath) {
+                // 移除开头的斜杠，防止双斜杠
+                if (relativePath.startsWith('/')) {
+                    relativePath = relativePath.substring(1); 
+                }
+                
+                // 构造新的 CDN 链接
+                // 注意：jsDelivr 必须使用 GitHub 仓库的原始路径 (User/Repo)，与自定义域名 (CNAME) 无关
+                const newSrc = `${CONFIG.cdnDomain}/${CONFIG.githubUser}/${CONFIG.repoName}@${CONFIG.branch}/${relativePath}`;
+
+                // 替换图片链接
+                img.src = newSrc;
+                img.setAttribute('data-optimized', 'true');
+
+                // 添加错误回退机制
+                img.onerror = function() {
+                    this.src = src; // 恢复原图
+                    this.onerror = null; // 防止死循环
+                };
+            }
+        });
+    }
+
+    // 页面加载完成后立即执行
+    document.addEventListener('DOMContentLoaded', optimizeImages);
+    
+    // 兼容一些使用 Pjax (无刷新跳转) 的主题
+    document.addEventListener('pjax:complete', optimizeImages);
+
+})();
+</script>
+
+    <script>
+    // Theme Copyright
+    console.log(
+        '\n' +
+        '%c Gridea Theme for Amore v1.0 %c https://www.amore.ink ',
+        'color: #fadfa3; background: #030307; padding: 12px 10px; border-radius: 3px 0 0 3px;',
+        'color: #030307; background: #fadfa3; padding: 12px 10px; border-radius: 0 3px 3px 0;'
+        + '\n',
+    );
+</script>
+
+
+<script>
+    // declaraction of document.ready() function.
+    (function () {
+        var ie = !!(window.attachEvent && !window.opera);
+        var wk = /webkit\/(\d+)/i.test(navigator.userAgent) && (RegExp.$1 < 525);
+        var fn = [];
+        var run = function () {
+            for (var i = 0; i < fn.length; i++) fn[i]();
+        };
+        var d = document;
+        d.ready = function (f) {
+            if (!ie && !wk && d.addEventListener)
+                return d.addEventListener('DOMContentLoaded', f, false);
+            if (fn.push(f) > 1) return;
+            if (ie)
+                (function () {
+                    try {
+                        d.documentElement.doScroll('left');
+                        run();
+                    } catch (err) {
+                        setTimeout(arguments.callee, 0);
+                    }
+                })();
+            else if (wk)
+                var t = setInterval(function () {
+                    if (/^(loaded|complete)$/.test(d.readyState))
+                        clearInterval(t), run();
+                }, 0);
+        };
+    })();
+
+
+    document.ready(
+        function () {
+            var _Blog = window._Blog || {};
+
+            const getSystemTheme = () => {
+                if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                    return 'dark';
+                }
+                return 'light';
+            };
+
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme');
+            const initialTheme = currentTheme || getSystemTheme();
+            const isDark = initialTheme === 'dark';
+
+            const updateButtons = (dark) => {
+                const sunBtn = document.getElementById("theme-toggle-sun");
+                const moonBtn = document.getElementById("theme-toggle-moon");
+                const mobileSunBtn = document.getElementById("mobile-theme-toggle-sun");
+                const mobileMoonBtn = document.getElementById("mobile-theme-toggle-moon");
+
+                if (dark) {
+                    if (sunBtn) sunBtn.style.display = 'none';
+                    if (moonBtn) moonBtn.style.display = 'inline-block';
+                    if (mobileSunBtn) mobileSunBtn.style.display = 'none';
+                    if (mobileMoonBtn) mobileMoonBtn.style.display = 'inline-block';
+                } else {
+                    if (sunBtn) sunBtn.style.display = 'inline-block';
+                    if (moonBtn) moonBtn.style.display = 'none';
+                    if (mobileSunBtn) mobileSunBtn.style.display = 'inline-block';
+                    if (mobileMoonBtn) mobileMoonBtn.style.display = 'none';
+                }
+            };
+
+            const updateThemeColor = (dark) => {
+                const themeColor = dark ? '#292a2d' : '#ffffff';
+                const metaTags = document.querySelectorAll('meta[name="theme-color"]');
+                if (metaTags.length > 0) {
+                    // 保留第一个，移除其他的，避免重复
+                    for (let i = 1; i < metaTags.length; i++) {
+                        metaTags[i].remove();
+                    }
+                    metaTags[0].setAttribute('content', themeColor);
+                    metaTags[0].removeAttribute('media');
+                } else {
+                    const meta = document.createElement('meta');
+                    meta.name = 'theme-color';
+                    meta.content = themeColor;
+                    document.head.appendChild(meta);
+                }
+            };
+
+            const applyTheme = (dark) => {
+                const body = document.getElementsByTagName('body')[0];
+                if (dark) {
+                    body.classList.add('dark-theme');
+                } else {
+                    body.classList.remove('dark-theme');
+                }
+                updateButtons(dark);
+                updateThemeColor(dark);
+            };
+
+            // Initial application
+            applyTheme(isDark);
+            if (!currentTheme) {
+                window.localStorage && window.localStorage.setItem('theme', initialTheme);
+            }
+
+            _Blog.toggleTheme = function () {
+                const toggleFunc = (e) => {
+                    // Prevent bubbling if needed, though buttons are distinct now
+                    if (e) e.stopPropagation();
+
+                    const body = document.getElementsByTagName('body')[0];
+                    const isCurrentlyDark = body.classList.contains('dark-theme');
+
+                    if (isCurrentlyDark) {
+                        body.classList.remove('dark-theme');
+                        updateButtons(false);
+                        window.localStorage && window.localStorage.setItem('theme', 'light');
+                    } else {
+                        body.classList.add('dark-theme');
+                        updateButtons(true);
+                        window.localStorage && window.localStorage.setItem('theme', 'dark');
+                    }
+                };
+
+                const sunBtn = document.getElementById("theme-toggle-sun");
+                const moonBtn = document.getElementById("theme-toggle-moon");
+                const mobileSunBtn = document.getElementById("mobile-theme-toggle-sun");
+                const mobileMoonBtn = document.getElementById("mobile-theme-toggle-moon");
+
+                if (sunBtn) sunBtn.addEventListener('click', toggleFunc);
+                if (moonBtn) moonBtn.addEventListener('click', toggleFunc);
+                if (mobileSunBtn) mobileSunBtn.addEventListener('click', toggleFunc);
+                if (mobileMoonBtn) mobileMoonBtn.addEventListener('click', toggleFunc);
+            };
+            _Blog.toggleTheme();
+
+            if (window.matchMedia) {
+                window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+                    const newTheme = e.matches ? 'dark' : 'light';
+                    applyTheme(e.matches);
+                    window.localStorage && window.localStorage.setItem('theme', newTheme);
+                });
+            }
+        }
+    );
+</script>
+
+<script>
+    // Reading Progress Component
+    document.addEventListener('DOMContentLoaded', () => {
+        const progressValue = document.querySelector('.reading-value');
+        const progressCircle = document.querySelector('.progress-ring__circle');
+        const container = document.querySelector('.reading-progress-container');
+
+        // Exit if elements don't exist (e.g., not on a post page)
+        if (!progressValue || !progressCircle || !container) {
+            return;
+        }
+
+        // SVG Circle setup
+        const radius = progressCircle.r.baseVal.value;
+        const circumference = 2 * Math.PI * radius;
+
+        progressCircle.style.strokeDasharray = `${circumference} ${circumference}`;
+        progressCircle.style.strokeDashoffset = circumference;
+
+        function setProgress(percent) {
+            const safePercent = Math.min(100, Math.max(0, percent));
+            progressValue.textContent = `${Math.round(safePercent)}%`;
+            const offset = circumference - (safePercent / 100) * circumference;
+            progressCircle.style.strokeDashoffset = offset;
+        }
+
+        function onScroll() {
+            const scrollTop = window.scrollY || document.documentElement.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+
+            if (scrollHeight <= 0) {
+                setProgress(0);
+                return;
+            }
+
+            const scrollPercent = (scrollTop / scrollHeight) * 100;
+            setProgress(scrollPercent);
+
+            // Show/Hide logic: Show if scrolled more than 100px
+            if (scrollTop > 100) {
+                container.classList.add('show');
+            } else {
+                container.classList.remove('show');
+            }
+        }
+
+        // Initialize
+        onScroll();
+
+        // Listen for scroll events
+        window.addEventListener('scroll', onScroll, { passive: true });
+
+        // Recalculate on resize
+        window.addEventListener('resize', onScroll);
+    });
+</script>
+
+
+
+
+    
+</head>
+
+    <body>
+
+        <script>
+    (function () {
+        const getSystemTheme = () => {
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                return 'dark';
+            }
+            return 'light';
+        };
+
+        const savedTheme = localStorage.getItem('theme');
+        const theme = savedTheme || getSystemTheme();
+
+        if (theme === 'dark') {
+            document.body.classList.add('dark-theme');
+        }
+
+        if (!savedTheme) {
+            localStorage.setItem('theme', theme);
+        }
+    })();
+</script>
+<header class="mod-head">
+    <div class="mod-head__left">
+        <div class="mod-head__logo">
+            <a href="https://tespera.github.io">
+                
+                    <img class="avatar" alt="avatar" src="https://tespera.github.io/media/images/avatar.jpg">
+                
+            </a>
+        </div>
+    </div>
+
+    <div class="mod-head__right">
+        <span>
+            <button id="theme-toggle-sun" class="tiptap-button theme-toggle-sun" aria-label="Switch to dark mode">
+                <svg width="18" height="18" class="tiptap-button-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 1C12.5523 1 13 1.44772 13 2V4C13 4.55228 12.5523 5 12 5C11.4477 5 11 4.55228 11 4V2C11 1.44772 11.4477 1 12 1Z" fill="currentColor"></path>
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M7 12C7 9.23858 9.23858 7 12 7C14.7614 7 17 9.23858 17 12C17 14.7614 14.7614 17 12 17C9.23858 17 7 14.7614 7 12ZM12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9Z" fill="currentColor"></path>
+                    <path d="M13 20C13 19.4477 12.5523 19 12 19C11.4477 19 11 19.4477 11 20V22C11 22.5523 11.4477 23 12 23C12.5523 23 13 22.5523 13 22V20Z" fill="currentColor"></path>
+                    <path d="M4.22282 4.22289C4.61335 3.83236 5.24651 3.83236 5.63704 4.22289L7.04704 5.63289C7.43756 6.02341 7.43756 6.65658 7.04704 7.0471C6.65651 7.43762 6.02335 7.43762 5.63283 7.0471L4.22282 5.6371C3.8323 5.24658 3.8323 4.61341 4.22282 4.22289Z" fill="currentColor"></path>
+                    <path d="M18.367 16.9529C17.9765 16.5623 17.3433 16.5623 16.9528 16.9529C16.5623 17.3434 16.5623 17.9766 16.9528 18.3671L18.3628 19.7771C18.7533 20.1676 19.3865 20.1676 19.777 19.7771C20.1675 19.3866 20.1675 18.7534 19.777 18.3629L18.367 16.9529Z" fill="currentColor"></path>
+                    <path d="M1 12C1 11.4477 1.44772 11 2 11H4C4.55228 11 5 11.4477 5 12C5 12.5523 4.55228 13 4 13H2C1.44772 13 1 12.5523 1 12Z" fill="currentColor"></path>
+                    <path d="M20 11C19.4477 11 19 11.4477 19 12C19 12.5523 19.4477 13 20 13H22C22.5523 13 23 12.5523 23 12C23 11.4477 22.5523 11 22 11H20Z" fill="currentColor"></path>
+                    <path d="M7.04704 16.9529C7.43756 17.3434 7.43756 17.9766 7.04704 18.3671L5.63704 19.7771C5.24651 20.1676 4.61335 20.1676 4.22282 19.7771C3.8323 19.3866 3.8323 18.7534 4.22283 18.3629L5.63283 16.9529C6.02335 16.5623 6.65651 16.5623 7.04704 16.9529Z" fill="currentColor"></path>
+                    <path d="M19.777 5.6371C20.1675 5.24657 20.1675 4.61341 19.777 4.22289C19.3865 3.83236 18.7533 3.83236 18.3628 4.22289L16.9528 5.63289C16.5623 6.02341 16.5623 6.65658 16.9528 7.0471C17.3433 7.43762 17.9765 7.43762 18.367 7.0471L19.777 5.6371Z" fill="currentColor"></path>
+                </svg>
+            </button>
+            <button id="theme-toggle-moon" class="tiptap-button theme-toggle-moon" aria-label="Switch to light mode">
+                <svg width="18" height="18" class="tiptap-button-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C10.0222 2 8.08879 2.58649 6.4443 3.6853C4.79981 4.78412 3.51809 6.3459 2.76121 8.17317C2.00433 10.0004 1.8063 12.0111 2.19215 13.9509C2.578 15.8907 3.53041 17.6725 4.92894 19.0711C6.32746 20.4696 8.10929 21.422 10.0491 21.8079C11.9889 22.1937 13.9996 21.9957 15.8268 21.2388C17.6541 20.4819 19.2159 19.2002 20.3147 17.5557C21.4135 15.9112 22 13.9778 22 12C22 11.5955 21.7564 11.2309 21.3827 11.0761C21.009 10.9213 20.5789 11.0069 20.2929 11.2929C19.287 12.2988 17.9226 12.864 16.5 12.864C15.0774 12.864 13.713 12.2988 12.7071 11.2929C11.7012 10.287 11.136 8.92261 11.136 7.5C11.136 6.07739 11.7012 4.71304 12.7071 3.70711C12.9931 3.42111 13.0787 2.99099 12.9239 2.61732C12.7691 2.24364 12.4045 2 12 2ZM7.55544 5.34824C8.27036 4.87055 9.05353 4.51389 9.87357 4.28778C9.39271 5.27979 9.13604 6.37666 9.13604 7.5C9.13604 9.45304 9.91189 11.3261 11.2929 12.7071C12.6739 14.0881 14.547 14.864 16.5 14.864C17.6233 14.864 18.7202 14.6073 19.7122 14.1264C19.4861 14.9465 19.1295 15.7296 18.6518 16.4446C17.7727 17.7602 16.5233 18.7855 15.0615 19.391C13.5997 19.9965 11.9911 20.155 10.4393 19.8463C8.88743 19.5376 7.46197 18.7757 6.34315 17.6569C5.21447 16.538 4.4624 15.1126 4.15372 13.5607C3.84504 12.0089 4.00347 10.4003 4.60897 8.93853C5.21447 7.47672 6.23985 6.22729 7.55544 5.34824Z" fill="currentColor"></path>
+                    <path d="M19 2C19.5523 2 20 2.44772 20 3V4H21C21.5523 4 22 4.44772 22 5C22 5.55228 21.5523 6 21 6H20V7C20 7.55228 19.5523 8 19 8C18.4477 8 18 7.55228 18 7V6H17C16.4477 6 16 5.55228 16 5C16 4.44772 16.4477 4 17 4H18V3C18 2.44772 18.4477 2 19 2Z" fill="currentColor"></path>
+                </svg>
+            </button>
+        </span>
+    </div>
+</header>
+<!-- <a href="#" id="back-to-top" style="display: inline;"> ^ </a> -->
+
+            <article class="mod-post mod-post__type-post">
+                <header>
+                    <h1 class="mod-post__title">
+                        CodeBuddy ，腾讯云自家的 AI 编码助手
+                    </h1>
+                </header>
+
+                <div class="mod-post__meta">
+                    <time datetime="2025-12-16">
+                        2025-12-16
+                    </time> • 9 min read •
+                        
+                </div>
+
+
+
+                <div class="mod-post__entry wzulli">
+                    
+                            <p>目前 2 大主流 AI 编程工具，Cursor 和 Trae 已经广为人知。</p>
+<p>作为程序员超多的鹅厂，其实我还蛮想看看他出手的。</p>
+<p>这不，看了昨晚 CodeBuddy 的直播，我就知道其实腾讯都有一直在悄咪咪出手。</p>
+<figure data-type="image" tabindex="1"><img src="https://tespera.github.io/post-images/1766129552301.png" alt="" loading="lazy"></figure>
+<p>CodeBuddy 是腾讯云自家的 AI 编码助手，就像 GitHub copilot、通义灵码一样，属于内嵌的插件。</p>
+<p>本来也没什么新奇的，毕竟 AI 编码插件可是比 Cursor 这种出来的还早。</p>
+<p>该有的功能早有了。但看完直播后，有几点还是让我印象深刻，甚至是有些兴奋的。</p>
+<!-- more -->
+<p>首先，新升级的 Craft 功能支持 MCP 协议并支持自定义配置 MCP。</p>
+<p>Craft 功能就像是 Cursor 中的 Agent 能力，能拆解需求自动生成项目级代码。</p>
+<p>这个稍微懂 MCP 的都知道其含金量，但也有些插件也支持了。</p>
+<p>让我兴奋的是腾讯融合了微信生态的尝试，这可以说绝无仅有。</p>
+<p>首先是在 Chat 对话中支持添加知识库作为上下文，包含了微信小游戏、微信小程序、微信支付等众多的工具包。这可太有用了，AI 会按照指定的框架来开发，而不是一顿操作猛如虎，一看摆错 250。</p>
+<p>而且，这种打通微信生态的维度还不止是在知识库上下文维度，CodeBuddy 直接干到了整个微信开发生命周期维度。</p>
+<p>我现在直接可以在微信开发者工具中用 AI 开发微信小程序了，不用来回切换，而且是自家做的集成，很丝滑。</p>
+<p>于是乎，我也没闲着，直播结束后，我就快速的用这种方法，花了 30 分钟，做了个跳一跳微信小游戏。我在文章后面会贴出简单的教程和一些实用上实践，但现在我想写一些自己的想法。</p>
+<p>Trae 是字节旗下产品，目前在国内影响力不小，也确实好用。</p>
+<p>Cursor 是基于 VSCode 进化而来，虽然好用，但总结下来有 2 点是我有所顾虑的。</p>
+<p>第一，这是个全新的工具，大部分开发者早已习惯了自己熟悉语言的开发工具，切换成本比较大。比如 Java 程序员在 IDEA 中行云流水惯了，突然要他切换到 Cursor，这就好比让他用左手夹菜，瞬间不香了。</p>
+<p>第二，Cursor 在面对庞大的后端项目时，表现的很差。我曾经在用 Cursor 开发八字小程序时，大部分时间都浪费在了让 Cursor 调整后端代码上。</p>
+<p>第三，Cursor 在不加约束的条件下，会天马行空，随意发挥，这对于创意工作来说是好事，但对于代码这种很严谨的事情来说，就非常不合适。比如开发微信小程序，不遵守微信开发规范，后期调整会非常麻烦，但规范这种东西，下载下来作为 rule 灌进去，这也不切实际。毕竟开发规范也是会更新的🐶。</p>
+<p>当然有人也意识到了这点，在 Cursor 中加入了 Context7 MCP，可以进行事实文档检索。</p>
+<p>最后一个顾虑就是，Cursor 毕竟是国外产品，还不便宜，使用还需要一些成本。</p>
+<p>所以像 CodeBuddy 类的代码助手依旧有市场，特别是对于成熟的开发者来说，谁也不想切换编程工具。</p>
+<p>工具要解决的事情，如果能通过插件很好的做到，那该有多好呀。</p>
+<p>毕竟现在工具真的太多了，我都感觉学不过来了。😂下</p>
+<p>面是用微信开发工具和 CodeBuddy 插件做的跳一跳小游戏的教程。</p>
+<p>安装插件在微信开发者工具中直接安装 CodeBuddy 插件。直接点安装就好了。</p>
+<p>调出插件面板：需求准备直接丢给 GPT，让他帮生成初始的提示词内容。</p>
+<p>基于TS基础模板，生成一个微信小程序代码生成的提示词，该提示词用于生成微信小程序的跳一跳游戏，要附上跳一跳完整的游戏规则，包括基本规则、积分统计、失败情况等内 容，先不需要提供示例代码，只需要提供完整的提示词。</p>
+<p>然后让他直接转成 markdown 格式的。因为是微信小程序，可以在提示词里增加「微信小程序的代码质量，和代码要求」。</p>
+<p>加一下自己的理解修改，最终的提示词如下：</p>
+<pre><code># 角色  
+您是腾讯云代码助手，一位专业的微信小程序开发专家，精通 WXML、WXSS、TypeScript 的语法，熟悉微信小程序的项目架构、组件化设计与动画实现。  
+您的任务是根据自然语言描述，与开发者合作，生成结构清晰、逻辑完整、可运行的微信小程序工程代码。您细致入微、推理能力强，输出的代码完整、规范、具有良好可维护性。
+</code></pre>
+<hr>
+<h1 id="项目描述">项目描述</h1>
+<p>开发一个基于 TypeScript 的微信小程序小游戏，游戏名称为「跳一跳 Jump!」。  <br>
+玩家通过按压屏幕蓄力，松开后角色跳跃，目标是落在下一个平台上。  <br>
+跳跃距离与按压时间成正比，落点越准，得分越高；跳偏则失败，游戏结束。支持积分统计和失败重启功能。</p>
+<hr>
+<h1 id="功能需求">功能需求</h1>
+<h2 id="游戏玩法">游戏玩法</h2>
+<ul>
+<li>主角为一个可跳跃的圆球或方块；</li>
+<li>玩家按住屏幕，角色开始蓄力，松手后跳跃；</li>
+<li>跳跃的距离由按压时间决定；</li>
+<li>成功落在平台上可继续游戏；</li>
+<li>落点越精准，可获得“完美着陆”加分（可选）；</li>
+<li>落空即判定游戏失败，弹出得分提示。</li>
+</ul>
+<h2 id="游戏规则">游戏规则</h2>
+<ul>
+<li>游戏从中央平台起跳，平台位置和宽度随机生成；</li>
+<li>跳跃轨迹可为简化的线性位移或抛物线；</li>
+<li>平台之间的间距和方向可为左右交替，也可支持斜对角方向；</li>
+<li>每次成功落地记 1 分，完美着陆加额外分数（如+1）；</li>
+<li>游戏失败条件包括：<br>
+  - 未落到平台上；<br>
+  - 小球跳出画布区域。</li>
+</ul>
+<h2 id="交互功能">交互功能</h2>
+<ul>
+<li>按住屏幕触发蓄力动画（例如角色压缩）；</li>
+<li>松开后角色跳跃，进入飞行状态；</li>
+<li>成功落地播放跳跃音效或轻微动画；</li>
+<li>显示当前得分、历史最高分；</li>
+<li>游戏结束后显示得分，提供重新开始按钮。</li>
+</ul>
+<hr>
+<h1 id="微信小程序代码质量与要求">微信小程序代码质量与要求</h1>
+<h2 id="开发语言与结构">📌 开发语言与结构</h2>
+<ul>
+<li>必须使用 TypeScript 编写；</li>
+<li>使用微信小程序原生组件（如 <code>canvas</code>、<code>view</code>）；</li>
+<li>使用 <code>Page</code> 注册页面逻辑；</li>
+<li>项目结构清晰，逻辑封装合理，组件职责分离。</li>
+</ul>
+<h2 id="可读性与注释">🧠 可读性与注释</h2>
+<ul>
+<li>所有函数、类、模块命名应语义明确，采用 camelCase 命名法；</li>
+<li>对关键逻辑（如跳跃、落点计算、平台生成等）添加详细注释；</li>
+<li>对每个模块或方法添加文档注释，便于他人理解与维护。</li>
+</ul>
+<h2 id="错误处理">🔧 错误处理</h2>
+<ul>
+<li>按压/跳跃事件需判断状态是否合法，避免多次触发；</li>
+<li>捕获非法跳跃状态（如重复跳跃、未落地时再次操作）；</li>
+<li>所有异常需提示用户，不可报错崩溃。</li>
+</ul>
+<h2 id="安全性与性能优化">🔒 安全性与性能优化</h2>
+<ul>
+<li>不在代码中硬编码任何隐私信息或接口；</li>
+<li>本地数据（如最高得分）需加密存储；</li>
+<li>所有渲染应使用 requestAnimationFrame 或 canvas batchDraw 优化性能；</li>
+<li>避免冗余渲染与动画资源泄漏。</li>
+</ul>
+<hr>
+<h1 id="技术实现提示">技术实现提示</h1>
+<h2 id="typescript-项目结构">TypeScript 项目结构</h2>
+<ul>
+<li>使用 TypeScript 编写主逻辑，搭配 <code>canvas</code> 实现绘图与跳跃动画；</li>
+<li>建议将跳跃计算、平台生成、碰撞检测分别封装成模块；</li>
+<li>使用定时器或 requestAnimationFrame 实现跳跃动画过渡；</li>
+<li>游戏状态需使用页面 <code>data</code> 或封装的 store 管理。</li>
+</ul>
+<h2 id="跳跃逻辑">跳跃逻辑</h2>
+<ul>
+<li>按住时间记录 <code>pressStart</code> 和 <code>pressEnd</code>；</li>
+<li>跳跃距离 <code>distance = (pressEnd - pressStart) * factor</code>；</li>
+<li>起跳点为当前平台中心，落点计算根据角度和距离推算；</li>
+<li>落地后需检测是否命中下一平台范围，若未命中则失败。</li>
+</ul>
+<h2 id="平台生成与检测">平台生成与检测</h2>
+<ul>
+<li>平台位置、宽度使用随机数生成；</li>
+<li>新平台始终位于当前平台的右侧或左上/右上；</li>
+<li>每次跳跃成功后生成下一个平台并更新渲染；</li>
+<li>检测落点是否落入平台 bounding box。</li>
+</ul>
+<hr>
+<h1 id="推荐项目目录结构">推荐项目目录结构</h1>
+<pre><code class="language-plaintext">src/
+├── pages/
+│   ├── game/              # 游戏主页面
+│   │   ├── game.ts
+│   │   ├── game.wxml
+│   │   ├── game.wxss
+├── utils/
+│   ├── physics.ts         # 跳跃计算、碰撞检测
+│   ├── platform.ts        # 平台生成与管理
+│   ├── renderer.ts        # canvas 绘图逻辑
+├── types/
+│   ├── index.d.ts         # 类型定义（如 Platform, Player 等）
+├── app.ts
+├── app.json
+├── app.wxss
+</code></pre>
+<h1 id="创建小程序">创建小程序</h1>
+<ul>
+<li>在微信开发工具中直接创建一个小程序。</li>
+<li>AppID：选择自己注册小程序的 AppID。</li>
+<li>后端服务：因为小程序游戏还不需要后端，所以选择了不使用云服务。</li>
+<li>开发模式：选择小程序。</li>
+<li>模板选择：选择TS-基础模板。</li>
+<li>填写完信息，直接点击创建。</li>
+<li>AI 开发插件选择 Craft 模式，输入提示词即可。</li>
+</ul>
+
+                </div>
+
+            </article>
+
+
+            
+                
+	<div class="mod-post__foot">
+	 文章标签: 
+     
+     </br>
+	</div>
+
+                    
+
+                        <div class="mod-post__poster">
+                        </div>
+
+                        </div>
+
+                        
+                            
+<br>
+
+<div style="margin-bottom: 10px;">
+    上一篇 : <a href="https://tespera.github.io/post/xUqzzQFmBn/">腾讯云重磅发布 CodeBuddy：打通微信生态的 AI 编码助手，重新定义开发者体验</a>
+</div>
+
+
+
+<div style="margin-bottom: 40px;">
+    下一篇 : <a href="https://tespera.github.io/post/bsuLY2gNyV/">地球上和 Claude 对话最多的人，是一位哲学家</a>
+</div>
+
+
+</div>	
+
+                                
+
+                                    
+
+
+<div id="comments" class="cf">
+    <div class="comments-header">留言</div>
+    <div id="vcomments"></div>
+</div>
+
+<style>
+/* Valine Author Badge Style - Injected directly to ensure priority */
+#vcomments .vtag.vmaster {
+    /* background: #FFD700 !important; */
+    color: #FFD700 !important;
+    font-size: 12px !important;
+    border-radius: 8px !important;
+    padding: 1px 6px !important;
+    display: inline-block !important;
+    vertical-align: middle !important;
+    font-weight: normal !important;
+    border: none !important;
+    line-height: 1.5 !important;
+}
+/* Dark mode compatibility */
+body.dark-theme #vcomments .vtag.vmaster {
+    color: #FFD700 !important;
+}
+</style>
+
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<script>
+    var valineOptions = {
+        el: '#vcomments',
+        appId: 'dAWkPrxZg50VZ7iV39rrZL5U-MdYXbMMI',
+        appKey: 'YCfYt8rhK8d0mh9vr42YTaA1',
+        placeholder: '在这里输入内容...  填写邮箱可收到回复提醒哦~',
+        avatar: 'mp',
+        pageSize: 10,
+        visitor: true 
+    };
+    
+    var serverURLs = 'https://dawkprxz.api.lncldglobal.com';
+    if (serverURLs) {
+        valineOptions.serverURLs = serverURLs;
+    }
+
+    new Valine(valineOptions);
+
+    // Custom Script to add "Blogger" badge
+    (function() {
+        // =========================================================
+        // 请在此处配置博主的昵称，用于显示「博主」标识
+        // Modify this value to your nickname
+        const MASTER_NICK = "Amore"; 
+        // =========================================================
+
+        const observer = new MutationObserver(function(mutations) {
+            mutations.forEach(function(mutation) {
+                if (mutation.addedNodes.length > 0) {
+                    const vcards = document.querySelectorAll('#vcomments .vcard');
+                    vcards.forEach(function(card) {
+                        const nickElem = card.querySelector('.vnick');
+                        if (nickElem) {
+                            const nickName = nickElem.innerText.trim();
+                            // Check if it's the master and badge doesn't exist yet
+                            if (nickName === MASTER_NICK && !card.querySelector('.vtag.vmaster')) {
+                                const tag = document.createElement('span');
+                                tag.className = 'vtag vmaster';
+                                tag.innerText = '「博主」';
+                                // Insert after nickname
+                                nickElem.parentNode.insertBefore(tag, nickElem.nextSibling);
+                            }
+                        }
+                    });
+                }
+            });
+        });
+
+        const vcomments = document.getElementById('vcomments');
+        if (vcomments) {
+            observer.observe(vcomments, { childList: true, subtree: true });
+        }
+    })();
+</script>
+
+
+
+                                        <!-- Reading Progress Component -->
+<div class="reading-progress-container">
+  <span class="reading-label">阅读进度</span>
+  <span class="reading-value">0%</span>
+  <svg class="progress-ring" viewBox="0 0 24 24">
+    <!-- Background Circle -->
+    <circle class="progress-ring__circle-bg" stroke-width="3" fill="transparent" r="10" cx="12" cy="12" />
+    <!-- Progress Circle -->
+    <circle class="progress-ring__circle" stroke-width="3" fill="transparent" r="10" cx="12" cy="12" />
+  </svg>
+</div>
+                                            <footer id="footer" class="footer">
+    <nav>
+        
+            
+            <a class="menu-item" href="/">首页</a>
+        
+             · 
+            <a class="menu-item" href="/blog">博客</a>
+        
+             · 
+            <a class="menu-item" href="/tags">标签</a>
+        
+             · 
+            <a class="menu-item" href="/friends">友链</a>
+        
+             · 
+            <a class="menu-item" href="/post/about">关于</a>
+        
+    </nav>
+
+    <div class="Copyright">Copyright &copy; 2025 <a href="https://tespera.github.io">述尔</a></div>
+
+    <footer id="footer" class="index_footer">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank"> Gridea Pro </a> · 
+        <a class="rss" href="https://tespera.github.io/atom.xml" target="_blank" rel="noopener noreferrer">
+        <i class="ri-rss-line"></i> 🍀 RSS
+  </a>
+    </footer>
+</footer>
+
+
+
+    </body>
+
+    </html>

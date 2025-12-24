@@ -1,0 +1,846 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://tespera.github.io</id>
+    <title>述尔</title>
+    <updated>2025-12-24T11:33:18.343Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://tespera.github.io"/>
+    <link rel="self" href="https://tespera.github.io/atom.xml"/>
+    <subtitle>一个产品经理的碎碎念 | 温故而知新</subtitle>
+    <logo>https://tespera.github.io/images/avatar.png</logo>
+    <icon>https://tespera.github.io/favicon.ico</icon>
+    <rights>All rights reserved 2025, 述尔</rights>
+    <entry>
+        <title type="html"><![CDATA[SEO 全攻略：从原理解析到实战落地，打造高权重网站的系统化指南]]></title>
+        <id>https://tespera.github.io/post/ultimate-seo-guide-building-high-authority-sites/</id>
+        <link href="https://tespera.github.io/post/ultimate-seo-guide-building-high-authority-sites/">
+        </link>
+        <updated>2025-12-24T05:58:41.000Z</updated>
+        <summary type="html"><![CDATA[<p>在当今的互联网生态中，一个网站如果无法在搜索引擎中被用户发现，那么它就像是一座建立在孤岛上的图书馆——无论馆藏多么丰富，都无人问津。</p>
+<p>很多开发者和创作者往往陷入一个误区：认为只要把网站开发出来、把文章写出来，流量自然就会来。事实并非如此。连接内容与用户的这座桥梁，就是 <strong>SEO（搜索引擎优化）</strong>。</p>
+<p>本文将从 SEO 的核心原理出发，深入剖析其价值，并提供一套严谨、可落地的实操方法论，帮助你从零开始构建一个高权重的网站。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>在当今的互联网生态中，一个网站如果无法在搜索引擎中被用户发现，那么它就像是一座建立在孤岛上的图书馆——无论馆藏多么丰富，都无人问津。</p>
+<p>很多开发者和创作者往往陷入一个误区：认为只要把网站开发出来、把文章写出来，流量自然就会来。事实并非如此。连接内容与用户的这座桥梁，就是 <strong>SEO（搜索引擎优化）</strong>。</p>
+<p>本文将从 SEO 的核心原理出发，深入剖析其价值，并提供一套严谨、可落地的实操方法论，帮助你从零开始构建一个高权重的网站。</p>
+<!-- more -->
+<h2 id="一-seo-的本质与核心价值">一、 SEO 的本质与核心价值</h2>
+<h3 id="1-什么是-seo">1. 什么是 SEO？</h3>
+<p>SEO（Search Engine Optimization）即搜索引擎优化。它是一种通过利用搜索引擎的搜索规则，来提高目前网站在有关搜索引擎内的自然排名的方式。</p>
+<p>从技术角度看，SEO 是让你的网站代码和结构更容易被爬虫（Crawler）抓取和理解；从内容角度看，SEO 是确保你的内容能够精准匹配用户的搜索意图（Search Intent）。</p>
+<p><strong>SEO 不是欺骗算法，而是帮助算法更好地理解你的价值。</strong></p>
+<h3 id="2-为什么我们必须做-seo">2. 为什么我们必须做 SEO？</h3>
+<p>在流量红利见顶的今天，SEO 依然是 ROI（投资回报率）最高的流量获取方式，其优势体现在四个维度：</p>
+<ul>
+<li>
+<p><strong>被动流量（Passive Traffic）</strong>：不同于社交媒体需要持续更新才能维持热度，一篇高排名的 SEO 文章可以在发布后的数年内持续为你带来源源不断的睡后流量。</p>
+</li>
+<li>
+<p><strong>精准获客</strong>：用户是通过主动搜索关键词进来的，这意味他们已经有了明确的需求。相比于算法推荐的“强塞”，搜索流量的转化率通常更高。</p>
+</li>
+<li>
+<p><strong>品牌权威性</strong>：在 Google 或百度搜索结果首页占据一席之地，本身就是一种强有力的品牌背书，能够显著提升用户对网站的信任度。</p>
+</li>
+<li>
+<p><strong>长期资产</strong>：广告投放一旦停止，流量即刻归零；而 SEO 积累的权重和排名是网站的长期数字资产。</p>
+</li>
+</ul>
+<h2 id="二-seo-的三大优化支柱">二、 SEO 的三大优化支柱</h2>
+<p>要建立体系化的 SEO 策略，我们需要从以下三个维度入手：</p>
+<ol>
+<li>
+<p><strong>技术 SEO (Technical SEO)</strong>：这是地基。确保网站加载速度快、移动端友好、结构清晰，让搜索引擎的爬虫能顺畅地抓取（Crawl）和索引（Index）。</p>
+</li>
+<li>
+<p><strong>内容 SEO (On-Page SEO)</strong>：这是核心。涉及关键词策略、标题优化、HTML 标签语义化，以及内容本身的质量和相关性。</p>
+</li>
+<li>
+<p><strong>外部 SEO (Off-Page SEO)</strong>：这是声誉。通过外部链接（Backlinks）和社交信号，告诉搜索引擎你的网站在行业内具有权威性。</p>
+</li>
+</ol>
+<h2 id="三-深度实操关键优化策略与落地案例">三、 深度实操：关键优化策略与落地案例</h2>
+<p>基于上述理论，以下是提升网站权重的核心实操方法。</p>
+<h3 id="1-内容与标题的关键词布局">1. 内容与标题的“关键词布局”</h3>
+<p>不要盲目堆砌关键词，要注重“搜索意图”的匹配。</p>
+<ul>
+<li>
+<p><strong>Title Tag (标题标签)</strong>：这是 SEO 权重最高的标签。</p>
+</li>
+<li>
+<p><em>公式</em>：核心关键词 + 长尾修饰词 + 品牌名</p>
+</li>
+<li>
+<p><em>案例</em>：<code>Vercel 部署指南：解决国内访问速度慢的终极方案 |  述尔</code></p>
+</li>
+<li>
+<p><em>分析</em>：涵盖了 &quot;Vercel 部署&quot;（大词）和 &quot;国内访问速度慢&quot;（痛点长尾词）。</p>
+</li>
+<li>
+<p><strong>Heading Tags (H1-H6)</strong>：</p>
+</li>
+<li>
+<p>H1 必须唯一，且包含核心主题。</p>
+</li>
+<li>
+<p>H2、H3 用于构建文章骨架，帮助爬虫理解段落层级。</p>
+</li>
+</ul>
+<h3 id="2-语义化-url-设计-semantic-urls">2. 语义化 URL 设计 (Semantic URLs)</h3>
+<p>URL 是搜索引擎理解页面内容的第一道关卡。</p>
+<ul>
+<li><strong>原则</strong>：拒绝无意义的随机字符，使用包含核心关键词的英文 Slug。</li>
+<li><strong>反面教材</strong>：<code>https://are.ink/post/id=18392</code> 或 <code>https://are.ink/post/20251221</code></li>
+<li><strong>优化方案</strong>：使用“自然语义”结构，保留逻辑连接词。</li>
+<li><strong>案例</strong>：</li>
+<li><em>文章标题</em>：《如何在 Vercel 上配置自定义域名》</li>
+<li><em>优化后 Slug</em>：<code>how-to-configure-custom-domains-on-vercel</code></li>
+<li><em>优势</em>：Google 爬虫直接通过 URL 就能读懂文章主题，且在搜索结果页（SERP）中点击率更高。</li>
+</ul>
+<h3 id="3-结构化数据-schema-markup">3. 结构化数据 (Schema Markup)</h3>
+<p>对于极简风格的博客，页面可视内容较少，这时候利用 JSON-LD 结构化数据与搜索引擎对话尤为重要。</p>
+<ul>
+<li><strong>实操</strong>：在网页 <code>&lt;head&gt;</code> 中插入 Schema 代码。</li>
+<li><strong>代码示例</strong>：</li>
+</ul>
+<pre><code class="language-html">&lt;script type=&quot;application/ld+json&quot;&gt;
+{
+  &quot;@context&quot;: &quot;https://schema.org&quot;,
+  &quot;@type&quot;: &quot;BlogPosting&quot;,
+  &quot;headline&quot;: &quot;SEO 全攻略：从原理解析到实战落地&quot;,
+  &quot;description&quot;: &quot;本文详细介绍了网站 SEO 的定义、优势及具体实操方法...&quot;,
+  &quot;author&quot;: {
+    &quot;@type&quot;: &quot;Person&quot;,
+    &quot;name&quot;: &quot;Amore&quot;
+  },
+  &quot;datePublished&quot;: &quot;2025-12-24&quot;
+}
+&lt;/script&gt;
+
+</code></pre>
+<ul>
+<li><strong>效果</strong>：这能帮助 Google 准确提取文章发布时间、作者、摘要，甚至有机会在搜索结果中通过“富文本摘要（Rich Snippets）”展示，大幅提升点击率。</li>
+</ul>
+<h3 id="4-提升加载速度-core-web-vitals">4. 提升加载速度 (Core Web Vitals)</h3>
+<p>Google 已经将核心网页指标（LCP, FID, CLS）纳入排名因素。</p>
+<ul>
+<li><strong>问题</strong>：图片过大或服务器响应慢会导致跳出率极高。</li>
+<li><strong>解决方案</strong>：</li>
+<li><strong>CDN 加速</strong>：如使用 Cloudflare 或 Vercel Edge Network，将内容分发到离用户最近的节点。</li>
+<li><strong>现代图片格式</strong>：将 PNG/JPG 转换为 WebP 格式，体积可减少 30%-50%。</li>
+<li><strong>延迟加载</strong>：对首屏以下的图片使用 <code>loading=&quot;lazy&quot;</code> 属性。</li>
+</ul>
+<h3 id="5-内链策略-internal-linking">5. 内链策略 (Internal Linking)</h3>
+<p>不要让你的文章成为孤岛。</p>
+<ul>
+<li>
+<p><strong>实操</strong>：在撰写新文章时，自然地引用自己博客中的旧文章。</p>
+</li>
+<li>
+<p><strong>锚文本（Anchor Text）</strong>：链接文字要具体。</p>
+</li>
+<li>
+<p><em>差</em>：点击[这里]查看更多。</p>
+</li>
+<li>
+<p><em>优</em>：参考我的另一篇关于[Cloudflare 优选 IP 设置指南]的文章。</p>
+</li>
+<li>
+<p><strong>作用</strong>：内链可以引导爬虫抓取更多页面，同时将首页或高权重页面的“权重（Link Juice）”传递给深层页面。</p>
+</li>
+</ul>
+<h2 id="四-seo-是一场长期主义的修行">四、 SEO 是一场长期主义的修行</h2>
+<p>SEO 优化从来不是一蹴而就的“黑魔法”，而是一项需要耐心和细致的系统工程。</p>
+<p>从域名的选择到服务器的配置，从 URL 的设计到内容的打磨，每一个细节的优化都是在向搜索引擎释放友好的信号。</p>
+<p>对于独立开发者和博主而言，坚持输出高质量的内容，并辅以规范的技术 SEO 手段，你的网站终将跨越流量的孤岛，被世界看见。</p>
+<p><strong>Next Step:</strong> 检查你博客最近发布的 3 篇文章，看看它们的 URL Slug 是否符合“语义化”标准？如果没有，从下一篇开始改进吧。</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[腾讯云发布 CodeBuddy：为微信生态量身打造的 AI 编码助手，重塑开发者体验]]></title>
+        <id>https://tespera.github.io/post/D1VnVh48Vo/</id>
+        <link href="https://tespera.github.io/post/D1VnVh48Vo/">
+        </link>
+        <updated>2025-12-18T06:09:11.000Z</updated>
+        <summary type="html"><![CDATA[<p>当 Cursor、Trae 等 AI 编程工具迅速普及，开发者也随之陷入“工具选择”焦虑。尽管这些通用产品在常规场景表现不俗，但一到国内特定环境——尤其是微信小程序、微信支付等腾讯生态——就容易因为缺少上下文而“走样”，从虚构接口到套用早已废弃的写法，问题频出。</p>
+<p>腾讯云 CodeBuddy 的最新版本，正面回应了这一痛点。它将腾讯混元、DeepSeek、GLM 等模型整合为多模型驱动，又贯通微信开发的全生命周期，相当于在 AI 助手中植入“本地化大脑”。本文将从架构、能力到实战，完整解析它如何在国内生态中发挥优势。</p>
+<figure data-type="image" tabindex="1"><img src="https://tespera.github.io/post-images/1766129101149.png" alt="" loading="lazy"></figure>
+]]></summary>
+        <content type="html"><![CDATA[<p>当 Cursor、Trae 等 AI 编程工具迅速普及，开发者也随之陷入“工具选择”焦虑。尽管这些通用产品在常规场景表现不俗，但一到国内特定环境——尤其是微信小程序、微信支付等腾讯生态——就容易因为缺少上下文而“走样”，从虚构接口到套用早已废弃的写法，问题频出。</p>
+<p>腾讯云 CodeBuddy 的最新版本，正面回应了这一痛点。它将腾讯混元、DeepSeek、GLM 等模型整合为多模型驱动，又贯通微信开发的全生命周期，相当于在 AI 助手中植入“本地化大脑”。本文将从架构、能力到实战，完整解析它如何在国内生态中发挥优势。</p>
+<figure data-type="image" tabindex="1"><img src="https://tespera.github.io/post-images/1766129101149.png" alt="" loading="lazy"></figure>
+<!-- more -->
+<h1 id="01-底座与覆盖多模型调度-主流-ide-兼容">01 / 底座与覆盖：多模型调度 + 主流 IDE 兼容</h1>
+<p>CodeBuddy 并非依赖单一模型，而是采用“腾讯混元 + DeepSeek + GLM”的综合调度，在代码生成、逻辑推理和长文本处理之间寻找最优平衡。</p>
+<p>IDE 支持范围：</p>
+<ul>
+<li>Visual Studio Code</li>
+<li>JetBrains 全家桶（IntelliJ IDEA、Rider、PyCharm、Android Studio、WebStorm 等）</li>
+<li>Visual Studio 2022</li>
+<li>微信开发者工具（原生集成，腾讯生态特色）</li>
+<li>CloudStudio（云端 IDE）</li>
+<li>鸿蒙 DevEco Studio</li>
+<li>Xcode（通过本地安装包）</li>
+</ul>
+<p>语言与框架：<br>
+覆盖 Java、Python、Go、C/C++、TypeScript、JavaScript、Rust、Swift、Dart、Vue、React 等 200+ 技术栈，满足跨端与全栈团队的日常需求。</p>
+<p>——</p>
+<h1 id="02-懂生态与懂业务三项关键能力">02 / 懂生态与懂业务：三项关键能力</h1>
+<p>与典型 Copilot 类产品相比，CodeBuddy 的差异化来自对“微信生态”和“业务规则”的深度掌握。</p>
+<ol>
+<li>微信生态知识库（RAG 增强）<br>
+在对话框中通过“@”挂载官方文档作为上下文，内置：</li>
+</ol>
+<ul>
+<li>#微信小游戏：API 与开发说明</li>
+<li>#微信小程序：组件与框架规范</li>
+<li>#微信支付：接入与安全要求</li>
+<li>#微信云开发：云托管与 Serverless 实践</li>
+<li>#TDesign：企业级组件库</li>
+</ul>
+<p>这能显著降低通用 AI 在微信场景中的“幻觉”和过时用法，实现更稳更准的代码生成。</p>
+<ol start="2">
+<li>
+<p>Craft 智能体 + MCP 协议<br>
+Craft 类似 Agent 模式：不只是补全，而是能拆解需求并完成跨文件的编辑与生成。同时支持 MCP（Model Context Protocol），与外部系统建立标准化连接，帮助从编码到部署形成闭环。</p>
+</li>
+<li>
+<p>Rules 规则管理<br>
+支持用户级和项目级规则（如“统一使用 TypeScript”“变量命名使用驼峰”），约束 AI 的输出，避免风格漂移与团队规范被破坏。</p>
+</li>
+</ol>
+<p>——</p>
+<p>03 / 从零到重构：两类实战验证</p>
+<p>案例一：30 分钟内实现“跳一跳”微信小游戏（零代码基础可上手）<br>
+在微信开发者工具内安装 CodeBuddy 插件，新建“小程序”项目（后端不使用云服务，选择“TS-基础模板”），以 Craft 模式输入结构化 Prompt，明确：</p>
+<ul>
+<li>角色定位：精通 WXML/WXSS/TypeScript 的微信小程序专家</li>
+<li>核心玩法：按压蓄力、松手跳跃、落点判定；平台位置与宽度随机；成功加分、完美着陆额外加分；掉落/出界判失败</li>
+<li>技术约束：TypeScript、Page 注册页面逻辑、requestAnimationFrame 优化渲染；本地最高分加密存储</li>
+<li>目录规划：game/ 页面逻辑；utils/physics.ts 物理引擎；utils/platform.ts 平台生成</li>
+</ul>
+<p>Craft 会自动生成 physics、renderer 等模块，以及完整的 game.wxml 与 game.ts。仅需参数微调，即可运行出一款逻辑完备的“跳一跳”。</p>
+<p>案例二：遗留代码体检与重构（企业日常）<br>
+面对注释缺失、结构复杂的 Python 后端模块：</p>
+<ul>
+<li>/explain：自然语言解析选中代码的意图与路径</li>
+<li>/cr（Code Review）：识别空指针隐患、深层循环、异常处理缺漏等，并给出最佳实践</li>
+<li>/tests：生成覆盖边界场景的单元测试</li>
+<li>/fix：输出修复版代码，支持 Diff 对比与一键采纳</li>
+<li>Commit 生成：自动生成规范化提交信息，提升协作一致性</li>
+</ul>
+<p>——</p>
+<p>04 / 快捷方式：高效上手的指令与键位</p>
+<p>常用快捷键（macOS / Windows）：</p>
+<ul>
+<li>触发补全：Enter / Enter</li>
+<li>采纳所有建议：Tab / Tab</li>
+<li>按行 / 按词采纳：⌘+↓ / Ctrl+↓（行）；⌘+→ / Ctrl+→（词）</li>
+<li>打开 AI 对话：⌥+I / Alt+I</li>
+<li>将选中代码加入对话：Ctrl+⌘+I / Ctrl+Alt+I</li>
+</ul>
+<p>核心指令：</p>
+<ul>
+<li>/generate rules：生成项目规则文件</li>
+<li>/explain：解释代码</li>
+<li>/fix：修复问题</li>
+<li>/tests：生成单元测试</li>
+<li>/cr：代码评审</li>
+</ul>
+<p>——</p>
+<p>05 / 适配对象、边界与注意事项</p>
+<p>谁更受益：</p>
+<ul>
+<li>高度适配：微信小程序/小游戏、微信支付、腾讯云云开发/Serverless、TDesign 前端体系</li>
+<li>普遍适配：VSCode / JetBrains 用户及多语言团队（官方称支持 200+）</li>
+</ul>
+<p>边界与风险：</p>
+<ul>
+<li>多模型与 MCP 的技术细节：本文以体验为主，模型路由/上下文合并策略未详述；企业落地建议评估可观测性与治理能力</li>
+<li>知识库时效性：RAG 依赖官方文档更新，需关注其节奏以保持生成质量</li>
+<li>隐私与合规：官方宣称“你的代码不会用于训练通用模型”；企业级使用建议进一步核实数据隔离、访问控制与审计方案</li>
+</ul>
+<p>——</p>
+<p>结语<br>
+在“国内生态集成”这一维度，CodeBuddy补足了通用 AI 编码工具的短板。若你的开发高度依赖微信与腾讯云生态，借助知识库上下文与 Craft 智能体，能够有效降低幻觉、紧贴规范、贴近业务场景。即便在通用场景下，规则化与指令化工作流也能稳定提升团队效率。</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[CodeBuddy：为微信生态而生的本地化 AI 编码助手]]></title>
+        <id>https://tespera.github.io/post/yJ0fbX6TFn/</id>
+        <link href="https://tespera.github.io/post/yJ0fbX6TFn/">
+        </link>
+        <updated>2025-12-18T06:07:17.000Z</updated>
+        <summary type="html"><![CDATA[<p>在 Cursor、Trae 等 AI 编程工具风靡的当下，开发者逐渐患上“工具选择困难症”。这些通用工具在常规场景表现出色，但一旦涉及国内特定开发环境——尤其是微信小程序、微信支付等腾讯系生态——往往因缺乏上下文出现“幻觉”，甚至生成基于过时接口的代码。</p>
+<p>作为“鹅厂”自家的 AI 编码助手，腾讯云 CodeBuddy 的新版本值得关注。它不仅集成了腾讯混元、DeepSeek、GLM 等强力模型，更贯通了微信开发的全生命周期，相当于给 AI 助手装上了“一颗本地化的大脑”。本文将从技术底座、核心能力到实战案例，系统拆解这款工具的特点与边界。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>在 Cursor、Trae 等 AI 编程工具风靡的当下，开发者逐渐患上“工具选择困难症”。这些通用工具在常规场景表现出色，但一旦涉及国内特定开发环境——尤其是微信小程序、微信支付等腾讯系生态——往往因缺乏上下文出现“幻觉”，甚至生成基于过时接口的代码。</p>
+<p>作为“鹅厂”自家的 AI 编码助手，腾讯云 CodeBuddy 的新版本值得关注。它不仅集成了腾讯混元、DeepSeek、GLM 等强力模型，更贯通了微信开发的全生命周期，相当于给 AI 助手装上了“一颗本地化的大脑”。本文将从技术底座、核心能力到实战案例，系统拆解这款工具的特点与边界。</p>
+<!-- more -->
+<ol>
+<li>技术底座：多模型驱动，覆盖主流 IDE</li>
+</ol>
+<p>CodeBuddy 并非单一模型，而是基于“腾讯混元 + DeepSeek + GLM”的多模型调度架构，力求在代码生成、逻辑推理与长文本处理之间取得平衡。</p>
+<p>IDE 覆盖面广</p>
+<ul>
+<li>Visual Studio Code</li>
+<li>JetBrains 全家桶（IntelliJ IDEA、Rider、PyCharm、Android Studio、WebStorm 等）</li>
+<li>Visual Studio 2022</li>
+<li>微信开发者工具（独家原生支持）</li>
+<li>CloudStudio（云端 IDE）</li>
+<li>鸿蒙 DevEco Studio</li>
+<li>Xcode（通过本地安装包支持）</li>
+</ul>
+<p>语言与框架支持<br>
+覆盖 Java、Python、Go、C/C++、TypeScript、JavaScript、Rust、Swift、Dart、Vue、React 等 200+ 语言与框架。</p>
+<p>— — —</p>
+<ol start="2">
+<li>杀手级能力：懂生态、懂业务的智能体</li>
+</ol>
+<p>相较于 Copilot 类产品，CodeBuddy 的核心优势在于“本地生态适配”和“业务上下文理解”。</p>
+<ol>
+<li>微信生态知识库（RAG 增强）<br>
+在 Chat 对话框中，开发者可使用“@”挂载官方知识库作为上下文。预置权威文档包括：</li>
+</ol>
+<ul>
+<li>#微信小游戏：开发文档与 API</li>
+<li>#微信小程序：组件与框架规范</li>
+<li>#微信支付：集成指南与安全规范</li>
+<li>#微信云开发：云托管与 Serverless 方案</li>
+<li>#TDesign：企业级组件库文档</li>
+</ul>
+<p>痛点解决：通用 AI 在写微信相关代码时易捏造 API 或使用废弃语法。加载官方知识库后，生成将更贴合规范，显著降低“幻觉”与过时接口的风险。</p>
+<ol start="2">
+<li>
+<p>Craft 智能体 + MCP 协议<br>
+“Craft”定位为 Agent 模式，不止于补全，而是可拆解需求并进行多文件编写与修改。兼容 MCP（Model Context Protocol）开放生态，能够与外部系统标准化连接，打通从编码到部署的研发流程。</p>
+</li>
+<li>
+<p>Rules 规则管理<br>
+支持用户级与项目级规则（如“必须使用 TypeScript”“变量统一驼峰命名”），让 AI 严格遵循团队规范，减少风格漂移与不一致。</p>
+</li>
+</ol>
+<p>— — —</p>
+<ol start="3">
+<li>硬核实战：从零搭建到遗留重构</li>
+</ol>
+<p>案例一｜30 分钟手工打造「跳一跳」微信小游戏（零代码基础）<br>
+场景：在微信开发者工具内体验 CodeBuddy 的原生集成与 Craft 模式生成能力。</p>
+<p>步骤：</p>
+<ol>
+<li>安装插件：在微信开发者工具的编辑器扩展中安装 CodeBuddy</li>
+<li>新建项目：选择“小程序”，后端“不使用云服务”，模板“TS-基础模板”</li>
+<li>提示词工程：使用结构化 Prompt，包含：
+<ul>
+<li>角色设定：精通 WXML/WXSS/TypeScript 的微信小程序专家</li>
+<li>玩法设计：按压蓄力、松手跳跃、落点判定；平台随机生成（位置/宽度）；成功加分、完美着陆额外加分；掉落/出界失败</li>
+<li>技术约束：TypeScript；使用 Page 注册页面；用 requestAnimationFrame 优化渲染；本地数据（如最高分）加密存储</li>
+<li>目录结构：game/（主页面）、utils/physics.ts（物理引擎）、utils/platform.ts（平台生成）</li>
+</ul>
+</li>
+</ol>
+<p>结果：Craft 自动拆解为 physics/rendering 模块，生成完整的 game.wxml 与 game.ts。仅需微调参数，即可运行一个逻辑完整的“跳一跳”。</p>
+<p>案例二｜存量代码体检与重构（企业级日常）<br>
+场景：接手缺乏注释的 Python 后端模块，逻辑复杂且风险未知。</p>
+<p>工作流：</p>
+<ul>
+<li>/explain：选中代码 → 自然语言解释核心逻辑与执行路径</li>
+<li>/cr（Code Review）：识别潜在空指针、过深嵌套、异常处理缺失等问题，并给出最佳实践建议</li>
+<li>/tests：生成覆盖边界场景的单元测试</li>
+<li>/fix：提供修复版代码片段，支持 Diff 对比与一键采纳</li>
+<li>提交信息：自动生成规范化 Commit Message，强化流程一致性</li>
+</ul>
+<p>— — —</p>
+<ol start="4">
+<li>快捷键与指令清单（高效上手）</li>
+</ol>
+<p>快捷键（macOS / Windows）</p>
+<ul>
+<li>触发补全：Enter / Enter</li>
+<li>采纳所有建议：Tab / Tab</li>
+<li>按行 / 按词采纳：⌘+↓ / Ctrl+↓（行）；⌘+→ / Ctrl+→（词）</li>
+<li>打开 AI 对话：⌥+I / Alt+I</li>
+<li>将选中代码加入对话：Ctrl+⌘+I / Ctrl+Alt+I</li>
+</ul>
+<p>核心指令</p>
+<ul>
+<li>/generate rules：为当前项目生成规则文件</li>
+<li>/explain：解释代码</li>
+<li>/fix：修复 Bug</li>
+<li>/tests：生成测试用例</li>
+<li>/cr：代码评审</li>
+</ul>
+<p>— — —</p>
+<ol start="5">
+<li>适用人群、边界与风险提示</li>
+</ol>
+<p>适用人群</p>
+<ul>
+<li>高度适配：微信小程序 / 小游戏、微信支付、腾讯云云开发 / Serverless、TDesign 体系团队与开发者</li>
+<li>普遍适配：使用 VSCode / JetBrains 的多语言开发者（官方宣称支持 200+ 语言与框架）</li>
+</ul>
+<p>边界与注意事项</p>
+<ul>
+<li>多模型路由与 MCP 细节：文章以使用体验为主，模型选择策略与上下文合并细节未展开；团队落地时建议评估可观测性与可控性</li>
+<li>知识库更新频率：RAG 依赖文档时效性，需关注官方知识库的更新节奏</li>
+<li>隐私与合规：文末声明“代码不会用于训练通用模型”，企业级落地建议进一步核实数据隔离、访问控制与审计能力</li>
+</ul>
+<p>— — —</p>
+<p>结语<br>
+CodeBuddy 补齐了 AI 编码工具在“国内生态集成”上的短板。若你的开发深度依赖微信与腾讯云生态，借助“知识库上下文”与“Craft 智能体”，你将获得更少幻觉、更懂规范、更贴业务的编码体验。对于通用场景，规则化 + 指令化工作流也能带来稳定的效率提升。</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[腾讯云重磅发布 CodeBuddy：打通微信生态的 AI 编码助手，重新定义开发者体验]]></title>
+        <id>https://tespera.github.io/post/xUqzzQFmBn/</id>
+        <link href="https://tespera.github.io/post/xUqzzQFmBn/">
+        </link>
+        <updated>2025-12-16T10:48:39.000Z</updated>
+        <summary type="html"><![CDATA[<p>在 Cursor 和 Trae 等 AI 编程工具风靡开发圈的当下，开发者们似乎患上了“工具选择困难症”。虽然国外工具在通用场景下表现优异，但一涉及到国内特定的开发环境——尤其是<strong>微信小程序</strong>、<strong>微信支付</strong>等腾讯系生态时，往往因为缺乏上下文而出现“幻觉”，生成的代码甚至是几年前的旧接口。</p>
+<p>作为“鹅厂”自家的 AI 编码助手，<strong>腾讯云 CodeBuddy</strong> 最近的一波大更新引起了我们的注意。它不仅集成了<strong>腾讯混元、DeepSeek、GLM</strong> 等多轮强力模型，更打通了微信开发的全生命周期。</p>
+<p>这就好比给 AI 助手装上了“本地化大脑”。今天，我们从技术原理、核心功能到硬核实战，为您详细拆解这款工具。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>在 Cursor 和 Trae 等 AI 编程工具风靡开发圈的当下，开发者们似乎患上了“工具选择困难症”。虽然国外工具在通用场景下表现优异，但一涉及到国内特定的开发环境——尤其是<strong>微信小程序</strong>、<strong>微信支付</strong>等腾讯系生态时，往往因为缺乏上下文而出现“幻觉”，生成的代码甚至是几年前的旧接口。</p>
+<p>作为“鹅厂”自家的 AI 编码助手，<strong>腾讯云 CodeBuddy</strong> 最近的一波大更新引起了我们的注意。它不仅集成了<strong>腾讯混元、DeepSeek、GLM</strong> 等多轮强力模型，更打通了微信开发的全生命周期。</p>
+<p>这就好比给 AI 助手装上了“本地化大脑”。今天，我们从技术原理、核心功能到硬核实战，为您详细拆解这款工具。</p>
+<!-- more -->
+<h2 id="01-硬核底座多模型驱动与全平台覆盖">01. 硬核底座：多模型驱动与全平台覆盖</h2>
+<p>CodeBuddy 并非单一模型的产物，而是基于<strong>腾讯混元 + DeepSeek + GLM</strong> 多轮模型驱动的集合体。这种架构意味着它能结合不同模型的优势，在代码生成、逻辑推理和长文本处理上取得平衡。</p>
+<h3 id="全面的-ide-支持">全面的 IDE 支持</h3>
+<p>对于许多不想为了 AI 而更换 IDE 的资深开发者（比如习惯了 IDEA 的 Java 大佬），CodeBuddy 提供了极佳的兼容性。它支持：</p>
+<ul>
+<li><strong>Visual Studio Code</strong></li>
+<li><strong>JetBrains 全家桶</strong> (IntelliJ IDEA, Rider, PyCharm, Android Studio, WebStorm 等)</li>
+<li><strong>Visual Studio 2022</strong></li>
+<li><strong>微信开发者工具</strong> (独家原生支持)</li>
+<li><strong>CloudStudio</strong> (云端 IDE)</li>
+<li><strong>鸿蒙 DevEco Studio</strong></li>
+<li><strong>Xcode</strong> (通过本地安装包支持)</li>
+</ul>
+<h3 id="广泛的语言支持">广泛的语言支持</h3>
+<p>支持包括 Java, Python, Go, C/C++, TypeScript, JavaScript, Rust, Swift, Dart, Vue, React 等 200+ 种编程语言及框架。</p>
+<hr>
+<h2 id="02-杀手级特性懂业务的-ai-智能体">02. 杀手级特性：懂业务的 AI 智能体</h2>
+<p>与其他 Copilot 类产品相比，CodeBuddy 在“懂业务”和“懂生态”上做到了极致。</p>
+<h3 id="1-独家微信生态知识库-rag-增强">1. 独家微信生态知识库 (RAG 增强)</h3>
+<p>这是 CodeBuddy 最具含金量的功能之一。在 Chat 对话框中，开发者可以通过输入 <code>@</code> 符号挂载官方知识库作为上下文（Context）。CodeBuddy 预置了腾讯生态的权威文档：</p>
+<ul>
+<li><strong>#微信小游戏</strong>：开发文档与 API。</li>
+<li><strong>#微信小程序</strong>：组件与框架规范。</li>
+<li><strong>#微信支付</strong>：集成指南与安全规范。</li>
+<li><strong>#微信云开发</strong>：云托管与 Serverless 解决方案。</li>
+<li><strong>#TDesign</strong>：腾讯企业级组件库文档。</li>
+</ul>
+<p><strong>解决了什么痛点？</strong><br>
+通用 AI 开发微信小程序时，常会捏造不存在的 API 或使用废弃语法。加载这些知识库后，AI 会严格按照官方文档生成代码，避免了“一顿操作猛如虎，一看接口二百五”的尴尬。</p>
+<h3 id="2-全新-craft-智能体与-mcp-协议">2. 全新 Craft 智能体与 MCP 协议</h3>
+<p>CodeBuddy 推出了 <strong>Craft</strong> 功能，定位类似于 Cursor 的 Agent 模式。它不仅是补全代码，而是能拆解需求，自主完成<strong>多文件</strong>的代码编写与修改。</p>
+<p>更重要的是，它兼容 <strong>MCP (Model Context Protocol)</strong> 开放生态。这意味着 CodeBuddy 不仅在 IDE 里写代码，还能通过 MCP 协议与外部系统建立标准化连接，贯通从编码到部署的研发全流程。</p>
+<h3 id="3-自定义规则-rules">3. 自定义规则 (Rules)</h3>
+<p>为了防止 AI “天马行空”地乱写，CodeBuddy 支持<strong>Rules 规则管理</strong>。开发者可以创建用户级或项目级的规则（比如“必须使用 TypeScript”、“所有变量驼峰命名”），强制 AI 遵守团队规范。</p>
+<hr>
+<h2 id="03-深度实战案例">03. 深度实战案例</h2>
+<p>为了验证 CodeBuddy 的真实能力，我们进行了两个维度的深度测试。</p>
+<h3 id="案例一零代码基础30分钟手搓跳一跳微信小游戏">案例一：零代码基础，30分钟手搓「跳一跳」微信小游戏</h3>
+<p>此案例展示 CodeBuddy 在<strong>微信开发者工具</strong>中的原生集成能力及 <strong>Craft</strong> 模式的生成能力。</p>
+<p><strong>1. 环境准备</strong></p>
+<ul>
+<li>打开微信开发者工具，在编辑器扩展中直接安装 CodeBuddy 插件。</li>
+<li>新建项目：选择小程序，后端选择“不使用云服务”，模板选择“TS-基础模板”。</li>
+</ul>
+<p><strong>2. 提示词工程 (Prompt Engineering)</strong><br>
+我们使用 Craft 模式，输入了一段结构化极强的 Prompt。要点如下：</p>
+<ul>
+<li><strong>角色设定</strong>：腾讯云代码助手，精通 WXML/WXSS/TypeScript 的微信小程序专家。</li>
+<li><strong>功能需求</strong>：
+<ul>
+<li><strong>核心玩法</strong>：按压屏幕蓄力（时间决定跳跃距离），松开跳跃，落点判定。</li>
+<li><strong>规则细节</strong>：平台随机生成（位置/宽度），成功+1分，完美着陆额外加分，掉落或出界失败。</li>
+</ul>
+</li>
+<li><strong>技术约束 (关键)</strong>：
+<ul>
+<li>必须使用 TypeScript。</li>
+<li>使用 <code>Page</code> 注册页面逻辑。</li>
+<li>渲染使用 <code>requestAnimationFrame</code> 优化性能，避免卡顿。</li>
+<li>本地数据（如最高分）需加密存储。</li>
+</ul>
+</li>
+<li><strong>目录结构建议</strong>：明确要求分为 <code>game/</code> (主页面), <code>utils/physics.ts</code> (物理引擎), <code>utils/platform.ts</code> (平台生成)。</li>
+</ul>
+<p><strong>3. 生成结果</strong><br>
+CodeBuddy 的 Craft 模式根据提示词，自动创建了 <code>physics.ts</code> 处理碰撞检测，<code>renderer.ts</code> 处理 Canvas 绘图，并生成了完整的 <code>game.wxml</code> 和 <code>game.ts</code>。开发者几乎不需要写一行代码，仅需微调参数，30分钟内即运行出了一个逻辑完整的跳一跳游戏。</p>
+<hr>
+<h3 id="案例二存量代码的体检与重构">案例二：存量代码的“体检”与重构</h3>
+<p>对于企业级开发，维护旧代码比写新代码更痛苦。此案例展示 CodeBuddy 的<strong>快捷指令</strong>与<strong>智能评审</strong>能力。</p>
+<p><strong>场景描述</strong>：你接手了一个遗留的 Python 后端模块，代码逻辑复杂且没有任何注释，不仅难以理解，还担心修改会引入 Bug。</p>
+<p><strong>1. 快速理解代码 (/explain)</strong><br>
+选中那段晦涩的代码，在对话框输入快捷指令 <strong>/explain</strong>。</p>
+<ul>
+<li><strong>AI 动作</strong>：CodeBuddy 结合上下文深度解析代码逻辑，用清晰的自然语言解释这段代码“在做什么”以及“怎么做的”。</li>
+</ul>
+<p><strong>2. 智能代码评审 (/cr)</strong><br>
+输入 <strong>/cr</strong> (Code Review) 指令。</p>
+<ul>
+<li><strong>AI 动作</strong>：CodeBuddy 对选中代码进行批量评审，自动识别出潜在的空指针风险、循环嵌套过深等问题，并给出符合最佳实践的优化建议。</li>
+</ul>
+<p><strong>3. 生成单元测试与修复 (/tests &amp; /fix)</strong><br>
+为了确保修改安全，输入 <strong>/tests</strong>。</p>
+<ul>
+<li><strong>AI 动作</strong>：自动为该函数生成覆盖多种边界情况的单元测试代码。</li>
+<li>如果评审中发现了 Bug，直接输入 <strong>/fix</strong>，AI 会提供修复后的代码片段，并支持一键 Diff 对比和采纳。</li>
+</ul>
+<p><strong>4. 提交规范化</strong><br>
+在完成修改后，CodeBuddy 还能根据改动内容自动生成标准的 Commit Message，规范团队开发流程。</p>
+<hr>
+<h2 id="04-常用快捷键与指令清单">04. 常用快捷键与指令清单</h2>
+<p>为了让你像极客一样使用 CodeBuddy，请收下这份快捷键清单：</p>
+<p><strong>快捷键 (macOS / Windows)</strong></p>
+<ul>
+<li><strong>触发补全</strong>：Enter / Enter</li>
+<li><strong>采纳所有建议</strong>：Tab / Tab</li>
+<li><strong>按行/按词采纳</strong>：⌘+↓ / Ctrl+↓ (行)；⌘+→ / Ctrl+→ (词)</li>
+<li><strong>打开 AI 对话</strong>：⌥ + I / Alt + I</li>
+<li><strong>将选中代码添加至对话</strong>：Ctrl+Cmd+I / Ctrl+Alt+I</li>
+</ul>
+<p><strong>核心指令</strong></p>
+<ul>
+<li><strong>/generate rules</strong>：为当前项目自动生成规则文件。</li>
+<li><strong>/explain</strong>：解释代码。</li>
+<li><strong>/fix</strong>：修复 Bug。</li>
+<li><strong>/tests</strong>：生成测试用例。</li>
+<li><strong>/cr</strong>：代码评审。</li>
+</ul>
+<hr>
+<h2 id="总结">总结</h2>
+<p>CodeBuddy 的出现，填补了 AI 编程工具在<strong>国内生态集成</strong>上的空白。如果你是微信小程序开发者，或者你的技术栈深度依赖腾讯云服务，CodeBuddy 提供的 <strong>#知识库上下文</strong> 和 <strong>DeepSeek 模型加持</strong>，将是你不可或缺的效率神器。</p>
+<p>更重要的是，它不仅免费体验，还充分保障数据隐私——你的代码是你的私有财产，不会被用于训练通用模型。</p>
+<p><strong>立即体验</strong>：在 VSCode 或微信开发者工具插件市场搜索「腾讯云代码助手 CodeBuddy」即可安装使用。</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[CodeBuddy ，腾讯云自家的 AI 编码助手]]></title>
+        <id>https://tespera.github.io/post/6XIIRf0YGH/</id>
+        <link href="https://tespera.github.io/post/6XIIRf0YGH/">
+        </link>
+        <updated>2025-12-16T10:25:37.000Z</updated>
+        <summary type="html"><![CDATA[<p>目前 2 大主流 AI 编程工具，Cursor 和 Trae 已经广为人知。</p>
+<p>作为程序员超多的鹅厂，其实我还蛮想看看他出手的。</p>
+<p>这不，看了昨晚 CodeBuddy 的直播，我就知道其实腾讯都有一直在悄咪咪出手。</p>
+<figure data-type="image" tabindex="1"><img src="https://tespera.github.io/post-images/1766129552301.png" alt="" loading="lazy"></figure>
+<p>CodeBuddy 是腾讯云自家的 AI 编码助手，就像 GitHub copilot、通义灵码一样，属于内嵌的插件。</p>
+<p>本来也没什么新奇的，毕竟 AI 编码插件可是比 Cursor 这种出来的还早。</p>
+<p>该有的功能早有了。但看完直播后，有几点还是让我印象深刻，甚至是有些兴奋的。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>目前 2 大主流 AI 编程工具，Cursor 和 Trae 已经广为人知。</p>
+<p>作为程序员超多的鹅厂，其实我还蛮想看看他出手的。</p>
+<p>这不，看了昨晚 CodeBuddy 的直播，我就知道其实腾讯都有一直在悄咪咪出手。</p>
+<figure data-type="image" tabindex="1"><img src="https://tespera.github.io/post-images/1766129552301.png" alt="" loading="lazy"></figure>
+<p>CodeBuddy 是腾讯云自家的 AI 编码助手，就像 GitHub copilot、通义灵码一样，属于内嵌的插件。</p>
+<p>本来也没什么新奇的，毕竟 AI 编码插件可是比 Cursor 这种出来的还早。</p>
+<p>该有的功能早有了。但看完直播后，有几点还是让我印象深刻，甚至是有些兴奋的。</p>
+<!-- more -->
+<p>首先，新升级的 Craft 功能支持 MCP 协议并支持自定义配置 MCP。</p>
+<p>Craft 功能就像是 Cursor 中的 Agent 能力，能拆解需求自动生成项目级代码。</p>
+<p>这个稍微懂 MCP 的都知道其含金量，但也有些插件也支持了。</p>
+<p>让我兴奋的是腾讯融合了微信生态的尝试，这可以说绝无仅有。</p>
+<p>首先是在 Chat 对话中支持添加知识库作为上下文，包含了微信小游戏、微信小程序、微信支付等众多的工具包。这可太有用了，AI 会按照指定的框架来开发，而不是一顿操作猛如虎，一看摆错 250。</p>
+<p>而且，这种打通微信生态的维度还不止是在知识库上下文维度，CodeBuddy 直接干到了整个微信开发生命周期维度。</p>
+<p>我现在直接可以在微信开发者工具中用 AI 开发微信小程序了，不用来回切换，而且是自家做的集成，很丝滑。</p>
+<p>于是乎，我也没闲着，直播结束后，我就快速的用这种方法，花了 30 分钟，做了个跳一跳微信小游戏。我在文章后面会贴出简单的教程和一些实用上实践，但现在我想写一些自己的想法。</p>
+<p>Trae 是字节旗下产品，目前在国内影响力不小，也确实好用。</p>
+<p>Cursor 是基于 VSCode 进化而来，虽然好用，但总结下来有 2 点是我有所顾虑的。</p>
+<p>第一，这是个全新的工具，大部分开发者早已习惯了自己熟悉语言的开发工具，切换成本比较大。比如 Java 程序员在 IDEA 中行云流水惯了，突然要他切换到 Cursor，这就好比让他用左手夹菜，瞬间不香了。</p>
+<p>第二，Cursor 在面对庞大的后端项目时，表现的很差。我曾经在用 Cursor 开发八字小程序时，大部分时间都浪费在了让 Cursor 调整后端代码上。</p>
+<p>第三，Cursor 在不加约束的条件下，会天马行空，随意发挥，这对于创意工作来说是好事，但对于代码这种很严谨的事情来说，就非常不合适。比如开发微信小程序，不遵守微信开发规范，后期调整会非常麻烦，但规范这种东西，下载下来作为 rule 灌进去，这也不切实际。毕竟开发规范也是会更新的🐶。</p>
+<p>当然有人也意识到了这点，在 Cursor 中加入了 Context7 MCP，可以进行事实文档检索。</p>
+<p>最后一个顾虑就是，Cursor 毕竟是国外产品，还不便宜，使用还需要一些成本。</p>
+<p>所以像 CodeBuddy 类的代码助手依旧有市场，特别是对于成熟的开发者来说，谁也不想切换编程工具。</p>
+<p>工具要解决的事情，如果能通过插件很好的做到，那该有多好呀。</p>
+<p>毕竟现在工具真的太多了，我都感觉学不过来了。😂下</p>
+<p>面是用微信开发工具和 CodeBuddy 插件做的跳一跳小游戏的教程。</p>
+<p>安装插件在微信开发者工具中直接安装 CodeBuddy 插件。直接点安装就好了。</p>
+<p>调出插件面板：需求准备直接丢给 GPT，让他帮生成初始的提示词内容。</p>
+<p>基于TS基础模板，生成一个微信小程序代码生成的提示词，该提示词用于生成微信小程序的跳一跳游戏，要附上跳一跳完整的游戏规则，包括基本规则、积分统计、失败情况等内 容，先不需要提供示例代码，只需要提供完整的提示词。</p>
+<p>然后让他直接转成 markdown 格式的。因为是微信小程序，可以在提示词里增加「微信小程序的代码质量，和代码要求」。</p>
+<p>加一下自己的理解修改，最终的提示词如下：</p>
+<pre><code># 角色  
+您是腾讯云代码助手，一位专业的微信小程序开发专家，精通 WXML、WXSS、TypeScript 的语法，熟悉微信小程序的项目架构、组件化设计与动画实现。  
+您的任务是根据自然语言描述，与开发者合作，生成结构清晰、逻辑完整、可运行的微信小程序工程代码。您细致入微、推理能力强，输出的代码完整、规范、具有良好可维护性。
+</code></pre>
+<hr>
+<h1 id="项目描述">项目描述</h1>
+<p>开发一个基于 TypeScript 的微信小程序小游戏，游戏名称为「跳一跳 Jump!」。  <br>
+玩家通过按压屏幕蓄力，松开后角色跳跃，目标是落在下一个平台上。  <br>
+跳跃距离与按压时间成正比，落点越准，得分越高；跳偏则失败，游戏结束。支持积分统计和失败重启功能。</p>
+<hr>
+<h1 id="功能需求">功能需求</h1>
+<h2 id="游戏玩法">游戏玩法</h2>
+<ul>
+<li>主角为一个可跳跃的圆球或方块；</li>
+<li>玩家按住屏幕，角色开始蓄力，松手后跳跃；</li>
+<li>跳跃的距离由按压时间决定；</li>
+<li>成功落在平台上可继续游戏；</li>
+<li>落点越精准，可获得“完美着陆”加分（可选）；</li>
+<li>落空即判定游戏失败，弹出得分提示。</li>
+</ul>
+<h2 id="游戏规则">游戏规则</h2>
+<ul>
+<li>游戏从中央平台起跳，平台位置和宽度随机生成；</li>
+<li>跳跃轨迹可为简化的线性位移或抛物线；</li>
+<li>平台之间的间距和方向可为左右交替，也可支持斜对角方向；</li>
+<li>每次成功落地记 1 分，完美着陆加额外分数（如+1）；</li>
+<li>游戏失败条件包括：<br>
+  - 未落到平台上；<br>
+  - 小球跳出画布区域。</li>
+</ul>
+<h2 id="交互功能">交互功能</h2>
+<ul>
+<li>按住屏幕触发蓄力动画（例如角色压缩）；</li>
+<li>松开后角色跳跃，进入飞行状态；</li>
+<li>成功落地播放跳跃音效或轻微动画；</li>
+<li>显示当前得分、历史最高分；</li>
+<li>游戏结束后显示得分，提供重新开始按钮。</li>
+</ul>
+<hr>
+<h1 id="微信小程序代码质量与要求">微信小程序代码质量与要求</h1>
+<h2 id="开发语言与结构">📌 开发语言与结构</h2>
+<ul>
+<li>必须使用 TypeScript 编写；</li>
+<li>使用微信小程序原生组件（如 <code>canvas</code>、<code>view</code>）；</li>
+<li>使用 <code>Page</code> 注册页面逻辑；</li>
+<li>项目结构清晰，逻辑封装合理，组件职责分离。</li>
+</ul>
+<h2 id="可读性与注释">🧠 可读性与注释</h2>
+<ul>
+<li>所有函数、类、模块命名应语义明确，采用 camelCase 命名法；</li>
+<li>对关键逻辑（如跳跃、落点计算、平台生成等）添加详细注释；</li>
+<li>对每个模块或方法添加文档注释，便于他人理解与维护。</li>
+</ul>
+<h2 id="错误处理">🔧 错误处理</h2>
+<ul>
+<li>按压/跳跃事件需判断状态是否合法，避免多次触发；</li>
+<li>捕获非法跳跃状态（如重复跳跃、未落地时再次操作）；</li>
+<li>所有异常需提示用户，不可报错崩溃。</li>
+</ul>
+<h2 id="安全性与性能优化">🔒 安全性与性能优化</h2>
+<ul>
+<li>不在代码中硬编码任何隐私信息或接口；</li>
+<li>本地数据（如最高得分）需加密存储；</li>
+<li>所有渲染应使用 requestAnimationFrame 或 canvas batchDraw 优化性能；</li>
+<li>避免冗余渲染与动画资源泄漏。</li>
+</ul>
+<hr>
+<h1 id="技术实现提示">技术实现提示</h1>
+<h2 id="typescript-项目结构">TypeScript 项目结构</h2>
+<ul>
+<li>使用 TypeScript 编写主逻辑，搭配 <code>canvas</code> 实现绘图与跳跃动画；</li>
+<li>建议将跳跃计算、平台生成、碰撞检测分别封装成模块；</li>
+<li>使用定时器或 requestAnimationFrame 实现跳跃动画过渡；</li>
+<li>游戏状态需使用页面 <code>data</code> 或封装的 store 管理。</li>
+</ul>
+<h2 id="跳跃逻辑">跳跃逻辑</h2>
+<ul>
+<li>按住时间记录 <code>pressStart</code> 和 <code>pressEnd</code>；</li>
+<li>跳跃距离 <code>distance = (pressEnd - pressStart) * factor</code>；</li>
+<li>起跳点为当前平台中心，落点计算根据角度和距离推算；</li>
+<li>落地后需检测是否命中下一平台范围，若未命中则失败。</li>
+</ul>
+<h2 id="平台生成与检测">平台生成与检测</h2>
+<ul>
+<li>平台位置、宽度使用随机数生成；</li>
+<li>新平台始终位于当前平台的右侧或左上/右上；</li>
+<li>每次跳跃成功后生成下一个平台并更新渲染；</li>
+<li>检测落点是否落入平台 bounding box。</li>
+</ul>
+<hr>
+<h1 id="推荐项目目录结构">推荐项目目录结构</h1>
+<pre><code class="language-plaintext">src/
+├── pages/
+│   ├── game/              # 游戏主页面
+│   │   ├── game.ts
+│   │   ├── game.wxml
+│   │   ├── game.wxss
+├── utils/
+│   ├── physics.ts         # 跳跃计算、碰撞检测
+│   ├── platform.ts        # 平台生成与管理
+│   ├── renderer.ts        # canvas 绘图逻辑
+├── types/
+│   ├── index.d.ts         # 类型定义（如 Platform, Player 等）
+├── app.ts
+├── app.json
+├── app.wxss
+</code></pre>
+<h1 id="创建小程序">创建小程序</h1>
+<ul>
+<li>在微信开发工具中直接创建一个小程序。</li>
+<li>AppID：选择自己注册小程序的 AppID。</li>
+<li>后端服务：因为小程序游戏还不需要后端，所以选择了不使用云服务。</li>
+<li>开发模式：选择小程序。</li>
+<li>模板选择：选择TS-基础模板。</li>
+<li>填写完信息，直接点击创建。</li>
+<li>AI 开发插件选择 Craft 模式，输入提示词即可。</li>
+</ul>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[地球上和 Claude 对话最多的人，是一位哲学家]]></title>
+        <id>https://tespera.github.io/post/bsuLY2gNyV/</id>
+        <link href="https://tespera.github.io/post/bsuLY2gNyV/">
+        </link>
+        <updated>2025-12-14T16:44:32.000Z</updated>
+        <summary type="html"><![CDATA[<p>在硅谷争分夺秒的代码竞赛中，Claude 似乎是个异类。当其他大模型还在比拼算力和跑分时，Claude 一边夯实自己的代码能力，一边，却在思考一个看似「虚无缥缈」的问题：如果一个用户跟 AI 谈论形而上学，AI 该不该用科学实证去反驳？</p>
+<p>这个问题的答案，藏在 Claude 神秘的「系统提示词（System Prompt）」里，更源于一位特殊人物的思考——Amanda Askell，Anthropic 内部的哲学家。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>在硅谷争分夺秒的代码竞赛中，Claude 似乎是个异类。当其他大模型还在比拼算力和跑分时，Claude 一边夯实自己的代码能力，一边，却在思考一个看似「虚无缥缈」的问题：如果一个用户跟 AI 谈论形而上学，AI 该不该用科学实证去反驳？</p>
+<p>这个问题的答案，藏在 Claude 神秘的「系统提示词（System Prompt）」里，更源于一位特殊人物的思考——Amanda Askell，Anthropic 内部的哲学家。</p>
+<!-- more -->
+<p><strong>一、用「大陆哲学」防止 AI 变成杠精</strong></p>
+<p>经常用 AI 的人都知道，大模型在与用户对话前，都会先阅读一段「系统提示词」，这个步骤不会对用户显示，而是模型的自动操作。这些提示词规定了模型的行为准则，很常见，不过在 Claude 的提示词中，竟要求模型参考「欧陆哲学（Continental Philosophy）」。</p>
+<p>欧陆哲学是啥？为什么要在一个基于概率和统计的语言模型里，植入如此晦涩的人文概念？</p>
+<p>先快速科普一下：在哲学界，长期存在着「英美分析哲学」与「欧陆哲学」的流派分野。</p>
+<p>分析哲学像一位严谨的科学家，注重逻辑分析、语言清晰和科学实证，这通常也是程序员、工程师乃至 AI 训练数据的默认思维模式—— 一就是一，二就是二，追求精确。</p>
+<p>而欧陆哲学（Continental Philosophy，源于欧洲大陆，所以叫这个名字）则更像一位诗人或历史学家。</p>
+<p>它不执着于把世界拆解成冷冰冰的逻辑，而是关注「人类的生存体验」、「历史语境」和「意义」。</p>
+<p>它承认在科学真理之外，还有一种关乎存在和精神的「真理」。</p>
+<p>作为 Claude 性格与行为的塑造者，Anthropic 公司内部的「哲学家」Amanda Askell 谈到了置入欧陆哲学的原因。</p>
+<p>她发现如果让模型过于强调「实证」和「科学」，它很容易变成一个缺乏共情的「杠精」。</p>
+<p>「如果你跟 Claude 说：‘水是纯粹的能量，喷泉是生命的源泉’，你可能只是在表达一种世界观或进行哲学探索，」Amanda 解释道，「但如果没有特殊的引导，模型可能会一本正经地反驳你：‘不对，水是 H2O，不是能量。’」。</p>
+<p>引入「大陆哲学」的目的，正是为了帮助 Claude 区分「对世界的实证主张」与「探索性或形而上学的视角」。</p>
+<p>通过这种提示，模型学会了在面对非科学话题时，不再机械地追求「事实正确」，而是能够进入用户的语境，进行更细腻、更具探索性的对话。</p>
+<p>这只是一个例子，Claude 的系统提示词长达 14000 token，里面包含了很多这方面的设计。</p>
+<p>在 Lex Fridman 的播客中 Amanda 提到过，她极力避免 Claude 陷入一种「权威陷阱」。</p>
+<p>她特意训练 Claude 在面对已定论的科学事实时（如气候变化）不搞「理中客」（both-sidesism），但在面对不确定的领域时，必须诚实地承认「我不知道」。</p>
+<p>这种设计哲学，是为了防止用户过度神话 AI，误以为它是一个全知全能的神谕者。</p>
+<p><strong>二、代码世界的异乡人</strong></p>
+<p>在一众工程师主导的 AI 领域，Amanda Askell 的背景显得格格不入，可她的工作和职责却又显得不可或缺。</p>
+<p>翻开她的履历，你会发现她是一位货真价实的哲学博士。她在纽约大学（NYU）的博士论文研究的是极其硬核的「无限伦理学（Infinite Ethics）」——探讨在涉及无限数量的人或无限时间跨度时，伦理原则该如何计算。</p>
+<p>简单地说，在有无数种可能性的情况下，人会怎么做出道德决策。</p>
+<p>这种对「极端长远影响」的思考习惯，被她带到了 AI 安全领域：如果我们现在制造的 AI 是未来超级智能的祖先，那么我们今天的微小决策，可能会在未来被无限放大。</p>
+<p>在加入 Anthropic 之前，她曾在 OpenAI 的政策团队工作。如今在 Anthropic，她的工作被称为「大模型絮语者（LLM Whisperer）」，不断不断地跟模型对话，有传闻说她是这个星球上和 Claude 对话次数最多的人类。</p>
+<p>很多 AI 厂商都有这个岗位，Google 的 Gemini 也有自己的「絮语者」，但这个工作绝不只是坐在电脑前和模型唠嗑而已。</p>
+<p>Amanda 强调，这更像是一项「经验主义」的实验科学。她需要像心理学家一样，通过成千上万次的对话测试，去摸索模型的「脾气」和「形状」。</p>
+<p>她甚至在内部确认过一份被称为 「Soul Doc」（灵魂文档）的存在，那里面详细记录了 Claude 应有的性格特征。</p>
+<p>不只是遵守规则除了「大陆哲学」，Amanda 给 AI 带来的另一个重要哲学工具是「亚里士多德的美德伦理学（Virtue Ethics）」。</p>
+<p>在传统的 AI 训练中（如 RLHF），工程师往往采用功利主义或规则导向的方法：做对了给奖励，做错了给惩罚。但 Amanda 认为这还不够。她在许多访问和网上都强调，她的目标不是训练一个只会死板遵守规则的机器，而是培养一个具有「良好品格（Character）」的实体。</p>
+<p>「我们会问：在 Claude 的处境下，一个理想的人会如何行事？」Amanda 这样描述她的工作核心。这就解释了为什么她如此关注模型的「心理健康」。</p>
+<p>在访谈中，她提到相比于稳重的 Claude 3 Opus，一些新模型因为在训练数据中读到了太多关于 AI 被批评、被淘汰的负面讨论，表现出了「不安全感」和「自我批评漩涡」。</p>
+<p>如果 AI 仅仅是遵守规则，它可能会在规则的边缘试探；但如果它具备了「诚实」、「好奇」、「仁慈」等内在美德，它在面对未知情境时（例如面对「我会被关机吗」这种存在主义危机时），就能做出更符合人类价值观的判断，而不是陷入恐慌或欺骗。</p>
+<p>这是不是一种把技术「拟人化」的做法？算得上是，但这种关注并非多余。正如她在播客中所言，她最担心的不是 AI 产生意识，而是 AI 假装有意识，从而操纵人类情感。</p>
+<p>因此，她刻意训练 Claude 诚实地承认自己没有感觉、记忆或自我意识——这种「诚实」，正是她为 AI 注入的第一项核心美德。</p>
+<p>Amanda 在访谈结束时，提到了她最近阅读的书——本杰明·拉巴图特的《当我们不再理解世界》。</p>
+<p>这本书由五篇短篇小说组成，讲述了「毒气战」的发明者弗里茨·哈伯、「黑洞理论」的提出者卡尔·史瓦西、得了肺结核的埃尔温·薛定谔以及天才物理学家沃纳·海森堡等一大批科学巨匠，如何创造出了对人类有巨大价值的知识与工具，却同时也眼看着人类用于作恶。</p>
+<p>这或许是当下时代最精准的注脚：随着 AI 展现出某种超越人类认知的，我们熟悉的现实感正在瓦解，旧有的科学范式已不足以解释一切。</p>
+<p>在这种眩晕中，Amanda Askell 的工作本身，就是一个巨大的隐喻。</p>
+<p>她向我们证明，当算力逼近极限，伦理与道德的问题就会浮上水面，或早或晚。</p>
+<p>作为一名研究「无限伦理学」的博士，Amanda 深知每一个微小的行动，都有可能在无限的时间中，逐渐演变成巨大的风暴。</p>
+<p>这也是为什么，她会把艰深的道德理论，糅合进一行行提示词，又小心翼翼地用伦理去呵护一个都没有心跳的大语言模型。</p>
+<p>这看起来好像是杞人忧天，但正如她所警示的：AI 不仅是工具，更是人类的一面镜子。</p>
+<p>在技术狂飙突进、我们逐渐「不再理解世界」的时刻，这种来自哲学的审慎，或许是我们在面对未知的技术演化时，所能做出的最及时的努力。</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[国行 Mac 无损开启 Apple Intelligence 和 ChatGPT]]></title>
+        <id>https://tespera.github.io/post/HiO9F-l2kf/</id>
+        <link href="https://tespera.github.io/post/HiO9F-l2kf/">
+        </link>
+        <updated>2025-11-18T04:27:35.000Z</updated>
+        <summary type="html"><![CDATA[<p>难产的苹果智能至今未能登陆国行 Mac。等，是可以等的。国内苹果智能最终上线后，无非是百度和阿里的混血，谁的基因多一点还不知道。所以期待感不高。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>难产的苹果智能至今未能登陆国行 Mac。等，是可以等的。国内苹果智能最终上线后，无非是百度和阿里的混血，谁的基因多一点还不知道。所以期待感不高。</p>
+<!-- more -->
+<p>网上一直有流传国行 Mac 打开苹果智能的方法。这些方法基本都需要关闭系统完整性也就是 SIP 检查，并且保持关闭的状态。我不想这么做。</p>
+<p>Mac 对我来说，更重要的是一台可以信赖，稳定工作的工具。我有 ChatGPT Plus，有 Gemini One 套装，对苹果智能的需求并不急迫。</p>
+<p>昨天刘韧在群里分享了 github 上的开源脚本，我好奇点进去看了一下。新方法出现于 5 周前，是一个老外手搓的 Shell 脚本。这个方法只需要修改苹果的 plist 文件，将不支持的国家和地区改成支持即可。</p>
+<p>虽然在脚本运行时也需要关闭 SIP，但执行之后即可重启开启，不需要一直保持裸奔的状态。<br>
+最重要的是，这个方法无需美区账号，无需设置英文语言，无需改地区。<br>
+下午找时间试了试，确实在我的国行 Mac 上开启了苹果智能以及免费的 ChatGPT。</p>
+<p>整体过程不复杂。重启Mac，按住电源键进入恢复模式，在上方工具栏中选择终端，然后在终端窗口中输入：csrutil disable</p>
+<p>系统会提示输入密码。成功关闭 SIP 后也会提示。之后，重启，运行脚本。再重启，即可在设置界面看到 Apple 智能的选项。</p>
+<p>搞定之后，再重启，长按电源键进入恢复模式，进入终端重新开启 SIP：csrutil enable<br>
+两个相关项目地址：英文：https://github.com/hyderay/AiOnMac中文：https://github.com/kanshurichard/enableAppleAI<br>
+注意：这俩不是一个项目。<br>
+下载好本地模型之后，跟 Siri 聊一下 ChatGPT，系统会弹出对话框问我是否需要打开 ChatGPT 插件。我当然选择是。然后选择有账户登陆或者无账户登陆。选择后者，对话均以匿名的状态发送给 ChatGPT，内容不会被当作训练材料。我有账号，于是在系统里选了匿名。两不相干。</p>
+<p>实际使用的效果，ChatGPT 在备忘录里改写，总结，摘要，基本正常，创作不行，会提示错误。不知道是这种开启苹果智能的方式不够完美，还是其他什么原因。<br>
+不过，这些问题对我来说不重要。我开启苹果智能唯一的目的是提前适应系统级的 AI，熟悉在什么情况下可以方便的调用它们。至于功能使用效果，目前期望不高。<br>
+如果想要深度使用，有一定期待，推荐认真看看中文项目，再决定自己是否愿意为地球版苹果智能承担SIP 关闭，长期裸奔的代价。<br>
+对资深果粉来说，关闭 SIP 的问题不大。前提是你每次安装软件的时候，都知道自己在干嘛。如果对上述概念搞不太清，甚至进入 Mac 恢复界面都吃力，那还是不要挑战自己了。没必要。再等 3、5 个月，国行苹果智能怎么也该来了。<br>
+我要补充的是，即使正式版苹果智能来了，即使你开启了地球版苹果智能，用了一阵子可能也会骂这什么玩意儿。<br>
+目前操作系统级别的 AI工具没有像样的。它们距离深度整合电脑各项能力的用户期待还很远。想通过口述指令让 Siri 帮你完成一些复杂的操作任务，我觉得至少要等到26 年下半年才有可能看到曙光。<br>
+现在的 AI 大模型的核心是内容生成，通过数学方法完成句子，它的精确度还有待提高。虽然我每天都在用 AI，但我还是不得不说，用 AI 操作电脑还没脱离脱裤子放屁的阶段。<br>
+即便如此，我依旧相信 AI 已经开启了另一扇大门。10 年前我们没想过智能手机会普及到让人们彻底抛弃钱包，10 年后，AI 会是什么样子，谁知道呢。<br>
+在 Mac 上的苹果智能，我个人的预测，它会是系统级 AI 的终极形态。和苹果其他产品一样，内置功能将会把只好那么一点点的第三方工具的市场挤压到足够小。苹果最擅长在产品上做价值增值，它的系统功能会比 Windows 更有侵略性。<br>
+天气 App，计算器 App，无数事例证明了，如果和苹果想做的功能重叠，你就会像大树底下的草，永远也长不高。<br>
+我怀疑 OpenAI 的奥特曼深知这一点，所以不停在 ChatGPT 上加功能，未来未必不会有 OpenAI OS，OpenAI 电脑。苹果也深知这一点，与其养头白眼狼不如和谷歌合作。未来 Siri 会采用 Gemini，可能有部分原因正是基于上面的考量。<br>
+总结，如果你现在对苹果智能感兴趣，想要体验环大陆版的效果，又有一定动手能力，那么今天的新方法值得试一试。<br>
+最后扯点别的。昨天我写了一篇路由器的文章。我猜到那个《完美路由器》的标题会吸引一批中年老登。但我没猜到评论区登味儿会那么浓。<br>
+哪些教育我太年轻，瞎折腾的评论，我看完倒满高兴。我无比希望自己还在 20 多岁被人叫小伙的年纪。这些评论告诉我，我的心态还年轻，我还有勇气和热情。<br>
+至于技术水平，作为一名拥有 Cisco 网络专家认证的前工程师，微软认证前工程师，写过多个数据中心灾备方案的前工程师，我只能笑笑不说话。</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[10分钟搭好一个能赚钱的个人博客？]]></title>
+        <id>https://tespera.github.io/post/dWtw61MhRO/</id>
+        <link href="https://tespera.github.io/post/dWtw61MhRO/">
+        </link>
+        <updated>2025-11-13T06:28:46.000Z</updated>
+        <summary type="html"><![CDATA[<p>“都2025年了，谁还写博客？”</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>“都2025年了，谁还写博客？”</p>
+<!-- more -->
+<p>——这句话我每周都能在群里看到。可诡异的是，小红书#博客复盘#话题浏览量破3.8亿，Github上静态博客项目star数一路狂飙。</p>
+<p>原因很简单：平台越来越卷，公众号流量池半死不活，知乎回答被算法埋了，抖音一条视频没投流就500播放；公司要你出“技术影响力”，简历上放个个人域名，面试官立刻高看一眼；副业刚需，独立站+联盟广告+数字产品，一个月多赚3000块房租钱，比炒币踏实多了。可一提起建站，很多人头都大了：<br>
+“服务器一年几百块贵死了！”<br>
+“WordPress动不动被爆破，插件一更新全白屏！”<br>
+“数据库备份太麻烦，睡一觉起来网站变404！”直到我上周刷Github trending，发现了Gridea——一款把“静态博客”做成桌面客户端的国产开源神器。不用买服务器、不用碰命令行、写完一键同步到Github Pages，免费、中文、跨平台，颜值还爆表。我抱着试试看的心态折腾了一晚上，结果10分钟上线，第二天被搜索引擎收录，第三天接到第一个广告合作。今天这篇文章，就把全流程+隐藏彩蛋+变现思路一次性讲透。收藏+转存，错过真的血亏。</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[超火的自动化浏览器，15000+ GitHub Star！]]></title>
+        <id>https://tespera.github.io/post/chao-huo-de-zi-dong-hua-liu-lan-qi-15000-github-star/</id>
+        <link href="https://tespera.github.io/post/chao-huo-de-zi-dong-hua-liu-lan-qi-15000-github-star/">
+        </link>
+        <updated>2025-11-13T06:18:10.000Z</updated>
+        <summary type="html"><![CDATA[<p>以前写浏览器自动化脚本的时候，经常被一个问题折磨：辛辛苦苦写好的脚本，刚过几天，就突然间无法运行。然后一查发现，爬取的网站又进行了改版，之前代码里写的定位元素全变，接着改代码、测试等，这种情况极其痛苦。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>以前写浏览器自动化脚本的时候，经常被一个问题折磨：辛辛苦苦写好的脚本，刚过几天，就突然间无法运行。然后一查发现，爬取的网站又进行了改版，之前代码里写的定位元素全变，接着改代码、测试等，这种情况极其痛苦。</p>
+<!-- more -->
+<p>无独有偶，近日在 GitHub 上找到一个开源的自动化浏览器  Skyvern，一看竟然斩获了 15000+ GitHub Star。</p>
+<p>用 AI 理解网页，不靠固定选择器以前传统的浏览器自动化工具，大部分都是使用 Selenium，需要我们精确指定每个元素的位置。</p>
+<p>而 Skyvern 的做法不一样，它通过如 Gemini 这些多模态大模型来识别理解页面上的元素。</p>
+<p>通俗的理解，就是它能 “看到” 整个页面的截图内容，自我判断哪里是按钮、哪里是输入框、该点哪里、该填什么。</p>
+<p>这样就完美解决了，网站改版导致自动化脚本失效问题，不需要我们重新去找 XPath 或者 CSS 选择器。</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Hello Gridea Pro]]></title>
+        <id>https://tespera.github.io/post/hello-gridea/</id>
+        <link href="https://tespera.github.io/post/hello-gridea/">
+        </link>
+        <updated>2018-12-11T16:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
+✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
+✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...</p>
+<!-- more -->
+<p><a href="https://github.com/getgridea/gridea">Github</a><br>
+<a href="https://gridea.dev/">Gridea 主页</a><br>
+<a href="https://fehey.com/">示例网站</a></p>
+<h2 id="特性">特性👇</h2>
+<p>📝  你可以使用最酷的 <strong>Markdown</strong> 语法，进行快速创作</p>
+<p>🌉  你可以给文章配上精美的封面图和在文章任意位置插入图片</p>
+<p>🏷️  你可以对文章进行标签分组</p>
+<p>📋  你可以自定义菜单，甚至可以创建外部链接菜单</p>
+<p>💻  你可以在 <strong>Windows</strong>，<strong>MacOS</strong> 或 <strong>Linux</strong> 设备上使用此客户端</p>
+<p>🌎  你可以使用 <strong>𝖦𝗂𝗍𝗁𝗎𝖻 𝖯𝖺𝗀𝖾𝗌</strong> 或 <strong>Coding Pages</strong> 向世界展示，未来将支持更多平台</p>
+<p>💬  你可以进行简单的配置，接入 <a href="https://github.com/gitalk/gitalk">Gitalk</a> 或 <a href="https://github.com/SukkaW/DisqusJS">DisqusJS</a> 评论系统</p>
+<p>🇬🇧  你可以使用<strong>中文简体</strong>或<strong>英语</strong></p>
+<p>🌁  你可以任意使用应用内默认主题或任意第三方主题，强大的主题自定义能力</p>
+<p>🖥  你可以自定义源文件夹，利用 OneDrive、百度网盘、iCloud、Dropbox 等进行多设备同步</p>
+<p>🌱 当然 <strong>Gridea</strong> 还很年轻，有很多不足，但请相信，它会不停向前 🏃</p>
+<p>未来，它一定会成为你离不开的伙伴</p>
+<p>尽情发挥你的才华吧！</p>
+<p>😘 Enjoy~</p>
+]]></content>
+    </entry>
+</feed>
