@@ -1,79 +1,55 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html lang="zh-CN">
 
 <head>
     <meta charset="utf-8" />
-<meta name="viewport"
-    content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, width=device-width" />
-<meta name="renderer" content="webkit">
-<meta name="format-detection" content="telephone=no, email=no, address=no">
+    <meta name="viewport"
+        content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, width=device-width" />
+    <meta name="renderer" content="webkit">
+    <meta name="format-detection" content="telephone=no, email=no, address=no">
 
+    <title>Midjourney V7 接口 API Key 获取及使用全攻略 | 述尔</title>
+    
+    
+    <meta name="keywords" content="Go,Wails,LLM,Gridea Pro,AI,Agent,Flow Engineering,Future,Architecture,MCP,Gridea,教程,Refactoring,Workflow,AI Agent,趋势,API,开发手记,Best Practices,Refactor" />
+    <meta name="description" content="&lt;p&gt;Midjourney 作为 AI 绘画领域的佼佼者，以其独特的艺术风格和高质量的图像生成能力著称。随着 V7 版本的临近（以及 V6 版本的不断完善），越来越多的开&amp;hellip;&lt;/p&gt;
+">
 
-<meta name="keywords" content="" />
-<meta name="description" content="">
+    <!-- Social Media Meta Tags -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="/post/midjourney-v7-api-guide/">
+    <meta property="og:title" content="Midjourney V7 接口 API Key 获取及使用全攻略 | 述尔">
+    <meta property="og:description" content="&lt;p&gt;Midjourney 作为 AI 绘画领域的佼佼者，以其独特的艺术风格和高质量的图像生成能力著称。随着 V7 版本的临近（以及 V6 版本的不断完善），越来越多的开&amp;hellip;&lt;/p&gt;
+">
+    <meta property="og:image" content="">
+    <meta property="og:site_name" content="述尔">
 
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="/post/midjourney-v7-api-guide/">
+    <meta name="twitter:title" content="Midjourney V7 接口 API Key 获取及使用全攻略 | 述尔">
+    <meta name="twitter:description" content="&lt;p&gt;Midjourney 作为 AI 绘画领域的佼佼者，以其独特的艺术风格和高质量的图像生成能力著称。随着 V7 版本的临近（以及 V6 版本的不断完善），越来越多的开&amp;hellip;&lt;/p&gt;
+">
+    <meta name="twitter:image" content="">
 
-<meta property="og:type" content="article">
-
-<meta property="og:title" content="">
-<meta property="og:description" content="">
-<meta property="og:image" content="">
-<meta property="og:site_name" content="">
-
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:url" content="">
-<meta name="twitter:title" content="">
-<meta name="twitter:description" content="">
-<meta name="twitter:image" content="">
-
-<!-- Structured Data (JSON-LD) -->
-
-
-
-<script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "BlogPosting",
-        "headline": "",
-        "description": "",
-        "image": "",
-        "author": {
-            "@type": "Person",
-            "name": ""
-        },
-        "publisher": {
-            "@type": "Organization",
-            "name": "",
-            "logo": {
-                "@type": "ImageObject",
-                "url": ""
-            }
-        }
-        
-        ,"datePublished": "2026-02-14T10:04:15Z",
-        "dateModified": "2026-02-14T10:04:15Z",
-        "mainEntityOfPage": {
-            "@type": "WebPage",
-            "@id": ""
-        }
-        
-    }
+    <!-- Structured Data (JSON-LD) -->
+    
+    <script type="application/ld+json">
+        {"@context":"https://schema.org","@type":"BlogPosting","headline":"Midjourney V7 接口 API Key 获取及使用全攻略 | 述尔","description":"<p>Midjourney 作为 AI 绘画领域的佼佼者，以其独特的艺术风格和高质量的图像生成能力著称。随着 V7 版本的临近（以及 V6 版本的不断完善），越来越多的开&hellip;</p>\n","author":{"@type":"Person","name":"述尔"},"publisher":{"@type":"Organization","name":"述尔","logo":{"@type":"ImageObject"}},"datePublished":"2026-02-14T10:04:15.000Z","dateModified":"2026-02-14T10:04:15.000Z","mainEntityOfPage":{"@type":"WebPage","@id":"/post/midjourney-v7-api-guide/"}}
     </script>
-<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#292a2d" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#292a2d" media="(prefers-color-scheme: dark)">
 
-
-
-
-<link rel="shortcut icon" href="/media/images/favicon.ico">
-
-<link rel="stylesheet" href="/styles/main.css">
-
-<script>
+    
+    
+    <link rel="shortcut icon" href="/media/images/favicon.ico">
+    
+    <link rel="stylesheet" href="/styles/main.css">
+    
+    <script>
     // 自动为所有 target="_blank" 的链接添加 rel="noopener noreferrer"
-    document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('DOMContentLoaded', function() {
         var links = document.querySelectorAll('a[target="_blank"]');
-        links.forEach(function (link) {
+        links.forEach(function(link) {
             var rel = link.getAttribute('rel') || '';
             if (rel.indexOf('noopener') === -1) {
                 rel += ' noopener';
@@ -88,104 +64,105 @@
 
 
 <script>
-    /**
-     * 作用：将 GitHub Pages 的原图链接替换为 jsDelivr CDN 链接，加速图片加载
-     */
-    (function () {
-        // === 配置区域，需要替换成自己的 GitHub 用户名和仓库名 ===
-        const CONFIG = {
-            githubUser: 'tespera',
-            repoName: 'tespera.github.io',
-            branch: 'master',
-            cdnDomain: 'https://cdn.jsdelivr.net/gh',
-        };
+/**
+ * 作用：将 GitHub Pages 的原图链接替换为 jsDelivr CDN 链接，加速图片加载
+ */
+(function() {
+    // === 配置区域，需要替换成自己的 GitHub 用户名和仓库名 ===
+    const CONFIG = {
+        githubUser: 'tespera',
+        repoName:   'tespera.github.io',
+        branch:     'master',
+        cdnDomain:  'https://cdn.jsdelivr.net/gh',
+    };
 
-        // === 主逻辑 ===
-        function optimizeImages() {
-            // 如果没有配置 GitHub 信息，则直接返回
-            if (!CONFIG.githubUser || !CONFIG.repoName) {
+    // === 主逻辑 ===
+    function optimizeImages() {
+        // 如果没有配置 GitHub 信息，则直接返回
+        if (!CONFIG.githubUser || !CONFIG.repoName) {
+            return;
+        }
+
+        // 1. 获取页面上所有图片
+        const images = document.querySelectorAll('img');
+        
+        // 2. 构造旧域名的匹配规则 (强制转小写以避免大小写不匹配)
+        const oldDomain = `${CONFIG.githubUser}.github.io`.toLowerCase();
+        // 获取当前站点域名 (处理自定义域名的情况，如 are.ink)
+        const currentDomain = window.location.host.toLowerCase(); 
+
+        images.forEach((img) => {
+            // 获取当前图片的 src
+            let src = img.getAttribute('src'); 
+            
+            // 忽略空值、Base64图片、已经是CDN的链接
+            if (!src || src.startsWith('data:') || src.includes(CONFIG.cdnDomain)) {
                 return;
             }
 
-            // 1. 获取页面上所有图片
-            const images = document.querySelectorAll('img');
+            // 为了匹配检查，构造一个用于比较的 src
+            const srcForCheck = src.toLowerCase();
 
-            // 2. 构造旧域名的匹配规则 (强制转小写以避免大小写不匹配)
-            const oldDomain = `${CONFIG.githubUser}.github.io`.toLowerCase();
-            // 获取当前站点域名 (处理自定义域名的情况，如 are.ink)
-            const currentDomain = window.location.host.toLowerCase();
+            let relativePath = null;
 
-            images.forEach((img) => {
-                // 获取当前图片的 src
-                let src = img.getAttribute('src');
-
-                // 忽略空值、Base64图片、已经是CDN的链接
-                if (!src || src.startsWith('data:') || src.includes(CONFIG.cdnDomain)) {
-                    return;
+            // Case A: 包含 github.io 域名 (标准 GitHub Pages)
+            if (srcForCheck.includes(oldDomain)) {
+                const startIndex = srcForCheck.indexOf(oldDomain);
+                if (startIndex !== -1) {
+                    relativePath = src.substring(startIndex + oldDomain.length);
                 }
-
-                // 为了匹配检查，构造一个用于比较的 src
-                const srcForCheck = src.toLowerCase();
-
-                let relativePath = null;
-
-                // Case A: 包含 github.io 域名 (标准 GitHub Pages)
-                if (srcForCheck.includes(oldDomain)) {
-                    const startIndex = srcForCheck.indexOf(oldDomain);
-                    if (startIndex !== -1) {
-                        relativePath = src.substring(startIndex + oldDomain.length);
-                    }
+            }
+            // Case B: 包含当前域名 (自定义域名 或 Localhost)
+            else if (srcForCheck.includes(currentDomain)) {
+                try {
+                    // 尝试解析 URL 获取 pathname
+                    const url = new URL(src, window.location.href);
+                    relativePath = decodeURIComponent(url.pathname);
+                } catch (e) {
+                    // 降级处理
+                    const parts = src.split(currentDomain);
+                    if (parts.length > 1) relativePath = parts[1];
                 }
-                // Case B: 包含当前域名 (自定义域名 或 Localhost)
-                else if (srcForCheck.includes(currentDomain)) {
-                    try {
-                        // 尝试解析 URL 获取 pathname
-                        const url = new URL(src, window.location.href);
-                        relativePath = decodeURIComponent(url.pathname);
-                    } catch (e) {
-                        // 降级处理
-                        const parts = src.split(currentDomain);
-                        if (parts.length > 1) relativePath = parts[1];
-                    }
+            }
+            // Case C: 相对路径 (以 / 开头，且不包含 //)
+            else if (src.startsWith('/') && !src.startsWith('//')) {
+                relativePath = src;
+            }
+
+            // 如果成功提取到了相对路径
+            if (relativePath) {
+                // 移除开头的斜杠，防止双斜杠
+                if (relativePath.startsWith('/')) {
+                    relativePath = relativePath.substring(1); 
                 }
-                // Case C: 相对路径 (以 / 开头，且不包含 //)
-                else if (src.startsWith('/') && !src.startsWith('//')) {
-                    relativePath = src;
-                }
+                
+                // 构造新的 CDN 链接
+                // 注意：jsDelivr 必须使用 GitHub 仓库的原始路径 (User/Repo)，与自定义域名 (CNAME) 无关
+                const newSrc = `${CONFIG.cdnDomain}/${CONFIG.githubUser}/${CONFIG.repoName}@${CONFIG.branch}/${relativePath}`;
 
-                // 如果成功提取到了相对路径
-                if (relativePath) {
-                    // 移除开头的斜杠，防止双斜杠
-                    if (relativePath.startsWith('/')) {
-                        relativePath = relativePath.substring(1);
-                    }
+                // 替换图片链接
+                img.src = newSrc;
+                img.setAttribute('data-optimized', 'true');
 
-                    // 构造新的 CDN 链接
-                    // 注意：jsDelivr 必须使用 GitHub 仓库的原始路径 (User/Repo)，与自定义域名 (CNAME) 无关
-                    const newSrc = `${CONFIG.cdnDomain}/${CONFIG.githubUser}/${CONFIG.repoName}@${CONFIG.branch}/${relativePath}`;
+                // 添加错误回退机制
+                img.onerror = function() {
+                    this.src = src; // 恢复原图
+                    this.onerror = null; // 防止死循环
+                };
+            }
+        });
+    }
 
-                    // 替换图片链接
-                    img.src = newSrc;
-                    img.setAttribute('data-optimized', 'true');
+    // 页面加载完成后立即执行
+    document.addEventListener('DOMContentLoaded', optimizeImages);
+    
+    // 兼容一些使用 Pjax (无刷新跳转) 的主题
+    document.addEventListener('pjax:complete', optimizeImages);
 
-                    // 添加错误回退机制
-                    img.onerror = function () {
-                        this.src = src; // 恢复原图
-                        this.onerror = null; // 防止死循环
-                    };
-                }
-            });
-        }
-
-        // 页面加载完成后立即执行
-        document.addEventListener('DOMContentLoaded', optimizeImages);
-
-        // 兼容一些使用 Pjax (无刷新跳转) 的主题
-        document.addEventListener('pjax:complete', optimizeImages);
-
-    })();
+})();
 </script>
-<script>
+
+    <script>
     // Theme Copyright
     console.log(
         '\n' +
@@ -400,16 +377,12 @@
 
 
 
-
-    <title>Midjourney V7 接口 API Key 获取及使用全攻略 | </title>
-
     
 </head>
 
-<body class="">
+    <body>
 
-    
-<script>
+        <script>
     (function () {
         const getSystemTheme = () => {
             if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
@@ -435,7 +408,7 @@
         <div class="mod-head__logo">
             <a href="">
                 
-                <img class="avatar" alt="avatar" src="/media/images/avatar.jpg">
+                    <img class="avatar" alt="avatar" src="/media/images/avatar.jpg">
                 
             </a>
         </div>
@@ -444,46 +417,22 @@
     <div class="mod-head__right">
         <span>
             <button id="theme-toggle-sun" class="tiptap-button theme-toggle-sun" aria-label="Switch to dark mode">
-                <svg width="18" height="18" class="tiptap-button-icon" viewBox="0 0 24 24" fill="currentColor"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path
-                        d="M12 1C12.5523 1 13 1.44772 13 2V4C13 4.55228 12.5523 5 12 5C11.4477 5 11 4.55228 11 4V2C11 1.44772 11.4477 1 12 1Z"
-                        fill="currentColor"></path>
-                    <path fill-rule="evenodd" clip-rule="evenodd"
-                        d="M7 12C7 9.23858 9.23858 7 12 7C14.7614 7 17 9.23858 17 12C17 14.7614 14.7614 17 12 17C9.23858 17 7 14.7614 7 12ZM12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9Z"
-                        fill="currentColor"></path>
-                    <path
-                        d="M13 20C13 19.4477 12.5523 19 12 19C11.4477 19 11 19.4477 11 20V22C11 22.5523 11.4477 23 12 23C12.5523 23 13 22.5523 13 22V20Z"
-                        fill="currentColor"></path>
-                    <path
-                        d="M4.22282 4.22289C4.61335 3.83236 5.24651 3.83236 5.63704 4.22289L7.04704 5.63289C7.43756 6.02341 7.43756 6.65658 7.04704 7.0471C6.65651 7.43762 6.02335 7.43762 5.63283 7.0471L4.22282 5.6371C3.8323 5.24658 3.8323 4.61341 4.22282 4.22289Z"
-                        fill="currentColor"></path>
-                    <path
-                        d="M18.367 16.9529C17.9765 16.5623 17.3433 16.5623 16.9528 16.9529C16.5623 17.3434 16.5623 17.9766 16.9528 18.3671L18.3628 19.7771C18.7533 20.1676 19.3865 20.1676 19.777 19.7771C20.1675 19.3866 20.1675 18.7534 19.777 18.3629L18.367 16.9529Z"
-                        fill="currentColor"></path>
-                    <path
-                        d="M1 12C1 11.4477 1.44772 11 2 11H4C4.55228 11 5 11.4477 5 12C5 12.5523 4.55228 13 4 13H2C1.44772 13 1 12.5523 1 12Z"
-                        fill="currentColor"></path>
-                    <path
-                        d="M20 11C19.4477 11 19 11.4477 19 12C19 12.5523 19.4477 13 20 13H22C22.5523 13 23 12.5523 23 12C23 11.4477 22.5523 11 22 11H20Z"
-                        fill="currentColor"></path>
-                    <path
-                        d="M7.04704 16.9529C7.43756 17.3434 7.43756 17.9766 7.04704 18.3671L5.63704 19.7771C5.24651 20.1676 4.61335 20.1676 4.22282 19.7771C3.8323 19.3866 3.8323 18.7534 4.22283 18.3629L5.63283 16.9529C6.02335 16.5623 6.65651 16.5623 7.04704 16.9529Z"
-                        fill="currentColor"></path>
-                    <path
-                        d="M19.777 5.6371C20.1675 5.24657 20.1675 4.61341 19.777 4.22289C19.3865 3.83236 18.7533 3.83236 18.3628 4.22289L16.9528 5.63289C16.5623 6.02341 16.5623 6.65658 16.9528 7.0471C17.3433 7.43762 17.9765 7.43762 18.367 7.0471L19.777 5.6371Z"
-                        fill="currentColor"></path>
+                <svg width="18" height="18" class="tiptap-button-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 1C12.5523 1 13 1.44772 13 2V4C13 4.55228 12.5523 5 12 5C11.4477 5 11 4.55228 11 4V2C11 1.44772 11.4477 1 12 1Z" fill="currentColor"></path>
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M7 12C7 9.23858 9.23858 7 12 7C14.7614 7 17 9.23858 17 12C17 14.7614 14.7614 17 12 17C9.23858 17 7 14.7614 7 12ZM12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9Z" fill="currentColor"></path>
+                    <path d="M13 20C13 19.4477 12.5523 19 12 19C11.4477 19 11 19.4477 11 20V22C11 22.5523 11.4477 23 12 23C12.5523 23 13 22.5523 13 22V20Z" fill="currentColor"></path>
+                    <path d="M4.22282 4.22289C4.61335 3.83236 5.24651 3.83236 5.63704 4.22289L7.04704 5.63289C7.43756 6.02341 7.43756 6.65658 7.04704 7.0471C6.65651 7.43762 6.02335 7.43762 5.63283 7.0471L4.22282 5.6371C3.8323 5.24658 3.8323 4.61341 4.22282 4.22289Z" fill="currentColor"></path>
+                    <path d="M18.367 16.9529C17.9765 16.5623 17.3433 16.5623 16.9528 16.9529C16.5623 17.3434 16.5623 17.9766 16.9528 18.3671L18.3628 19.7771C18.7533 20.1676 19.3865 20.1676 19.777 19.7771C20.1675 19.3866 20.1675 18.7534 19.777 18.3629L18.367 16.9529Z" fill="currentColor"></path>
+                    <path d="M1 12C1 11.4477 1.44772 11 2 11H4C4.55228 11 5 11.4477 5 12C5 12.5523 4.55228 13 4 13H2C1.44772 13 1 12.5523 1 12Z" fill="currentColor"></path>
+                    <path d="M20 11C19.4477 11 19 11.4477 19 12C19 12.5523 19.4477 13 20 13H22C22.5523 13 23 12.5523 23 12C23 11.4477 22.5523 11 22 11H20Z" fill="currentColor"></path>
+                    <path d="M7.04704 16.9529C7.43756 17.3434 7.43756 17.9766 7.04704 18.3671L5.63704 19.7771C5.24651 20.1676 4.61335 20.1676 4.22282 19.7771C3.8323 19.3866 3.8323 18.7534 4.22283 18.3629L5.63283 16.9529C6.02335 16.5623 6.65651 16.5623 7.04704 16.9529Z" fill="currentColor"></path>
+                    <path d="M19.777 5.6371C20.1675 5.24657 20.1675 4.61341 19.777 4.22289C19.3865 3.83236 18.7533 3.83236 18.3628 4.22289L16.9528 5.63289C16.5623 6.02341 16.5623 6.65658 16.9528 7.0471C17.3433 7.43762 17.9765 7.43762 18.367 7.0471L19.777 5.6371Z" fill="currentColor"></path>
                 </svg>
             </button>
             <button id="theme-toggle-moon" class="tiptap-button theme-toggle-moon" aria-label="Switch to light mode">
-                <svg width="18" height="18" class="tiptap-button-icon" viewBox="0 0 24 24" fill="currentColor"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd" clip-rule="evenodd"
-                        d="M12 2C10.0222 2 8.08879 2.58649 6.4443 3.6853C4.79981 4.78412 3.51809 6.3459 2.76121 8.17317C2.00433 10.0004 1.8063 12.0111 2.19215 13.9509C2.578 15.8907 3.53041 17.6725 4.92894 19.0711C6.32746 20.4696 8.10929 21.422 10.0491 21.8079C11.9889 22.1937 13.9996 21.9957 15.8268 21.2388C17.6541 20.4819 19.2159 19.2002 20.3147 17.5557C21.4135 15.9112 22 13.9778 22 12C22 11.5955 21.7564 11.2309 21.3827 11.0761C21.009 10.9213 20.5789 11.0069 20.2929 11.2929C19.287 12.2988 17.9226 12.864 16.5 12.864C15.0774 12.864 13.713 12.2988 12.7071 11.2929C11.7012 10.287 11.136 8.92261 11.136 7.5C11.136 6.07739 11.7012 4.71304 12.7071 3.70711C12.9931 3.42111 13.0787 2.99099 12.9239 2.61732C12.7691 2.24364 12.4045 2 12 2ZM7.55544 5.34824C8.27036 4.87055 9.05353 4.51389 9.87357 4.28778C9.39271 5.27979 9.13604 6.37666 9.13604 7.5C9.13604 9.45304 9.91189 11.3261 11.2929 12.7071C12.6739 14.0881 14.547 14.864 16.5 14.864C17.6233 14.864 18.7202 14.6073 19.7122 14.1264C19.4861 14.9465 19.1295 15.7296 18.6518 16.4446C17.7727 17.7602 16.5233 18.7855 15.0615 19.391C13.5997 19.9965 11.9911 20.155 10.4393 19.8463C8.88743 19.5376 7.46197 18.7757 6.34315 17.6569C5.21447 16.538 4.4624 15.1126 4.15372 13.5607C3.84504 12.0089 4.00347 10.4003 4.60897 8.93853C5.21447 7.47672 6.23985 6.22729 7.55544 5.34824Z"
-                        fill="currentColor"></path>
-                    <path
-                        d="M19 2C19.5523 2 20 2.44772 20 3V4H21C21.5523 4 22 4.44772 22 5C22 5.55228 21.5523 6 21 6H20V7C20 7.55228 19.5523 8 19 8C18.4477 8 18 7.55228 18 7V6H17C16.4477 6 16 5.55228 16 5C16 4.44772 16.4477 4 17 4H18V3C18 2.44772 18.4477 2 19 2Z"
-                        fill="currentColor"></path>
+                <svg width="18" height="18" class="tiptap-button-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C10.0222 2 8.08879 2.58649 6.4443 3.6853C4.79981 4.78412 3.51809 6.3459 2.76121 8.17317C2.00433 10.0004 1.8063 12.0111 2.19215 13.9509C2.578 15.8907 3.53041 17.6725 4.92894 19.0711C6.32746 20.4696 8.10929 21.422 10.0491 21.8079C11.9889 22.1937 13.9996 21.9957 15.8268 21.2388C17.6541 20.4819 19.2159 19.2002 20.3147 17.5557C21.4135 15.9112 22 13.9778 22 12C22 11.5955 21.7564 11.2309 21.3827 11.0761C21.009 10.9213 20.5789 11.0069 20.2929 11.2929C19.287 12.2988 17.9226 12.864 16.5 12.864C15.0774 12.864 13.713 12.2988 12.7071 11.2929C11.7012 10.287 11.136 8.92261 11.136 7.5C11.136 6.07739 11.7012 4.71304 12.7071 3.70711C12.9931 3.42111 13.0787 2.99099 12.9239 2.61732C12.7691 2.24364 12.4045 2 12 2ZM7.55544 5.34824C8.27036 4.87055 9.05353 4.51389 9.87357 4.28778C9.39271 5.27979 9.13604 6.37666 9.13604 7.5C9.13604 9.45304 9.91189 11.3261 11.2929 12.7071C12.6739 14.0881 14.547 14.864 16.5 14.864C17.6233 14.864 18.7202 14.6073 19.7122 14.1264C19.4861 14.9465 19.1295 15.7296 18.6518 16.4446C17.7727 17.7602 16.5233 18.7855 15.0615 19.391C13.5997 19.9965 11.9911 20.155 10.4393 19.8463C8.88743 19.5376 7.46197 18.7757 6.34315 17.6569C5.21447 16.538 4.4624 15.1126 4.15372 13.5607C3.84504 12.0089 4.00347 10.4003 4.60897 8.93853C5.21447 7.47672 6.23985 6.22729 7.55544 5.34824Z" fill="currentColor"></path>
+                    <path d="M19 2C19.5523 2 20 2.44772 20 3V4H21C21.5523 4 22 4.44772 22 5C22 5.55228 21.5523 6 21 6H20V7C20 7.55228 19.5523 8 19 8C18.4477 8 18 7.55228 18 7V6H17C16.4477 6 16 5.55228 16 5C16 4.44772 16.4477 4 17 4H18V3C18 2.44772 18.4477 2 19 2Z" fill="currentColor"></path>
                 </svg>
             </button>
         </span>
@@ -491,40 +440,45 @@
 </header>
 <!-- <a href="#" id="back-to-top" style="display: inline;"> ^ </a> -->
 
-<article class="mod-post mod-post__type-post">
-    <header>
-        <h1 class="mod-post__title">
-            Midjourney V7 接口 API Key 获取及使用全攻略
-        </h1>
-    </header>
+            <article class="mod-post mod-post__type-post">
+                <header>
+                    <h1 class="mod-post__title">
+                        Midjourney V7 接口 API Key 获取及使用全攻略
+                    </h1>
+                </header>
 
-    <div class="mod-post__meta">
-        <time datetime="2026-02-14">
-            2026-02-14
-        </time> • 8 分钟阅读 •
-        
-        <a href="/tag/Midjourney/">
-            Midjourney
-        </a>
-         ·  
-        <a href="/tag/API/">
-            API
-        </a>
-         ·  
-        <a href="/tag/AI绘图/">
-            AI绘图
-        </a>
-         ·  
-        <a href="/tag/教程/">
-            教程
-        </a>
-         ·   </div>
+                <div class="mod-post__meta">
+                    <time datetime="2026-02-14">
+                        2026-02-14
+                    </time> • 8 分钟阅读 •
+                        
+                            <a href="/tag/Midjourney/">
+                                Midjourney
+                            </a>
+                             · 
+                                    
+                            <a href="/tag/API/">
+                                API
+                            </a>
+                             · 
+                                    
+                            <a href="/tag/AI绘图/">
+                                AI绘图
+                            </a>
+                             · 
+                                    
+                            <a href="/tag/教程/">
+                                教程
+                            </a>
+                            
+                                    
+                </div>
 
 
 
-            <div class="mod-post__entry wzulli">
-                
-                <p>Midjourney 作为 AI 绘画领域的佼佼者，以其独特的艺术风格和高质量的图像生成能力著称。随着 V7 版本的临近（以及 V6 版本的不断完善），越来越多的开发者和创作者希望将其强大的能力集成到自己的应用或工作流中。</p>
+                <div class="mod-post__entry wzulli">
+                    
+                            <p>Midjourney 作为 AI 绘画领域的佼佼者，以其独特的艺术风格和高质量的图像生成能力著称。随着 V7 版本的临近（以及 V6 版本的不断完善），越来越多的开发者和创作者希望将其强大的能力集成到自己的应用或工作流中。</p>
 <p>本文将基于最新的<a href="https://cloud.tencent.com/developer/article/2521150">腾讯云开发者社区文章</a>，为你详细解读 Midjourney 的使用技巧以及大家最关心的 API Key 获取指南。</p>
 <h2 id="midjourney-discord-">Midjourney：从 Discord 到网页版的进化</h2>
 <p>最初，Midjourney 的主要阵地是 Discord。用户通过在频道里发送指令来生成图片。虽然这种方式社区氛围浓厚，但对于习惯独立创作的用户来说，门槛略高。</p>
@@ -569,26 +523,136 @@
 <hr />
 <p><em>参考来源：<a href="https://cloud.tencent.com/developer/article/2521150">Midjourney开发者必看：MJ V7接口API Key获取及使用全攻略</a></em></p>
 
-            </div>
+                </div>
 
-</article>
-
-
+            </article>
 
 
+            
+                
+	<div class="mod-post__foot">
+	 文章标签: 
+     
+        <a href="/tag/Midjourney/">Midjourney</a>, 
+     
+        <a href="/tag/API/">API</a>, 
+     
+        <a href="/tag/AI绘图/">AI绘图</a>, 
+     
+        <a href="/tag/教程/">教程</a>
+     
+     </br>
+	</div>
 
+                    
 
-<div class="mod-post__poster">
+                        <div class="mod-post__poster">
+                        </div>
+
+                        </div>
+
+                        
+                            
+<br>
+
+<div style="margin-bottom: 10px;">
+    上一篇 : 已经是第一篇文章了~
 </div>
 
+
+
+<div>
+    下一篇 : 没有下一篇文章了~
 </div>
 
 
+</div>	
 
+                                
 
+                                    
+    
+                
+    <div id="comments" class="cf">
+        <div class="comments-header">留言</div>
+        <div id="vcomments"></div>
+    </div>
 
+    <style>
+        /* Valine Author Badge Style - Injected directly to ensure priority */
+        #vcomments .vtag.vmaster {
+            color: #FFD700 !important;
+            font-size: 12px !important;
+            border-radius: 8px !important;
+            padding: 1px 6px !important;
+            display: inline-block !important;
+            vertical-align: middle !important;
+            font-weight: normal !important;
+            border: none !important;
+            line-height: 1.5 !important;
+        }
 
-<!-- Reading Progress Component -->
+        /* Dark mode compatibility */
+        body.dark-theme #vcomments .vtag.vmaster {
+            color: #FFD700 !important;
+        }
+    </style>
+
+    <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+    <script>
+        var valineOptions = {
+            el: '#vcomments',
+            appId: 'dAWkPrxZg50VZ7iV39rrZL5U-MdYXbMMI',
+            appKey: 'YCfYt8rhK8d0mh9vr42YTaA1',
+            serverURLs: 'https://dawkprxz.api.lncldglobal.com',
+            placeholder: '在这里输入内容...',
+            avatar: 'mp',
+            pageSize: 10,
+            visitor: true
+        };
+
+        new Valine(valineOptions);
+
+        // Custom Script to add "Blogger" badge
+        (function () {
+            // =========================================================
+            // 请在此处配置博主的昵称，用于显示「博主」标识
+            // Modify this value to your nickname
+            const MASTER_NICK = "Amore";
+            // =========================================================
+
+            const observer = new MutationObserver(function (mutations) {
+                mutations.forEach(function (mutation) {
+                    if (mutation.addedNodes.length > 0) {
+                        const vcards = document.querySelectorAll('#vcomments .vcard');
+                        vcards.forEach(function (card) {
+                            const nickElem = card.querySelector('.vnick');
+                            if (nickElem) {
+                                const nickName = nickElem.innerText.trim();
+                                // Check if it's the master and badge doesn't exist yet
+                                if (nickName === MASTER_NICK && !card.querySelector('.vtag.vmaster')) {
+                                    const tag = document.createElement('span');
+                                    tag.className = 'vtag vmaster';
+                                    tag.innerText = '「博主」';
+                                    // Insert after nickname
+                                    nickElem.parentNode.insertBefore(tag, nickElem.nextSibling);
+                                }
+                            }
+                        });
+                    }
+                });
+            });
+
+            const vcomments = document.getElementById('vcomments');
+            if (vcomments) {
+                observer.observe(vcomments, { childList: true, subtree: true });
+            }
+        })();
+    </script>
+    
+                    
+                                        
+                                        <!-- Reading Progress Component -->
 <div class="reading-progress-container">
   <span class="reading-label">阅读进度</span>
   <span class="reading-value">0%</span>
@@ -599,44 +663,41 @@
     <circle class="progress-ring__circle" stroke-width="3" fill="transparent" r="10" cx="12" cy="12" />
   </svg>
 </div>
-<footer id="footer" class="footer">
+                                            <footer id="footer" class="footer">
     <nav>
         
+            
+            <a class="menu-item" href="/">首页</a>
         
-        <a class="menu-item" href="/">首页</a>
+             · 
+            <a class="menu-item" href="/post">博客</a>
         
+             · 
+            <a class="menu-item" href="/memos">闪念</a>
         
-        <a class="menu-item" href="/post">博客</a>
+             · 
+            <a class="menu-item" href="/tags">标签</a>
         
+             · 
+            <a class="menu-item" href="/link">友链</a>
         
-        <a class="menu-item" href="/memos">闪念</a>
-        
-        
-        <a class="menu-item" href="/tags">标签</a>
-        
-        
-        <a class="menu-item" href="/link">友链</a>
-        
-        
-        <a class="menu-item" href="/post/about">关于</a>
+             · 
+            <a class="menu-item" href="/post/about">关于</a>
         
     </nav>
 
-    <div class="Copyright">Copyright &copy; <span class="current-year"></span> <a href=""></a></div>
-    <script>document.querySelector('.current-year').textContent = new Date().getFullYear();</script>
+    <div class="Copyright">Copyright &copy; 2026 <a href="">述尔</a></div>
 
     <footer id="footer" class="index_footer">
-         ·
+        Powered by Gridea Pro · 
         <a class="rss" href="/atom.xml" target="_blank" rel="noopener noreferrer">
-            <i class="ri-rss-line"></i> 🍀 RSS
-        </a>
+        <i class="ri-rss-line"></i> 🍀 RSS
+  </a>
     </footer>
 </footer>
 
 
 
+    </body>
 
-    
-</body>
-
-</html>
+    </html>
