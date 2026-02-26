@@ -1,0 +1,1177 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8" />
+<meta name="viewport"
+    content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, width=device-width" />
+<meta name="renderer" content="webkit">
+<meta name="format-detection" content="telephone=no, email=no, address=no">
+
+
+<meta name="keywords" content="" />
+<meta name="description" content="">
+
+
+<meta property="og:type" content="article">
+
+<meta property="og:title" content="">
+<meta property="og:description" content="">
+<meta property="og:image" content="">
+<meta property="og:site_name" content="">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="">
+<meta name="twitter:title" content="">
+<meta name="twitter:description" content="">
+<meta name="twitter:image" content="">
+
+<!-- Structured Data (JSON-LD) -->
+
+
+
+<script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "",
+        "description": "",
+        "image": "",
+        "author": {
+            "@type": "Person",
+            "name": ""
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "",
+            "logo": {
+                "@type": "ImageObject",
+                "url": ""
+            }
+        }
+        
+        ,"datePublished": "2026-02-26T11:15:00Z",
+        "dateModified": "2026-02-26T11:15:00Z",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": ""
+        }
+        
+    }
+    </script>
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#292a2d" media="(prefers-color-scheme: dark)">
+
+
+
+
+<link rel="shortcut icon" href="/media/images/favicon.ico">
+
+<link rel="stylesheet" href="/styles/main.css">
+
+<script>
+    // 自动为所有 target="_blank" 的链接添加 rel="noopener noreferrer"
+    document.addEventListener('DOMContentLoaded', function () {
+        var links = document.querySelectorAll('a[target="_blank"]');
+        links.forEach(function (link) {
+            var rel = link.getAttribute('rel') || '';
+            if (rel.indexOf('noopener') === -1) {
+                rel += ' noopener';
+            }
+            if (rel.indexOf('noreferrer') === -1) {
+                rel += ' noreferrer';
+            }
+            link.setAttribute('rel', rel.trim());
+        });
+    });
+</script>
+
+
+<script>
+    /**
+     * 作用：将 GitHub Pages 的原图链接替换为 jsDelivr CDN 链接，加速图片加载
+     */
+    (function () {
+        // === 配置区域，需要替换成自己的 GitHub 用户名和仓库名 ===
+        const CONFIG = {
+            githubUser: 'tespera',
+            repoName: 'tespera.github.io',
+            branch: 'master',
+            cdnDomain: 'https://cdn.jsdelivr.net/gh',
+        };
+
+        // === 主逻辑 ===
+        function optimizeImages() {
+            // 如果没有配置 GitHub 信息，则直接返回
+            if (!CONFIG.githubUser || !CONFIG.repoName) {
+                return;
+            }
+
+            // 1. 获取页面上所有图片
+            const images = document.querySelectorAll('img');
+
+            // 2. 构造旧域名的匹配规则 (强制转小写以避免大小写不匹配)
+            const oldDomain = `${CONFIG.githubUser}.github.io`.toLowerCase();
+            // 获取当前站点域名 (处理自定义域名的情况，如 are.ink)
+            const currentDomain = window.location.host.toLowerCase();
+
+            images.forEach((img) => {
+                // 获取当前图片的 src
+                let src = img.getAttribute('src');
+
+                // 忽略空值、Base64图片、已经是CDN的链接
+                if (!src || src.startsWith('data:') || src.includes(CONFIG.cdnDomain)) {
+                    return;
+                }
+
+                // 为了匹配检查，构造一个用于比较的 src
+                const srcForCheck = src.toLowerCase();
+
+                let relativePath = null;
+
+                // Case A: 包含 github.io 域名 (标准 GitHub Pages)
+                if (srcForCheck.includes(oldDomain)) {
+                    const startIndex = srcForCheck.indexOf(oldDomain);
+                    if (startIndex !== -1) {
+                        relativePath = src.substring(startIndex + oldDomain.length);
+                    }
+                }
+                // Case B: 包含当前域名 (自定义域名 或 Localhost)
+                else if (srcForCheck.includes(currentDomain)) {
+                    try {
+                        // 尝试解析 URL 获取 pathname
+                        const url = new URL(src, window.location.href);
+                        relativePath = decodeURIComponent(url.pathname);
+                    } catch (e) {
+                        // 降级处理
+                        const parts = src.split(currentDomain);
+                        if (parts.length > 1) relativePath = parts[1];
+                    }
+                }
+                // Case C: 相对路径 (以 / 开头，且不包含 //)
+                else if (src.startsWith('/') && !src.startsWith('//')) {
+                    relativePath = src;
+                }
+
+                // 如果成功提取到了相对路径
+                if (relativePath) {
+                    // 移除开头的斜杠，防止双斜杠
+                    if (relativePath.startsWith('/')) {
+                        relativePath = relativePath.substring(1);
+                    }
+
+                    // 构造新的 CDN 链接
+                    // 注意：jsDelivr 必须使用 GitHub 仓库的原始路径 (User/Repo)，与自定义域名 (CNAME) 无关
+                    const newSrc = `${CONFIG.cdnDomain}/${CONFIG.githubUser}/${CONFIG.repoName}@${CONFIG.branch}/${relativePath}`;
+
+                    // 替换图片链接
+                    img.src = newSrc;
+                    img.setAttribute('data-optimized', 'true');
+
+                    // 添加错误回退机制
+                    img.onerror = function () {
+                        this.src = src; // 恢复原图
+                        this.onerror = null; // 防止死循环
+                    };
+                }
+            });
+        }
+
+        // 页面加载完成后立即执行
+        document.addEventListener('DOMContentLoaded', optimizeImages);
+
+        // 兼容一些使用 Pjax (无刷新跳转) 的主题
+        document.addEventListener('pjax:complete', optimizeImages);
+
+    })();
+</script>
+<script>
+    // Theme Copyright
+    console.log(
+        '\n' +
+        '%c Gridea Theme for Amore v1.0 %c https://www.amore.ink ',
+        'color: #fadfa3; background: #030307; padding: 12px 10px; border-radius: 3px 0 0 3px;',
+        'color: #030307; background: #fadfa3; padding: 12px 10px; border-radius: 0 3px 3px 0;'
+        + '\n',
+    );
+</script>
+
+
+<script>
+    // declaraction of document.ready() function.
+    (function () {
+        var ie = !!(window.attachEvent && !window.opera);
+        var wk = /webkit\/(\d+)/i.test(navigator.userAgent) && (RegExp.$1 < 525);
+        var fn = [];
+        var run = function () {
+            for (var i = 0; i < fn.length; i++) fn[i]();
+        };
+        var d = document;
+        d.ready = function (f) {
+            if (!ie && !wk && d.addEventListener)
+                return d.addEventListener('DOMContentLoaded', f, false);
+            if (fn.push(f) > 1) return;
+            if (ie)
+                (function () {
+                    try {
+                        d.documentElement.doScroll('left');
+                        run();
+                    } catch (err) {
+                        setTimeout(arguments.callee, 0);
+                    }
+                })();
+            else if (wk)
+                var t = setInterval(function () {
+                    if (/^(loaded|complete)$/.test(d.readyState))
+                        clearInterval(t), run();
+                }, 0);
+        };
+    })();
+
+
+    document.ready(
+        function () {
+            var _Blog = window._Blog || {};
+
+            const getSystemTheme = () => {
+                if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                    return 'dark';
+                }
+                return 'light';
+            };
+
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme');
+            const initialTheme = currentTheme || getSystemTheme();
+            const isDark = initialTheme === 'dark';
+
+            const updateButtons = (dark) => {
+                const sunBtn = document.getElementById("theme-toggle-sun");
+                const moonBtn = document.getElementById("theme-toggle-moon");
+                const mobileSunBtn = document.getElementById("mobile-theme-toggle-sun");
+                const mobileMoonBtn = document.getElementById("mobile-theme-toggle-moon");
+
+                if (dark) {
+                    if (sunBtn) sunBtn.style.display = 'none';
+                    if (moonBtn) moonBtn.style.display = 'inline-block';
+                    if (mobileSunBtn) mobileSunBtn.style.display = 'none';
+                    if (mobileMoonBtn) mobileMoonBtn.style.display = 'inline-block';
+                } else {
+                    if (sunBtn) sunBtn.style.display = 'inline-block';
+                    if (moonBtn) moonBtn.style.display = 'none';
+                    if (mobileSunBtn) mobileSunBtn.style.display = 'inline-block';
+                    if (mobileMoonBtn) mobileMoonBtn.style.display = 'none';
+                }
+            };
+
+            const updateThemeColor = (dark) => {
+                const themeColor = dark ? '#292a2d' : '#ffffff';
+                const metaTags = document.querySelectorAll('meta[name="theme-color"]');
+                if (metaTags.length > 0) {
+                    // 保留第一个，移除其他的，避免重复
+                    for (let i = 1; i < metaTags.length; i++) {
+                        metaTags[i].remove();
+                    }
+                    metaTags[0].setAttribute('content', themeColor);
+                    metaTags[0].removeAttribute('media');
+                } else {
+                    const meta = document.createElement('meta');
+                    meta.name = 'theme-color';
+                    meta.content = themeColor;
+                    document.head.appendChild(meta);
+                }
+            };
+
+            const applyTheme = (dark) => {
+                const body = document.getElementsByTagName('body')[0];
+                if (dark) {
+                    body.classList.add('dark-theme');
+                } else {
+                    body.classList.remove('dark-theme');
+                }
+                updateButtons(dark);
+                updateThemeColor(dark);
+            };
+
+            // Initial application
+            applyTheme(isDark);
+            if (!currentTheme) {
+                window.localStorage && window.localStorage.setItem('theme', initialTheme);
+            }
+
+            _Blog.toggleTheme = function () {
+                const toggleFunc = (e) => {
+                    // Prevent bubbling if needed, though buttons are distinct now
+                    if (e) e.stopPropagation();
+
+                    const body = document.getElementsByTagName('body')[0];
+                    const isCurrentlyDark = body.classList.contains('dark-theme');
+
+                    if (isCurrentlyDark) {
+                        body.classList.remove('dark-theme');
+                        updateButtons(false);
+                        window.localStorage && window.localStorage.setItem('theme', 'light');
+                    } else {
+                        body.classList.add('dark-theme');
+                        updateButtons(true);
+                        window.localStorage && window.localStorage.setItem('theme', 'dark');
+                    }
+                };
+
+                const sunBtn = document.getElementById("theme-toggle-sun");
+                const moonBtn = document.getElementById("theme-toggle-moon");
+                const mobileSunBtn = document.getElementById("mobile-theme-toggle-sun");
+                const mobileMoonBtn = document.getElementById("mobile-theme-toggle-moon");
+
+                if (sunBtn) sunBtn.addEventListener('click', toggleFunc);
+                if (moonBtn) moonBtn.addEventListener('click', toggleFunc);
+                if (mobileSunBtn) mobileSunBtn.addEventListener('click', toggleFunc);
+                if (mobileMoonBtn) mobileMoonBtn.addEventListener('click', toggleFunc);
+            };
+            _Blog.toggleTheme();
+
+            if (window.matchMedia) {
+                window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+                    const newTheme = e.matches ? 'dark' : 'light';
+                    applyTheme(e.matches);
+                    window.localStorage && window.localStorage.setItem('theme', newTheme);
+                });
+            }
+        }
+    );
+</script>
+
+<script>
+    // Reading Progress Component
+    document.addEventListener('DOMContentLoaded', () => {
+        const progressValue = document.querySelector('.reading-value');
+        const progressCircle = document.querySelector('.progress-ring__circle');
+        const container = document.querySelector('.reading-progress-container');
+
+        // Exit if elements don't exist (e.g., not on a post page)
+        if (!progressValue || !progressCircle || !container) {
+            return;
+        }
+
+        // SVG Circle setup
+        const radius = progressCircle.r.baseVal.value;
+        const circumference = 2 * Math.PI * radius;
+
+        progressCircle.style.strokeDasharray = `${circumference} ${circumference}`;
+        progressCircle.style.strokeDashoffset = circumference;
+
+        function setProgress(percent) {
+            const safePercent = Math.min(100, Math.max(0, percent));
+            progressValue.textContent = `${Math.round(safePercent)}%`;
+            const offset = circumference - (safePercent / 100) * circumference;
+            progressCircle.style.strokeDashoffset = offset;
+        }
+
+        function onScroll() {
+            const scrollTop = window.scrollY || document.documentElement.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+
+            if (scrollHeight <= 0) {
+                setProgress(0);
+                return;
+            }
+
+            const scrollPercent = (scrollTop / scrollHeight) * 100;
+            setProgress(scrollPercent);
+
+            // Show/Hide logic: Show if scrolled more than 100px
+            if (scrollTop > 100) {
+                container.classList.add('show');
+            } else {
+                container.classList.remove('show');
+            }
+        }
+
+        // Initialize
+        onScroll();
+
+        // Listen for scroll events
+        window.addEventListener('scroll', onScroll, { passive: true });
+
+        // Recalculate on resize
+        window.addEventListener('resize', onScroll);
+    });
+</script>
+
+
+
+
+
+    <title>Gridea Pro Jinja2 主题开发完全指南：从踩坑到精通 | </title>
+
+    
+</head>
+
+<body class="">
+
+    
+<script>
+    (function () {
+        const getSystemTheme = () => {
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                return 'dark';
+            }
+            return 'light';
+        };
+
+        const savedTheme = localStorage.getItem('theme');
+        const theme = savedTheme || getSystemTheme();
+
+        if (theme === 'dark') {
+            document.body.classList.add('dark-theme');
+        }
+
+        if (!savedTheme) {
+            localStorage.setItem('theme', theme);
+        }
+    })();
+</script>
+<header class="mod-head">
+    <div class="mod-head__left">
+        <div class="mod-head__logo">
+            <a href="">
+                
+                <img class="avatar" alt="avatar" src="/media/images/avatar.jpg">
+                
+            </a>
+        </div>
+    </div>
+
+    <div class="mod-head__right">
+        <span>
+            <button id="theme-toggle-sun" class="tiptap-button theme-toggle-sun" aria-label="Switch to dark mode">
+                <svg width="18" height="18" class="tiptap-button-icon" viewBox="0 0 24 24" fill="currentColor"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M12 1C12.5523 1 13 1.44772 13 2V4C13 4.55228 12.5523 5 12 5C11.4477 5 11 4.55228 11 4V2C11 1.44772 11.4477 1 12 1Z"
+                        fill="currentColor"></path>
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M7 12C7 9.23858 9.23858 7 12 7C14.7614 7 17 9.23858 17 12C17 14.7614 14.7614 17 12 17C9.23858 17 7 14.7614 7 12ZM12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9Z"
+                        fill="currentColor"></path>
+                    <path
+                        d="M13 20C13 19.4477 12.5523 19 12 19C11.4477 19 11 19.4477 11 20V22C11 22.5523 11.4477 23 12 23C12.5523 23 13 22.5523 13 22V20Z"
+                        fill="currentColor"></path>
+                    <path
+                        d="M4.22282 4.22289C4.61335 3.83236 5.24651 3.83236 5.63704 4.22289L7.04704 5.63289C7.43756 6.02341 7.43756 6.65658 7.04704 7.0471C6.65651 7.43762 6.02335 7.43762 5.63283 7.0471L4.22282 5.6371C3.8323 5.24658 3.8323 4.61341 4.22282 4.22289Z"
+                        fill="currentColor"></path>
+                    <path
+                        d="M18.367 16.9529C17.9765 16.5623 17.3433 16.5623 16.9528 16.9529C16.5623 17.3434 16.5623 17.9766 16.9528 18.3671L18.3628 19.7771C18.7533 20.1676 19.3865 20.1676 19.777 19.7771C20.1675 19.3866 20.1675 18.7534 19.777 18.3629L18.367 16.9529Z"
+                        fill="currentColor"></path>
+                    <path
+                        d="M1 12C1 11.4477 1.44772 11 2 11H4C4.55228 11 5 11.4477 5 12C5 12.5523 4.55228 13 4 13H2C1.44772 13 1 12.5523 1 12Z"
+                        fill="currentColor"></path>
+                    <path
+                        d="M20 11C19.4477 11 19 11.4477 19 12C19 12.5523 19.4477 13 20 13H22C22.5523 13 23 12.5523 23 12C23 11.4477 22.5523 11 22 11H20Z"
+                        fill="currentColor"></path>
+                    <path
+                        d="M7.04704 16.9529C7.43756 17.3434 7.43756 17.9766 7.04704 18.3671L5.63704 19.7771C5.24651 20.1676 4.61335 20.1676 4.22282 19.7771C3.8323 19.3866 3.8323 18.7534 4.22283 18.3629L5.63283 16.9529C6.02335 16.5623 6.65651 16.5623 7.04704 16.9529Z"
+                        fill="currentColor"></path>
+                    <path
+                        d="M19.777 5.6371C20.1675 5.24657 20.1675 4.61341 19.777 4.22289C19.3865 3.83236 18.7533 3.83236 18.3628 4.22289L16.9528 5.63289C16.5623 6.02341 16.5623 6.65658 16.9528 7.0471C17.3433 7.43762 17.9765 7.43762 18.367 7.0471L19.777 5.6371Z"
+                        fill="currentColor"></path>
+                </svg>
+            </button>
+            <button id="theme-toggle-moon" class="tiptap-button theme-toggle-moon" aria-label="Switch to light mode">
+                <svg width="18" height="18" class="tiptap-button-icon" viewBox="0 0 24 24" fill="currentColor"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M12 2C10.0222 2 8.08879 2.58649 6.4443 3.6853C4.79981 4.78412 3.51809 6.3459 2.76121 8.17317C2.00433 10.0004 1.8063 12.0111 2.19215 13.9509C2.578 15.8907 3.53041 17.6725 4.92894 19.0711C6.32746 20.4696 8.10929 21.422 10.0491 21.8079C11.9889 22.1937 13.9996 21.9957 15.8268 21.2388C17.6541 20.4819 19.2159 19.2002 20.3147 17.5557C21.4135 15.9112 22 13.9778 22 12C22 11.5955 21.7564 11.2309 21.3827 11.0761C21.009 10.9213 20.5789 11.0069 20.2929 11.2929C19.287 12.2988 17.9226 12.864 16.5 12.864C15.0774 12.864 13.713 12.2988 12.7071 11.2929C11.7012 10.287 11.136 8.92261 11.136 7.5C11.136 6.07739 11.7012 4.71304 12.7071 3.70711C12.9931 3.42111 13.0787 2.99099 12.9239 2.61732C12.7691 2.24364 12.4045 2 12 2ZM7.55544 5.34824C8.27036 4.87055 9.05353 4.51389 9.87357 4.28778C9.39271 5.27979 9.13604 6.37666 9.13604 7.5C9.13604 9.45304 9.91189 11.3261 11.2929 12.7071C12.6739 14.0881 14.547 14.864 16.5 14.864C17.6233 14.864 18.7202 14.6073 19.7122 14.1264C19.4861 14.9465 19.1295 15.7296 18.6518 16.4446C17.7727 17.7602 16.5233 18.7855 15.0615 19.391C13.5997 19.9965 11.9911 20.155 10.4393 19.8463C8.88743 19.5376 7.46197 18.7757 6.34315 17.6569C5.21447 16.538 4.4624 15.1126 4.15372 13.5607C3.84504 12.0089 4.00347 10.4003 4.60897 8.93853C5.21447 7.47672 6.23985 6.22729 7.55544 5.34824Z"
+                        fill="currentColor"></path>
+                    <path
+                        d="M19 2C19.5523 2 20 2.44772 20 3V4H21C21.5523 4 22 4.44772 22 5C22 5.55228 21.5523 6 21 6H20V7C20 7.55228 19.5523 8 19 8C18.4477 8 18 7.55228 18 7V6H17C16.4477 6 16 5.55228 16 5C16 4.44772 16.4477 4 17 4H18V3C18 2.44772 18.4477 2 19 2Z"
+                        fill="currentColor"></path>
+                </svg>
+            </button>
+        </span>
+    </div>
+</header>
+<!-- <a href="#" id="back-to-top" style="display: inline;"> ^ </a> -->
+
+<article class="mod-post mod-post__type-post">
+    <header>
+        <h1 class="mod-post__title">
+            Gridea Pro Jinja2 主题开发完全指南：从踩坑到精通
+        </h1>
+    </header>
+
+    <div class="mod-post__meta">
+        <time datetime="2026-02-26">
+            2026-02-26
+        </time> • 52 分钟阅读 •
+        
+        <a href="/tag/Jinja2/">
+            Jinja2
+        </a>
+         ·  
+        <a href="/tag/Gridea Pro/">
+            Gridea Pro
+        </a>
+         ·  
+        <a href="/tag/Pongo2/">
+            Pongo2
+        </a>
+         ·  
+        <a href="/tag/Go/">
+            Go
+        </a>
+         ·  
+        <a href="/tag/主题开发/">
+            主题开发
+        </a>
+         ·  
+        <a href="/tag/教程/">
+            教程
+        </a>
+         ·   </div>
+
+
+
+            <div class="mod-post__entry wzulli">
+                
+                <p>Gridea Pro 从 v2 开始引入了 Jinja2 模板引擎支持（基于 Go 语言的 Pongo2 实现），为主题开发者提供了比 EJS 更优雅的模板继承和组件化能力。但由于 Pongo2 与标准 Python Jinja2 存在细微但关键的语法差异，初次开发者很容易踩坑。</p>
+<p>本文基于一次完整的 EJS 到 Jinja2 主题迁移实战（amore 主题），系统性地总结了所有已知的兼容性陷阱和最佳实践，帮助你从零开始写出一个零报错的 Jinja2 主题。</p>
+<!-- more -->
+<hr />
+<h2 id="heading">一、主题目录结构</h2>
+<p>一个标准的 Jinja2 主题目录结构如下：</p>
+<pre><code>themes/my-theme/
+|-- config.json              # 主题配置文件
+|-- assets/                  # 静态资源
+|   |-- media/
+|   |   +-- images/
+|   |       |-- avatar.jpg
+|   |       +-- favicon.ico
+|   +-- styles/
+|       +-- main.less
++-- templates/               # 模板文件（核心）
+    |-- base.html            # 根布局（定义 block 占位符）
+    |-- index.html           # 首页
+    |-- post.html            # 文章详情页
+    |-- archives.html        # 归档页
+    |-- tag.html             # 标签详情页
+    |-- tags.html            # 标签列表页
+    |-- about.html           # 关于页
+    |-- friends.html         # 友链页
+    |-- blog.html            # 博客列表页
+    |-- memos.html           # 闪念页
+    |-- 404.html             # 404 页面
+    +-- partials/            # 可复用组件
+        |-- head.html        # HTML head（SEO、CSS、JS）
+        |-- header.html      # 导航栏
+        |-- footer.html      # 页脚
+        |-- comments.html    # 评论系统
+        |-- post-list.html   # 文章列表组件
+        |-- post-tags.html   # 文章标签
+        |-- post-pagination.html # 上下篇导航
+        |-- global-seo.html  # 全局 SEO 结构化数据
+        |-- index-seo.html   # 首页 SEO
+        |-- scripts.html     # 公共脚本
+        +-- reading-progress.html # 阅读进度条
+</code></pre>
+<h3 id="configjson-">config.json 配置</h3>
+<pre><code class="language-json">{
+  &quot;name&quot;: &quot;My Theme&quot;,
+  &quot;version&quot;: &quot;1.0.0&quot;,
+  &quot;author&quot;: &quot;Your Name&quot;,
+  &quot;engine&quot;: &quot;jinja2&quot;,
+  &quot;customConfig&quot;: [
+    {
+      &quot;name&quot;: &quot;siteName&quot;,
+      &quot;label&quot;: &quot;站点名称&quot;,
+      &quot;group&quot;: &quot;基础&quot;,
+      &quot;value&quot;: &quot;My Blog&quot;,
+      &quot;type&quot;: &quot;input&quot;
+    }
+  ]
+}
+</code></pre>
+<blockquote>
+<p><strong>关键</strong>：<code>&quot;engine&quot;: &quot;jinja2&quot;</code> 是必须的，它告诉 Gridea Pro 使用 Pongo2 引擎而非 EJS。</p>
+</blockquote>
+<hr />
+<h2 id="heading-1">二、模板数据上下文</h2>
+<p>Gridea Pro 会向模板注入以下数据变量，你可以在任何模板中直接使用：</p>
+<h3 id="heading-2">全局变量</h3>
+<table>
+<thead>
+<tr>
+<th>变量名</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>config</code></td>
+<td>Object</td>
+<td>站点配置（domain, siteName 等）</td>
+</tr>
+<tr>
+<td><code>theme_config</code></td>
+<td>Object</td>
+<td>主题自定义配置</td>
+</tr>
+<tr>
+<td><code>menus</code></td>
+<td>Array</td>
+<td>导航菜单列表</td>
+</tr>
+<tr>
+<td><code>posts</code></td>
+<td>Array</td>
+<td>文章列表</td>
+</tr>
+<tr>
+<td><code>tags</code></td>
+<td>Array</td>
+<td>标签列表</td>
+</tr>
+<tr>
+<td><code>memos</code></td>
+<td>Array</td>
+<td>闪念列表</td>
+</tr>
+<tr>
+<td><code>now</code></td>
+<td>time.Time</td>
+<td>当前时间（Go 原生 time.Time 对象）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="heading-3">文章页专有变量</h3>
+<table>
+<thead>
+<tr>
+<th>变量名</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>post</code></td>
+<td>Object</td>
+<td>当前文章</td>
+</tr>
+<tr>
+<td><code>post.title</code></td>
+<td>String</td>
+<td>文章标题</td>
+</tr>
+<tr>
+<td><code>post.content</code></td>
+<td>String</td>
+<td>文章 HTML 内容</td>
+</tr>
+<tr>
+<td><code>post.date</code></td>
+<td>String</td>
+<td>发布日期（已格式化字符串）</td>
+</tr>
+<tr>
+<td><code>post.dateFormat</code></td>
+<td>String</td>
+<td>格式化日期显示</td>
+</tr>
+<tr>
+<td><code>post.link</code></td>
+<td>String</td>
+<td>文章链接</td>
+</tr>
+<tr>
+<td><code>post.tags</code></td>
+<td>Array</td>
+<td>文章标签列表</td>
+</tr>
+<tr>
+<td><code>post.feature</code></td>
+<td>String</td>
+<td>特色图片 URL</td>
+</tr>
+<tr>
+<td><code>post.isTop</code></td>
+<td>Boolean</td>
+<td>是否置顶</td>
+</tr>
+</tbody>
+</table>
+<h3 id="heading-4">标签页专有变量</h3>
+<table>
+<thead>
+<tr>
+<th>变量名</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>tag</code></td>
+<td>Object</td>
+<td>当前标签（tag.name, tag.link）</td>
+</tr>
+<tr>
+<td><code>current_tag</code></td>
+<td>Object</td>
+<td>同 tag</td>
+</tr>
+</tbody>
+</table>
+<h3 id="heading-5">分页变量</h3>
+<table>
+<thead>
+<tr>
+<th>变量名</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>pagination</code></td>
+<td>Object</td>
+<td>分页信息</td>
+</tr>
+<tr>
+<td><code>pagination.prev</code></td>
+<td>String</td>
+<td>上一页链接</td>
+</tr>
+<tr>
+<td><code>pagination.next</code></td>
+<td>String</td>
+<td>下一页链接</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="pongo2-">三、Pongo2 核心语法速查</h2>
+<h3 id="31-">3.1 模板继承</h3>
+<p>Jinja2 最强大的特性。定义一个基础布局，子模板继承并填充内容。</p>
+<p><strong>base.html（基础布局）：</strong></p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;zh-CN&quot;&gt;
+&lt;head&gt;
+    {% include &quot;partials/head.html&quot; %}
+    &lt;title&gt;{% block title %}{{ config.siteName }}{% endblock %}&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    {% block content %}{% endblock %}
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><strong>index.html（子模板）：</strong></p>
+<pre><code class="language-html">{% extends &quot;base.html&quot; %}
+{% block title %}首页 | {{ config.siteName }}{% endblock %}
+
+{% block content %}
+&lt;h1&gt;欢迎&lt;/h1&gt;
+{% endblock %}
+</code></pre>
+<h3 id="32-include-">3.2 Include 组件</h3>
+<pre><code class="language-html">{% include &quot;partials/header.html&quot; %}
+{% include &quot;partials/footer.html&quot; %}
+</code></pre>
+<blockquote>
+<p><strong>注意</strong>：路径始终相对于 <code>templates/</code> 根目录，不是相对于当前文件。例如在 <code>partials/head.html</code> 中 include 同目录的 <code>global-seo.html</code>，仍然要写 <code>{% include &quot;partials/global-seo.html&quot; %}</code>。</p>
+</blockquote>
+<h3 id="33-">3.3 变量输出</h3>
+<pre><code class="language-html">{{ config.siteName }}
+{{ post.title }}
+{{ post.content | safe }}
+</code></pre>
+<p><code>| safe</code> 用于输出原始 HTML 而不转义。</p>
+<h3 id="34-">3.4 条件判断</h3>
+<pre><code class="language-html">{% if post %}
+    &lt;h1&gt;{{ post.title }}&lt;/h1&gt;
+{% else %}
+    &lt;h1&gt;默认标题&lt;/h1&gt;
+{% endif %}
+</code></pre>
+<h3 id="35-">3.5 循环</h3>
+<pre><code class="language-html">{% for post in posts %}
+    &lt;li&gt;{{ post.title }}&lt;/li&gt;
+{% endfor %}
+</code></pre>
+<p>循环中可使用 <code>loop.index</code>（从1开始）和 <code>loop.index0</code>（从0开始）。</p>
+<h3 id="36-set-">3.6 Set 变量</h3>
+<pre><code class="language-html">{% set cdnPrefix = config.domain %}
+{% if theme_config.cdnPrefix %}
+    {% set cdnPrefix = theme_config.cdnPrefix %}
+{% endif %}
+</code></pre>
+<hr />
+<h2 id="pongo2-vs--jinja2">四、关键差异：Pongo2 vs 标准 Jinja2</h2>
+<p>这是 <strong>最重要的章节</strong>。Pongo2 虽然号称兼容 Jinja2，但有多处语法不兼容。以下是我们在实战中踩过的每一个坑：</p>
+<h3 id="41-filter-">4.1 Filter 参数语法</h3>
+<p>标准 Jinja2 使用括号传参，Pongo2 使用冒号：</p>
+<pre><code>错误（标准 Jinja2 写法）：
+  {{ value | default(&quot;fallback&quot;) }}
+  {{ value | truncate(100) }}
+
+正确（Pongo2 写法）：
+  {{ value | default:&quot;fallback&quot; }}
+  {{ value | truncate:100 }}
+</code></pre>
+<h3 id="42--python-">4.2 没有 Python 三元表达式</h3>
+<p>标准 Jinja2 支持 <code>value if condition else other</code>，Pongo2 不支持：</p>
+<pre><code>错误：
+  {{ post.title if post else '默认' }}
+
+正确：
+  {% if post %}{{ post.title }}{% else %}默认{% endif %}
+</code></pre>
+<h3 id="43-">4.3 逻辑运算符</h3>
+<pre><code>错误（JavaScript 风格）：
+  {% if a &amp;&amp; b %}
+  {% if typeof pagination !== 'undefined' %}
+
+正确（Python 风格）：
+  {% if a and b %}
+  {% if pagination %}
+</code></pre>
+<h3 id="44-">4.4 字符串连接</h3>
+<p>标准 Jinja2 使用 <code>~</code> 连接字符串，Pongo2 不支持。建议直接在输出位置拼接：</p>
+<pre><code>错误：
+  {% set title = post.title ~ ' | ' ~ config.siteName %}
+
+正确：
+  &lt;title&gt;{{ post.title }} | {{ config.siteName }}&lt;/title&gt;
+</code></pre>
+<h3 id="45-">4.5 列表长度</h3>
+<p>Pongo2 不支持 JavaScript 的 <code>.length</code>，使用 <code>|length</code> filter：</p>
+<pre><code>错误：{% if tags.length &gt; 0 %}
+正确：{% if tags|length &gt; 0 %}
+</code></pre>
+<h3 id="46-is-defined-">4.6 is defined 测试</h3>
+<p>Pongo2 不支持 <code>is defined</code>，直接用变量做条件判断：</p>
+<pre><code>错误：{% if commentSetting is defined %}
+正确：{% if commentSetting %}
+</code></pre>
+<h3 id="47-not-in-">4.7 not in 操作符</h3>
+<p>Pongo2 不支持 <code>x not in y</code>，需要拆开：</p>
+<pre><code>错误：{% if 'about' not in post.link %}
+正确：{% if not &quot;about&quot; in post.link %}
+</code></pre>
+<h3 id="48-date-filter-">4.8 date Filter 类型要求</h3>
+<p>Pongo2 的 <code>date</code> filter 严格要求输入必须是 Go 的 <code>time.Time</code> 类型，不能是字符串：</p>
+<pre><code>错误（post.date 是字符串，不是 time.Time）：
+  {{ post.date | date:&quot;2006-01-02&quot; }}
+  {{ &quot;now&quot; | date:&quot;2006&quot; }}
+
+正确（post.date 已经是格式化好的字符串）：
+  {{ post.date }}
+
+正确（now 是 Gridea 注入的真正 time.Time 对象）：
+  {{ now | date:&quot;2006&quot; }}
+</code></pre>
+<h3 id="49-">4.9 循环变量命名</h3>
+<p>for 循环中必须显式命名循环变量：</p>
+<pre><code>错误：{% for None in posts %}
+正确：{% for post in posts %}
+</code></pre>
+<hr />
+<h2 id="heading-6">五、标签内换行符问题（已在引擎层面解决）</h2>
+<h3 id="heading-7">问题描述</h3>
+<p>标准 Jinja2 允许在标签内换行，但 Pongo2 的 Lexer 严格禁止：</p>
+<pre><code class="language-html">&lt;!-- 这在标准 Jinja2 中合法，但在 Pongo2 中报错 --&gt;
+&lt;a href=&quot;{{ config.domain }}&quot;&gt;{{
+    config.siteName
+}}&lt;/a&gt;
+</code></pre>
+<p>会触发错误：<code>Newline not allowed within tag/variable</code></p>
+<h3 id="heading-8">解决方案</h3>
+<p>Gridea Pro 已在引擎层面内置了 SanitizingLoader（自定义模板加载器），它在模板加载时自动清理标签内的换行符，对主题开发者完全透明。</p>
+<p>但建议保持标签内容在同一行：</p>
+<pre><code class="language-html">&lt;a href=&quot;{{ config.domain }}&quot;&gt;{{ config.siteName }}&lt;/a&gt;
+</code></pre>
+<hr />
+<h2 id="gridea-pro--filter">六、Gridea Pro 内置 Filter</h2>
+<p>除了 Pongo2 本身的 filter（safe, default, length, lower, upper, striptags, date 等），Gridea Pro 还提供了以下自定义 filter：</p>
+<table>
+<thead>
+<tr>
+<th>Filter</th>
+<th>用法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>reading_time</td>
+<td><code>{{ post.content | reading_time }}</code></td>
+<td>估算阅读时间（支持中文）</td>
+</tr>
+<tr>
+<td>excerpt</td>
+<td><code>{{ post.content | excerpt }}</code></td>
+<td>截取摘要</td>
+</tr>
+<tr>
+<td>word_count</td>
+<td><code>{{ post.content | word_count }}</code></td>
+<td>统计字数（CJK 感知）</td>
+</tr>
+<tr>
+<td>strip_html</td>
+<td><code>{{ content | strip_html }}</code></td>
+<td>移除 HTML 标签</td>
+</tr>
+<tr>
+<td>relative / timeago</td>
+<td><code>{{ post.date | relative }}</code></td>
+<td>相对时间（&ldquo;3 天前&rdquo;）</td>
+</tr>
+<tr>
+<td>to_json</td>
+<td><code>{{ data | to_json }}</code></td>
+<td>序列化为 JSON</td>
+</tr>
+<tr>
+<td>group_by</td>
+<td><code>{{ posts | group_by:&quot;year&quot; }}</code></td>
+<td>按属性分组</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="heading-9">七、完整模板示例</h2>
+<h3 id="71-basehtml">7.1 base.html（根布局）</h3>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;zh-CN&quot;&gt;
+&lt;head&gt;
+    {% include &quot;partials/head.html&quot; %}
+    &lt;title&gt;{% block title %}{{ config.siteName }}{% endblock %}&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    {% block content %}{% endblock %}
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h3 id="72-indexhtml">7.2 index.html（首页）</h3>
+<pre><code class="language-html">{% extends &quot;base.html&quot; %}
+{% block title %}{{ config.siteName }}{% endblock %}
+
+{% block content %}
+{% include &quot;partials/header.html&quot; %}
+
+&lt;div class=&quot;posts-list&quot;&gt;
+    {% for post in posts %}
+    &lt;article class=&quot;post-card&quot;&gt;
+        &lt;h2&gt;&lt;a href=&quot;{{ post.link }}&quot;&gt;{{ post.title }}&lt;/a&gt;&lt;/h2&gt;
+        &lt;time&gt;{{ post.dateFormat }}&lt;/time&gt;
+        &lt;p&gt;{{ post.content | excerpt:200 }}&lt;/p&gt;
+    &lt;/article&gt;
+    {% endfor %}
+&lt;/div&gt;
+
+{% if pagination %}
+&lt;nav class=&quot;pagination&quot;&gt;
+    {% if pagination.prev %}
+    &lt;a href=&quot;{{ pagination.prev }}&quot;&gt;上一页&lt;/a&gt;
+    {% endif %}
+    {% if pagination.next %}
+    &lt;a href=&quot;{{ pagination.next }}&quot;&gt;下一页&lt;/a&gt;
+    {% endif %}
+&lt;/nav&gt;
+{% endif %}
+
+{% include &quot;partials/footer.html&quot; %}
+{% endblock %}
+</code></pre>
+<h3 id="73-posthtml">7.3 post.html（文章页）</h3>
+<pre><code class="language-html">{% extends &quot;base.html&quot; %}
+{% block title %}{{ post.title }} | {{ config.siteName }}{% endblock %}
+
+{% block content %}
+{% include &quot;partials/header.html&quot; %}
+
+&lt;article&gt;
+    &lt;h1&gt;{{ post.title }}&lt;/h1&gt;
+    &lt;div class=&quot;meta&quot;&gt;
+        &lt;time&gt;{{ post.dateFormat }}&lt;/time&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;content&quot;&gt;
+        {{ post.content | safe }}
+    &lt;/div&gt;
+
+    &lt;div class=&quot;post-tags&quot;&gt;
+        {% for tag in post.tags %}
+        &lt;a href=&quot;{{ tag.link }}&quot;&gt;#{{ tag.name }}&lt;/a&gt;
+        {% endfor %}
+    &lt;/div&gt;
+&lt;/article&gt;
+
+{% include &quot;partials/comments.html&quot; %}
+{% include &quot;partials/footer.html&quot; %}
+{% endblock %}
+</code></pre>
+<h3 id="74-partialsfooterhtml">7.4 partials/footer.html（页脚组件）</h3>
+<pre><code class="language-html">&lt;footer&gt;
+    &lt;nav&gt;
+        {% for menu in menus %}
+        &lt;a href=&quot;{{ menu.link }}&quot;&gt;{{ menu.name }}&lt;/a&gt;
+        {% endfor %}
+    &lt;/nav&gt;
+    &lt;div class=&quot;copyright&quot;&gt;
+        Copyright {{ now | date:&quot;2006&quot; }}
+        &lt;a href=&quot;{{ config.domain }}&quot;&gt;{{ config.siteName }}&lt;/a&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;footer-info&quot;&gt;
+        {{ theme_config.footerInfo | safe }}
+    &lt;/div&gt;
+&lt;/footer&gt;
+</code></pre>
+<hr />
+<h2 id="-ejs-">八、从 EJS 迁移的检查清单</h2>
+<p>如果你正在将现有 EJS 主题迁移到 Jinja2，请逐项检查：</p>
+<ul>
+<li>所有 <code>&lt;% %&gt;</code> 改为 <code>{% %}</code></li>
+<li>所有 <code>&lt;%= %&gt;</code> 改为 <code>{{ }}</code></li>
+<li>所有 <code>&lt;%- %&gt;</code> 改为 <code>{{ | safe }}</code></li>
+<li>所有 <code>include('./includes/xxx')</code> 改为 <code>{% include &quot;partials/xxx.html&quot; %}</code></li>
+<li>所有 <code>&amp;&amp;</code> 改为 <code>and</code>，<code>||</code> 改为 <code>or</code></li>
+<li>所有 <code>.length</code> 改为 <code>|length</code></li>
+<li>所有 <code>default(&quot;value&quot;)</code> 改为 <code>default:&quot;value&quot;</code></li>
+<li>所有 <code>forEach(function(item) { })</code> 改为 <code>{% for item in list %}</code></li>
+<li>所有 Python 三元表达式改为 <code>{% if %}...{% else %}...{% endif %}</code></li>
+<li>所有 <code>typeof x !== 'undefined'</code> 改为 <code>{% if x %}</code></li>
+<li>所有 <code>not in</code> 改为 <code>not ... in</code></li>
+<li>确认 <code>date</code> filter 只用于 time.Time 类型（如 now），不用于字符串</li>
+<li>所有循环变量显式命名（避免 <code>for None in</code>）</li>
+<li>根布局改用 <code>{% extends %}</code> + <code>{% block %}</code></li>
+</ul>
+<hr />
+<h2 id="heading-10">九、调试技巧</h2>
+<h3 id="91-">9.1 查看渲染日志</h3>
+<p>运行 <code>wails dev</code> 时，终端会输出每个模板的渲染状态。</p>
+<h3 id="92-">9.2 常见错误信息速查</h3>
+<table>
+<thead>
+<tr>
+<th>错误信息</th>
+<th>原因</th>
+<th>解决方案</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Newline not allowed within tag/variable</td>
+<td>标签内有换行</td>
+<td>保持标签内容在一行内</td>
+</tr>
+<tr>
+<td>&lsquo;}}&rsquo; expected</td>
+<td>使用了 Python 三元表达式</td>
+<td>改用 if/else 块</td>
+</tr>
+<tr>
+<td>Malformed &lsquo;set&rsquo;-tag arguments</td>
+<td>default() 括号语法</td>
+<td>改为 default:value</td>
+</tr>
+<tr>
+<td>If-condition is malformed</td>
+<td>使用了 not in</td>
+<td>改为嵌套 if not &hellip; in</td>
+</tr>
+<tr>
+<td>filter input argument must be of type &rsquo;time.Time&rsquo;</td>
+<td>对字符串使用 date filter</td>
+<td>移除 filter 或使用 now 变量</td>
+</tr>
+<tr>
+<td>unable to resolve template</td>
+<td>include/extends 路径错误</td>
+<td>路径相对于 templates/ 根目录</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="heading-11">十、总结</h2>
+<p>Gridea Pro 的 Jinja2 主题开发体验在经过优化后已经非常流畅。核心要点：</p>
+<ol>
+<li><strong>Pongo2 不等于标准 Jinja2</strong>：最大的区别是 filter 参数用冒号、不支持 Python 三元、不支持字符串连接符</li>
+<li><strong>善用模板继承</strong>：extends + block 是 Jinja2 最强大的特性</li>
+<li><strong>include 路径始终相对于 templates/ 根目录</strong></li>
+<li><strong>date filter 只用于 time.Time 类型</strong>：post.date 是字符串，now 是 time.Time</li>
+<li><strong>利用 Gridea Pro 的内置 filter</strong>：reading_time、excerpt、word_count 等能为你的主题增色不少</li>
+</ol>
+<p>祝你开发出精美的 Jinja2 主题！</p>
+
+            </div>
+
+</article>
+
+
+
+
+
+
+<div class="mod-post__poster">
+</div>
+
+</div>
+
+
+
+
+
+
+<!-- Reading Progress Component -->
+<div class="reading-progress-container">
+  <span class="reading-label">阅读进度</span>
+  <span class="reading-value">0%</span>
+  <svg class="progress-ring" viewBox="0 0 24 24">
+    <!-- Background Circle -->
+    <circle class="progress-ring__circle-bg" stroke-width="3" fill="transparent" r="10" cx="12" cy="12" />
+    <!-- Progress Circle -->
+    <circle class="progress-ring__circle" stroke-width="3" fill="transparent" r="10" cx="12" cy="12" />
+  </svg>
+</div>
+<footer id="footer" class="footer">
+    <nav>
+        
+        
+        <a class="menu-item" href="/">首页</a>
+        
+        
+        <a class="menu-item" href="/post">博客</a>
+        
+        
+        <a class="menu-item" href="/memos">闪念</a>
+        
+        
+        <a class="menu-item" href="/tags">标签</a>
+        
+        
+        <a class="menu-item" href="/link">友链</a>
+        
+        
+        <a class="menu-item" href="/post/about">关于</a>
+        
+    </nav>
+
+    <div class="Copyright">Copyright &copy; <span class="current-year"></span> <a href=""></a></div>
+    <script>document.querySelector('.current-year').textContent = new Date().getFullYear();</script>
+
+    <footer id="footer" class="index_footer">
+         ·
+        <a class="rss" href="/atom.xml" target="_blank" rel="noopener noreferrer">
+            <i class="ri-rss-line"></i> 🍀 RSS
+        </a>
+    </footer>
+</footer>
+
+
+
+
+    
+</body>
+
+</html>
