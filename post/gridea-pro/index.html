@@ -35,9 +35,9 @@
 
 
 <meta name="description" content="在 Gridea Pro 的后端架构演进中，我们始终追求极致的性能、并发安全与系统稳定性。近期，我们针对核心的 Renderer Layer（渲染层） 和 Repository Layer（存储层） 进行了一次深度的重构与优化。本文将详细复盘这次重构中的关键技术决策与实现细节。 一、渲染层（Renderer Layer">
-<meta name="keywords" content="述尔，Gridea  Pro，Gridea，产品经理">
+<meta name="keywords" content="述尔，Gridea  Pro，Gridea，静态博客，产品经理">
 <link rel="canonical" href="https://are.ink/post/gridea-pro/">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Gridea Pro 架构进化：渲染层与存储层的高性能重构实践","url":"https://are.ink/post/gridea-pro/","description":"在 Gridea Pro 的后端架构演进中，我们始终追求极致的性能、并发安全与系统稳定性。近期，我们针对核心的 Renderer Layer（渲染层） 和 Repository Layer（存储层） 进行了一次深度的重构与优化。本文将详细复盘这次重构中的关键技术决策与实现细节。 一、渲染层（Renderer Layer","image":"/post-images/gridea-pro.jpg","datePublished":"2026-02-16T15:30:00Z","dateModified":"2026-03-06T19:09:38Z","author":{"@type":"Person","name":"述尔"},"publisher":{"@type":"Organization","name":"述尔"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Gridea Pro 架构进化：渲染层与存储层的高性能重构实践","url":"https://are.ink/post/gridea-pro/","description":"在 Gridea Pro 的后端架构演进中，我们始终追求极致的性能、并发安全与系统稳定性。近期，我们针对核心的 Renderer Layer（渲染层） 和 Repository Layer（存储层） 进行了一次深度的重构与优化。本文将详细复盘这次重构中的关键技术决策与实现细节。 一、渲染层（Renderer Layer","image":"/post-images/gridea-pro.jpg","datePublished":"2026-02-16T15:30:00Z","dateModified":"2026-03-10T13:41:07Z","author":{"@type":"Person","name":"述尔"},"publisher":{"@type":"Organization","name":"述尔"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://are.ink","name":"述尔","position":1},{"@type":"ListItem","item":"https://are.ink/post/gridea-pro/","name":"Gridea Pro 架构进化：渲染层与存储层的高性能重构实践","position":2}]}</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-1SBXPCEK36"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-1SBXPCEK36');</script>
@@ -130,7 +130,7 @@
     <div class="article-meta">
       
       
-      <a href="/category/技术/" class="article-meta__category">技术</a>
+      <a href="/category/Gridea-Pro/" class="article-meta__category">Gridea Pro</a>
       
       
       <span class="article-meta__sep">·</span>
@@ -144,13 +144,13 @@
     
     <div class="article-header__tags">
       
-      <a href="/tag/Gridea Pro/" class="tag-pill tag-pill--sm">Gridea Pro</a>
+      <a href="/tag/gridea-pro/" class="tag-pill tag-pill--sm">Gridea Pro</a>
       
-      <a href="/tag/Go/" class="tag-pill tag-pill--sm">Go</a>
+      <a href="/tag/go/" class="tag-pill tag-pill--sm">Go</a>
       
-      <a href="/tag/Protocol/" class="tag-pill tag-pill--sm">Protocol</a>
+      <a href="/tag/protocol/" class="tag-pill tag-pill--sm">Protocol</a>
       
-      <a href="/tag/Refactor/" class="tag-pill tag-pill--sm">Refactor</a>
+      <a href="/tag/refactor/" class="tag-pill tag-pill--sm">Refactor</a>
       
     </div>
     

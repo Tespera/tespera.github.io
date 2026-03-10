@@ -35,9 +35,9 @@
 
 
 <meta name="description" content="引言 Gridea Pro 是一款基于 Wails 框架构建的桌面端静态博客管理工具。用户在本地编辑文章、配置主题，系统将全部内容渲染为静态 HTML 后部署到 GitHub Pages、Gitee Pages 或 Vercel 等托管平台。 这套系统在工程上面临一个有趣的矛盾：它是一个桌面应用，数据持久化在本地 JS">
-<meta name="keywords" content="述尔，Gridea  Pro，Gridea，产品经理">
+<meta name="keywords" content="述尔，Gridea  Pro，Gridea，静态博客，产品经理">
 <link rel="canonical" href="https://are.ink/post/gridea-pro-backend-architecture-deep-dive/">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Gridea Pro 后端架构深度解析：一个桌面端静态博客系统的工程哲学","url":"https://are.ink/post/gridea-pro-backend-architecture-deep-dive/","description":"引言 Gridea Pro 是一款基于 Wails 框架构建的桌面端静态博客管理工具。用户在本地编辑文章、配置主题，系统将全部内容渲染为静态 HTML 后部署到 GitHub Pages、Gitee Pages 或 Vercel 等托管平台。 这套系统在工程上面临一个有趣的矛盾：它是一个桌面应用，数据持久化在本地 JS","image":"/post-images/gridea-pro-backend-architecture-deep-dive.jpg","datePublished":"2026-03-07T17:16:29Z","dateModified":"2026-03-10T10:34:24Z","author":{"@type":"Person","name":"述尔"},"publisher":{"@type":"Organization","name":"述尔"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Gridea Pro 后端架构深度解析：一个桌面端静态博客系统的工程哲学","url":"https://are.ink/post/gridea-pro-backend-architecture-deep-dive/","description":"引言 Gridea Pro 是一款基于 Wails 框架构建的桌面端静态博客管理工具。用户在本地编辑文章、配置主题，系统将全部内容渲染为静态 HTML 后部署到 GitHub Pages、Gitee Pages 或 Vercel 等托管平台。 这套系统在工程上面临一个有趣的矛盾：它是一个桌面应用，数据持久化在本地 JS","image":"/post-images/gridea-pro-backend-architecture-deep-dive.jpg","datePublished":"2026-03-07T17:16:29Z","dateModified":"2026-03-10T13:41:07Z","author":{"@type":"Person","name":"述尔"},"publisher":{"@type":"Organization","name":"述尔"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://are.ink","name":"述尔","position":1},{"@type":"ListItem","item":"https://are.ink/post/gridea-pro-backend-architecture-deep-dive/","name":"Gridea Pro 后端架构深度解析：一个桌面端静态博客系统的工程哲学","position":2}]}</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-1SBXPCEK36"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-1SBXPCEK36');</script>
@@ -130,7 +130,7 @@
     <div class="article-meta">
       
       
-      <a href="/category/Deep-Dive/" class="article-meta__category">Deep-Dive</a>
+      <a href="/category/Deep-Dive/" class="article-meta__category">Deep Dive</a>
       
       
       <span class="article-meta__sep">·</span>
@@ -144,13 +144,13 @@
     
     <div class="article-header__tags">
       
-      <a href="/tag/Gridea Pro/" class="tag-pill tag-pill--sm">Gridea Pro</a>
+      <a href="/tag/gridea-pro/" class="tag-pill tag-pill--sm">Gridea Pro</a>
       
-      <a href="/tag/架构设计/" class="tag-pill tag-pill--sm">架构设计</a>
+      <a href="/tag/architecture-design/" class="tag-pill tag-pill--sm">架构设计</a>
       
-      <a href="/tag/最佳实践/" class="tag-pill tag-pill--sm">最佳实践</a>
+      <a href="/tag/best-practice/" class="tag-pill tag-pill--sm">最佳实践</a>
       
-      <a href="/tag/Deep Dive/" class="tag-pill tag-pill--sm">Deep Dive</a>
+      <a href="/tag/deep-dive/" class="tag-pill tag-pill--sm">Deep Dive</a>
       
     </div>
     

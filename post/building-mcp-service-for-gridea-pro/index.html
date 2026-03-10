@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link rel="stylesheet" href="/styles/main.min.css">
+
+
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+
+<meta name="description" content="一个产品经理的碎碎念 | 温故而知新">
+<meta property="og:site_name" content="述尔">
+<meta property="og:title" content="述尔">
+<meta property="og:description" content="一个产品经理的碎碎念 | 温故而知新">
+
+<meta property="og:image" content="/images/avatar.png">
+
+<meta property="og:url" content="https://are.ink">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="述尔">
+<meta name="twitter:description" content="一个产品经理的碎碎念 | 温故而知新">
+
+<meta name="twitter:image" content="/images/avatar.png">
+
+
+  <title>从零构建 MCP 服务：让 AI 直接操作你的博客 | 述尔</title>
+  
+<meta property="og:title" content="从零构建 MCP 服务：让 AI 直接操作你的博客" />
+<meta property="og:type" content="article" />
+
+
+<meta name="description" content="作为一个独立开发者，我一直在想：能不能让 AI 直接操作我的博客？ 不是那种&amp;quot;帮我写个草稿我再复制粘贴&amp;quot;的伪自动化，而是真正的 AI 原生工作流——AI 理解我的站点结构、读我的闪念、帮我组织内容、一键发布。 这篇文章记录了我为 Gridea Pro 实现 MCP (Model Context Pr">
+<meta name="keywords" content="述尔，Gridea  Pro，Gridea，静态博客，产品经理">
+<link rel="canonical" href="https://are.ink/post/building-mcp-service-for-gridea-pro/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"从零构建 MCP 服务：让 AI 直接操作你的博客","url":"https://are.ink/post/building-mcp-service-for-gridea-pro/","description":"作为一个独立开发者，我一直在想：能不能让 AI 直接操作我的博客？ 不是那种\u0026quot;帮我写个草稿我再复制粘贴\u0026quot;的伪自动化，而是真正的 AI 原生工作流——AI 理解我的站点结构、读我的闪念、帮我组织内容、一键发布。 这篇文章记录了我为 Gridea Pro 实现 MCP (Model Context Pr","datePublished":"2026-02-13T13:58:00Z","dateModified":"2026-02-13T13:58:00Z","author":{"@type":"Person","name":"述尔"},"publisher":{"@type":"Organization","name":"述尔"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://are.ink","name":"述尔","position":1},{"@type":"ListItem","item":"https://are.ink/post/building-mcp-service-for-gridea-pro/","name":"从零构建 MCP 服务：让 AI 直接操作你的博客","position":2}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1SBXPCEK36"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-1SBXPCEK36');</script>
+<meta name="google-site-verification" content="googlea4223896f417412f.html">
+<script>var _hmt=_hmt||[];(function(){var hm=document.createElement("script");hm.src="https://hm.baidu.com/hm.js?4b792e215f23cf68ed571462a263feb3";var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(hm,s);})();</script>
+</head>
+<body class="flavor-theme">
+
+  <header class="site-header" id="siteHeader">
+  <div class="header-inner">
+    <div class="top-bar">
+
+      
+      <div class="top-bar__left">
+        
+        <a href="https://are.ink" class="site-avatar-link" aria-label="返回首页">
+          <img class="site-avatar" src="/images/avatar.png" alt="述尔" />
+        </a>
+        
+        <a href="https://are.ink" class="site-name-link">述尔</a>
+      </div>
+
+      
+      <nav class="top-bar__nav" id="sectionBar">
+        
+        
+        <a class="nav-item" href="/">首页</a>
+        
+        <a class="nav-item" href="/post">博客</a>
+        
+        <a class="nav-item" href="/memos">闪念</a>
+        
+        <a class="nav-item" href="/tags">标签</a>
+        
+        <a class="nav-item" href="/link">友链</a>
+        
+        <a class="nav-item" href="/post/about">关于</a>
+        
+        
+      </nav>
+
+      
+      <div class="top-bar__right">
+        <button class="btn-icon btn-search search-btn" id="btnSearch" type="button" aria-label="搜索">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+        </button>
+        <button class="btn-icon btn-nav-toggle mobile-only" id="btnNavToggle" type="button" aria-label="切换导航">
+          <div class="hamburger" id="hamburger">
+            <span class="hamburger__line hamburger__line--top"></span>
+            <span class="hamburger__line hamburger__line--bottom"></span>
+          </div>
+        </button>
+      </div>
+
+    </div>
+  </div>
+</header>
+
+
+<div class="header-spacer"></div>
+
+<script>
+(function(){
+  var btn = document.getElementById('btnNavToggle');
+  var nav = document.getElementById('sectionBar');
+  var hamburger = document.getElementById('hamburger');
+  if (!btn || !nav) return;
+  btn.addEventListener('click', function(){
+    nav.classList.toggle('top-bar__nav--open');
+    if (hamburger) hamburger.classList.toggle('is-active');
+  });
+  nav.querySelectorAll('.nav-item').forEach(function(item){
+    item.addEventListener('click', function(){
+      nav.classList.remove('top-bar__nav--open');
+      if (hamburger) hamburger.classList.remove('is-active');
+    });
+  });
+})();
+</script>
+
+  <main class="site-main" role="main">
+    
+<article class="article-container">
+  <header class="article-header">
+    <h1 class="article-title">从零构建 MCP 服务：让 AI 直接操作你的博客</h1>
+    <div class="article-meta">
+      
+      
+      <a href="/category/Gridea-Pro/" class="article-meta__category">Gridea Pro</a>
+      
+      
+      <span class="article-meta__sep">·</span>
+      
+      <span class="article-meta__item">2026年02月13日</span>
+      
+      <span class="article-meta__sep">·</span>
+      <span class="article-meta__item">12 分钟阅读</span>
+      
+    </div>
+    
+    <div class="article-header__tags">
+      
+      <a href="/tag/mcp/" class="tag-pill tag-pill--sm">MCP</a>
+      
+      <a href="/tag/gridea-pro/" class="tag-pill tag-pill--sm">Gridea Pro</a>
+      
+      <a href="/tag/go/" class="tag-pill tag-pill--sm">Go</a>
+      
+      <a href="/tag/ai/" class="tag-pill tag-pill--sm">AI</a>
+      
+    </div>
+    
+  </header>
+
+  
+
+  <div class="article-content">
+    <p>作为一个独立开发者，我一直在想：<strong>能不能让 AI 直接操作我的博客？</strong> 不是那种&quot;帮我写个草稿我再复制粘贴&quot;的伪自动化，而是真正的 AI 原生工作流——AI 理解我的站点结构、读我的闪念、帮我组织内容、一键发布。</p>
+<p>这篇文章记录了我为 Gridea Pro 实现 MCP (Model Context Protocol) 服务的完整过程。从零到一，28 个 Tools、3 个 Resources、5 个 Prompts，以及那些踩过的坑。</p>
+<blockquote>
+<p>🎯 <strong>有趣的是，你正在阅读的这篇文章，就是通过 MCP 服务由 AI 直接创建并发布的。</strong></p>
+</blockquote>
+<hr />
+<h2 id="-mcp">什么是 MCP？为什么它重要？</h2>
+<p>MCP 是 Anthropic 推出的开放协议，全称 <strong>Model Context Protocol</strong>。简单来说，它定义了 AI 和外部工具之间的通信标准——就像 USB 统一了外设接口一样，MCP 统一了 AI 调用工具的方式。</p>
+<p>在 MCP 出现之前，每个 AI 应用都在造自己的轮子：OpenAI 有 Function Calling，LangChain 有 Agent Tools，各家互不兼容。MCP 的出现改变了这个局面：</p>
+<pre><code class="language-text">┌──────────────┐     stdio/SSE      ┌──────────────┐
+│  Claude      │ ◄───── MCP ──────► │  Gridea Pro  │
+│  Desktop     │    JSON-RPC 2.0    │  MCP Server  │
+└──────────────┘                    └──────┬───────┘
+                                          │
+                                    ┌─────▼──────┐
+                                    │  Service    │
+                                    │  Layer      │
+                                    └─────┬──────┘
+                                          │
+                                    ┌─────▼──────┐
+                                    │  文件系统    │
+                                    │  (MD/JSON)  │
+                                    └────────────┘
+</code></pre>
+<p>对于 Gridea Pro 这样的桌面应用，MCP 意味着：<strong>你的博客客户端瞬间获得了 AI 超能力，而且不需要改动任何已有代码。</strong></p>
+<hr />
+<h2 id="-vs-">架构决策：独立二进制 vs 子命令</h2>
+<p>第一个需要做的决策是：MCP Server 应该怎么启动？</p>
+<h3 id="-a">方案 A：集成到主程序</h3>
+<p>把 MCP 功能塞进 Gridea Pro 主程序，通过 <code>gridea-pro mcp</code> 子命令启动。看起来优雅，但有个致命问题——Gridea Pro 基于 Wails 框架，主程序启动会初始化整个 GUI 环境。一个&quot;无头&quot;的 MCP 服务进程并不需要窗口系统。</p>
+<h3 id="-b">方案 B：独立二进制</h3>
+<p>编译一个轻量的 <code>gridea-mcp</code> 二进制。它只包含 Service 层和 MCP 协议处理，不依赖 Wails。</p>
+<pre><code class="language-bash">go build -o gridea-mcp ./backend/cmd/mcp
+</code></pre>
+<p>最终选择了 <strong>方案 B</strong>。理由很简单：</p>
+<ol>
+<li>MCP 的本质就是一个无头服务进程</li>
+<li>独立编译体积更小、启动更快</li>
+<li>避免 macOS <code>.app</code> bundle 路径的各种坑</li>
+<li>未来可以独立发布到 Homebrew</li>
+</ol>
+<p>入口文件简洁到令人愉悦：</p>
+<pre><code class="language-go">func main() {
+    if _, err := os.Stat(mcp.GetAppDir()); os.IsNotExist(err) {
+        fmt.Printf(&quot;Error: GRIDEA_SOURCE_DIR not found at %s\n&quot;, mcp.GetAppDir())
+        os.Exit(1)
+    }
+    server := mcp.NewServer()
+    if err := server.Start() {
+        fmt.Printf(&quot;Error starting MCP server: %v\n&quot;, err)
+        os.Exit(1)
+    }
+}
+</code></pre>
+<hr />
+<h2 id="-service-">核心设计：复用 Service 层</h2>
+<p>Gridea Pro 的后端架构是经典的分层模式：<code>Domain → Repository → Service → Facade</code>。MCP Server 直接复用 Service 层，<strong>零重复业务逻辑</strong>。</p>
+<p>这意味着一个关键的设计原则：<strong>MCP 的 Tool Handler 只做协议转换，不写业务逻辑。</strong></p>
+<pre><code class="language-go">// ❌ 错误示范：在 Handler 里写业务逻辑
+func deletePostHandler(s *service.PostService) server.ToolHandlerFunc {
+    return func(ctx context.Context, req mcp.CallToolRequest) (*mcp.CallToolResult, error) {
+        // 直接操作文件系统... 这不应该出现在这里
+        os.Remove(filepath.Join(appDir, &quot;posts&quot;, filename))
+    }
+}
+
+// ✅ 正确做法：委托给 Service 层
+func deletePostHandler(s *service.PostService) server.ToolHandlerFunc {
+    return func(ctx context.Context, req mcp.CallToolRequest) (*mcp.CallToolResult, error) {
+        filename, _ := req.RequireString(&quot;filename&quot;)
+        if err := s.DeletePost(ctx, filename); err != nil {
+            return mcp.NewToolResultError(err.Error()), nil
+        }
+        return mcp.NewToolResultText(&quot;Post deleted&quot;), nil
+    }
+}
+</code></pre>
+<p>初始化服务时，我们需要手动构建整个依赖图：</p>
+<pre><code class="language-go">func initServices(appDir string) *Services {
+    // Repository 层
+    postRepo := repository.NewPostRepository(appDir)
+    tagRepo := repository.NewTagRepository(appDir)
+    // ...
+    
+    // Service 层
+    tagService := service.NewTagService(tagRepo)
+    postService := service.NewPostService(postRepo, tagRepo, tagService, mediaRepo)
+    
+    // Renderer（依赖最复杂）
+    rendererService := service.NewRendererService(appDir, postRepo, themeRepo, settingRepo)
+    rendererService.SetMenuRepo(menuRepo)
+    rendererService.SetLinkRepo(linkRepo)
+    // ...
+}
+</code></pre>
+<p>这里有个有趣的发现：<code>RendererService</code> 的依赖注入用了 Setter 模式而不是构造函数注入。这在 GUI 模式下由 Wails 的 DI 容器管理，但在 MCP 模式下需要手动调用。<strong>架构的味道在这里泄露了。</strong> 如果有时间重构，应该把所有依赖都放到构造函数里。</p>
+<hr />
+<h2 id="heading">危险操作确认机制</h2>
+<p>让 AI 操作你的博客，最怕的是什么？<strong>AI 一个手滑，把文章全删了。</strong></p>
+<p>所以我设计了一个&quot;两步确认&quot;机制。所有危险操作（删除、部署、修改配置）都需要 <code>confirm</code> 参数：</p>
+<pre><code class="language-go">func deletePostHandler(s *service.PostService) server.ToolHandlerFunc {
+    return func(ctx context.Context, req mcp.CallToolRequest) (*mcp.CallToolResult, error) {
+        filename, _ := req.RequireString(&quot;filename&quot;)
+        confirm := req.GetBool(&quot;confirm&quot;, false)
+        
+        if !confirm {
+            // 第一次调用：返回预览信息
+            post, _ := s.GetByFileName(ctx, filename)
+            return mcp.NewToolResultText(fmt.Sprintf(
+                &quot;⚠️ CONFIRMATION REQUIRED\n&quot;+
+                &quot;Are you sure you want to delete post '%s'?\n&quot;+
+                &quot;Call delete_post again with confirm=true to proceed.&quot;,
+                post.Data.Title,
+            )), nil
+        }
+        
+        // 第二次调用（带 confirm=true）：真正执行
+        s.DeletePost(ctx, filename)
+        return mcp.NewToolResultText(&quot;Post deleted&quot;), nil
+    }
+}
+</code></pre>
+<p>对于 <code>update_theme_config</code> 这种修改配置的操作，确认时还会展示变更 diff：</p>
+<pre><code class="language-text">⚠️ CONFIRMATION REQUIRED
+The following changes will be applied:
+
+  siteName: '述尔' → 'Eric's Blog'
+  siteDescription: '一个产品经理的碎碎念' → 'Tech &amp; Life'
+
+Call update_theme_config again with confirm=true to apply.
+</code></pre>
+<p>这个设计的精妙之处在于：<strong>AI 自己会&quot;读懂&quot;这个预览信息，然后向用户确认是否继续。</strong> 人类始终在回路中。</p>
+<hr />
+<h2 id="mcp-go-sdk-">踩坑记录：mcp-go SDK 的版本陷阱</h2>
+<p>我们使用的是 <code>mark3labs/mcp-go</code> v0.8.x，这是 Go 生态最成熟的 MCP SDK。但在开发过程中踩了不少坑。</p>
+<h3 id="-1prompt--api-">坑 1：Prompt 参数 API 变化</h3>
+<pre><code class="language-go">// ❌ 错误用法（文档过时）
+mcp.WithArgument(&quot;tone&quot;, 
+    mcp.ArgumentDescription(&quot;The tone&quot;), 
+    mcp.ArgumentDescription(&quot;casual&quot;))  // 默认值不能这样设！
+
+// ✅ 正确用法
+mcp.WithArgument(&quot;tone&quot;, 
+    mcp.ArgumentDescription(&quot;The tone (default: casual)&quot;))
+</code></pre>
+<p><code>ArgumentDescription</code> 不是 <code>DefaultString</code>！这个 API 设计确实容易让人困惑。</p>
+<h3 id="-2resource-handler-">坑 2：Resource Handler 返回类型</h3>
+<pre><code class="language-go">// ❌ 之前的心智模型：返回单个 ResourceContents
+return mcp.ResourceContents{...}, nil
+
+// ✅ 实际需要：返回切片
+return []mcp.ResourceContents{
+    mcp.TextResourceContents{
+        URI:      request.Params.URI,
+        MIMEType: &quot;application/json&quot;,
+        Text:     string(jsonBytes),
+    },
+}, nil
+</code></pre>
+<h3 id="-3tool-">坑 3：Tool 定义函数的参数传递</h3>
+<p>最初的设计是把 Service 实例同时传给 Tool 定义函数和 Handler 函数：</p>
+<pre><code class="language-go">// 最初的写法
+s.mcpServer.AddTool(
+    listPostsTool(s.services.Post),   // Tool 定义也接收 Service?!
+    listPostsHandler(s.services.Post),
+)
+</code></pre>
+<p>但 Tool 定义函数只是构造 JSON Schema，根本不需要 Service 实例。这导致了大量 &ldquo;unused parameter&rdquo; lint 警告。修正后：</p>
+<pre><code class="language-go">// 清爽的写法
+s.mcpServer.AddTool(listPostsTool(), listPostsHandler(s.services.Post))
+</code></pre>
+<p><strong>教训：先写接口再写实现，不要让惯性驱动设计。</strong></p>
+<hr />
+<h2 id="prompts">Prompts：从&quot;工具箱&quot;到&quot;智能工作流&quot;</h2>
+<p>MCP 不只是一个 Tool 集合。通过 <strong>Prompts</strong>，我们可以把散装的 Tools 编排成有意义的工作流。</p>
+<p>比如 <code>site_health_check</code> 这个 Prompt，它告诉 AI：</p>
+<blockquote>
+<p>你是 Gridea Pro 的站点诊断工具。请执行全面健康检查：</p>
+<ol>
+<li>调用 list_posts — 检查未发布的草稿、缺失日期、空内容</li>
+<li>调用 list_tags — 识别没有关联文章的空标签</li>
+<li>调用 list_categories — 识别空分类</li>
+<li>调用 list_links — 检查缺失 URL 的友链</li>
+<li>调用 get_theme_config — 检查站点名/描述是否为空</li>
+</ol>
+<p>以结构化报告呈现，标注严重级别：🔴 严重 | 🟡 警告 | 🟢 正常</p>
+</blockquote>
+<p>一个 Prompt，串联了 7 个 Tools，输出一份专业的诊断报告。<strong>这才是 MCP 的真正威力——不是单打独斗，而是协同作战。</strong></p>
+<hr />
+<h2 id="heading-1">最终成果</h2>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>数量</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Tools</strong></td>
+<td>28</td>
+<td>覆盖文章、闪念、标签、分类、友链、菜单、主题、设置、评论、渲染</td>
+</tr>
+<tr>
+<td><strong>Resources</strong></td>
+<td>3</td>
+<td>站点信息、文章摘要、最近闪念</td>
+</tr>
+<tr>
+<td><strong>Prompts</strong></td>
+<td>5</td>
+<td>写作助手、闪念整理、内容审查、健康检查、文章翻译</td>
+</tr>
+</tbody>
+</table>
+<p>整个 MCP 模块约 1500 行 Go 代码，没有引入任何新的外部依赖（除了 mcp-go SDK 本身）。</p>
+<p>配置只需两步：</p>
+<pre><code class="language-json">{
+  &quot;mcpServers&quot;: {
+    &quot;gridea-pro&quot;: {
+      &quot;command&quot;: &quot;/path/to/gridea-mcp&quot;,
+      &quot;env&quot;: {
+        &quot;GRIDEA_SOURCE_DIR&quot;: &quot;/Users/eric/Documents/Gridea Pro&quot;
+      }
+    }
+  }
+}
+</code></pre>
+<p>然后你就可以对 Claude 说：</p>
+<ul>
+<li><em>&ldquo;帮我把最近的闪念整理成一篇文章&rdquo;</em></li>
+<li><em>&ldquo;检查我的博客有什么问题&rdquo;</em></li>
+<li><em>&ldquo;把这篇文章翻译成英文&rdquo;</em></li>
+<li><em>&ldquo;帮我写一篇关于 Go 并发的技术博客&rdquo;</em></li>
+</ul>
+<p>AI 会自动调用对应的 Tools，完成整个工作流。</p>
+<hr />
+<h2 id="heading-2">写在最后</h2>
+<p>MCP 不是银弹。它不会让你的应用变得更好——它只是让你的应用对 AI 可见、可操作、可编排。</p>
+<p>但光是这一点，就已经足够改变游戏规则了。</p>
+<p>当每个桌面应用都支持 MCP 时，AI 就不再是一个&quot;对话框里的聊天机器人&quot;，而是一个真正的<strong>数字助手</strong>——它能看到你的文件、理解你的数据、执行你的操作，而且在关键时刻还会停下来问你一句：&quot;确定要这样做吗？&quot;</p>
+<p>这才是 AI 原生时代应有的样子。</p>
+<p><em>— 本文由 Claude 通过 Gridea Pro MCP 服务创建并发布 🤖</em></p>
+
+  </div>
+
+  
+  <nav class="post-nav">
+    
+    <a href="/post/building-mcp-service-for-gridea-pro-practice/" class="post-nav-card post-nav-card--prev">
+      
+      <div class="post-nav-card__body">
+        <span class="post-nav-card__label meta-text">上一篇</span>
+        <span class="post-nav-card__title">给桌面应用装上“大脑”：Gridea Pro 接入 MCP 协议实战与踩坑录</span>
+      </div>
+      <span class="post-nav-card__arrow">&larr;</span>
+    </a>
+    
+    
+    <a href="/post/hello-gridea/" class="post-nav-card post-nav-card--next">
+      <div class="post-nav-card__body">
+        <span class="post-nav-card__label meta-text">下一篇</span>
+        <span class="post-nav-card__title">Hello Gridea Pro</span>
+      </div>
+      
+      <div class="post-nav-card__img">
+        <img src="/post-images/hello-gridea.png" alt="Hello Gridea Pro" loading="lazy" />
+      </div>
+      
+      <span class="post-nav-card__arrow">&rarr;</span>
+    </a>
+    
+  </nav>
+
+  
+  
+
+
+  
+    <section class="comment-section">
+  <h2 class="comment-section__title">评论</h2>
+  <div id="vcomments"></div>
+  <link rel="stylesheet" href="https://unpkg.com/valine@1/dist/Valine.min.css">
+  <script src="https://unpkg.com/valine@1/dist/Valine.min.js"></script>
+  <script>
+    new Valine({
+      el: '#vcomments',
+      appId: 'dAWkPrxZg50VZ7iV39rrZL5U-MdYXbMMI',
+      appKey: 'YCfYt8rhK8d0mh9vr42YTaA1',
+      serverURLs: 'https://dawkprxz.api.lncldglobal.com',
+      avatar: 'mp',
+      placeholder: '说点什么吧…'
+    });
+    // Valine 内置 locale 不支持覆盖，手动替换 placeholder
+    var linkInput = document.querySelector('#vcomments .vlink');
+    if (linkInput) linkInput.placeholder = '网址(https://)';
+  </script>
+</section>
+
+  
+
+
+
+</article>
+
+  </main>
+
+  <footer class="site-footer">
+  <div class="footer-inner">
+
+    
+    
+    <nav class="footer-nav" aria-label="页脚导航">
+      
+      <a class="footer-nav__link" href="/">首页</a>
+      
+      <a class="footer-nav__link" href="/post">博客</a>
+      
+      <a class="footer-nav__link" href="/memos">闪念</a>
+      
+      <a class="footer-nav__link" href="/tags">标签</a>
+      
+      <a class="footer-nav__link" href="/link">友链</a>
+      
+      <a class="footer-nav__link" href="/post/about">关于</a>
+      
+    </nav>
+    
+
+    
+    <div class="footer-social">
+      
+      <a class="footer-social__link" href="https://github.com/Tespera" target="_blank" rel="noopener noreferrer"
+        aria-label="GitHub">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path
+            d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+        </svg>
+      </a>
+      
+      
+      <a class="footer-social__link" href="https://x.com" target="_blank" rel="noopener noreferrer"
+        aria-label="Twitter/X">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path
+            d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+        </svg>
+      </a>
+      
+      
+      <a class="footer-social__link" href="https://weibo.com" target="_blank" rel="noopener noreferrer"
+        aria-label="微博">
+        <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor">
+          <path d="M10.878 1.093a4.23 4.23 0 0 1 4.031 1.305 4.22 4.22 0 0 1 .886 4.14v.001a.612.612 0 0 1-1.166-.377 3.01 3.01 0 0 0-3.495-3.873.611.611 0 1 1-.256-1.196M3.753 9.465c.548-1.11 1.972-1.74 3.233-1.411 1.304.338 1.971 1.568 1.437 2.764-.541 1.221-2.095 1.875-3.416 1.449-1.271-.411-1.812-1.67-1.254-2.802m2.658.567c.16.066.365-.009.458-.168.088-.16.03-.34-.129-.397-.156-.062-.353.013-.446.168-.09.154-.041.333.117.397m-1.607 1.314c.413.188.963.009 1.219-.4.252-.413.12-.883-.296-1.062-.41-.172-.94.005-1.194.402-.256.4-.135.874.271 1.06"/>
+          <path d="m12.014 7.238.005.001c.919.285 1.941.974 1.939 2.188 0 2.007-2.895 4.535-7.246 4.535C3.393 13.962 0 12.352 0 9.708c0-1.385.876-2.985 2.384-4.493C4.4 3.199 6.751 2.28 7.634 3.165c.39.392.427 1.065.177 1.87-.132.405.38.182.38.182 1.63-.682 3.051-.722 3.57.02.278.397.252.951-.004 1.594-.116.293.035.34.257.407m-10.4 3.101c.172 1.738 2.46 2.936 5.109 2.674 2.647-.26 4.656-1.883 4.482-3.623-.17-1.738-2.458-2.937-5.107-2.674-2.647.263-4.656 1.883-4.484 3.623m11.681-6.484a2.06 2.06 0 0 0-1.962-.634.526.526 0 1 0 .219 1.031 1.008 1.008 0 0 1 1.17 1.296.528.528 0 0 0 1.005.325 2.06 2.06 0 0 0-.432-2.018"/>
+        </svg>
+      </a>
+      
+      <a class="footer-social__link" href="/feed.xml" aria-label="RSS">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M6.18 15.64a2.18 2.18 0 110 4.36 2.18 2.18 0 010-4.36zM4 4.44A15.56 15.56 0 0119.56 20h-2.83A12.73 12.73 0 004 7.27V4.44zm0 5.66a9.9 9.9 0 019.9 9.9h-2.83A7.07 7.07 0 004 12.93V10.1z"/>
+        </svg>
+      </a>
+    </div>
+
+    
+    <div class="footer-copyright">
+      <p>&copy; 2026 述尔. All rights reserved.</p>
+    </div>
+
+    
+    
+
+    
+    <div class="footer-powered">
+      <span>Powered by <a href="https://gridea.dev" target="_blank" rel="noopener noreferrer">Gridea Pro</a></span>
+    </div>
+
+  </div>
+</footer>
+
+  
+  <div class="search-overlay" id="searchOverlay" style="display:none;">
+  <div class="search-modal">
+    <div class="search-header">
+      <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+      <input type="text" class="search-input" id="searchInput" placeholder="搜索文章..." autocomplete="off" />
+      <span class="search-kbd">&#8984;K</span>
+      <button class="search-close" id="searchClose" type="button" aria-label="关闭搜索">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+    <div class="search-results" id="searchResults"></div>
+  </div>
+</div>
+
+<script src="/scripts/search.js"></script>
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

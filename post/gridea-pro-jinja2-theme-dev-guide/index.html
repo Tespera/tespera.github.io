@@ -35,9 +35,9 @@
 
 
 <meta name="description" content="Gridea Pro 从 v2 开始引入了 Jinja2 模板引擎支持（基于 Go 语言的 Pongo2 实现），为主题开发者提供了比 EJS 更优雅的模板继承和组件化能力。但由于 Pongo2 与标准 Python Jinja2 存在细微但关键的语法差异，初次开发者很容易踩坑。 本文基于一次完整的 EJS 到 Jin">
-<meta name="keywords" content="述尔，Gridea  Pro，Gridea，产品经理">
+<meta name="keywords" content="述尔，Gridea  Pro，Gridea，静态博客，产品经理">
 <link rel="canonical" href="https://are.ink/post/gridea-pro-jinja2-theme-dev-guide/">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Gridea Pro Jinja2 主题开发完全指南：从踩坑到精通","url":"https://are.ink/post/gridea-pro-jinja2-theme-dev-guide/","description":"Gridea Pro 从 v2 开始引入了 Jinja2 模板引擎支持（基于 Go 语言的 Pongo2 实现），为主题开发者提供了比 EJS 更优雅的模板继承和组件化能力。但由于 Pongo2 与标准 Python Jinja2 存在细微但关键的语法差异，初次开发者很容易踩坑。 本文基于一次完整的 EJS 到 Jin","image":"/post-images/gridea-pro-jinja2-theme-dev-guide.png","datePublished":"2026-02-28T19:15:00Z","dateModified":"2026-03-02T18:57:59Z","author":{"@type":"Person","name":"述尔"},"publisher":{"@type":"Organization","name":"述尔"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Gridea Pro Jinja2 主题开发完全指南：从踩坑到精通","url":"https://are.ink/post/gridea-pro-jinja2-theme-dev-guide/","description":"Gridea Pro 从 v2 开始引入了 Jinja2 模板引擎支持（基于 Go 语言的 Pongo2 实现），为主题开发者提供了比 EJS 更优雅的模板继承和组件化能力。但由于 Pongo2 与标准 Python Jinja2 存在细微但关键的语法差异，初次开发者很容易踩坑。 本文基于一次完整的 EJS 到 Jin","image":"/post-images/gridea-pro-jinja2-theme-dev-guide.png","datePublished":"2026-02-28T19:15:00Z","dateModified":"2026-03-10T13:41:07Z","author":{"@type":"Person","name":"述尔"},"publisher":{"@type":"Organization","name":"述尔"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://are.ink","name":"述尔","position":1},{"@type":"ListItem","item":"https://are.ink/post/gridea-pro-jinja2-theme-dev-guide/","name":"Gridea Pro Jinja2 主题开发完全指南：从踩坑到精通","position":2}]}</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-1SBXPCEK36"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-1SBXPCEK36');</script>
@@ -130,7 +130,7 @@
     <div class="article-meta">
       
       
-      <a href="/category/技术/" class="article-meta__category">技术</a>
+      <a href="/category/Gridea-Pro/" class="article-meta__category">Gridea Pro</a>
       
       
       <span class="article-meta__sep">·</span>
@@ -144,17 +144,17 @@
     
     <div class="article-header__tags">
       
-      <a href="/tag/Jinja2/" class="tag-pill tag-pill--sm">Jinja2</a>
+      <a href="/tag/jinja2/" class="tag-pill tag-pill--sm">Jinja2</a>
       
-      <a href="/tag/Gridea Pro/" class="tag-pill tag-pill--sm">Gridea Pro</a>
+      <a href="/tag/gridea-pro/" class="tag-pill tag-pill--sm">Gridea Pro</a>
       
-      <a href="/tag/Pongo2/" class="tag-pill tag-pill--sm">Pongo2</a>
+      <a href="/tag/pongo2/" class="tag-pill tag-pill--sm">Pongo2</a>
       
-      <a href="/tag/Go/" class="tag-pill tag-pill--sm">Go</a>
+      <a href="/tag/go/" class="tag-pill tag-pill--sm">Go</a>
       
-      <a href="/tag/主题开发/" class="tag-pill tag-pill--sm">主题开发</a>
+      <a href="/tag/theme-dev/" class="tag-pill tag-pill--sm">主题开发</a>
       
-      <a href="/tag/教程/" class="tag-pill tag-pill--sm">教程</a>
+      <a href="/tag/tutorial/" class="tag-pill tag-pill--sm">教程</a>
       
     </div>
     

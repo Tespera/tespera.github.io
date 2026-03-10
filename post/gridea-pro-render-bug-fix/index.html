@@ -35,9 +35,9 @@
 
 
 <meta name="description" content="Gridea Pro 渲染引擎(Renderer)深度排查：从“样式全丢”到“缓存穿透”的连环 Bug 修复纪实 在完善 Gridea Pro 主题适配及底层渲染逻辑（Renderer Layer）的过程中，系统有时会因为几个看似微小且毫无关联的代码缺陷，引发毁灭性的“灾难”——比如今天遇到的“不管切换到哪个主题，所有">
-<meta name="keywords" content="述尔，Gridea  Pro，Gridea，产品经理">
+<meta name="keywords" content="述尔，Gridea  Pro，Gridea，静态博客，产品经理">
 <link rel="canonical" href="https://are.ink/post/gridea-pro-render-bug-fix/">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Gridea Pro 渲染引擎深度排查：从“样式全丢”到“缓存穿透”的连环 Bug 修复纪实","url":"https://are.ink/post/gridea-pro-render-bug-fix/","description":"Gridea Pro 渲染引擎(Renderer)深度排查：从“样式全丢”到“缓存穿透”的连环 Bug 修复纪实 在完善 Gridea Pro 主题适配及底层渲染逻辑（Renderer Layer）的过程中，系统有时会因为几个看似微小且毫无关联的代码缺陷，引发毁灭性的“灾难”——比如今天遇到的“不管切换到哪个主题，所有","image":"/post-images/gridea-pro-render-bug-fix.jpg","datePublished":"2026-02-27T19:28:10Z","dateModified":"2026-03-06T17:43:37Z","author":{"@type":"Person","name":"述尔"},"publisher":{"@type":"Organization","name":"述尔"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Gridea Pro 渲染引擎深度排查：从“样式全丢”到“缓存穿透”的连环 Bug 修复纪实","url":"https://are.ink/post/gridea-pro-render-bug-fix/","description":"Gridea Pro 渲染引擎(Renderer)深度排查：从“样式全丢”到“缓存穿透”的连环 Bug 修复纪实 在完善 Gridea Pro 主题适配及底层渲染逻辑（Renderer Layer）的过程中，系统有时会因为几个看似微小且毫无关联的代码缺陷，引发毁灭性的“灾难”——比如今天遇到的“不管切换到哪个主题，所有","image":"/post-images/gridea-pro-render-bug-fix.jpg","datePublished":"2026-02-27T19:28:10Z","dateModified":"2026-03-10T13:41:07Z","author":{"@type":"Person","name":"述尔"},"publisher":{"@type":"Organization","name":"述尔"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://are.ink","name":"述尔","position":1},{"@type":"ListItem","item":"https://are.ink/post/gridea-pro-render-bug-fix/","name":"Gridea Pro 渲染引擎深度排查：从“样式全丢”到“缓存穿透”的连环 Bug 修复纪实","position":2}]}</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-1SBXPCEK36"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-1SBXPCEK36');</script>
@@ -129,6 +129,12 @@
     <h1 class="article-title">Gridea Pro 渲染引擎深度排查：从“样式全丢”到“缓存穿透”的连环 Bug 修复纪实</h1>
     <div class="article-meta">
       
+      
+      <a href="/category/Gridea-Pro/" class="article-meta__category">Gridea Pro</a>
+      
+      
+      <span class="article-meta__sep">·</span>
+      
       <span class="article-meta__item">2026年02月27日</span>
       
       <span class="article-meta__sep">·</span>
@@ -138,9 +144,9 @@
     
     <div class="article-header__tags">
       
-      <a href="/tag/开发手记/" class="tag-pill tag-pill--sm">开发手记</a>
+      <a href="/tag/dev-notes/" class="tag-pill tag-pill--sm">开发手记</a>
       
-      <a href="/tag/Bug排查/" class="tag-pill tag-pill--sm">Bug排查</a>
+      <a href="/tag/debugging/" class="tag-pill tag-pill--sm">Bug排查</a>
       
     </div>
     

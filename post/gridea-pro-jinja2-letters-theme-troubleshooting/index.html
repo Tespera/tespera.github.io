@@ -35,9 +35,9 @@
 
 
 <meta name="description" content="在为 Gridea Pro 适配 letters-theme (Jinja2 引擎) 主题时，我们遇到了一系列阻碍渲染与样式加载的顽固问题。本篇开发手记详细记录了本次从报错分析、渲染器源码审查到浏览器抓包追踪的全过程，相信这些&amp;quot;踩坑&amp;quot;经验对其他 Gridea Pro 的主题开发者会有很大帮助。 第一">
-<meta name="keywords" content="述尔，Gridea  Pro，Gridea，产品经理">
+<meta name="keywords" content="述尔，Gridea  Pro，Gridea，静态博客，产品经理">
 <link rel="canonical" href="https://are.ink/post/gridea-pro-jinja2-letters-theme-troubleshooting/">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Gridea Pro Jinja2 主题开发实战：从模板报错到 CSS 断链的奇葩排查全记录","url":"https://are.ink/post/gridea-pro-jinja2-letters-theme-troubleshooting/","description":"在为 Gridea Pro 适配 letters-theme (Jinja2 引擎) 主题时，我们遇到了一系列阻碍渲染与样式加载的顽固问题。本篇开发手记详细记录了本次从报错分析、渲染器源码审查到浏览器抓包追踪的全过程，相信这些\u0026quot;踩坑\u0026quot;经验对其他 Gridea Pro 的主题开发者会有很大帮助。 第一","image":"/post-images/gridea-pro-jinja2-letters-theme-troubleshooting.jpg","datePublished":"2026-02-27T18:42:36Z","dateModified":"2026-03-06T17:42:55Z","author":{"@type":"Person","name":"述尔"},"publisher":{"@type":"Organization","name":"述尔"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Gridea Pro Jinja2 主题开发实战：从模板报错到 CSS 断链的奇葩排查全记录","url":"https://are.ink/post/gridea-pro-jinja2-letters-theme-troubleshooting/","description":"在为 Gridea Pro 适配 letters-theme (Jinja2 引擎) 主题时，我们遇到了一系列阻碍渲染与样式加载的顽固问题。本篇开发手记详细记录了本次从报错分析、渲染器源码审查到浏览器抓包追踪的全过程，相信这些\u0026quot;踩坑\u0026quot;经验对其他 Gridea Pro 的主题开发者会有很大帮助。 第一","image":"/post-images/gridea-pro-jinja2-letters-theme-troubleshooting.jpg","datePublished":"2026-02-27T18:42:36Z","dateModified":"2026-03-10T13:41:07Z","author":{"@type":"Person","name":"述尔"},"publisher":{"@type":"Organization","name":"述尔"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://are.ink","name":"述尔","position":1},{"@type":"ListItem","item":"https://are.ink/post/gridea-pro-jinja2-letters-theme-troubleshooting/","name":"Gridea Pro Jinja2 主题开发实战：从模板报错到 CSS 断链的奇葩排查全记录","position":2}]}</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-1SBXPCEK36"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-1SBXPCEK36');</script>
@@ -129,6 +129,12 @@
     <h1 class="article-title">Gridea Pro Jinja2 主题开发实战：从模板报错到 CSS 断链的奇葩排查全记录</h1>
     <div class="article-meta">
       
+      
+      <a href="/category/Gridea-Pro/" class="article-meta__category">Gridea Pro</a>
+      
+      
+      <span class="article-meta__sep">·</span>
+      
       <span class="article-meta__item">2026年02月27日</span>
       
       <span class="article-meta__sep">·</span>
@@ -138,13 +144,13 @@
     
     <div class="article-header__tags">
       
-      <a href="/tag/Gridea Pro/" class="tag-pill tag-pill--sm">Gridea Pro</a>
+      <a href="/tag/gridea-pro/" class="tag-pill tag-pill--sm">Gridea Pro</a>
       
-      <a href="/tag/Jinja2/" class="tag-pill tag-pill--sm">Jinja2</a>
+      <a href="/tag/jinja2/" class="tag-pill tag-pill--sm">Jinja2</a>
       
-      <a href="/tag/主题开发/" class="tag-pill tag-pill--sm">主题开发</a>
+      <a href="/tag/theme-dev/" class="tag-pill tag-pill--sm">主题开发</a>
       
-      <a href="/tag/开发手记/" class="tag-pill tag-pill--sm">开发手记</a>
+      <a href="/tag/dev-notes/" class="tag-pill tag-pill--sm">开发手记</a>
       
     </div>
     

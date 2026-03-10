@@ -35,9 +35,9 @@
 
 
 <meta name="description" content="将项目从好用做到专业，往往需要打破重塑。 对于一款静态博客客户端（如 Gridea Pro）而言，“一次点击，全量构建并完成同步发布” 是核心体验的灵魂所在。曾经，我们的同步功能是通过调用操作系统的原生命令行（即 os/exec 调用 git）来实现的。由于逻辑直观且实现成本低，它曾是支持项目跑起来的“先锋”。 然而，">
-<meta name="keywords" content="述尔，Gridea  Pro，Gridea，产品经理">
+<meta name="keywords" content="述尔，Gridea  Pro，Gridea，静态博客，产品经理">
 <link rel="canonical" href="https://are.ink/post/gridea-pro-deploy/">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"架构演进与安全加固：Gridea Pro 部署(Deploy)模块重构之路","url":"https://are.ink/post/gridea-pro-deploy/","description":"将项目从好用做到专业，往往需要打破重塑。 对于一款静态博客客户端（如 Gridea Pro）而言，“一次点击，全量构建并完成同步发布” 是核心体验的灵魂所在。曾经，我们的同步功能是通过调用操作系统的原生命令行（即 os/exec 调用 git）来实现的。由于逻辑直观且实现成本低，它曾是支持项目跑起来的“先锋”。 然而，","image":"/post-images/gridea-pro-deploy.jpg","datePublished":"2026-03-01T23:07:14Z","dateModified":"2026-03-06T17:44:14Z","author":{"@type":"Person","name":"述尔"},"publisher":{"@type":"Organization","name":"述尔"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"架构演进与安全加固：Gridea Pro 部署(Deploy)模块重构之路","url":"https://are.ink/post/gridea-pro-deploy/","description":"将项目从好用做到专业，往往需要打破重塑。 对于一款静态博客客户端（如 Gridea Pro）而言，“一次点击，全量构建并完成同步发布” 是核心体验的灵魂所在。曾经，我们的同步功能是通过调用操作系统的原生命令行（即 os/exec 调用 git）来实现的。由于逻辑直观且实现成本低，它曾是支持项目跑起来的“先锋”。 然而，","image":"/post-images/gridea-pro-deploy.jpg","datePublished":"2026-03-01T23:07:14Z","dateModified":"2026-03-10T13:41:07Z","author":{"@type":"Person","name":"述尔"},"publisher":{"@type":"Organization","name":"述尔"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://are.ink","name":"述尔","position":1},{"@type":"ListItem","item":"https://are.ink/post/gridea-pro-deploy/","name":"架构演进与安全加固：Gridea Pro 部署(Deploy)模块重构之路","position":2}]}</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-1SBXPCEK36"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-1SBXPCEK36');</script>
@@ -130,7 +130,7 @@
     <div class="article-meta">
       
       
-      <a href="/category/Gridea Pro/" class="article-meta__category">Gridea Pro</a>
+      <a href="/category/Gridea-Pro/" class="article-meta__category">Gridea Pro</a>
       
       
       <span class="article-meta__sep">·</span>
@@ -144,9 +144,9 @@
     
     <div class="article-header__tags">
       
-      <a href="/tag/重构/" class="tag-pill tag-pill--sm">重构</a>
+      <a href="/tag/code-refactoring/" class="tag-pill tag-pill--sm">重构</a>
       
-      <a href="/tag/开发手记/" class="tag-pill tag-pill--sm">开发手记</a>
+      <a href="/tag/dev-notes/" class="tag-pill tag-pill--sm">开发手记</a>
       
     </div>
     
