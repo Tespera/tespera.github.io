@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link rel="stylesheet" href="/styles/main.min.css">
+
+
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+
+<meta name="description" content="一个产品经理的碎碎念 | 温故而知新">
+<meta property="og:site_name" content="述尔">
+<meta property="og:title" content="述尔">
+<meta property="og:description" content="一个产品经理的碎碎念 | 温故而知新">
+
+<meta property="og:image" content="/images/avatar.png">
+
+<meta property="og:url" content="https://are.ink">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="述尔">
+<meta name="twitter:description" content="一个产品经理的碎碎念 | 温故而知新">
+
+<meta name="twitter:image" content="/images/avatar.png">
+
+
+  <title>探索 Model Context Protocol (MCP)：连接 AI 于万物的开放标准 | 述尔</title>
+  
+<meta property="og:title" content="探索 Model Context Protocol (MCP)：连接 AI 于万物的开放标准" />
+<meta property="og:type" content="article" />
+
+
+<meta name="description" content="在人工智能助手快速普及的今天，如何让大型语言模型（LLM）安全、高效地访问本地数据、远程存储库和业务工具，始终是一个关键挑战。Model Context Protocol (MCP) 应运而生，它旨在成为 AI 模型与外部世界交互的通用开放标准。 什么是 MCP？ Model Context Protocol (MCP">
+<meta name="keywords" content="述尔，Gridea  Pro，Gridea，产品经理">
+<link rel="canonical" href="https://are.ink/post/exploring-mcp/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"探索 Model Context Protocol (MCP)：连接 AI 于万物的开放标准","url":"https://are.ink/post/exploring-mcp/","description":"在人工智能助手快速普及的今天，如何让大型语言模型（LLM）安全、高效地访问本地数据、远程存储库和业务工具，始终是一个关键挑战。Model Context Protocol (MCP) 应运而生，它旨在成为 AI 模型与外部世界交互的通用开放标准。 什么是 MCP？ Model Context Protocol (MCP","datePublished":"2026-02-13T15:30:00Z","dateModified":"2026-03-02T18:57:59Z","author":{"@type":"Person","name":"述尔"},"publisher":{"@type":"Organization","name":"述尔"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://are.ink","name":"述尔","position":1},{"@type":"ListItem","item":"https://are.ink/post/exploring-mcp/","name":"探索 Model Context Protocol (MCP)：连接 AI 于万物的开放标准","position":2}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1SBXPCEK36"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-1SBXPCEK36');</script>
+<meta name="google-site-verification" content="googlea4223896f417412f.html">
+<script>var _hmt=_hmt||[];(function(){var hm=document.createElement("script");hm.src="https://hm.baidu.com/hm.js?4b792e215f23cf68ed571462a263feb3";var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(hm,s);})();</script>
+</head>
+<body class="flavor-theme">
+
+  <header class="site-header" id="siteHeader">
+  <div class="header-inner">
+    <div class="top-bar">
+
+      
+      <div class="top-bar__left">
+        
+        <a href="https://are.ink" class="site-avatar-link" aria-label="返回首页">
+          <img class="site-avatar" src="/images/avatar.png" alt="述尔" />
+        </a>
+        
+        <a href="https://are.ink" class="site-name-link">述尔</a>
+      </div>
+
+      
+      <nav class="top-bar__nav" id="sectionBar">
+        
+        
+        <a class="nav-item" href="/">首页</a>
+        
+        <a class="nav-item" href="/post">博客</a>
+        
+        <a class="nav-item" href="/memos">闪念</a>
+        
+        <a class="nav-item" href="/tags">标签</a>
+        
+        <a class="nav-item" href="/link">友链</a>
+        
+        <a class="nav-item" href="/post/about">关于</a>
+        
+        
+      </nav>
+
+      
+      <div class="top-bar__right">
+        <button class="btn-icon btn-search search-btn" id="btnSearch" type="button" aria-label="搜索">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+        </button>
+        <button class="btn-icon btn-nav-toggle mobile-only" id="btnNavToggle" type="button" aria-label="切换导航">
+          <div class="hamburger" id="hamburger">
+            <span class="hamburger__line hamburger__line--top"></span>
+            <span class="hamburger__line hamburger__line--bottom"></span>
+          </div>
+        </button>
+      </div>
+
+    </div>
+  </div>
+</header>
+
+
+<div class="header-spacer"></div>
+
+<script>
+(function(){
+  var btn = document.getElementById('btnNavToggle');
+  var nav = document.getElementById('sectionBar');
+  var hamburger = document.getElementById('hamburger');
+  if (!btn || !nav) return;
+  btn.addEventListener('click', function(){
+    nav.classList.toggle('top-bar__nav--open');
+    if (hamburger) hamburger.classList.toggle('is-active');
+  });
+  nav.querySelectorAll('.nav-item').forEach(function(item){
+    item.addEventListener('click', function(){
+      nav.classList.remove('top-bar__nav--open');
+      if (hamburger) hamburger.classList.remove('is-active');
+    });
+  });
+})();
+</script>
+
+  <main class="site-main" role="main">
+    
+<article class="article-container">
+  <header class="article-header">
+    <h1 class="article-title">探索 Model Context Protocol (MCP)：连接 AI 于万物的开放标准</h1>
+    <div class="article-meta">
+      
+      <span class="article-meta__item">2026年02月13日</span>
+      
+      <span class="article-meta__sep">·</span>
+      <span class="article-meta__item">2 分钟阅读</span>
+      
+    </div>
+    
+    <div class="article-header__tags">
+      
+      <a href="/tag/MCP/" class="tag-pill tag-pill--sm">MCP</a>
+      
+      <a href="/tag/AI/" class="tag-pill tag-pill--sm">AI</a>
+      
+      <a href="/tag/Protocol/" class="tag-pill tag-pill--sm">Protocol</a>
+      
+    </div>
+    
+  </header>
+
+  
+
+  <div class="article-content">
+    <p>在人工智能助手快速普及的今天，如何让大型语言模型（LLM）安全、高效地访问本地数据、远程存储库和业务工具，始终是一个关键挑战。<strong>Model Context Protocol (MCP)</strong> 应运而生，它旨在成为 AI 模型与外部世界交互的通用开放标准。</p>
+<h2 id="-mcp">什么是 MCP？</h2>
+<p>Model Context Protocol (MCP) 是一个开放标准协议，用于标准化 AI 助手（Clients）与各种系统（Servers）之间的连接。</p>
+<p>你可以把它想象成 AI 时代的 <strong>USB 接口</strong>。就像 USB 允许你将打印机、键盘、存储设备连接到任何计算机一样，MCP 提供了一种标准化的方式，让 AI 能够“即插即用”地连接各种数据源和工具，而无需为每个模型或应用单独开发复杂的集成方案。</p>
+<h2 id="-mcp-1">为什么我们需要 MCP？</h2>
+<p>在 MCP 出现之前，将 AI 连接到不同的数据源通常需要构建特定的集成（Connectors）。随着 AI 工具和数据源的指数级增长，这种“m \times n”的集成方式变得不可持续：</p>
+<ul>
+<li><strong>碎片化</strong>：每个 AI 应用（如 Claude, ChatGPT, IDE 插件）都有自己的接口标准。</li>
+<li><strong>高成本</strong>：开发者需要为每个平台维护大量的连接器。</li>
+<li><strong>数据孤岛</strong>：数据被锁定在特定的生态系统中，难以被 AI 灵活调用。</li>
+</ul>
+<p>MCP 通过定义通用的交互模式（Resources, Prompts, Tools）解决了这些问题。一旦一个数据源（如 Linear, GitHub, Google Drive）实现了 MCP Server，任何支持 MCP 的 AI Client（如 Claude Desktop, Cursor, Gridea Pro）都可以立即使用它。</p>
+<h2 id="mcp-">MCP 的核心架构</h2>
+<p>MCP 架构主要由以下角色组成：</p>
+<ol>
+<li><strong>MCP Host</strong>：承载 AI 模型和应用程序的宿主环境（例如 Gridea Pro, Claude Desktop）。它是发起请求的一方。</li>
+<li><strong>MCP Client</strong>：在 Host 中运行，负责与 Server 建立连接（通常通过 Stdio 或 SSE）并进行通信。</li>
+<li><strong>MCP Server</strong>：提供能力的源头。它可以暴露三种主要能力：
+<ul>
+<li><strong>Resources (资源)</strong>：类似于文件或数据块，供 AI 读取（例如：读取日志文件、数据库记录）。</li>
+<li><strong>Tools (工具)</strong>：可执行的函数，供 AI 调用以执行操作（例如：发布文章、创建 Git commit）。</li>
+<li><strong>Prompts (提示词)</strong>：预定义的提示词模板，帮助用户更有效地使用 Server 的能力。</li>
+</ul>
+</li>
+</ol>
+<h2 id="heading">结语</h2>
+<p>MCP 正在构建一个开放、协作的 AI 生态系统。它将控制权交还给用户和开发者，让我们能够构建出更强大、更具上下文感知的智能工作流。</p>
+<p>随着越来越多的工具支持 MCP，未来的 AI 助手将不再是孤立的聊天机器人，而是真正能够理解你的环境、操作你的工具的智能代理。</p>
+
+  </div>
+
+  
+  <nav class="post-nav">
+    
+    <a href="/post/agentic-workflow-paradigm-shift/" class="post-nav-card post-nav-card--prev">
+      
+      <div class="post-nav-card__body">
+        <span class="post-nav-card__label meta-text">上一篇</span>
+        <span class="post-nav-card__title">为什么 Chat 模式正在消亡：Agentic Workflow 的崛起</span>
+      </div>
+      <span class="post-nav-card__arrow">&larr;</span>
+    </a>
+    
+    
+    <a href="/post/building-mcp-service-for-gridea-pro_副本/" class="post-nav-card post-nav-card--next">
+      <div class="post-nav-card__body">
+        <span class="post-nav-card__label meta-text">下一篇</span>
+        <span class="post-nav-card__title">给桌面应用装上“大脑”：Gridea Pro 接入 MCP 协议实战与踩坑录</span>
+      </div>
+      
+      <span class="post-nav-card__arrow">&rarr;</span>
+    </a>
+    
+  </nav>
+
+  
+  
+
+
+  
+    <section class="comment-section">
+  <h2 class="comment-section__title">评论</h2>
+  <div id="vcomments"></div>
+  <link rel="stylesheet" href="https://unpkg.com/valine@1/dist/Valine.min.css">
+  <script src="https://unpkg.com/valine@1/dist/Valine.min.js"></script>
+  <script>
+    new Valine({
+      el: '#vcomments',
+      appId: 'dAWkPrxZg50VZ7iV39rrZL5U-MdYXbMMI',
+      appKey: 'YCfYt8rhK8d0mh9vr42YTaA1',
+      serverURLs: 'https://dawkprxz.api.lncldglobal.com',
+      avatar: 'mp',
+      placeholder: '说点什么吧…'
+    });
+    // Valine 内置 locale 不支持覆盖，手动替换 placeholder
+    var linkInput = document.querySelector('#vcomments .vlink');
+    if (linkInput) linkInput.placeholder = '网址(https://)';
+  </script>
+</section>
+
+  
+
+
+
+</article>
+
+  </main>
+
+  <footer class="site-footer">
+  <div class="footer-inner">
+
+    
+    
+    <nav class="footer-nav" aria-label="页脚导航">
+      
+      <a class="footer-nav__link" href="/">首页</a>
+      
+      <a class="footer-nav__link" href="/post">博客</a>
+      
+      <a class="footer-nav__link" href="/memos">闪念</a>
+      
+      <a class="footer-nav__link" href="/tags">标签</a>
+      
+      <a class="footer-nav__link" href="/link">友链</a>
+      
+      <a class="footer-nav__link" href="/post/about">关于</a>
+      
+    </nav>
+    
+
+    
+    <div class="footer-social">
+      
+      <a class="footer-social__link" href="https://github.com/Tespera" target="_blank" rel="noopener noreferrer"
+        aria-label="GitHub">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path
+            d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+        </svg>
+      </a>
+      
+      
+      <a class="footer-social__link" href="https://x.com" target="_blank" rel="noopener noreferrer"
+        aria-label="Twitter/X">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path
+            d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+        </svg>
+      </a>
+      
+      
+      <a class="footer-social__link" href="https://weibo.com" target="_blank" rel="noopener noreferrer"
+        aria-label="微博">
+        <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor">
+          <path d="M10.878 1.093a4.23 4.23 0 0 1 4.031 1.305 4.22 4.22 0 0 1 .886 4.14v.001a.612.612 0 0 1-1.166-.377 3.01 3.01 0 0 0-3.495-3.873.611.611 0 1 1-.256-1.196M3.753 9.465c.548-1.11 1.972-1.74 3.233-1.411 1.304.338 1.971 1.568 1.437 2.764-.541 1.221-2.095 1.875-3.416 1.449-1.271-.411-1.812-1.67-1.254-2.802m2.658.567c.16.066.365-.009.458-.168.088-.16.03-.34-.129-.397-.156-.062-.353.013-.446.168-.09.154-.041.333.117.397m-1.607 1.314c.413.188.963.009 1.219-.4.252-.413.12-.883-.296-1.062-.41-.172-.94.005-1.194.402-.256.4-.135.874.271 1.06"/>
+          <path d="m12.014 7.238.005.001c.919.285 1.941.974 1.939 2.188 0 2.007-2.895 4.535-7.246 4.535C3.393 13.962 0 12.352 0 9.708c0-1.385.876-2.985 2.384-4.493C4.4 3.199 6.751 2.28 7.634 3.165c.39.392.427 1.065.177 1.87-.132.405.38.182.38.182 1.63-.682 3.051-.722 3.57.02.278.397.252.951-.004 1.594-.116.293.035.34.257.407m-10.4 3.101c.172 1.738 2.46 2.936 5.109 2.674 2.647-.26 4.656-1.883 4.482-3.623-.17-1.738-2.458-2.937-5.107-2.674-2.647.263-4.656 1.883-4.484 3.623m11.681-6.484a2.06 2.06 0 0 0-1.962-.634.526.526 0 1 0 .219 1.031 1.008 1.008 0 0 1 1.17 1.296.528.528 0 0 0 1.005.325 2.06 2.06 0 0 0-.432-2.018"/>
+        </svg>
+      </a>
+      
+      <a class="footer-social__link" href="/feed.xml" aria-label="RSS">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M6.18 15.64a2.18 2.18 0 110 4.36 2.18 2.18 0 010-4.36zM4 4.44A15.56 15.56 0 0119.56 20h-2.83A12.73 12.73 0 004 7.27V4.44zm0 5.66a9.9 9.9 0 019.9 9.9h-2.83A7.07 7.07 0 004 12.93V10.1z"/>
+        </svg>
+      </a>
+    </div>
+
+    
+    <div class="footer-copyright">
+      <p>&copy; 2026 述尔. All rights reserved.</p>
+    </div>
+
+    
+    
+
+    
+    <div class="footer-powered">
+      <span>Powered by <a href="https://gridea.dev" target="_blank" rel="noopener noreferrer">Gridea Pro</a></span>
+    </div>
+
+  </div>
+</footer>
+
+  
+  <div class="search-overlay" id="searchOverlay" style="display:none;">
+  <div class="search-modal">
+    <div class="search-header">
+      <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+      <input type="text" class="search-input" id="searchInput" placeholder="搜索文章..." autocomplete="off" />
+      <span class="search-kbd">&#8984;K</span>
+      <button class="search-close" id="searchClose" type="button" aria-label="关闭搜索">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+    <div class="search-results" id="searchResults"></div>
+  </div>
+</div>
+
+<script src="/scripts/search.js"></script>
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

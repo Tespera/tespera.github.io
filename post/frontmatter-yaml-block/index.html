@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link rel="stylesheet" href="/styles/main.min.css">
+
+
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+
+<meta name="description" content="一个产品经理的碎碎念 | 温故而知新">
+<meta property="og:site_name" content="述尔">
+<meta property="og:title" content="述尔">
+<meta property="og:description" content="一个产品经理的碎碎念 | 温故而知新">
+
+<meta property="og:image" content="/images/avatar.png">
+
+<meta property="og:url" content="https://are.ink">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="述尔">
+<meta name="twitter:description" content="一个产品经理的碎碎念 | 温故而知新">
+
+<meta name="twitter:image" content="/images/avatar.png">
+
+
+  <title>为什么我们在 Frontmatter 中坚持使用 YAML Block 风格？ | 述尔</title>
+  
+<meta property="og:title" content="为什么我们在 Frontmatter 中坚持使用 YAML Block 风格？" />
+<meta property="og:type" content="article" />
+
+<meta property="og:image" content="/post-images/frontmatter-yaml-block.jpg" />
+
+
+<meta name="description" content="在构建和维护基于 Markdown 与 YAML Frontmatter 驱动的系统（如 Gridea Pro）时，我们常常需要面临元数据序列化风格的选择。YAML 语言自身支持两种表示数组或集合的方式： Flow 风格（内联式）：例如 tags: ['MCP', 'Gridea Pro', 'Go'] Block 风">
+<meta name="keywords" content="述尔，Gridea  Pro，Gridea，产品经理">
+<link rel="canonical" href="https://are.ink/post/frontmatter-yaml-block/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"为什么我们在 Frontmatter 中坚持使用 YAML Block 风格？","url":"https://are.ink/post/frontmatter-yaml-block/","description":"在构建和维护基于 Markdown 与 YAML Frontmatter 驱动的系统（如 Gridea Pro）时，我们常常需要面临元数据序列化风格的选择。YAML 语言自身支持两种表示数组或集合的方式： Flow 风格（内联式）：例如 tags: ['MCP', 'Gridea Pro', 'Go'] Block 风","image":"/post-images/frontmatter-yaml-block.jpg","datePublished":"2026-03-02T06:38:14Z","dateModified":"2026-03-06T17:37:11Z","author":{"@type":"Person","name":"述尔"},"publisher":{"@type":"Organization","name":"述尔"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://are.ink","name":"述尔","position":1},{"@type":"ListItem","item":"https://are.ink/post/frontmatter-yaml-block/","name":"为什么我们在 Frontmatter 中坚持使用 YAML Block 风格？","position":2}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1SBXPCEK36"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-1SBXPCEK36');</script>
+<meta name="google-site-verification" content="googlea4223896f417412f.html">
+<script>var _hmt=_hmt||[];(function(){var hm=document.createElement("script");hm.src="https://hm.baidu.com/hm.js?4b792e215f23cf68ed571462a263feb3";var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(hm,s);})();</script>
+</head>
+<body class="flavor-theme">
+
+  <header class="site-header" id="siteHeader">
+  <div class="header-inner">
+    <div class="top-bar">
+
+      
+      <div class="top-bar__left">
+        
+        <a href="https://are.ink" class="site-avatar-link" aria-label="返回首页">
+          <img class="site-avatar" src="/images/avatar.png" alt="述尔" />
+        </a>
+        
+        <a href="https://are.ink" class="site-name-link">述尔</a>
+      </div>
+
+      
+      <nav class="top-bar__nav" id="sectionBar">
+        
+        
+        <a class="nav-item" href="/">首页</a>
+        
+        <a class="nav-item" href="/post">博客</a>
+        
+        <a class="nav-item" href="/memos">闪念</a>
+        
+        <a class="nav-item" href="/tags">标签</a>
+        
+        <a class="nav-item" href="/link">友链</a>
+        
+        <a class="nav-item" href="/post/about">关于</a>
+        
+        
+      </nav>
+
+      
+      <div class="top-bar__right">
+        <button class="btn-icon btn-search search-btn" id="btnSearch" type="button" aria-label="搜索">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+        </button>
+        <button class="btn-icon btn-nav-toggle mobile-only" id="btnNavToggle" type="button" aria-label="切换导航">
+          <div class="hamburger" id="hamburger">
+            <span class="hamburger__line hamburger__line--top"></span>
+            <span class="hamburger__line hamburger__line--bottom"></span>
+          </div>
+        </button>
+      </div>
+
+    </div>
+  </div>
+</header>
+
+
+<div class="header-spacer"></div>
+
+<script>
+(function(){
+  var btn = document.getElementById('btnNavToggle');
+  var nav = document.getElementById('sectionBar');
+  var hamburger = document.getElementById('hamburger');
+  if (!btn || !nav) return;
+  btn.addEventListener('click', function(){
+    nav.classList.toggle('top-bar__nav--open');
+    if (hamburger) hamburger.classList.toggle('is-active');
+  });
+  nav.querySelectorAll('.nav-item').forEach(function(item){
+    item.addEventListener('click', function(){
+      nav.classList.remove('top-bar__nav--open');
+      if (hamburger) hamburger.classList.remove('is-active');
+    });
+  });
+})();
+</script>
+
+  <main class="site-main" role="main">
+    
+<article class="article-container">
+  <header class="article-header">
+    <h1 class="article-title">为什么我们在 Frontmatter 中坚持使用 YAML Block 风格？</h1>
+    <div class="article-meta">
+      
+      <span class="article-meta__item">2026年03月02日</span>
+      
+      <span class="article-meta__sep">·</span>
+      <span class="article-meta__item">2 分钟阅读</span>
+      
+    </div>
+    
+    <div class="article-header__tags">
+      
+      <a href="/tag/YAML/" class="tag-pill tag-pill--sm">YAML</a>
+      
+      <a href="/tag/最佳实践/" class="tag-pill tag-pill--sm">最佳实践</a>
+      
+      <a href="/tag/Gridea Pro/" class="tag-pill tag-pill--sm">Gridea Pro</a>
+      
+    </div>
+    
+  </header>
+
+  
+  <div class="article-feature">
+    <img src="/post-images/frontmatter-yaml-block.jpg" alt="为什么我们在 Frontmatter 中坚持使用 YAML Block 风格？" />
+  </div>
+  
+
+  <div class="article-content">
+    <p>在构建和维护基于 Markdown 与 YAML Frontmatter 驱动的系统（如 Gridea Pro）时，我们常常需要面临元数据序列化风格的选择。YAML 语言自身支持两种表示数组或集合的方式：</p>
+<ol>
+<li><strong>Flow 风格（内联式）</strong>：例如 <code>tags: ['MCP', 'Gridea Pro', 'Go']</code></li>
+<li><strong>Block 风格（纵向/块状式）</strong>：例如</li>
+</ol>
+<pre><code class="language-yaml">tags:
+  - MCP
+  - Gridea Pro
+  - Go
+</code></pre>
+<p>尽管 Flow 风格在字符数上更加紧凑，但在现代静态生成、离线优先的博客系统中，我们统一且坚定地选择并标准化为 <strong>Block (纵向) 风格</strong>。本文将从几个核心工程维度阐述这样做的原因。</p>
+<h2 id="1--human-readability">1. 极致的“人类可读性” (Human Readability)</h2>
+<p>YAML 的核心设计初衷之一就是“让人类易于阅读和编写”。<br />
+当使用 Flow 风格时，随着标签（Tags）或分类（Categories）数量的增加，或者名称包含空格与较长的字符时，单行文本极易突破编辑器的可视宽度，造成横向滚动条的出现。</p>
+<p>而使用 <strong>Block 风格</strong>，每一个数组元素独立成行，带有清晰的缩进。自上而下的视觉流非常符合人类浏览列表内容的本能习惯。作者可以一眼扫过文章所有的元数据，而不需要在逗号与引号的间隙中费力辨认。</p>
+<h2 id="2--git-">2. 对版本控制 (Git) 极其友好</h2>
+<p>对于极客和开发者而言，Markdown 博客往往托管在 Git 仓库中。元数据格式对版本控制的 Diff 体验有着决定性的影响。</p>
+<ul>
+<li><strong>在新加/删除一个标签时</strong>，如果是 Flow 风格，整行会被 Git 标记为变更（Modified），在多人协作或跨终端同步时，极易因同一行的微小改动而引发合并冲突（Merge Conflict）。</li>
+<li><strong>如果是 Block 风格</strong>，新增和删除标签只会表现为对应<strong>单行</strong>的增加（Added <code>+</code>）或减少（Deleted <code>-</code>）。变更记录（Diff）极度清晰纯粹，绝不会影响其他行，彻底消除了此类合并冲突的痛点。</li>
+</ul>
+<h2 id="3-">3. 更高的健壮性与抗干扰能力</h2>
+<p>内联（Flow）风格中，如果遇到含有特殊符号、嵌套括号或者单双引号的字符串，序列化引擎通常需要引入复杂的转义（Escaping）机制才能保证语法合法，这增加了生成错乱和第三方工具读取报错的概率。</p>
+<p>而 Block 风格采用 <code>- </code> 的标识符。由于每项独占一行，转义规则更为宽松自然，极大地降低了特殊字符破坏 YAML 结构格式的风险。很多基于老旧解析库（如过时的 js-yaml 配置）的平台最容易在解析嵌套的内联数组时出现错误。</p>
+<h2 id="4-">4. 标准化与消除“历史遗留”的冗余</h2>
+<p>使用类似 Obsidian、Typora 等外部编辑器时，它们内部的 YAML 插件有时候会对文章直接进行正则追加拼接，如果你曾经见过一篇文档里同时出现两个 <code>tag_ids:</code>，那正是正则文本拼接导致的惨剧。</p>
+<p>在 Gridea Pro 中，我们使用业界标准的 Go <code>yaml.v3</code> 引擎处理 Frontmatter。该引擎具有强约束力并且默认采用标准的 Block 风格进行序列化：</p>
+<ul>
+<li>无条件地洗刷掉历史上由各路第三方编辑器制造的残缺、重复键名。</li>
+<li>保证任何经由 Gridea Pro （无论是原生操作界面，还是 MCP 等外部 API 调用）输出的数据，永远呈最干净、工整的纵向排版。</li>
+</ul>
+<h2 id="heading">结论</h2>
+<p>采用 Block 风格的规范绝非偶然，这是基于可维护性、版本历史追踪和阅读体验权衡后得到的<strong>最佳实践</strong>。正如这套机制的设计初衷，我们希望用户不必再为排版和数据格式操心，系统会默默在底层让所有的数据变得清晰、干净、优美。</p>
+
+  </div>
+
+  
+  <nav class="post-nav">
+    
+    <a href="/post/dan-koe/" class="post-nav-card post-nav-card--prev">
+      
+      <div class="post-nav-card__img">
+        <img src="/post-images/dan-koe.webp" alt="Dan Koe《如何在一天内修复你的整个生活》（精译版）" loading="lazy" />
+      </div>
+      
+      <div class="post-nav-card__body">
+        <span class="post-nav-card__label meta-text">上一篇</span>
+        <span class="post-nav-card__title">Dan Koe《如何在一天内修复你的整个生活》（精译版）</span>
+      </div>
+      <span class="post-nav-card__arrow">&larr;</span>
+    </a>
+    
+    
+    <a href="/post/gridea-pro-ge-mo-kuai-id-sheng-cheng-ji-zhi-yu-li-shi-jian-rong-xing-fen-xi/" class="post-nav-card post-nav-card--next">
+      <div class="post-nav-card__body">
+        <span class="post-nav-card__label meta-text">下一篇</span>
+        <span class="post-nav-card__title">Gridea Pro 各模块 ID 生成机制与历史兼容性分析</span>
+      </div>
+      
+      <div class="post-nav-card__img">
+        <img src="/post-images/gridea-pro-ge-mo-kuai-id-sheng-cheng-ji-zhi-yu-li-shi-jian-rong-xing-fen-xi.jpg" alt="Gridea Pro 各模块 ID 生成机制与历史兼容性分析" loading="lazy" />
+      </div>
+      
+      <span class="post-nav-card__arrow">&rarr;</span>
+    </a>
+    
+  </nav>
+
+  
+  
+
+
+  
+    <section class="comment-section">
+  <h2 class="comment-section__title">评论</h2>
+  <div id="vcomments"></div>
+  <link rel="stylesheet" href="https://unpkg.com/valine@1/dist/Valine.min.css">
+  <script src="https://unpkg.com/valine@1/dist/Valine.min.js"></script>
+  <script>
+    new Valine({
+      el: '#vcomments',
+      appId: 'dAWkPrxZg50VZ7iV39rrZL5U-MdYXbMMI',
+      appKey: 'YCfYt8rhK8d0mh9vr42YTaA1',
+      serverURLs: 'https://dawkprxz.api.lncldglobal.com',
+      avatar: 'mp',
+      placeholder: '说点什么吧…'
+    });
+    // Valine 内置 locale 不支持覆盖，手动替换 placeholder
+    var linkInput = document.querySelector('#vcomments .vlink');
+    if (linkInput) linkInput.placeholder = '网址(https://)';
+  </script>
+</section>
+
+  
+
+
+
+</article>
+
+  </main>
+
+  <footer class="site-footer">
+  <div class="footer-inner">
+
+    
+    
+    <nav class="footer-nav" aria-label="页脚导航">
+      
+      <a class="footer-nav__link" href="/">首页</a>
+      
+      <a class="footer-nav__link" href="/post">博客</a>
+      
+      <a class="footer-nav__link" href="/memos">闪念</a>
+      
+      <a class="footer-nav__link" href="/tags">标签</a>
+      
+      <a class="footer-nav__link" href="/link">友链</a>
+      
+      <a class="footer-nav__link" href="/post/about">关于</a>
+      
+    </nav>
+    
+
+    
+    <div class="footer-social">
+      
+      <a class="footer-social__link" href="https://github.com/Tespera" target="_blank" rel="noopener noreferrer"
+        aria-label="GitHub">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path
+            d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+        </svg>
+      </a>
+      
+      
+      <a class="footer-social__link" href="https://x.com" target="_blank" rel="noopener noreferrer"
+        aria-label="Twitter/X">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path
+            d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+        </svg>
+      </a>
+      
+      
+      <a class="footer-social__link" href="https://weibo.com" target="_blank" rel="noopener noreferrer"
+        aria-label="微博">
+        <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor">
+          <path d="M10.878 1.093a4.23 4.23 0 0 1 4.031 1.305 4.22 4.22 0 0 1 .886 4.14v.001a.612.612 0 0 1-1.166-.377 3.01 3.01 0 0 0-3.495-3.873.611.611 0 1 1-.256-1.196M3.753 9.465c.548-1.11 1.972-1.74 3.233-1.411 1.304.338 1.971 1.568 1.437 2.764-.541 1.221-2.095 1.875-3.416 1.449-1.271-.411-1.812-1.67-1.254-2.802m2.658.567c.16.066.365-.009.458-.168.088-.16.03-.34-.129-.397-.156-.062-.353.013-.446.168-.09.154-.041.333.117.397m-1.607 1.314c.413.188.963.009 1.219-.4.252-.413.12-.883-.296-1.062-.41-.172-.94.005-1.194.402-.256.4-.135.874.271 1.06"/>
+          <path d="m12.014 7.238.005.001c.919.285 1.941.974 1.939 2.188 0 2.007-2.895 4.535-7.246 4.535C3.393 13.962 0 12.352 0 9.708c0-1.385.876-2.985 2.384-4.493C4.4 3.199 6.751 2.28 7.634 3.165c.39.392.427 1.065.177 1.87-.132.405.38.182.38.182 1.63-.682 3.051-.722 3.57.02.278.397.252.951-.004 1.594-.116.293.035.34.257.407m-10.4 3.101c.172 1.738 2.46 2.936 5.109 2.674 2.647-.26 4.656-1.883 4.482-3.623-.17-1.738-2.458-2.937-5.107-2.674-2.647.263-4.656 1.883-4.484 3.623m11.681-6.484a2.06 2.06 0 0 0-1.962-.634.526.526 0 1 0 .219 1.031 1.008 1.008 0 0 1 1.17 1.296.528.528 0 0 0 1.005.325 2.06 2.06 0 0 0-.432-2.018"/>
+        </svg>
+      </a>
+      
+      <a class="footer-social__link" href="/feed.xml" aria-label="RSS">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M6.18 15.64a2.18 2.18 0 110 4.36 2.18 2.18 0 010-4.36zM4 4.44A15.56 15.56 0 0119.56 20h-2.83A12.73 12.73 0 004 7.27V4.44zm0 5.66a9.9 9.9 0 019.9 9.9h-2.83A7.07 7.07 0 004 12.93V10.1z"/>
+        </svg>
+      </a>
+    </div>
+
+    
+    <div class="footer-copyright">
+      <p>&copy; 2026 述尔. All rights reserved.</p>
+    </div>
+
+    
+    
+
+    
+    <div class="footer-powered">
+      <span>Powered by <a href="https://gridea.dev" target="_blank" rel="noopener noreferrer">Gridea Pro</a></span>
+    </div>
+
+  </div>
+</footer>
+
+  
+  <div class="search-overlay" id="searchOverlay" style="display:none;">
+  <div class="search-modal">
+    <div class="search-header">
+      <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+      <input type="text" class="search-input" id="searchInput" placeholder="搜索文章..." autocomplete="off" />
+      <span class="search-kbd">&#8984;K</span>
+      <button class="search-close" id="searchClose" type="button" aria-label="关闭搜索">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+    <div class="search-results" id="searchResults"></div>
+  </div>
+</div>
+
+<script src="/scripts/search.js"></script>
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

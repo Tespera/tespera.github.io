@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link rel="stylesheet" href="/styles/main.min.css">
+
+
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+
+<meta name="description" content="一个产品经理的碎碎念 | 温故而知新">
+<meta property="og:site_name" content="述尔">
+<meta property="og:title" content="述尔">
+<meta property="og:description" content="一个产品经理的碎碎念 | 温故而知新">
+
+<meta property="og:image" content="/images/avatar.png">
+
+<meta property="og:url" content="https://are.ink">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="述尔">
+<meta name="twitter:description" content="一个产品经理的碎碎念 | 温故而知新">
+
+<meta name="twitter:image" content="/images/avatar.png">
+
+
+  <title>为什么 Chat 模式正在消亡：Agentic Workflow 的崛起 | 述尔</title>
+  
+<meta property="og:title" content="为什么 Chat 模式正在消亡：Agentic Workflow 的崛起" />
+<meta property="og:type" content="article" />
+
+
+<meta name="description" content="&amp;ldquo;Prompt Engineering&amp;rdquo; 已死，&amp;ldquo;Flow Engineering&amp;rdquo; 当立？ 在过去的一年里，我们见证了大语言模型（LLM）能力的爆发。然而，仅仅通过 &amp;ldquo;Chat&amp;rdquo; 窗口与 AI 对话，正在迅速触及其实用性的天花板。对于写诗、生成简">
+<meta name="keywords" content="述尔，Gridea  Pro，Gridea，产品经理">
+<link rel="canonical" href="https://are.ink/post/agentic-workflow-paradigm-shift/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"为什么 Chat 模式正在消亡：Agentic Workflow 的崛起","url":"https://are.ink/post/agentic-workflow-paradigm-shift/","description":"\u0026ldquo;Prompt Engineering\u0026rdquo; 已死，\u0026ldquo;Flow Engineering\u0026rdquo; 当立？ 在过去的一年里，我们见证了大语言模型（LLM）能力的爆发。然而，仅仅通过 \u0026ldquo;Chat\u0026rdquo; 窗口与 AI 对话，正在迅速触及其实用性的天花板。对于写诗、生成简","datePublished":"2026-02-13T15:35:00Z","dateModified":"2026-03-06T00:33:11Z","author":{"@type":"Person","name":"述尔"},"publisher":{"@type":"Organization","name":"述尔"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://are.ink","name":"述尔","position":1},{"@type":"ListItem","item":"https://are.ink/post/agentic-workflow-paradigm-shift/","name":"为什么 Chat 模式正在消亡：Agentic Workflow 的崛起","position":2}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1SBXPCEK36"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-1SBXPCEK36');</script>
+<meta name="google-site-verification" content="googlea4223896f417412f.html">
+<script>var _hmt=_hmt||[];(function(){var hm=document.createElement("script");hm.src="https://hm.baidu.com/hm.js?4b792e215f23cf68ed571462a263feb3";var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(hm,s);})();</script>
+</head>
+<body class="flavor-theme">
+
+  <header class="site-header" id="siteHeader">
+  <div class="header-inner">
+    <div class="top-bar">
+
+      
+      <div class="top-bar__left">
+        
+        <a href="https://are.ink" class="site-avatar-link" aria-label="返回首页">
+          <img class="site-avatar" src="/images/avatar.png" alt="述尔" />
+        </a>
+        
+        <a href="https://are.ink" class="site-name-link">述尔</a>
+      </div>
+
+      
+      <nav class="top-bar__nav" id="sectionBar">
+        
+        
+        <a class="nav-item" href="/">首页</a>
+        
+        <a class="nav-item" href="/post">博客</a>
+        
+        <a class="nav-item" href="/memos">闪念</a>
+        
+        <a class="nav-item" href="/tags">标签</a>
+        
+        <a class="nav-item" href="/link">友链</a>
+        
+        <a class="nav-item" href="/post/about">关于</a>
+        
+        
+      </nav>
+
+      
+      <div class="top-bar__right">
+        <button class="btn-icon btn-search search-btn" id="btnSearch" type="button" aria-label="搜索">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+        </button>
+        <button class="btn-icon btn-nav-toggle mobile-only" id="btnNavToggle" type="button" aria-label="切换导航">
+          <div class="hamburger" id="hamburger">
+            <span class="hamburger__line hamburger__line--top"></span>
+            <span class="hamburger__line hamburger__line--bottom"></span>
+          </div>
+        </button>
+      </div>
+
+    </div>
+  </div>
+</header>
+
+
+<div class="header-spacer"></div>
+
+<script>
+(function(){
+  var btn = document.getElementById('btnNavToggle');
+  var nav = document.getElementById('sectionBar');
+  var hamburger = document.getElementById('hamburger');
+  if (!btn || !nav) return;
+  btn.addEventListener('click', function(){
+    nav.classList.toggle('top-bar__nav--open');
+    if (hamburger) hamburger.classList.toggle('is-active');
+  });
+  nav.querySelectorAll('.nav-item').forEach(function(item){
+    item.addEventListener('click', function(){
+      nav.classList.remove('top-bar__nav--open');
+      if (hamburger) hamburger.classList.remove('is-active');
+    });
+  });
+})();
+</script>
+
+  <main class="site-main" role="main">
+    
+<article class="article-container">
+  <header class="article-header">
+    <h1 class="article-title">为什么 Chat 模式正在消亡：Agentic Workflow 的崛起</h1>
+    <div class="article-meta">
+      
+      
+      <a href="/category/Deep Dive/" class="article-meta__category">Deep Dive</a>
+      
+      
+      <span class="article-meta__sep">·</span>
+      
+      <span class="article-meta__item">2026年02月13日</span>
+      
+      <span class="article-meta__sep">·</span>
+      <span class="article-meta__item">2 分钟阅读</span>
+      
+    </div>
+    
+    <div class="article-header__tags">
+      
+      <a href="/tag/Agent/" class="tag-pill tag-pill--sm">Agent</a>
+      
+      <a href="/tag/LLM/" class="tag-pill tag-pill--sm">LLM</a>
+      
+      <a href="/tag/Flow Engineering/" class="tag-pill tag-pill--sm">Flow Engineering</a>
+      
+      <a href="/tag/Workflow/" class="tag-pill tag-pill--sm">Workflow</a>
+      
+    </div>
+    
+  </header>
+
+  
+
+  <div class="article-content">
+    <blockquote>
+<p>&ldquo;Prompt Engineering&rdquo; 已死，&ldquo;Flow Engineering&rdquo; 当立？</p>
+</blockquote>
+<p>在过去的一年里，我们见证了大语言模型（LLM）能力的爆发。然而，仅仅通过 &ldquo;Chat&rdquo; 窗口与 AI 对话，正在迅速触及其实用性的天花板。对于写诗、生成简单代码或回答百科问题，Zero-shot（零样本）提示效果尚可；但面对复杂的现实世界任务——如构建一个完整的 Web 应用、撰写一份长篇市场调研或调试这类复杂的代码库——单一的 Prompt 往往力不从心。</p>
+<p>这就是为什么我们需要从 <strong>Chat</strong> 转向 <strong>Agentic Workflow（代理工作流）</strong>。</p>
+<h3 id="heading">从概率到确定性的桥梁</h3>
+<p>LLM 本质上是一个概率预测机。它不知道“正确答案”，它只知道“下一个最可能的词”。这种概率性特征在创意生成时是优势，但在要求严谨逻辑的任务中通过一次生成得到完美结果的概率微乎其微。</p>
+<p>Agentic Workflow 的核心思想不是追求模型“一次做对”，而是设计一个<strong>允许模型“做错并纠正”的闭环系统</strong>。</p>
+<h3 id="heading-1">核心模式：反思与工具使用</h3>
+<p>如果要让 AI 真正变得智能，我们需要引入两个关键能力：</p>
+<ol>
+<li>
+<p><strong>Reflection (反思)</strong>：<br />
+不仅是生成内容，更要生成对内容的“评价”。就像人类写代码会先写草稿，然后自己 Review 一样。例如，一个 Coding Agent 不应直接输出代码，而应遵循：<code>Write Code -&gt; Run Test -&gt; Read Error -&gt; Refine Code</code> 的循环。这种自我修正机制能显著提升最终输出的质量。</p>
+</li>
+<li>
+<p><strong>Tool Use (工具使用)</strong>：<br />
+幻觉（Hallucination）是 LLM 的顽疾。与其让模型“通过记忆”回答“今天此时此刻的股价”，不如给它一个 <code>get_stock_price()</code> 的工具。当模型学会“承认自己不知道，但知道去哪里查”时，它就从一个“博学的鹦鹉”进化为了“不仅博学而且严谨的研究员”。</p>
+</li>
+</ol>
+<h3 id="flow-engineering">未来：Flow Engineering</h3>
+<p>未来的软件工程可能不再是编写具体的业务逻辑代码，而是编写“认知流程”（Cognitive Flow）。</p>
+<p>我们需要定义：</p>
+<ul>
+<li>Agent 在遇到困难时该向谁求助？（Web Search 还是 Knowledge Base？）</li>
+<li>Agent 完成任务的标准是什么？（通过单元测试还是通过 User Review？）</li>
+<li>多个 Agent (Manager, Coder, Reviewer) 之间如何协作handoff任务？</li>
+</ul>
+<p>这种设计 prompt 之间交互逻辑的工作，我们可以称之为 <strong>Flow Engineering</strong>。比起通过通过复杂的 prompt 去“催眠”模型，精心设计的 Workflow 往往能用更小的模型达到超越更大模型的效果（GPT-3.5 + Good Workflow &gt; GPT-4 Zero-shot）。</p>
+<h3 id="heading-2">结语</h3>
+<p>不要再试图寻找那个“完美的 Prompt”了。去构建一个能容错、能反思、能使用工具的系统吧。这才是通往 AGI 的必经之路。</p>
+<hr />
+<p><em>本文由 Gridea Pro MCP 深度思考模式生成</em></p>
+
+  </div>
+
+  
+  <nav class="post-nav">
+    
+    <a href="/post/why-chat-mode-is-dying-agentic-workflow/" class="post-nav-card post-nav-card--prev">
+      
+      <div class="post-nav-card__body">
+        <span class="post-nav-card__label meta-text">上一篇</span>
+        <span class="post-nav-card__title">Why Chat Mode is Dying: The Rise of Agentic Workflow</span>
+      </div>
+      <span class="post-nav-card__arrow">&larr;</span>
+    </a>
+    
+    
+    <a href="/post/exploring-mcp/" class="post-nav-card post-nav-card--next">
+      <div class="post-nav-card__body">
+        <span class="post-nav-card__label meta-text">下一篇</span>
+        <span class="post-nav-card__title">探索 Model Context Protocol (MCP)：连接 AI 于万物的开放标准</span>
+      </div>
+      
+      <span class="post-nav-card__arrow">&rarr;</span>
+    </a>
+    
+  </nav>
+
+  
+  
+
+
+  
+    <section class="comment-section">
+  <h2 class="comment-section__title">评论</h2>
+  <div id="vcomments"></div>
+  <link rel="stylesheet" href="https://unpkg.com/valine@1/dist/Valine.min.css">
+  <script src="https://unpkg.com/valine@1/dist/Valine.min.js"></script>
+  <script>
+    new Valine({
+      el: '#vcomments',
+      appId: 'dAWkPrxZg50VZ7iV39rrZL5U-MdYXbMMI',
+      appKey: 'YCfYt8rhK8d0mh9vr42YTaA1',
+      serverURLs: 'https://dawkprxz.api.lncldglobal.com',
+      avatar: 'mp',
+      placeholder: '说点什么吧…'
+    });
+    // Valine 内置 locale 不支持覆盖，手动替换 placeholder
+    var linkInput = document.querySelector('#vcomments .vlink');
+    if (linkInput) linkInput.placeholder = '网址(https://)';
+  </script>
+</section>
+
+  
+
+
+
+</article>
+
+  </main>
+
+  <footer class="site-footer">
+  <div class="footer-inner">
+
+    
+    
+    <nav class="footer-nav" aria-label="页脚导航">
+      
+      <a class="footer-nav__link" href="/">首页</a>
+      
+      <a class="footer-nav__link" href="/post">博客</a>
+      
+      <a class="footer-nav__link" href="/memos">闪念</a>
+      
+      <a class="footer-nav__link" href="/tags">标签</a>
+      
+      <a class="footer-nav__link" href="/link">友链</a>
+      
+      <a class="footer-nav__link" href="/post/about">关于</a>
+      
+    </nav>
+    
+
+    
+    <div class="footer-social">
+      
+      <a class="footer-social__link" href="https://github.com/Tespera" target="_blank" rel="noopener noreferrer"
+        aria-label="GitHub">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path
+            d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+        </svg>
+      </a>
+      
+      
+      <a class="footer-social__link" href="https://x.com" target="_blank" rel="noopener noreferrer"
+        aria-label="Twitter/X">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path
+            d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+        </svg>
+      </a>
+      
+      
+      <a class="footer-social__link" href="https://weibo.com" target="_blank" rel="noopener noreferrer"
+        aria-label="微博">
+        <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor">
+          <path d="M10.878 1.093a4.23 4.23 0 0 1 4.031 1.305 4.22 4.22 0 0 1 .886 4.14v.001a.612.612 0 0 1-1.166-.377 3.01 3.01 0 0 0-3.495-3.873.611.611 0 1 1-.256-1.196M3.753 9.465c.548-1.11 1.972-1.74 3.233-1.411 1.304.338 1.971 1.568 1.437 2.764-.541 1.221-2.095 1.875-3.416 1.449-1.271-.411-1.812-1.67-1.254-2.802m2.658.567c.16.066.365-.009.458-.168.088-.16.03-.34-.129-.397-.156-.062-.353.013-.446.168-.09.154-.041.333.117.397m-1.607 1.314c.413.188.963.009 1.219-.4.252-.413.12-.883-.296-1.062-.41-.172-.94.005-1.194.402-.256.4-.135.874.271 1.06"/>
+          <path d="m12.014 7.238.005.001c.919.285 1.941.974 1.939 2.188 0 2.007-2.895 4.535-7.246 4.535C3.393 13.962 0 12.352 0 9.708c0-1.385.876-2.985 2.384-4.493C4.4 3.199 6.751 2.28 7.634 3.165c.39.392.427 1.065.177 1.87-.132.405.38.182.38.182 1.63-.682 3.051-.722 3.57.02.278.397.252.951-.004 1.594-.116.293.035.34.257.407m-10.4 3.101c.172 1.738 2.46 2.936 5.109 2.674 2.647-.26 4.656-1.883 4.482-3.623-.17-1.738-2.458-2.937-5.107-2.674-2.647.263-4.656 1.883-4.484 3.623m11.681-6.484a2.06 2.06 0 0 0-1.962-.634.526.526 0 1 0 .219 1.031 1.008 1.008 0 0 1 1.17 1.296.528.528 0 0 0 1.005.325 2.06 2.06 0 0 0-.432-2.018"/>
+        </svg>
+      </a>
+      
+      <a class="footer-social__link" href="/feed.xml" aria-label="RSS">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M6.18 15.64a2.18 2.18 0 110 4.36 2.18 2.18 0 010-4.36zM4 4.44A15.56 15.56 0 0119.56 20h-2.83A12.73 12.73 0 004 7.27V4.44zm0 5.66a9.9 9.9 0 019.9 9.9h-2.83A7.07 7.07 0 004 12.93V10.1z"/>
+        </svg>
+      </a>
+    </div>
+
+    
+    <div class="footer-copyright">
+      <p>&copy; 2026 述尔. All rights reserved.</p>
+    </div>
+
+    
+    
+
+    
+    <div class="footer-powered">
+      <span>Powered by <a href="https://gridea.dev" target="_blank" rel="noopener noreferrer">Gridea Pro</a></span>
+    </div>
+
+  </div>
+</footer>
+
+  
+  <div class="search-overlay" id="searchOverlay" style="display:none;">
+  <div class="search-modal">
+    <div class="search-header">
+      <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+      <input type="text" class="search-input" id="searchInput" placeholder="搜索文章..." autocomplete="off" />
+      <span class="search-kbd">&#8984;K</span>
+      <button class="search-close" id="searchClose" type="button" aria-label="关闭搜索">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+    <div class="search-results" id="searchResults"></div>
+  </div>
+</div>
+
+<script src="/scripts/search.js"></script>
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
