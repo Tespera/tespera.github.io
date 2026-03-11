@@ -243,6 +243,7 @@
 <p>本文将从分层结构、领域建模、泛型持久化、多引擎渲染、插件化扩展等五个维度，深入分析 Gridea Pro 后端的架构设计思路与实现细节。</p>
 <hr />
 <h2 id="heading-1">一、分层架构：四层边界，单向依赖</h2>
+<p><img src="https://are.ink/post-images/1773230344637478000_0.png" alt="" /></p>
 <p>Gridea Pro 后端采用经典的四层架构，自上而下依次为：</p>
 <pre><code>Facade → Service / Engine → Repository → Domain
 </code></pre>

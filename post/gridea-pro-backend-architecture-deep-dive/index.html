@@ -37,7 +37,7 @@
 <meta name="description" content="引言 Gridea Pro 是一款基于 Wails 框架构建的桌面端静态博客管理工具。用户在本地编辑文章、配置主题，系统将全部内容渲染为静态 HTML 后部署到 GitHub Pages、Gitee Pages 或 Vercel 等托管平台。 这套系统在工程上面临一个有趣的矛盾：它是一个桌面应用，数据持久化在本地 JS">
 <meta name="keywords" content="述尔，Gridea  Pro，Gridea，静态博客，产品经理">
 <link rel="canonical" href="https://are.ink/post/gridea-pro-backend-architecture-deep-dive/">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Gridea Pro 后端架构深度解析：一个桌面端静态博客系统的工程哲学","url":"https://are.ink/post/gridea-pro-backend-architecture-deep-dive/","description":"引言 Gridea Pro 是一款基于 Wails 框架构建的桌面端静态博客管理工具。用户在本地编辑文章、配置主题，系统将全部内容渲染为静态 HTML 后部署到 GitHub Pages、Gitee Pages 或 Vercel 等托管平台。 这套系统在工程上面临一个有趣的矛盾：它是一个桌面应用，数据持久化在本地 JS","image":"/post-images/gridea-pro-backend-architecture-deep-dive.jpg","datePublished":"2026-03-07T17:16:29+08:00","dateModified":"2026-03-11T01:11:46+08:00","author":{"@type":"Person","name":"述尔"},"publisher":{"@type":"Organization","name":"述尔"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Gridea Pro 后端架构深度解析：一个桌面端静态博客系统的工程哲学","url":"https://are.ink/post/gridea-pro-backend-architecture-deep-dive/","description":"引言 Gridea Pro 是一款基于 Wails 框架构建的桌面端静态博客管理工具。用户在本地编辑文章、配置主题，系统将全部内容渲染为静态 HTML 后部署到 GitHub Pages、Gitee Pages 或 Vercel 等托管平台。 这套系统在工程上面临一个有趣的矛盾：它是一个桌面应用，数据持久化在本地 JS","image":"/post-images/gridea-pro-backend-architecture-deep-dive.jpg","datePublished":"2026-03-07T17:16:29+08:00","dateModified":"2026-03-11T19:59:14+08:00","author":{"@type":"Person","name":"述尔"},"publisher":{"@type":"Organization","name":"述尔"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://are.ink","name":"述尔","position":1},{"@type":"ListItem","item":"https://are.ink/post/gridea-pro-backend-architecture-deep-dive/","name":"Gridea Pro 后端架构深度解析：一个桌面端静态博客系统的工程哲学","position":2}]}</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-1SBXPCEK36"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-1SBXPCEK36');</script>
@@ -138,7 +138,7 @@
       <span class="article-meta__item">2026年03月07日</span>
       
       <span class="article-meta__sep">·</span>
-      <span class="article-meta__item">17 分钟阅读</span>
+      <span class="article-meta__item">18 分钟阅读</span>
       
     </div>
     
@@ -169,6 +169,7 @@
 <p>本文将从分层结构、领域建模、泛型持久化、多引擎渲染、插件化扩展等五个维度，深入分析 Gridea Pro 后端的架构设计思路与实现细节。</p>
 <hr />
 <h2 id="heading-1">一、分层架构：四层边界，单向依赖</h2>
+<p><img src="/post-images/1773230344637478000_0.png" alt="" /></p>
 <p>Gridea Pro 后端采用经典的四层架构，自上而下依次为：</p>
 <pre><code>Facade → Service / Engine → Repository → Domain
 </code></pre>
