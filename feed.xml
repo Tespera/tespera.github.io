@@ -305,43 +305,54 @@ deploy.GitProvider.Deploy()                    [Deploy 层]
       <enclosure url="https://are.ink/post-images/gridea-pro-backend-architecture-deep-dive.jpg" length="0" type="image/jpeg"></enclosure>
     </item>
     <item>
-      <title>从手动上传到一键部署：Gridea Pro CDN 图床自动上传功能的设计与实现</title>
+      <title>从零实现 CDN 图床：Gridea Pro 如何让图片管理彻底自动化</title>
       <link>https://are.ink/post/gridea-pro-cdn/</link>
       <guid isPermaLink="true">https://are.ink/post/gridea-pro-cdn/</guid>
       <pubDate>Thu, 12 Mar 2026 20:00:00 +0800</pubDate>
-      <description><![CDATA[<p>你刚写完一篇图文并茂的技术博客，插入了 12 张截图，点击「部署」，静静等待站点上线。打开页面一看——所有图片全是裂开的。</p>
-<p>你猛然想起：图片还躺在本地，忘了手动上传到 CDN 仓库。</p>
-<p>于是你打开 GitHub，一个一个拖文件进去，等 commit 完成，再回来重新部署。下次写文章，同样的流程再来一遍。</p>
-<p><strong>这件事不应该是手动的。</strong></p>
-<p>这篇文章记录了我们如何在 Gridea Pro 中实现 CDN 图床的自动上传功能——从原理分析、方案设计到最终落地，完整复盘整个过程。</p>
+      <description><![CDATA[<p>试想一下，你的静态博客跑了大半年，文章越写越多，图片也越来越多。</p>
+<p>某天你注意到一个问题：站点仓库已经 800MB 了，<code>git clone</code> 要等两分钟，Vercel 构建时间从 30 秒涨到了 3 分钟。你翻了一下站点文件，绝大部分体积都是图片。</p>
+<p>更尴尬的是，来自东南亚的读者可能会反馈：你的文章写得很好，但站点、图片都加载太慢了，经常转半天圈才出来。</p>
+<p>问题的根源很简单——<strong>图片和站点代码混在一起</strong>。每次部署把全部内容推到一个仓库，图片没有经过 CDN 加速，全球用户都在从同一个源站拉取。</p>
+<p>所以有没有好的办法可以解决呢？</p>
+<p>有的。CDN 加速。</p>
+<p>这篇文章聊聊 Gridea Pro CDN 这个功能的设计思路、核心决策，以及我们对「好的图片管理体验」的理解。</p>
 <hr />
-<h2 id="cdn-">一、先搞清楚：CDN 图床到底在做什么</h2>
-<p>在聊实现之前，先厘清几个概念。</p>
-<h3 id="heading">静态博客的图片困境</h3>
-<p>Gridea Pro 是一个本地优先的静态博客客户端。你在本地写 Markdown，插入图片，图片存储在本地的 <code>post-images/</code> 目录里。本地预览时一切正常，因为图片就在你的硬盘上。</p>
-<p>但部署到线上就不一样了。静态站点托管平台（GitHub Pages、Vercel、Netlify）托管的是 HTML/CSS/JS，图片如果也塞进去，仓库会迅速膨胀，clone 变慢，构建超时。</p>
-<p><strong>CDN 图床</strong>就是解决方案：把图片存到一个专门的 GitHub 仓库，通过 jsDelivr 这样的 CDN 服务加速访问。渲染 HTML 时，把本地路径 <code>/post-images/cover.png</code> 替换为 <code>https://cdn.jsdelivr.net/gh/user/repo@main/post-images/cover.png</code>。</p>
-<h3 id="-url-">之前的方案：只做 URL 重写</h3>
-<p>Gridea Pro 之前已经有 CDN 功能，但只做了「最后一公里」——HTML 渲染时的 URL 重写。它假设你已经手动把图片上传到了 CDN 仓库。</p>
-<p>这带来三个问题：</p>
+<h2 id="-cdn">一、有没有 CDN，到底差在哪</h2>
+<p>先澄清一个认知：<strong>没有 CDN，图片也是能正常显示的。</strong> 部署时图片会跟着 HTML 一起推到托管平台，访问时不会加载不出来图片，只是很慢，当然有时候也可能裂图。</p>
+<p>那 CDN 解决的是什么？</p>
+<p>两件事：</p>
+<p><strong>第一，仓库体积。</strong> 静态站点仓库应该只放生成后的 HTML/CSS/JS，这些都是文本，压缩后很小。但图片是二进制文件，一张截图几百 KB 到几 MB，累积下来仓库会迅速膨胀。仓库越大，clone 越慢，CI/CD 构建越慢，协作体验越差。</p>
+<p><strong>第二，访问速度。</strong> GitHub Pages 或 Vercel 的服务器集中在少数几个区域。没有 CDN 时，一个深圳的读者和一个巴西的读者都从同一个源站拉图片，延迟差异巨大。CDN 把图片分发到全球节点，用户从最近的节点加载，速度可以快几倍甚至十几倍。</p>
+<p>所以 CDN 图床的本质是<strong>把图片从站点仓库中剥离出来，存到一个专门的地方，通过全球加速网络分发</strong>。</p>
+<p>听起来不复杂，但对普通用户来说，手动操作这套流程意味着：</p>
 <ol>
-<li><strong>每次部署前要手动上传图片</strong>，容易遗漏</li>
-<li><strong>新增图片需要记住哪些还没上传</strong>，心智负担重</li>
-<li><strong>多设备写作时更麻烦</strong>，每台设备都要手动同步</li>
+<li>创建一个 GitHub 仓库专门存图片</li>
+<li>每次新增图片后手动上传到这个仓库</li>
+<li>记住哪些图片已上传、哪些还没有</li>
+<li>确保 HTML 里的图片路径正确指向 CDN 地址</li>
 </ol>
-<p>我们要做的，就是补上「上传」这一环。</p>
+<p>但是，很麻烦，对吧？</p>
+<p><strong>这就不应该是用户操心的事。</strong></p>
 <hr />
-<h2 id="heading-1">二、方案设计：看似简单，实则有坑</h2>
-<h3 id="heading-2">核心需求拆解</h3>
+<h2 id="heading">二、我们想要的最终体验</h2>
+<p>在动手之前，我们先定义了理想的用户体验：</p>
+<blockquote>
+<p>用户只需要做一次配置（填个 Token、选个路径模式），之后每次部署时，图片自动上传到 CDN 仓库，HTML 中的路径自动替换为 CDN 地址，全程无感。</p>
+</blockquote>
+<p>拆解下来，有四件事要做：</p>
 <ol>
-<li><strong>部署时自动上传</strong>：渲染完 HTML 后、推送到托管平台前，自动把媒体文件上传到 CDN 仓库</li>
-<li><strong>可配置的保存路径</strong>：支持按年月归档，避免文件堆积</li>
-<li><strong>GitHub Token 配置</strong>：通过 API 上传需要认证</li>
-<li><strong>测试上传验证</strong>：配置完能立即验证是否生效</li>
-<li><strong>本地预览不受影响</strong>：预览时继续使用本地路径</li>
+<li><strong>CDN 配置界面</strong>：让用户填写 GitHub 仓库信息、Token、选择路径模式</li>
+<li><strong>自动上传</strong>：部署时自动扫描并上传媒体文件到 CDN 仓库</li>
+<li><strong>URL 重写</strong>：渲染 HTML 时把 <code>/post-images/xx</code> 替换为 <code>https://cdn.jsdelivr.net/gh/user/repo@main/post-images/xx</code></li>
+<li><strong>测试验证</strong>：配置完就能立即测试，不用等到部署才发现配错了</li>
 </ol>
-<h3 id="heading-3">保存路径的设计</h3>
-<p>参考 uPic 等成熟图床工具，我们设计了路径模板变量系统：</p>
+<p>同时有一个硬约束：<strong>本地预览不能受影响</strong>。预览时图片必须继续走本地路径，只有部署上线后才使用 CDN 地址。</p>
+<p>为什么这么做呢？就是为了本地预览时更快，部署到线上时自动经过 CDN 加速。</p>
+<hr />
+<h2 id="heading-1">三、设计过程中的几个关键决策</h2>
+<h3 id="heading-2">决策一：路径模板，给用户可控的灵活度</h3>
+<p>图片上传到 CDN 仓库后放在哪？全堆在根目录显然不行，文件多了就是灾难。</p>
+<p>我们参考了 uPic、PicGo 等成熟图床工具的做法，设计了<strong>路径模板变量系统</strong>。用户可以用变量组合出自己想要的目录结构：</p>
 <table>
 <thead>
 <tr>
@@ -377,166 +388,101 @@ deploy.GitProvider.Deploy()                    [Deploy 层]
 <td>.png</td>
 </tr>
 <tr>
-<td><code>{suffix}</code></td>
-<td>不带点的扩展名</td>
-<td>png</td>
-</tr>
-<tr>
 <td><code>{random}</code></td>
 <td>8 位随机字符串</td>
 <td>a1b2c3d4</td>
 </tr>
-<tr>
-<td><code>{since_second}</code></td>
-<td>Unix 时间戳（秒）</td>
-<td>1773504000</td>
-</tr>
 </tbody>
 </table>
-<p>预设了 4 种常用模式：</p>
-<pre><code>{year}/{month}/{filename}{.suffix}           → 2026/03/cover.png
-{year}/{month}/{day}/{filename}{.suffix}     → 2026/03/12/cover.png
-blog/images/{year}/{month}/{filename}{.suffix} → blog/images/2026/03/cover.png
-{year}/{filename}-{random}{.suffix}          → 2026/cover-a1b2c3d4.png
+<p>预设了 4 种常用模式，覆盖大多数人的需求：</p>
+<pre><code>{year}/{month}/{filename}{.suffix}               → 2026/03/cover.png
+{year}/{month}/{day}/{filename}{.suffix}          → 2026/03/12/cover.png
+blog/images/{year}/{month}/{filename}{.suffix}    → blog/images/2026/03/cover.png
+{year}/{filename}-{random}{.suffix}               → 2026/cover-a1b2c3d4.png
 </code></pre>
-<p>也支持完全自定义。</p>
-<h3 id="heading-4">一个差点踩进去的坑：批量上传的路径问题</h3>
-<p>最初的设计是：部署时也用 savePath 模板来决定每个文件的远程路径。但仔细一想，这有严重问题——</p>
-<p>假设 savePath 是 <code>{year}/{month}/{filename}{.suffix}</code>，1 月份写的文章里的图片上传后路径是 <code>2026/01/post-images/cover.png</code>，CDN base URL 变成 <code>https://cdn.jsdelivr.net/gh/user/repo@main/2026/01</code>。到了 3 月再次部署，路径变成 <code>2026/03</code>，<strong>1 月份的旧图片 URL 全部失效</strong>。</p>
-<p><strong>修正方案</strong>：批量部署上传时，保持原始目录结构不变（<code>post-images/xx</code>、<code>images/xx</code>、<code>media/xx</code>），直接映射到 CDN 仓库根目录。<code>buildCdnBase()</code> 的逻辑不动。savePath 模板仅用于测试上传和未来的编辑器内单图上传场景。</p>
-<p>这样，无论何时部署，HTML 中的 <code>/post-images/cover.png</code> 始终重写为 <code>https://cdn.jsdelivr.net/gh/user/repo@main/post-images/cover.png</code>，路径稳定不变。</p>
+<p>也留了「自定义」选项，高级用户可以随意组合。</p>
+<p>这样做的好处是：对于只想快速配好的用户，选一个预设就行；对于有强迫症的用户，路径完全可控。</p>
+<h3 id="heading-3">决策二：批量上传保持原始结构——一个差点踩进去的坑</h3>
+<p>最初我们的想法是：部署时批量上传也用路径模板来决定每个文件的远程路径。但仔细推演了一遍，发现有严重问题——</p>
+<p>假设模板是 <code>{year}/{month}/{filename}{.suffix}</code>。1 月份部署时图片传到了 <code>2026/01/</code> 下，CDN 地址也带上了 <code>2026/01</code> 前缀。到了 3 月份再部署，前缀变成 <code>2026/03</code>，<strong>所有旧文章里的图片链接全部失效</strong>。</p>
+<p>这是个很隐蔽的坑。如果没有提前想到，等用户用了几个月才发现旧图片打不开，那就是灾难性的体验问题。</p>
+<p><strong>最终方案</strong>：批量部署上传时，完全保持原始目录结构（<code>post-images/xx</code>、<code>images/xx</code>、<code>media/xx</code>），直接映射到 CDN 仓库根目录。路径模板只用在测试上传和未来的编辑器内单图上传场景。</p>
+<p>这样，无论何时部署，<code>/post-images/cover.png</code> 永远对应同一个 CDN 地址，路径稳定，不受时间影响。</p>
+<h3 id="heading-4">决策三：智能去重，不做无用功</h3>
+<p>每次部署都会扫描所有媒体目录，但绝大多数文件上次已经上传过了。如果每次都重新上传，既浪费时间又浪费 API 配额。</p>
+<p>我们的做法是：上传前先计算本地文件的内容指纹，与远程仓库中的文件指纹比对。<strong>内容相同则跳过，内容不同或文件不存在才上传。</strong></p>
+<p>这意味着，即使你的博客有 200 张图片，如果这次只新增了 3 张，实际只会上传 3 个文件。部署速度几乎不受历史图片数量的影响。</p>
+<h3 id="heading-5">决策四：单文件失败不中断部署</h3>
+<p>部署是用户等了很久才触发的操作。如果因为一张图片上传失败（比如网络抖动）就整个中断，让用户重新来过，体验太差了。</p>
+<p>我们选择了<strong>柔性策略</strong>：单个文件上传失败只记录日志继续执行，不中断部署流程。用户可以在部署日志中看到哪些文件失败了，下次部署时会自动重试（因为去重机制检测到文件不存在，会重新上传）。</p>
+<h3 id="heading-6">决策五：有并发但克制</h3>
+<p>多个文件可以并行上传，提升速度。但并发不是越多越好——GitHub API 有速率限制，短时间内请求过密会被拒绝。</p>
+<p>我们设定了 <strong>5 并发</strong>的上限。这个数字是在速度和稳定性之间找到的平衡点：比串行快了数倍，但不至于触发限流。</p>
 <hr />
-<h2 id="heading-5">三、技术实现</h2>
-<h3 id="heading-6">整体架构</h3>
-<pre><code>用户点击部署
-  → 渲染静态站点 (RenderAll)
-  → CDN 上传媒体文件 (UploadMediaForDeploy)  ← 新增
-  → 推送到托管平台 (Deploy)
-</code></pre>
-<p>这个流程嵌入在 <code>DeployService.DeployToRemote()</code> 中，渲染之后、平台部署之前。</p>
-<h3 id="github-contents-api-">GitHub Contents API 上传</h3>
-<p>GitHub 提供了 Contents API 来读写仓库中的单个文件，非常适合我们的场景：</p>
-<p><strong>检查文件是否存在：</strong></p>
-<pre><code>GET /repos/{owner}/{repo}/contents/{path}?ref={branch}
-</code></pre>
-<p><strong>创建或更新文件：</strong></p>
-<pre><code>PUT /repos/{owner}/{repo}/contents/{path}
-{
-  &quot;message&quot;: &quot;Upload post-images/cover.png&quot;,
-  &quot;content&quot;: &quot;&lt;base64 encoded&gt;&quot;,
-  &quot;branch&quot;: &quot;main&quot;,
-  &quot;sha&quot;: &quot;&lt;existing sha if updating&gt;&quot;
-}
-</code></pre>
-<h3 id="sha-">SHA 去重：避免重复上传</h3>
-<p>每次部署都要扫描所有媒体文件，但大多数文件上次已经上传过了。如何避免重复劳动？</p>
-<p>Git 对每个文件（blob）有一个 SHA1 指纹，计算方式是：</p>
-<pre><code>SHA1(&quot;blob {size}\0{content}&quot;)
-</code></pre>
-<p>我们在本地用同样的算法计算文件 SHA，与 GitHub API 返回的 SHA 比对。<strong>相同则跳过，不同才上传</strong>。这样即使有 100 张图片，如果只新增了 2 张，实际只会发起 2 次上传请求。</p>
-<p>核心代码：</p>
-<pre><code class="language-go">func gitBlobSHA(data []byte) string {
-    header := fmt.Sprintf(&quot;blob %d\x00&quot;, len(data))
-    h := sha1.New()
-    h.Write([]byte(header))
-    h.Write(data)
-    return hex.EncodeToString(h.Sum(nil))
-}
-</code></pre>
-<h3 id="heading-7">并发控制</h3>
-<p>扫描出的文件可能很多，串行上传太慢。我们用 Go 的 <code>errgroup</code> + channel 实现了 5 并发的上传管线：</p>
-<pre><code class="language-go">g, gCtx := errgroup.WithContext(ctx)
-sem := make(chan struct{}, 5) // 限制 5 并发
+<h2 id="heading-7">四、完整的工作流程</h2>
+<p>配置完成后，用户的日常写作体验是这样的：</p>
+<pre><code>1. 打开编辑器，写文章，拖入图片
+   → 图片保存到本地 post-images/ 目录
 
-for _, file := range filesToUpload {
-    f := file
-    g.Go(func() error {
-        sem &lt;- struct{}{}        // 获取信号量
-        defer func() { &lt;-sem }() // 释放信号量
-        return s.uploadToGitHub(gCtx, setting, f.localPath, f.remotePath)
-    })
-}
+2. 点击预览
+   → 直接读本地文件，图片正常显示，毫秒级响应
 
-g.Wait()
+3. 点击部署（这是唯一需要做的操作）
+   ① 渲染静态站点
+      → HTML 中的图片路径自动替换为 CDN 地址
+   ② 扫描媒体目录，智能上传
+      → 新文件上传到 CDN 仓库
+      → 已存在且内容相同的文件自动跳过
+      → 5 并发，失败不中断
+   ③ 推送 HTML 到托管平台
+
+4. 用户访问线上站点
+   → 图片从 jsDelivr CDN 全球节点加载，速度飞快
 </code></pre>
-<p>为什么限制 5 而不是更多？GitHub API 有速率限制（认证用户 5000 次/小时），并发太高容易触发 secondary rate limit（短时间内请求过密）。5 是一个安全又高效的平衡点。</p>
-<h3 id="heading-8">路径模板解析</h3>
-<p>解析逻辑很直观，用 <code>strings.NewReplacer</code> 做一次性替换：</p>
-<pre><code class="language-go">func ResolveSavePath(template, filename string) string {
-    now := time.Now()
-    ext := filepath.Ext(filename)
-    nameOnly := strings.TrimSuffix(filename, ext)
-
-    replacer := strings.NewReplacer(
-        &quot;{year}&quot;, now.Format(&quot;2006&quot;),
-        &quot;{month}&quot;, now.Format(&quot;01&quot;),
-        &quot;{day}&quot;, now.Format(&quot;02&quot;),
-        &quot;{filename}&quot;, nameOnly,
-        &quot;{.suffix}&quot;, ext,
-        &quot;{suffix}&quot;, strings.TrimPrefix(ext, &quot;.&quot;),
-        &quot;{random}&quot;, randomString(8),
-        // ... 更多变量
-    )
-
-    return replacer.Replace(template)
-}
-</code></pre>
-<p>每个文件独立解析，<code>{random}</code> 每次调用生成不同值，保证文件名不冲突。</p>
+<p>全程只需要一次点击。没有手动上传，没有路径拼接，没有遗漏担忧。</p>
 <hr />
-<h2 id="heading-9">四、前端交互设计</h2>
-<h3 id="token-">Token 输入</h3>
-<p>GitHub Token 是敏感信息，默认用密码框遮盖，右侧有眼睛图标切换可见性。这是个小细节，但体验差距很大——谁也不想在演示屏幕上暴露自己的 Token。</p>
-<h3 id="heading-10">保存路径选择</h3>
-<p>用下拉框提供 4 个预设方案，底部还有「自定义」选项。选择自定义后展开输入框，下方提示支持的变量列表。这样既照顾了只想快速配置的用户，也给高级用户留了空间。</p>
-<h3 id="heading-11">测试上传</h3>
-<p>配置完点「测试上传」，会上传一个小的测试文件到 CDN 仓库，成功后 toast 显示完整的 CDN 访问 URL。用户可以直接点击验证是否能访问。这比「保存后祈祷部署时能用」的体验好太多了。</p>
-<p>测试按钮只在满足条件时显示（CDN 已启用 + jsDelivr 模式 + Token 已填写），避免无效点击。</p>
+<h2 id="heading-8">五、前端体验的细节打磨</h2>
+<p>功能做对了只是及格，体验做好了才是满分。我们在 UI 上也花了一些心思。</p>
+<p><strong>Token 输入框</strong>：默认密码遮盖，旁边有眼睛图标切换可见性。一个小细节，但在演示或录屏时能避免泄露敏感信息。</p>
+<p><strong>保存路径选择</strong>：下拉框提供 4 个预设方案，底部有「自定义」选项。选择自定义后展开输入框，下方提示支持的变量列表。既照顾新手，也给老手留空间。</p>
+<p><strong>测试上传按钮</strong>：配置完点一下，立即上传一个测试文件到 CDN 仓库，成功后 toast 显示完整的 CDN 访问 URL。<strong>先保存配置再测试</strong>，保证测试用的是最新配置。按钮只在满足条件时显示（CDN 已启用 + Token 已填写），避免无效操作。</p>
+<p><strong>提示信息</strong>：用主题色柔和呈现，简明扼要地告知用户「部署时将自动上传媒体文件」，不制造焦虑，给人信心。</p>
 <hr />
-<h2 id="heading-12">五、完整数据流回顾</h2>
-<pre><code>1. 用户在 CDN 设置页配置：
-   - 启用 CDN ✓
-   - Provider: jsDelivr
-   - GitHub User/Repo/Branch
-   - GitHub Token
-   - 保存路径模板
-
-2. 用户写文章，插入图片 → 图片保存到本地 post-images/
-
-3. 本地预览 → 直接读本地文件，图片正常显示
-
-4. 用户点击部署：
-   ① RenderAll() — 生成 HTML，CDN URL 重写生效
-   ② UploadMediaForDeploy() — 扫描 post-images/、images/、media/
-      → 逐个计算 SHA，与 GitHub 比对
-      → 新文件或内容变更的文件上传到 CDN 仓库
-      → 内容相同的文件跳过
-   ③ Deploy() — 推送 HTML 到托管平台
-
-5. 用户访问线上站点 → 图片从 jsDelivr CDN 加载 ✓
-</code></pre>
+<h2 id="heading-9">六、架构上的考量</h2>
+<p>在 Gridea Pro 的分层架构中，CDN 功能横跨了多个层次：</p>
+<ul>
+<li><strong>领域层</strong>定义了 CDN 配置的数据结构（仓库信息、Token、路径模板）</li>
+<li><strong>仓库层</strong>负责配置的持久化存储（JSON 文件）</li>
+<li><strong>服务层</strong>包含两个核心能力：上传服务（文件扫描、去重、并发上传）和渲染引擎中的 URL 重写</li>
+<li><strong>外观层</strong>将上传能力暴露给前端（测试上传接口）</li>
+<li><strong>部署流程</strong>在渲染和推送之间编排上传步骤</li>
+</ul>
+<p>这样的分层让每个职责都清晰独立。URL 重写不关心文件怎么上传，上传服务不关心 HTML 怎么渲染，部署流程只负责编排顺序。未来如果要支持更多 CDN 提供商（比如阿里云 OSS、七牛云），只需要在上传服务层新增实现，其他层完全不用动。</p>
 <hr />
-<h2 id="heading-13">六、一些取舍和思考</h2>
-<h3 id="-github-contents-api--git-push">为什么用 GitHub Contents API 而不是 Git Push</h3>
-<p>Contents API 的好处是简单——不需要在用户机器上 clone CDN 仓库，不需要处理 git 冲突，每个文件独立上传。坏处是单次请求有 100MB 限制（但博客图片很少超过这个），以及大量文件时的速率问题。</p>
-<p>对于博客图床这个场景，Contents API 是更合适的选择。如果未来需要支持更大规模的文件（比如视频），可以考虑切换到 Git Data API（blob + tree + commit），一次 commit 上传所有文件。</p>
-<h3 id="heading-14">为什么单文件失败不中断部署</h3>
-<p>部署是用户等了很久才触发的操作，如果因为一张图片上传失败就整个中断，体验很差。我们选择记录警告日志但继续执行。用户可以在部署日志中看到哪些文件失败了，下次部署会自动重试。</p>
-<h3 id="heading-15">为什么不在编辑器里实时上传</h3>
-<p>这是有意的阶段性设计。编辑器内粘贴图片时实时上传到 CDN 是更好的体验，但需要修改编辑器的图片处理逻辑、处理上传进度显示、处理网络异常回退等。我们先把「部署时批量上传」做稳定，编辑器内上传作为后续迭代。</p>
-<p>保存路径模板的设计已经为这个场景预留了——它可以给每个文件生成唯一的远程路径，正是编辑器内单图上传需要的。</p>
+<h2 id="heading-10">七、为什么不在编辑器里实时上传</h2>
+<p>有人可能会问：为什么不在编辑器里粘贴图片时就实时上传到 CDN？</p>
+<p>这确实是更理想的体验，PicGo 就是这么做的。但我们有意把它放到了下一阶段：</p>
+<ol>
+<li><strong>网络依赖</strong>：实时上传意味着写作过程依赖网络。离线写作是 Gridea Pro 的核心优势之一，我们不想在这个场景引入网络依赖</li>
+<li><strong>交互复杂度</strong>：需要处理上传进度、失败重试、网络异常回退（回退到本地路径），编辑器的复杂度会显著增加</li>
+<li><strong>先把基础做稳</strong>：部署时批量上传是更安全、更可控的方案，先跑通这条路，积累经验后再做编辑器内上传</li>
+</ol>
+<p>值得一提的是，路径模板系统的设计已经为这个场景做了预留——它可以为每个文件生成独立的远程路径，正是编辑器内单图上传需要的能力。</p>
 <hr />
-<h2 id="heading-16">七、结语</h2>
-<p>这个功能的核心价值其实就一句话：<strong>让部署真正成为一键操作</strong>。</p>
-<p>之前的 CDN 功能只做了 URL 重写，相当于给了你一把锁但没给钥匙——你还得自己把图片搬到 CDN 仓库。现在补上了「搬运」这一步，整个链路才真正闭环。</p>
-<p>从技术角度看，这个功能并不复杂：一个 HTTP 客户端调用 GitHub API，加上 SHA 去重和并发控制。但好的工具设计往往不是炫技，而是把用户不应该操心的事情自动化掉。</p>
-<p>写博客应该专注在内容上，而不是和基础设施搏斗。</p>
+<h2 id="heading-11">八、结语</h2>
+<p>CDN 图床解决的不是「图片能不能显示」的问题，而是「图片能不能又快又省心地显示」的问题。</p>
+<p>仓库体积控制、全球加速访问、自动化上传——这三件事单拿出来都不新鲜，但把它们串成一条无感的链路，让用户只需点一次部署按钮，剩下的全自动完成，这才是我们想做到的。</p>
+<p>好的工具应该是透明的——你感受不到它的存在，但它在背后把一切都安排好了。写博客应该专注在内容上，而不是和基础设施搏斗。</p>
+<p>从零到一实现这个功能，最大的收获不是写了多少代码，而是在设计过程中反复追问：<strong>用户真正需要的是什么？哪些复杂度应该由工具承担，而不是转嫁给用户？</strong></p>
+<p>答案往往很简单：能自动的就自动，能省的就省，能不让用户思考的就别让他们思考。</p>
 ]]></description>
       <category>Gridea Pro</category>
       <category>CDN</category>
       <category>图床</category>
-      <category>GitHub API</category>
-      <category>技术实现</category>
+      <category>设计理念</category>
       <category>静态博客</category>
+      <category>产品设计</category>
+      <enclosure url="https://are.ink/post-images/gridea-pro-cdn.png" length="0" type="image/png"></enclosure>
     </item>
     <item>
       <title>地球上和 Claude 对话最多的人，是一位哲学家</title>
