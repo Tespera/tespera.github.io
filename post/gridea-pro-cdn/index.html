@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link rel="stylesheet" href="/styles/main.min.css">
+
+
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+
+<meta name="description" content="一个产品经理的碎碎念 | 温故而知新">
+<meta property="og:site_name" content="述尔">
+<meta property="og:title" content="述尔">
+<meta property="og:description" content="一个产品经理的碎碎念 | 温故而知新">
+
+<meta property="og:image" content="/images/avatar.png">
+
+<meta property="og:url" content="https://are.ink">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="述尔">
+<meta name="twitter:description" content="一个产品经理的碎碎念 | 温故而知新">
+
+<meta name="twitter:image" content="/images/avatar.png">
+
+
+  <title>从手动上传到一键部署：Gridea Pro CDN 图床自动上传功能的设计与实现 | 述尔</title>
+  
+<meta property="og:title" content="从手动上传到一键部署：Gridea Pro CDN 图床自动上传功能的设计与实现" />
+<meta property="og:type" content="article" />
+
+
+<meta name="description" content="你刚写完一篇图文并茂的技术博客，插入了 12 张截图，点击「部署」，静静等待站点上线。打开页面一看——所有图片全是裂开的。 你猛然想起：图片还躺在本地，忘了手动上传到 CDN 仓库。 于是你打开 GitHub，一个一个拖文件进去，等 commit 完成，再回来重新部署。下次写文章，同样的流程再来一遍。 这件事不应该是手">
+<meta name="keywords" content="述尔，Gridea  Pro，Gridea，静态博客，产品经理">
+<link rel="canonical" href="https://are.ink/post/gridea-pro-cdn/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"从手动上传到一键部署：Gridea Pro CDN 图床自动上传功能的设计与实现","url":"https://are.ink/post/gridea-pro-cdn/","description":"你刚写完一篇图文并茂的技术博客，插入了 12 张截图，点击「部署」，静静等待站点上线。打开页面一看——所有图片全是裂开的。 你猛然想起：图片还躺在本地，忘了手动上传到 CDN 仓库。 于是你打开 GitHub，一个一个拖文件进去，等 commit 完成，再回来重新部署。下次写文章，同样的流程再来一遍。 这件事不应该是手","datePublished":"2026-03-12T20:00:00+08:00","dateModified":"2026-03-12T20:00:00+08:00","author":{"@type":"Person","name":"述尔"},"publisher":{"@type":"Organization","name":"述尔"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://are.ink","name":"述尔","position":1},{"@type":"ListItem","item":"https://are.ink/post/gridea-pro-cdn/","name":"从手动上传到一键部署：Gridea Pro CDN 图床自动上传功能的设计与实现","position":2}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1SBXPCEK36"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-1SBXPCEK36');</script>
+<meta name="google-site-verification" content="googlea4223896f417412f.html">
+<script>var _hmt=_hmt||[];(function(){var hm=document.createElement("script");hm.src="https://hm.baidu.com/hm.js?4b792e215f23cf68ed571462a263feb3";var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(hm,s);})();</script>
+</head>
+<body class="flavor-theme">
+
+  <header class="site-header" id="siteHeader">
+  <div class="header-inner">
+    <div class="top-bar">
+
+      
+      <div class="top-bar__left">
+        
+        <a href="https://are.ink" class="site-avatar-link" aria-label="返回首页">
+          <img class="site-avatar" src="/images/avatar.png" alt="述尔" />
+        </a>
+        
+        <a href="https://are.ink" class="site-name-link">述尔</a>
+      </div>
+
+      
+      <nav class="top-bar__nav" id="sectionBar">
+        
+        
+        <a class="nav-item" href="/">首页</a>
+        
+        <a class="nav-item" href="/post">博客</a>
+        
+        <a class="nav-item" href="/memos">闪念</a>
+        
+        <a class="nav-item" href="/tags">标签</a>
+        
+        <a class="nav-item" href="/link">友链</a>
+        
+        <a class="nav-item" href="/post/about">关于</a>
+        
+        
+      </nav>
+
+      
+      <div class="top-bar__right">
+        <button class="btn-icon btn-search search-btn" id="btnSearch" type="button" aria-label="搜索">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+        </button>
+        <button class="btn-icon btn-nav-toggle mobile-only" id="btnNavToggle" type="button" aria-label="切换导航">
+          <div class="hamburger" id="hamburger">
+            <span class="hamburger__line hamburger__line--top"></span>
+            <span class="hamburger__line hamburger__line--bottom"></span>
+          </div>
+        </button>
+      </div>
+
+    </div>
+  </div>
+</header>
+
+
+<div class="header-spacer"></div>
+
+<script>
+(function(){
+  var btn = document.getElementById('btnNavToggle');
+  var nav = document.getElementById('sectionBar');
+  var hamburger = document.getElementById('hamburger');
+  if (!btn || !nav) return;
+  btn.addEventListener('click', function(){
+    nav.classList.toggle('top-bar__nav--open');
+    if (hamburger) hamburger.classList.toggle('is-active');
+  });
+  nav.querySelectorAll('.nav-item').forEach(function(item){
+    item.addEventListener('click', function(){
+      nav.classList.remove('top-bar__nav--open');
+      if (hamburger) hamburger.classList.remove('is-active');
+    });
+  });
+})();
+</script>
+
+  <main class="site-main" role="main">
+    
+<article class="article-container">
+  <header class="article-header">
+    <h1 class="article-title">从手动上传到一键部署：Gridea Pro CDN 图床自动上传功能的设计与实现</h1>
+    <div class="article-meta">
+      
+      <span class="article-meta__item">2026年03月12日</span>
+      
+      <span class="article-meta__sep">·</span>
+      <span class="article-meta__item">10 分钟阅读</span>
+      
+    </div>
+    
+    <div class="article-header__tags">
+      
+      <a href="/tag/gridea-pro/" class="tag-pill tag-pill--sm">Gridea Pro</a>
+      
+      <a href="/tag/cdn/" class="tag-pill tag-pill--sm">CDN</a>
+      
+      <a href="/tag/tu-chuang/" class="tag-pill tag-pill--sm">图床</a>
+      
+      <a href="/tag/github-api/" class="tag-pill tag-pill--sm">GitHub API</a>
+      
+      <a href="/tag/ji-shu-shi-xian/" class="tag-pill tag-pill--sm">技术实现</a>
+      
+      <a href="/tag/jing-tai-bo-ke/" class="tag-pill tag-pill--sm">静态博客</a>
+      
+    </div>
+    
+  </header>
+
+  
+
+  <div class="article-content">
+    <p>你刚写完一篇图文并茂的技术博客，插入了 12 张截图，点击「部署」，静静等待站点上线。打开页面一看——所有图片全是裂开的。</p>
+<p>你猛然想起：图片还躺在本地，忘了手动上传到 CDN 仓库。</p>
+<p>于是你打开 GitHub，一个一个拖文件进去，等 commit 完成，再回来重新部署。下次写文章，同样的流程再来一遍。</p>
+<p><strong>这件事不应该是手动的。</strong></p>
+<p>这篇文章记录了我们如何在 Gridea Pro 中实现 CDN 图床的自动上传功能——从原理分析、方案设计到最终落地，完整复盘整个过程。</p>
+<hr />
+<h2 id="cdn-">一、先搞清楚：CDN 图床到底在做什么</h2>
+<p>在聊实现之前，先厘清几个概念。</p>
+<h3 id="heading">静态博客的图片困境</h3>
+<p>Gridea Pro 是一个本地优先的静态博客客户端。你在本地写 Markdown，插入图片，图片存储在本地的 <code>post-images/</code> 目录里。本地预览时一切正常，因为图片就在你的硬盘上。</p>
+<p>但部署到线上就不一样了。静态站点托管平台（GitHub Pages、Vercel、Netlify）托管的是 HTML/CSS/JS，图片如果也塞进去，仓库会迅速膨胀，clone 变慢，构建超时。</p>
+<p><strong>CDN 图床</strong>就是解决方案：把图片存到一个专门的 GitHub 仓库，通过 jsDelivr 这样的 CDN 服务加速访问。渲染 HTML 时，把本地路径 <code>/post-images/cover.png</code> 替换为 <code>https://cdn.jsdelivr.net/gh/user/repo@main/post-images/cover.png</code>。</p>
+<h3 id="-url-">之前的方案：只做 URL 重写</h3>
+<p>Gridea Pro 之前已经有 CDN 功能，但只做了「最后一公里」——HTML 渲染时的 URL 重写。它假设你已经手动把图片上传到了 CDN 仓库。</p>
+<p>这带来三个问题：</p>
+<ol>
+<li><strong>每次部署前要手动上传图片</strong>，容易遗漏</li>
+<li><strong>新增图片需要记住哪些还没上传</strong>，心智负担重</li>
+<li><strong>多设备写作时更麻烦</strong>，每台设备都要手动同步</li>
+</ol>
+<p>我们要做的，就是补上「上传」这一环。</p>
+<hr />
+<h2 id="heading-1">二、方案设计：看似简单，实则有坑</h2>
+<h3 id="heading-2">核心需求拆解</h3>
+<ol>
+<li><strong>部署时自动上传</strong>：渲染完 HTML 后、推送到托管平台前，自动把媒体文件上传到 CDN 仓库</li>
+<li><strong>可配置的保存路径</strong>：支持按年月归档，避免文件堆积</li>
+<li><strong>GitHub Token 配置</strong>：通过 API 上传需要认证</li>
+<li><strong>测试上传验证</strong>：配置完能立即验证是否生效</li>
+<li><strong>本地预览不受影响</strong>：预览时继续使用本地路径</li>
+</ol>
+<h3 id="heading-3">保存路径的设计</h3>
+<p>参考 uPic 等成熟图床工具，我们设计了路径模板变量系统：</p>
+<table>
+<thead>
+<tr>
+<th>变量</th>
+<th>含义</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>{year}</code></td>
+<td>当前年份</td>
+<td>2026</td>
+</tr>
+<tr>
+<td><code>{month}</code></td>
+<td>当前月份</td>
+<td>03</td>
+</tr>
+<tr>
+<td><code>{day}</code></td>
+<td>当前日期</td>
+<td>12</td>
+</tr>
+<tr>
+<td><code>{filename}</code></td>
+<td>不含扩展名的文件名</td>
+<td>cover</td>
+</tr>
+<tr>
+<td><code>{.suffix}</code></td>
+<td>带点的扩展名</td>
+<td>.png</td>
+</tr>
+<tr>
+<td><code>{suffix}</code></td>
+<td>不带点的扩展名</td>
+<td>png</td>
+</tr>
+<tr>
+<td><code>{random}</code></td>
+<td>8 位随机字符串</td>
+<td>a1b2c3d4</td>
+</tr>
+<tr>
+<td><code>{since_second}</code></td>
+<td>Unix 时间戳（秒）</td>
+<td>1773504000</td>
+</tr>
+</tbody>
+</table>
+<p>预设了 4 种常用模式：</p>
+<pre><code>{year}/{month}/{filename}{.suffix}           → 2026/03/cover.png
+{year}/{month}/{day}/{filename}{.suffix}     → 2026/03/12/cover.png
+blog/images/{year}/{month}/{filename}{.suffix} → blog/images/2026/03/cover.png
+{year}/{filename}-{random}{.suffix}          → 2026/cover-a1b2c3d4.png
+</code></pre>
+<p>也支持完全自定义。</p>
+<h3 id="heading-4">一个差点踩进去的坑：批量上传的路径问题</h3>
+<p>最初的设计是：部署时也用 savePath 模板来决定每个文件的远程路径。但仔细一想，这有严重问题——</p>
+<p>假设 savePath 是 <code>{year}/{month}/{filename}{.suffix}</code>，1 月份写的文章里的图片上传后路径是 <code>2026/01/post-images/cover.png</code>，CDN base URL 变成 <code>https://cdn.jsdelivr.net/gh/user/repo@main/2026/01</code>。到了 3 月再次部署，路径变成 <code>2026/03</code>，<strong>1 月份的旧图片 URL 全部失效</strong>。</p>
+<p><strong>修正方案</strong>：批量部署上传时，保持原始目录结构不变（<code>post-images/xx</code>、<code>images/xx</code>、<code>media/xx</code>），直接映射到 CDN 仓库根目录。<code>buildCdnBase()</code> 的逻辑不动。savePath 模板仅用于测试上传和未来的编辑器内单图上传场景。</p>
+<p>这样，无论何时部署，HTML 中的 <code>/post-images/cover.png</code> 始终重写为 <code>https://cdn.jsdelivr.net/gh/user/repo@main/post-images/cover.png</code>，路径稳定不变。</p>
+<hr />
+<h2 id="heading-5">三、技术实现</h2>
+<h3 id="heading-6">整体架构</h3>
+<pre><code>用户点击部署
+  → 渲染静态站点 (RenderAll)
+  → CDN 上传媒体文件 (UploadMediaForDeploy)  ← 新增
+  → 推送到托管平台 (Deploy)
+</code></pre>
+<p>这个流程嵌入在 <code>DeployService.DeployToRemote()</code> 中，渲染之后、平台部署之前。</p>
+<h3 id="github-contents-api-">GitHub Contents API 上传</h3>
+<p>GitHub 提供了 Contents API 来读写仓库中的单个文件，非常适合我们的场景：</p>
+<p><strong>检查文件是否存在：</strong></p>
+<pre><code>GET /repos/{owner}/{repo}/contents/{path}?ref={branch}
+</code></pre>
+<p><strong>创建或更新文件：</strong></p>
+<pre><code>PUT /repos/{owner}/{repo}/contents/{path}
+{
+  &quot;message&quot;: &quot;Upload post-images/cover.png&quot;,
+  &quot;content&quot;: &quot;&lt;base64 encoded&gt;&quot;,
+  &quot;branch&quot;: &quot;main&quot;,
+  &quot;sha&quot;: &quot;&lt;existing sha if updating&gt;&quot;
+}
+</code></pre>
+<h3 id="sha-">SHA 去重：避免重复上传</h3>
+<p>每次部署都要扫描所有媒体文件，但大多数文件上次已经上传过了。如何避免重复劳动？</p>
+<p>Git 对每个文件（blob）有一个 SHA1 指纹，计算方式是：</p>
+<pre><code>SHA1(&quot;blob {size}\0{content}&quot;)
+</code></pre>
+<p>我们在本地用同样的算法计算文件 SHA，与 GitHub API 返回的 SHA 比对。<strong>相同则跳过，不同才上传</strong>。这样即使有 100 张图片，如果只新增了 2 张，实际只会发起 2 次上传请求。</p>
+<p>核心代码：</p>
+<pre><code class="language-go">func gitBlobSHA(data []byte) string {
+    header := fmt.Sprintf(&quot;blob %d\x00&quot;, len(data))
+    h := sha1.New()
+    h.Write([]byte(header))
+    h.Write(data)
+    return hex.EncodeToString(h.Sum(nil))
+}
+</code></pre>
+<h3 id="heading-7">并发控制</h3>
+<p>扫描出的文件可能很多，串行上传太慢。我们用 Go 的 <code>errgroup</code> + channel 实现了 5 并发的上传管线：</p>
+<pre><code class="language-go">g, gCtx := errgroup.WithContext(ctx)
+sem := make(chan struct{}, 5) // 限制 5 并发
+
+for _, file := range filesToUpload {
+    f := file
+    g.Go(func() error {
+        sem &lt;- struct{}{}        // 获取信号量
+        defer func() { &lt;-sem }() // 释放信号量
+        return s.uploadToGitHub(gCtx, setting, f.localPath, f.remotePath)
+    })
+}
+
+g.Wait()
+</code></pre>
+<p>为什么限制 5 而不是更多？GitHub API 有速率限制（认证用户 5000 次/小时），并发太高容易触发 secondary rate limit（短时间内请求过密）。5 是一个安全又高效的平衡点。</p>
+<h3 id="heading-8">路径模板解析</h3>
+<p>解析逻辑很直观，用 <code>strings.NewReplacer</code> 做一次性替换：</p>
+<pre><code class="language-go">func ResolveSavePath(template, filename string) string {
+    now := time.Now()
+    ext := filepath.Ext(filename)
+    nameOnly := strings.TrimSuffix(filename, ext)
+
+    replacer := strings.NewReplacer(
+        &quot;{year}&quot;, now.Format(&quot;2006&quot;),
+        &quot;{month}&quot;, now.Format(&quot;01&quot;),
+        &quot;{day}&quot;, now.Format(&quot;02&quot;),
+        &quot;{filename}&quot;, nameOnly,
+        &quot;{.suffix}&quot;, ext,
+        &quot;{suffix}&quot;, strings.TrimPrefix(ext, &quot;.&quot;),
+        &quot;{random}&quot;, randomString(8),
+        // ... 更多变量
+    )
+
+    return replacer.Replace(template)
+}
+</code></pre>
+<p>每个文件独立解析，<code>{random}</code> 每次调用生成不同值，保证文件名不冲突。</p>
+<hr />
+<h2 id="heading-9">四、前端交互设计</h2>
+<h3 id="token-">Token 输入</h3>
+<p>GitHub Token 是敏感信息，默认用密码框遮盖，右侧有眼睛图标切换可见性。这是个小细节，但体验差距很大——谁也不想在演示屏幕上暴露自己的 Token。</p>
+<h3 id="heading-10">保存路径选择</h3>
+<p>用下拉框提供 4 个预设方案，底部还有「自定义」选项。选择自定义后展开输入框，下方提示支持的变量列表。这样既照顾了只想快速配置的用户，也给高级用户留了空间。</p>
+<h3 id="heading-11">测试上传</h3>
+<p>配置完点「测试上传」，会上传一个小的测试文件到 CDN 仓库，成功后 toast 显示完整的 CDN 访问 URL。用户可以直接点击验证是否能访问。这比「保存后祈祷部署时能用」的体验好太多了。</p>
+<p>测试按钮只在满足条件时显示（CDN 已启用 + jsDelivr 模式 + Token 已填写），避免无效点击。</p>
+<hr />
+<h2 id="heading-12">五、完整数据流回顾</h2>
+<pre><code>1. 用户在 CDN 设置页配置：
+   - 启用 CDN ✓
+   - Provider: jsDelivr
+   - GitHub User/Repo/Branch
+   - GitHub Token
+   - 保存路径模板
+
+2. 用户写文章，插入图片 → 图片保存到本地 post-images/
+
+3. 本地预览 → 直接读本地文件，图片正常显示
+
+4. 用户点击部署：
+   ① RenderAll() — 生成 HTML，CDN URL 重写生效
+   ② UploadMediaForDeploy() — 扫描 post-images/、images/、media/
+      → 逐个计算 SHA，与 GitHub 比对
+      → 新文件或内容变更的文件上传到 CDN 仓库
+      → 内容相同的文件跳过
+   ③ Deploy() — 推送 HTML 到托管平台
+
+5. 用户访问线上站点 → 图片从 jsDelivr CDN 加载 ✓
+</code></pre>
+<hr />
+<h2 id="heading-13">六、一些取舍和思考</h2>
+<h3 id="-github-contents-api--git-push">为什么用 GitHub Contents API 而不是 Git Push</h3>
+<p>Contents API 的好处是简单——不需要在用户机器上 clone CDN 仓库，不需要处理 git 冲突，每个文件独立上传。坏处是单次请求有 100MB 限制（但博客图片很少超过这个），以及大量文件时的速率问题。</p>
+<p>对于博客图床这个场景，Contents API 是更合适的选择。如果未来需要支持更大规模的文件（比如视频），可以考虑切换到 Git Data API（blob + tree + commit），一次 commit 上传所有文件。</p>
+<h3 id="heading-14">为什么单文件失败不中断部署</h3>
+<p>部署是用户等了很久才触发的操作，如果因为一张图片上传失败就整个中断，体验很差。我们选择记录警告日志但继续执行。用户可以在部署日志中看到哪些文件失败了，下次部署会自动重试。</p>
+<h3 id="heading-15">为什么不在编辑器里实时上传</h3>
+<p>这是有意的阶段性设计。编辑器内粘贴图片时实时上传到 CDN 是更好的体验，但需要修改编辑器的图片处理逻辑、处理上传进度显示、处理网络异常回退等。我们先把「部署时批量上传」做稳定，编辑器内上传作为后续迭代。</p>
+<p>保存路径模板的设计已经为这个场景预留了——它可以给每个文件生成唯一的远程路径，正是编辑器内单图上传需要的。</p>
+<hr />
+<h2 id="heading-16">七、结语</h2>
+<p>这个功能的核心价值其实就一句话：<strong>让部署真正成为一键操作</strong>。</p>
+<p>之前的 CDN 功能只做了 URL 重写，相当于给了你一把锁但没给钥匙——你还得自己把图片搬到 CDN 仓库。现在补上了「搬运」这一步，整个链路才真正闭环。</p>
+<p>从技术角度看，这个功能并不复杂：一个 HTTP 客户端调用 GitHub API，加上 SHA 去重和并发控制。但好的工具设计往往不是炫技，而是把用户不应该操心的事情自动化掉。</p>
+<p>写博客应该专注在内容上，而不是和基础设施搏斗。</p>
+
+  </div>
+
+  
+  <nav class="post-nav">
+    
+    <a href="/post/gridea-pro-backend-architecture-deep-dive/" class="post-nav-card post-nav-card--prev">
+      
+      <div class="post-nav-card__img">
+        <img src="/post-images/gridea-pro-backend-architecture-deep-dive.jpg" alt="Gridea Pro 后端架构深度解析：一个桌面端静态博客系统的工程哲学" loading="lazy" />
+      </div>
+      
+      <div class="post-nav-card__body">
+        <span class="post-nav-card__label meta-text">上一篇</span>
+        <span class="post-nav-card__title">Gridea Pro 后端架构深度解析：一个桌面端静态博客系统的工程哲学</span>
+      </div>
+      <span class="post-nav-card__arrow">&larr;</span>
+    </a>
+    
+    
+    <a href="/post/most-conversations-with-Claude-on-Earth-is-a-philosopher/" class="post-nav-card post-nav-card--next">
+      <div class="post-nav-card__body">
+        <span class="post-nav-card__label meta-text">下一篇</span>
+        <span class="post-nav-card__title">地球上和 Claude 对话最多的人，是一位哲学家</span>
+      </div>
+      
+      <div class="post-nav-card__img">
+        <img src="/post-images/most-conversations-with-Claude-on-Earth-is-a-philosopher.png" alt="地球上和 Claude 对话最多的人，是一位哲学家" loading="lazy" />
+      </div>
+      
+      <span class="post-nav-card__arrow">&rarr;</span>
+    </a>
+    
+  </nav>
+
+  
+  
+
+
+  
+    <section class="comment-section">
+  <h2 class="comment-section__title">评论</h2>
+  <div id="vcomments"></div>
+  <link rel="stylesheet" href="https://unpkg.com/valine@1/dist/Valine.min.css">
+  <script src="https://unpkg.com/valine@1/dist/Valine.min.js"></script>
+  <script>
+    new Valine({
+      el: '#vcomments',
+      appId: 'dAWkPrxZg50VZ7iV39rrZL5U-MdYXbMMI',
+      appKey: 'YCfYt8rhK8d0mh9vr42YTaA1',
+      serverURLs: 'https://dawkprxz.api.lncldglobal.com',
+      avatar: 'mp',
+      placeholder: '说点什么吧…'
+    });
+    // Valine 内置 locale 不支持覆盖，手动替换 placeholder
+    var linkInput = document.querySelector('#vcomments .vlink');
+    if (linkInput) linkInput.placeholder = '网址(https://)';
+  </script>
+</section>
+
+  
+
+
+
+</article>
+
+  </main>
+
+  <footer class="site-footer">
+  <div class="footer-inner">
+
+    
+    
+    <nav class="footer-nav" aria-label="页脚导航">
+      
+      <a class="footer-nav__link" href="/">首页</a>
+      
+      <a class="footer-nav__link" href="/post">博客</a>
+      
+      <a class="footer-nav__link" href="/memos">闪念</a>
+      
+      <a class="footer-nav__link" href="/tags">标签</a>
+      
+      <a class="footer-nav__link" href="/link">友链</a>
+      
+      <a class="footer-nav__link" href="/post/about">关于</a>
+      
+    </nav>
+    
+
+    
+    <div class="footer-social">
+      
+      <a class="footer-social__link" href="https://github.com/Tespera" target="_blank" rel="noopener noreferrer"
+        aria-label="GitHub">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path
+            d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+        </svg>
+      </a>
+      
+      
+      <a class="footer-social__link" href="https://x.com" target="_blank" rel="noopener noreferrer"
+        aria-label="Twitter/X">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path
+            d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+        </svg>
+      </a>
+      
+      
+      <a class="footer-social__link" href="https://weibo.com" target="_blank" rel="noopener noreferrer"
+        aria-label="微博">
+        <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor">
+          <path d="M10.878 1.093a4.23 4.23 0 0 1 4.031 1.305 4.22 4.22 0 0 1 .886 4.14v.001a.612.612 0 0 1-1.166-.377 3.01 3.01 0 0 0-3.495-3.873.611.611 0 1 1-.256-1.196M3.753 9.465c.548-1.11 1.972-1.74 3.233-1.411 1.304.338 1.971 1.568 1.437 2.764-.541 1.221-2.095 1.875-3.416 1.449-1.271-.411-1.812-1.67-1.254-2.802m2.658.567c.16.066.365-.009.458-.168.088-.16.03-.34-.129-.397-.156-.062-.353.013-.446.168-.09.154-.041.333.117.397m-1.607 1.314c.413.188.963.009 1.219-.4.252-.413.12-.883-.296-1.062-.41-.172-.94.005-1.194.402-.256.4-.135.874.271 1.06"/>
+          <path d="m12.014 7.238.005.001c.919.285 1.941.974 1.939 2.188 0 2.007-2.895 4.535-7.246 4.535C3.393 13.962 0 12.352 0 9.708c0-1.385.876-2.985 2.384-4.493C4.4 3.199 6.751 2.28 7.634 3.165c.39.392.427 1.065.177 1.87-.132.405.38.182.38.182 1.63-.682 3.051-.722 3.57.02.278.397.252.951-.004 1.594-.116.293.035.34.257.407m-10.4 3.101c.172 1.738 2.46 2.936 5.109 2.674 2.647-.26 4.656-1.883 4.482-3.623-.17-1.738-2.458-2.937-5.107-2.674-2.647.263-4.656 1.883-4.484 3.623m11.681-6.484a2.06 2.06 0 0 0-1.962-.634.526.526 0 1 0 .219 1.031 1.008 1.008 0 0 1 1.17 1.296.528.528 0 0 0 1.005.325 2.06 2.06 0 0 0-.432-2.018"/>
+        </svg>
+      </a>
+      
+      <a class="footer-social__link" href="/feed.xml" aria-label="RSS">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M6.18 15.64a2.18 2.18 0 110 4.36 2.18 2.18 0 010-4.36zM4 4.44A15.56 15.56 0 0119.56 20h-2.83A12.73 12.73 0 004 7.27V4.44zm0 5.66a9.9 9.9 0 019.9 9.9h-2.83A7.07 7.07 0 004 12.93V10.1z"/>
+        </svg>
+      </a>
+    </div>
+
+    
+    <div class="footer-copyright">
+      <p>&copy; 2026 述尔. All rights reserved.</p>
+    </div>
+
+    
+    
+
+    
+    <div class="footer-powered">
+      <span>Powered by <a href="https://gridea.dev" target="_blank" rel="noopener noreferrer">Gridea Pro</a></span>
+    </div>
+
+  </div>
+</footer>
+
+  
+  <div class="search-overlay" id="searchOverlay" style="display:none;">
+  <div class="search-modal">
+    <div class="search-header">
+      <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+      <input type="text" class="search-input" id="searchInput" placeholder="搜索文章..." autocomplete="off" />
+      <span class="search-kbd">&#8984;K</span>
+      <button class="search-close" id="searchClose" type="button" aria-label="关闭搜索">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+    <div class="search-results" id="searchResults"></div>
+  </div>
+</div>
+
+<script src="/scripts/search.js"></script>
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
