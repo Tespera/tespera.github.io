@@ -1,5 +1,5 @@
 // Gridea Pro PWA Service Worker
-const CACHE_NAME = 'gridea-cache-v1774718905';
+const CACHE_NAME = 'gridea-cache-v1774718953';
 
 // 安装时不预缓存，由运行时缓存处理
 self.addEventListener('install', function(event) {
