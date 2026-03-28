@@ -35,7 +35,7 @@
 
 
 <meta name="description" content="在 Gridea Pro 的后端架构演进中，我们始终追求极致的性能、并发安全与系统稳定性。近期，我们针对核心的 Renderer Layer（渲染层） 和 Repository Layer（存储层） 进行了一次深度的重构与优化。本文将详细复盘这次重构中的关键技术决策与实现细节。 一、渲染层（Renderer Layer">
-<meta name="keywords" content="述尔，Gridea  Pro，Gridea，静态博客，产品经理">
+<meta name="keywords" content="述尔，Gridea  Pro，Gridea，静态博客，AI，产品经理">
 <link rel="canonical" href="https://are.ink/post/gridea-pro/">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Gridea Pro 架构进化：渲染层与存储层的高性能重构实践","url":"https://are.ink/post/gridea-pro/","description":"在 Gridea Pro 的后端架构演进中，我们始终追求极致的性能、并发安全与系统稳定性。近期，我们针对核心的 Renderer Layer（渲染层） 和 Repository Layer（存储层） 进行了一次深度的重构与优化。本文将详细复盘这次重构中的关键技术决策与实现细节。 一、渲染层（Renderer Layer","image":"/post-images/gridea-pro.jpg","datePublished":"2026-02-16T15:30:00+08:00","dateModified":"2026-03-10T13:41:07+08:00","author":{"@type":"Person","name":"述尔"},"publisher":{"@type":"Organization","name":"述尔"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://are.ink","name":"述尔","position":1},{"@type":"ListItem","item":"https://are.ink/post/gridea-pro/","name":"Gridea Pro 架构进化：渲染层与存储层的高性能重构实践","position":2}]}</script>
@@ -43,6 +43,13 @@
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-1SBXPCEK36');</script>
 <meta name="google-site-verification" content="googlea4223896f417412f.html">
 <script>var _hmt=_hmt||[];(function(){var hm=document.createElement("script");hm.src="https://hm.baidu.com/hm.js?4b792e215f23cf68ed571462a263feb3";var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(hm,s);})();</script>
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#ffffff">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="述尔">
+<link rel="apple-touch-icon" href="https://cdn.jsdelivr.net/gh/Tespera/Assets@main/images/icons/icon-192x192.png">
+<script>if('serviceWorker' in navigator){navigator.serviceWorker.register('/sw.js')}</script>
 </head>
 <body class="flavor-theme">
 
