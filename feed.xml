@@ -380,6 +380,207 @@
       <enclosure url="https://are.ink/post-images/ai-era-indie-blog-gridea-pro-strategy.jpg" length="0" type="image/jpeg"></enclosure>
     </item>
     <item>
+      <title>从 Gridea 迁移到 Gridea Pro：零风险完整指南</title>
+      <link>https://are.ink/post/migrating-from-gridea-to-gridea-pro/</link>
+      <guid isPermaLink="true">https://are.ink/post/migrating-from-gridea-to-gridea-pro/</guid>
+      <pubDate>Thu, 02 Apr 2026 23:00:00 +0800</pubDate>
+      <description><![CDATA[<p>如果你是 Gridea 的老用户，正在考虑是否要升级到 Gridea Pro，这篇文章是为你写的。</p>
+<p>我们知道，博客数据是多年心血的积累，迁移这件事如果出了差错，损失难以弥补。因此，在设计 Gridea Pro 时，<strong>数据兼容与自动迁移</strong>是优先级最高的功能之一。</p>
+<p><strong>结论先说：你的数据是安全的。</strong> Gridea Pro 内置了完整的自动迁移机制，无需手动转换任何文件，打开即用。</p>
+<hr />
+<h2 id="gridea--gridea-pro-">Gridea 与 Gridea Pro 的数据结构差异</h2>
+<p>在了解迁移机制之前，先简单说明两个版本之间的数据结构变化，这有助于你理解迁移在做什么。</p>
+<h3 id="1--id-">1. 实体 ID 规范化</h3>
+<p>旧版 Gridea 的分类、标签、菜单等数据，早期版本没有 ID 字段，或使用了 UUID 等较长的格式。Gridea Pro 统一采用 <strong>6 位 NanoID</strong>（如 <code>kGUBpB</code>），更简洁，读写性能更好。</p>
+<h3 id="2-">2. 文章关联方式变更</h3>
+<p>这是最核心的变化。</p>
+<p>旧版 Gridea 文章的 YAML frontmatter 里，标签和分类是直接存<strong>名称</strong>的：</p>
+<pre><code class="language-yaml">---
+title: 我的第一篇文章
+date: 2021-06-01 12:00:00
+tags:
+  - 技术
+  - 生活
+categories:
+  - 随笔
+---
+</code></pre>
+<p>Gridea Pro 改为存 <strong>ID</strong>：</p>
+<pre><code class="language-yaml">---
+title: 我的第一篇文章
+createdAt: 2021-06-01 12:00:00
+updatedAt: 2021-06-01 12:00:00
+tagIDs:
+  - kGUBpB
+  - abc123
+categoryIDs:
+  - jjTYMA
+---
+</code></pre>
+<p>这样设计的好处是：重命名标签或分类时，不需要扫描修改所有文章文件，只改一处即可。</p>
+<h3 id="3-">3. 时间字段重命名</h3>
+<p>旧版使用 <code>date</code> 字段，Gridea Pro 拆分为 <code>createdAt</code>（创建时间）和 <code>updatedAt</code>（更新时间），支持独立追踪文章的修改历史。</p>
+<hr />
+<h2 id="heading">自动迁移机制：它做了什么</h2>
+<p>Gridea Pro <strong>每次启动时</strong>自动运行数据迁移，分为两个阶段。</p>
+<h3 id="-id-">第一阶段：基础数据 ID 补全</h3>
+<p>扫描以下数据，为没有 ID 或 ID 格式不符规范的条目自动生成新的 6 位 NanoID：</p>
+<table>
+<thead>
+<tr>
+<th>数据类型</th>
+<th>文件位置</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>分类</td>
+<td><code>config/categories.json</code></td>
+</tr>
+<tr>
+<td>标签</td>
+<td><code>config/tags.json</code></td>
+</tr>
+<tr>
+<td>菜单</td>
+<td><code>config/menus.json</code></td>
+</tr>
+<tr>
+<td>友链</td>
+<td><code>config/links.json</code></td>
+</tr>
+<tr>
+<td>闪念</td>
+<td><code>config/memos.json</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>只有数据真正发生变化时才会写入文件</strong>，没有冗余操作。</p>
+<h3 id="heading-1">第二阶段：文章关联关系转换</h3>
+<p>这是迁移的核心步骤。程序会：</p>
+<ol>
+<li>扫描所有 <code>.md</code> 文章文件</li>
+<li>读取每篇文章 frontmatter 里的 <code>tags</code>（名称）和 <code>categories</code>（名称/Slug）</li>
+<li>通过第一阶段建立的映射表，找到对应的新 ID</li>
+<li>将 <code>tagIDs</code> 和 <code>categoryIDs</code> 写回 frontmatter</li>
+<li>同时保留旧的 <code>tags</code> 字段作为降级备份</li>
+</ol>
+<p>整个过程完全自动，用户无感知。</p>
+<hr />
+<h2 id="heading-2">迁移前需要做什么</h2>
+<h3 id="1-">1. 备份你的数据目录（强烈建议）</h3>
+<p>虽然迁移机制是非破坏性的（保留旧字段），但备份永远是最保险的一步。</p>
+<p>你的 Gridea 数据默认存放在：</p>
+<ul>
+<li><strong>macOS</strong>：<code>~/Documents/gridea/</code></li>
+<li><strong>Windows</strong>：<code>C:\Users\你的用户名\Documents\gridea\</code></li>
+</ul>
+<p>将整个文件夹复制一份到其他位置即可。</p>
+<pre><code class="language-bash"># macOS / Linux 示例
+cp -r ~/Documents/gridea ~/Documents/gridea-backup-$(date +%Y%m%d)
+</code></pre>
+<h3 id="2--1">2. 确认数据目录结构</h3>
+<p>Gridea Pro 沿用了与 Gridea 完全相同的数据目录结构：</p>
+<pre><code>gridea/
+├── config/
+│   ├── categories.json   # 分类
+│   ├── tags.json         # 标签
+│   ├── menus.json        # 菜单
+│   ├── links.json        # 友链
+│   ├── setting.json      # 站点设置
+│   └── themeConfig.json  # 主题配置
+├── post/                 # 文章 Markdown 文件
+└── post-images/          # 文章图片
+</code></pre>
+<p>只要目录结构一致，Gridea Pro 即可直接读取。</p>
+<hr />
+<h2 id="heading-3">迁移步骤</h2>
+<h3 id="heading-4">第一步：备份源数据目录</h3>
+<p>将整个文件夹复制一份到其他位置即可。</p>
+<h3 id="-gridea-pro">第二步：下载并安装 Gridea Pro</h3>
+<p>前往 <a href="https://github.com/Gridea-Pro/gridea-pro/releases">GitHub Releases</a> 下载对应平台的安装包。</p>
+<h3 id="heading-5">第三步：首次打开，自动清洗数据</h3>
+<p>程序启动时会在后台自动执行迁移，通常在几秒内完成。完成后即可进入主界面。</p>
+<p>如果你是开发者，运行 dev 版本，你可以在日志中看到类似输出：</p>
+<pre><code>[DataMigrator] --------- 开始全量检查与迁移历史基础关联数据 ID ---------
+[DataMigrator] ✅ 检查完成，未发现需要修正的历史数据，所有数据均处于最新健康状态。
+[DataMigrator] --------- 数据清洗迁移协程运行完毕 ---------
+</code></pre>
+<p>若有数据被迁移，日志会列出具体修改的条目和数量。</p>
+<h3 id="heading-6">第四步：验证数据完整性</h3>
+<p>迁移完成后，建议做几项基本检查：</p>
+<p><strong>检查文章列表</strong>：打开「文章」页面，确认所有文章均正常显示，标题、时间、标签、分类无缺失。</p>
+<p><strong>检查标签和分类</strong>：打开「标签」和「分类」管理页面，确认数量与迁移前一致。</p>
+<p><strong>预览一篇文章</strong>：随机打开一篇文章进入编辑器，确认正文内容完整，标签和分类关联正确。</p>
+<p><strong>本地预览站点</strong>：点击预览，确认站点整体渲染正常。</p>
+<hr />
+<h2 id="heading-7">需要重新配置的部分</h2>
+<p>迁移机制覆盖了绝大多数数据，但以下内容由于结构变化较大，需要手动重新配置：</p>
+<h3 id="heading-8">部署平台设置</h3>
+<p>Gridea Pro 重新设计了部署配置的存储方式，<strong>不会自动读取旧版的平台配置</strong>。你需要在「基础设置」中重新填写：</p>
+<ul>
+<li>平台选择（GitHub / Gitee / Vercel / Netlify / SFTP 等）</li>
+<li>仓库地址、Token、分支等信息</li>
+</ul>
+<p>旧版的 <code>setting.json</code> 中相关字段不会被覆盖，可以参照它手动填写。</p>
+<h3 id="heading-9">评论系统</h3>
+<p>Gridea Pro 支持 Waline、Giscus、Twikoo、Disqus、Valine 等主流评论系统，配置入口在「评论」设置页。旧版 Gridea 的评论配置不会自动迁移。</p>
+<hr />
+<h2 id="heading-10">常见问题</h2>
+<p><strong>Q：迁移后能否退回 Gridea？</strong></p>
+<p>**不可以。不可以。不可以。**重要的事情说三遍！所以要提前备份一份数据。<br />
+因为数据结构不一致，经过 Gridea Pro 清洗数据后，旧版 Gridea 兼容性不佳，无法打开新版的数据。<br />
+如果你备份了源数据文件夹，想要回退，可以在 Gridea 里面将站点目录设置为备份的那个文件夹即可重新打开。</p>
+<p><strong>Q：迁移会修改我的文章 Markdown 正文内容吗？</strong></p>
+<p>不会。迁移只修改 YAML frontmatter 部分（文章顶部两个 <code>---</code> 之间的元数据），正文内容完全不受影响。</p>
+<p><strong>Q：有几百篇文章，迁移会很慢吗？</strong></p>
+<p>不会。迁移在本地运行，处理速度极快，几百篇文章通常在 1 秒内完成。</p>
+<p><strong>Q：我的 Gridea 数据目录不在默认位置，怎么办？</strong></p>
+<p>在 Gridea Pro 的系统设置界面-站点源文件路径，选择你原来的目录即可（建议直接选择备份目录，这样不影响旧版 Gridea 的正常运行）。</p>
+<p><strong>Q：迁移后标签或分类显示有问题怎么办？</strong></p>
+<p>可以尝试在 Gridea Pro 的「分类」、「标签」页面手动修改。如果有其他问题，可以前往 <a href="https://github.com/Gridea-Pro/gridea-pro/issues">GitHub Issues</a> 反馈，<br />
+并说明具体问题或现象描述。</p>
+<hr />
+<h2 id="heading-11">小结</h2>
+<table>
+<thead>
+<tr>
+<th>事项</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>迁移方式</td>
+<td>全自动，启动时执行</td>
+</tr>
+<tr>
+<td>需要用户操作</td>
+<td>仅需备份数据目录</td>
+</tr>
+<tr>
+<td>文章内容是否改变</td>
+<td>不改变</td>
+</tr>
+<tr>
+<td>能否退回旧版</td>
+<td>不可以</td>
+</tr>
+<tr>
+<td>需手动重配置的内容</td>
+<td>部署平台、评论系统</td>
+</tr>
+</tbody>
+</table>
+<p>Gridea Pro 的目标是让每一位老用户都能平滑过渡，而不是重新开始。如果你在迁移过程中遇到任何问题，欢迎到 <a href="https://github.com/Gridea-Pro/gridea-pro/issues">GitHub</a> 提交 Issue，我们会及时跟进。</p>
+]]></description>
+      <category>Gridea Pro</category>
+      <category>Gridea</category>
+      <category>教程</category>
+      <category>静态博客</category>
+      <category>数据迁移</category>
+    </item>
+    <item>
       <title>从零实现 CDN 图床：Gridea Pro 如何让图片管理彻底自动化</title>
       <link>https://are.ink/post/gridea-pro-cdn/</link>
       <guid isPermaLink="true">https://are.ink/post/gridea-pro-cdn/</guid>
@@ -2800,59 +3001,6 @@ var Size = 6
       <category>NanoID</category>
       <category>架构设计</category>
       <enclosure url="https://are.ink/post-images/gridea-pro-6-nanoid.jpeg" length="0" type="image/jpeg"></enclosure>
-    </item>
-    <item>
-      <title>《2028年全球智力危机》：当人类智力不再稀缺 中产阶级的黄昏到来？</title>
-      <link>https://are.ink/post/global-intelligence-crisis-2028-end-of-middle-class-future/</link>
-      <guid isPermaLink="true">https://are.ink/post/global-intelligence-crisis-2028-end-of-middle-class-future/</guid>
-      <pubDate>Tue, 03 Mar 2026 02:57:58 +0800</pubDate>
-      <description><![CDATA[<p>研究机构Citrini Research近期发布了一份关于人工智能经济风险的假设性报告，引发了市场广泛关注和讨论‌。报告原标题为《2028全球智能危机——来自未来的金融史思想实验》（THE 2028 GLOBAL INTELLIGENCE CRISIS: A Thought Exercise in Financial History, from the Future），该报告明确声明其‌唯一目的是模拟一个相对未被充分研究的情景，是一个“思想实验”而非预测‌。</p>
-<p>报告设定了一个假想的时间点——‌2028年6月‌，并描绘了人工智能（AI）快速发展可能引发的连锁经济危机。报告提出了几个核心概念：</p>
-<p>“AI efficiency Paradox”（AI效率悖论）：AI的成功可能导致经济不稳定。其推演的核心风险链条包括：白领大规模失业、 “幽灵GDP”与消费萎缩、商业模式瓦解（如SaaS、中介平台、支付处理等）。</p>
-<p>报告由 Citrini Research 和 Alap Shah 撰写。Shah 曾联合创立 Sentieo，并曾任职于顶级对冲基金 Citadel LLC。</p>
-<p>以下为报告的中文版全文：</p>
-<h3 id="heading">序言</h3>
-<p>如果我们对人工智能的乐观预期继续正确的话……但实际情况却是悲观的，那该怎么办？</p>
-<p>以下只是一个情景描述，并非预测。这既不是关于熊的色情内容，也不是人工智能末日论的幻想小说。本文的唯一目的就是模拟一个目前较少被探讨的情景。</p>
-<h3 id="heading-1">宏备忘录：智力过剩的后果</h3>
-<p><strong>2026年2月22日—2028年6月30日</strong></p>
-<p>今天上午公布的失业率为10.2%，比预期高出0.3个百分点。受此数据影响，市场下跌2%，标普500指数较2026年10月高点累计下跌38%。</p>
-<p>两年时间而已。从“可控”和“特定行业受影响”的状态，经济状况已经发生了翻天覆地的变化。</p>
-<p>人们的兴奋情绪显而易见。到2026年10月，标准普尔500指数逼近8000点大关。由于劳动力过剩导致的首批裁员始于2026年初，而这些裁员确实达到了预期的效果：企业利润率上升。创纪录的企业利润又被重新投入到了人工智能计算领域。</p>
-<p>随着劳动力成本的消失，计算机行业的所有者财富激增。与此同时，实际工资增长却停滞不前。当消费者经济出现裂痕时，经济评论家们提出了“幽灵GDP”这一概念：指那些出现在国民经济统计数据中，但实际上并未流入实体经济的产出。</p>
-<p>这是一个没有自然制动机制的负反馈循环：AI能力提升 -&gt; 企业裁员 -&gt; 消费减少 -&gt; 利润压力迫使企业加大AI投资 -&gt; AI能力再度提升。</p>
-<h3 id="heading-2">如何开始</h3>
-<p>2025年底，智能编码工具的功能有了阶跃式的提升。使用智能工具的开发人员现在只需几周时间就能复制出中端SaaS产品的核心功能。</p>
-<p>投资者早已做好准备，甚至预料到长尾技术会受到重创。直到 ServiceNow 的 2026 年第三季度报告发布后，反身性的机制才变得更加清晰：原本被认为能提升客户利润率的AI裁员，实际上却在破坏企业自身的许可证收入来源。</p>
-<p>各公司的个体决策看似合理，但总体后果却十分灾难性。节省下用于人力成本的每一美元都被投入到了人工智能研发中，这反而为下一轮裁员创造了条件。</p>
-<h3 id="heading-3">当摩擦力变为零时</h3>
-<p>到2027年初，LLM的使用已成为默认选项。这些智能体（Agents）并非被动等待用户请求，而是根据用户的偏好在后台运行。</p>
-<p>链条上的下一个环节已经开始断裂——中介。代理人消除了摩擦：不再需要人工比对价格、不再有“自动续费”陷阱。旅游预订平台、保险续保、财务咨询、房地产经纪等领域均受到冲击。</p>
-<p>代码代理的出现也彻底打破了外卖应用（如DoorDash）的护城护。机器对应用的忠诚度为零，它们只选择费用最低、配送最快的服务。</p>
-<p>在支付领域，代理商开始寻找比信用卡更便宜的支付方式（如Solana等区块链上的稳定币），绕过了传统的交换费。摩擦力正趋于零。</p>
-<h3 id="heading-4">从行业风险到系统性风险</h3>
-<p>2026年，市场将AI的负面影响视为行业问题。但AI正在蚕食的白领阶层贡献了约75%的可自由支配消费支出。</p>
-<p>“技术创新会创造更多工作”的论点这次失效了，因为AI本身就是通用智能。每一项新工作（如应急工程师）都被AI更快地填补或取代，且薪酬仅为旧职位的几分之一。</p>
-<p>到2027年第二季度，经济已经陷入衰退。</p>
-<h3 id="heading-5">相关赌注的链式关系</h3>
-<p>私人信贷规模由于大量投入到SaaS公司的杠杆收购中而面临风险。当Zendesk等公司因AI驱动的自动化导致收入下降并发生史上最大的私募信贷违约时，整个体系开始动摇。</p>
-<p>原本被视为“永久资本”的另类资产管理公司，其实质是美国家庭的寿险和年金存款。由于关联再保险等复杂架构，透明度极低，风险迅速传导。</p>
-<h3 id="heading-6">抵押贷款问题</h3>
-<p>白领就业危机导致13万亿美元住房抵押贷款市场的收入假设存在结构性缺陷。2028年初，旧金山、西雅图等科技中心的房价开始下跌，原本信用极佳的借款人也因收入锐减而出现早期违约。</p>
-<p>即使降息也无法解决问题，因为一名 Claude 经纪人每月只需 200 美元就能完成一名年薪 18 万美元的产品经理的工作。</p>
-<h3 id="heading-7">与时间的战斗</h3>
-<p>联邦政府的收入来源（个人所得税和工资税）因AI取代人力的产出结构而大幅下降。劳动收入占GDP的比重创下史无前例的降幅。</p>
-<p>政府陷入困境：需要增加社会福利支出，但税收却在减少。“共享人工智能繁荣法案”等提案在党派争斗中举步维艰。社会矛盾激化，“占领硅谷”运动在各大实验室门前爆发。</p>
-<h3 id="heading-8">智力溢价消退</h3>
-<p>纵观现代经济史，人类智慧始终是稀缺资源。我们经济体系中的每一个机构都是基于这一假设设计的。</p>
-<p>我们现在正经历着这种溢价的消退。这是历史上首次出现经济中最具生产力的资产反而导致就业岗位减少而非增加的情况。</p>
-<p>但你读到这篇文章的时候，不是2028年6月，而是2026年2月。金丝雀还活着，我们仍有时间做出改变。</p>
-]]></description>
-      <category>AI</category>
-      <category>经济</category>
-      <category>智力危机</category>
-      <category>腾讯财经</category>
-      <enclosure url="https://are.ink/post-images/global-intelligence-crisis-2028-end-of-middle-class-future.jpg" length="0" type="image/jpeg"></enclosure>
     </item>
   </channel>
 </rss>

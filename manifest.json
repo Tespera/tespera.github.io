@@ -3,6 +3,7 @@
   "name": "述尔",
   "short_name": "述尔",
   "description": "一个产品经理的碎碎念 | 温故而知新",
+  "lang": "zh-cn",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
