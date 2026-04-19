@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link rel="stylesheet" href="/styles/main.min.css">
+
+
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+
+
+
+
+<script>
+  (function () {
+    try {
+      var saved = localStorage.getItem('flavor-theme');
+      var theme = saved || 'dark';
+      if (theme === 'light') {
+        document.documentElement.classList.add('theme-light');
+      }
+    } catch (e) { }
+  })();
+</script>
+  <meta name="generator" content="Gridea Pro 1.1.1">
+  <title>从零实现 CDN 图床：Gridea Pro 如何让图片管理彻底自动化 | 述尔</title>
+  
+<meta property="og:title" content="从零实现 CDN 图床：Gridea Pro 如何让图片管理彻底自动化" />
+<meta property="og:type" content="article" />
+
+<meta property="og:image" content="/post-images/gridea-pro-cdn.png" />
+
+
+<meta name="description" content="试想一下，你的静态博客跑了大半年，文章越写越多，图片也越来越多。 某天你注意到一个问题：站点仓库已经 800MB 了，git clone 要等两分钟，Vercel 构建时间从 30 秒涨到了 3 分钟。你翻了一下站点文件，绝大部分体积都是图片。 更尴尬的是，来自东南亚的读者可能会反馈：你的文章写得很好，但站点、图片都加载太慢了，经常转半天圈才出来。 问题的根源很简单——**图片和站点代码&amp;hellip;">
+<meta name="keywords" content="述尔，Gridea  Pro，Gridea，静态博客，AI，产品经理">
+<link rel="canonical" href="https://are.ink/post/gridea-pro-cdn/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"从零实现 CDN 图床：Gridea Pro 如何让图片管理彻底自动化","url":"https://are.ink/post/gridea-pro-cdn/","description":"试想一下，你的静态博客跑了大半年，文章越写越多，图片也越来越多。 某天你注意到一个问题：站点仓库已经 800MB 了，git clone 要等两分钟，Vercel 构建时间从 30 秒涨到了 3 分钟。你翻了一下站点文件，绝大部分体积都是图片。 更尴尬的是，来自东南亚的读者可能会反馈：你的文章写得很好，但站点、图片都加载太慢了，经常转半天圈才出来。 问题的根源很简单——**图片和站点代码\u0026hellip;","image":"/post-images/gridea-pro-cdn.png","datePublished":"2026-03-12T20:00:00+08:00","dateModified":"2026-03-15T22:24:25+08:00","author":{"@type":"Person","name":"述尔"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/images/avatar.png"},"name":"述尔"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://are.ink","name":"述尔","position":1},{"@type":"ListItem","item":"https://are.ink/post/gridea-pro-cdn/","name":"从零实现 CDN 图床：Gridea Pro 如何让图片管理彻底自动化","position":2}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1SBXPCEK36"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-1SBXPCEK36');</script>
+<meta name="google-site-verification" content="googlea4223896f417412f.html">
+<script>var _hmt=_hmt||[];(function(){var hm=document.createElement("script");hm.src="https://hm.baidu.com/hm.js?4b792e215f23cf68ed571462a263feb3";var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(hm,s);})();</script>
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#000000">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="述尔">
+<link rel="apple-touch-icon" sizes="180x180" href="https://cdn.jsdelivr.net/gh/Tespera/Assets@main/images/icons/icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192" href="https://cdn.jsdelivr.net/gh/Tespera/Assets@main/images/icons/icon-192x192.png">
+<meta name="msapplication-TileColor" content="#000000">
+<meta name="msapplication-TileImage" content="/images/icons/icon-192x192.png">
+<script>if('serviceWorker' in navigator){navigator.serviceWorker.register('/sw.js')}</script>
+</head>
+<body class="flavor-theme">
+
+  <header class="site-header" id="siteHeader">
+  <div class="header-inner">
+    <div class="top-bar">
+
+      
+      <div class="top-bar__left">
+        
+        <a href="https://are.ink" class="site-avatar-link" aria-label="返回首页">
+          <img class="site-avatar" src="https://cdn.jsdelivr.net/gh/Tespera/Assets@main/images/avatar.png" alt="述尔" />
+        </a>
+        
+        <a href="https://are.ink" class="site-name-link">述尔</a>
+      </div>
+
+      
+      <nav class="top-bar__nav" id="sectionBar">
+        
+        
+        <a class="nav-item" href="/">首页</a>
+        
+        <a class="nav-item" href="/post">博客</a>
+        
+        <a class="nav-item" href="/memos">闪念</a>
+        
+        <a class="nav-item" href="/archives">归档</a>
+        
+        <a class="nav-item" href="/tags">标签</a>
+        
+        <a class="nav-item" href="/links">友链</a>
+        
+        <a class="nav-item" href="/post/about">关于</a>
+        
+        
+      </nav>
+
+      
+      <div class="top-bar__right">
+        <button class="btn-icon btn-search search-btn" id="btnSearch" type="button" aria-label="搜索">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+        </button>
+        <button class="btn-icon theme-toggle theme-toggle-sun" id="themeToggleSun" type="button"
+          aria-label="切换到浅色模式">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 1C12.5523 1 13 1.44772 13 2V4C13 4.55228 12.5523 5 12 5C11.4477 5 11 4.55228 11 4V2C11 1.44772 11.4477 1 12 1Z"></path>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M7 12C7 9.23858 9.23858 7 12 7C14.7614 7 17 9.23858 17 12C17 14.7614 14.7614 17 12 17C9.23858 17 7 14.7614 7 12ZM12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9Z"></path>
+            <path d="M13 20C13 19.4477 12.5523 19 12 19C11.4477 19 11 19.4477 11 20V22C11 22.5523 11.4477 23 12 23C12.5523 23 13 22.5523 13 22V20Z"></path>
+            <path d="M4.22282 4.22289C4.61335 3.83236 5.24651 3.83236 5.63704 4.22289L7.04704 5.63289C7.43756 6.02341 7.43756 6.65658 7.04704 7.0471C6.65651 7.43762 6.02335 7.43762 5.63283 7.0471L4.22282 5.6371C3.8323 5.24658 3.8323 4.61341 4.22282 4.22289Z"></path>
+            <path d="M18.367 16.9529C17.9765 16.5623 17.3433 16.5623 16.9528 16.9529C16.5623 17.3434 16.5623 17.9766 16.9528 18.3671L18.3628 19.7771C18.7533 20.1676 19.3865 20.1676 19.777 19.7771C20.1675 19.3866 20.1675 18.7534 19.777 18.3629L18.367 16.9529Z"></path>
+            <path d="M1 12C1 11.4477 1.44772 11 2 11H4C4.55228 11 5 11.4477 5 12C5 12.5523 4.55228 13 4 13H2C1.44772 13 1 12.5523 1 12Z"></path>
+            <path d="M20 11C19.4477 11 19 11.4477 19 12C19 12.5523 19.4477 13 20 13H22C22.5523 13 23 12.5523 23 12C23 11.4477 22.5523 11 22 11H20Z"></path>
+            <path d="M7.04704 16.9529C7.43756 17.3434 7.43756 17.9766 7.04704 18.3671L5.63704 19.7771C5.24651 20.1676 4.61335 20.1676 4.22282 19.7771C3.8323 19.3866 3.8323 18.7534 4.22283 18.3629L5.63283 16.9529C6.02335 16.5623 6.65651 16.5623 7.04704 16.9529Z"></path>
+            <path d="M19.777 5.6371C20.1675 5.24657 20.1675 4.61341 19.777 4.22289C19.3865 3.83236 18.7533 3.83236 18.3628 4.22289L16.9528 5.63289C16.5623 6.02341 16.5623 6.65658 16.9528 7.0471C17.3433 7.43762 17.9765 7.43762 18.367 7.0471L19.777 5.6371Z"></path>
+          </svg>
+        </button>
+        <button class="btn-icon theme-toggle theme-toggle-moon" id="themeToggleMoon" type="button"
+          aria-label="切换到深色模式">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C10.0222 2 8.08879 2.58649 6.4443 3.6853C4.79981 4.78412 3.51809 6.3459 2.76121 8.17317C2.00433 10.0004 1.8063 12.0111 2.19215 13.9509C2.578 15.8907 3.53041 17.6725 4.92894 19.0711C6.32746 20.4696 8.10929 21.422 10.0491 21.8079C11.9889 22.1937 13.9996 21.9957 15.8268 21.2388C17.6541 20.4819 19.2159 19.2002 20.3147 17.5557C21.4135 15.9112 22 13.9778 22 12C22 11.5955 21.7564 11.2309 21.3827 11.0761C21.009 10.9213 20.5789 11.0069 20.2929 11.2929C19.287 12.2988 17.9226 12.864 16.5 12.864C15.0774 12.864 13.713 12.2988 12.7071 11.2929C11.7012 10.287 11.136 8.92261 11.136 7.5C11.136 6.07739 11.7012 4.71304 12.7071 3.70711C12.9931 3.42111 13.0787 2.99099 12.9239 2.61732C12.7691 2.24364 12.4045 2 12 2ZM7.55544 5.34824C8.27036 4.87055 9.05353 4.51389 9.87357 4.28778C9.39271 5.27979 9.13604 6.37666 9.13604 7.5C9.13604 9.45304 9.91189 11.3261 11.2929 12.7071C12.6739 14.0881 14.547 14.864 16.5 14.864C17.6233 14.864 18.7202 14.6073 19.7122 14.1264C19.4861 14.9465 19.1295 15.7296 18.6518 16.4446C17.7727 17.7602 16.5233 18.7855 15.0615 19.391C13.5997 19.9965 11.9911 20.155 10.4393 19.8463C8.88743 19.5376 7.46197 18.7757 6.34315 17.6569C5.21447 16.538 4.4624 15.1126 4.15372 13.5607C3.84504 12.0089 4.00347 10.4003 4.60897 8.93853C5.21447 7.47672 6.23985 6.22729 7.55544 5.34824Z"></path>
+            <path d="M19 2C19.5523 2 20 2.44772 20 3V4H21C21.5523 4 22 4.44772 22 5C22 5.55228 21.5523 6 21 6H20V7C20 7.55228 19.5523 8 19 8C18.4477 8 18 7.55228 18 7V6H17C16.4477 6 16 5.55228 16 5C16 4.44772 16.4477 4 17 4H18V3C18 2.44772 18.4477 2 19 2Z"></path>
+          </svg>
+        </button>
+        <button class="btn-icon btn-nav-toggle mobile-only" id="btnNavToggle" type="button" aria-label="切换导航">
+          <div class="hamburger" id="hamburger">
+            <span class="hamburger__line hamburger__line--top"></span>
+            <span class="hamburger__line hamburger__line--bottom"></span>
+          </div>
+        </button>
+      </div>
+
+    </div>
+  </div>
+</header>
+
+
+<div class="header-spacer"></div>
+
+<script>
+(function(){
+  var btn = document.getElementById('btnNavToggle');
+  var nav = document.getElementById('sectionBar');
+  var hamburger = document.getElementById('hamburger');
+  if (btn && nav) {
+    btn.addEventListener('click', function(){
+      nav.classList.toggle('top-bar__nav--open');
+      if (hamburger) hamburger.classList.toggle('is-active');
+    });
+    nav.querySelectorAll('.nav-item').forEach(function(item){
+      item.addEventListener('click', function(){
+        nav.classList.remove('top-bar__nav--open');
+        if (hamburger) hamburger.classList.remove('is-active');
+      });
+    });
+  }
+
+  var root = document.documentElement;
+  var applyTheme = function(theme, persist){
+    if (theme === 'light') {
+      root.classList.add('theme-light');
+    } else {
+      root.classList.remove('theme-light');
+    }
+    if (persist) {
+      try { localStorage.setItem('flavor-theme', theme); } catch (e) {}
+    }
+  };
+  document.querySelectorAll('.theme-toggle').forEach(function(el){
+    el.addEventListener('click', function(){
+      applyTheme(root.classList.contains('theme-light') ? 'dark' : 'light', true);
+    });
+  });
+})();
+</script>
+
+  <main class="site-main" role="main">
+    
+<article class="article-container">
+  <header class="article-header">
+    <h1 class="article-title">从零实现 CDN 图床：Gridea Pro 如何让图片管理彻底自动化</h1>
+    <div class="article-meta">
+      
+      
+      <a href="/category/Gridea-Pro/" class="article-meta__category">Gridea Pro</a>
+      
+      
+      <span class="article-meta__sep">·</span>
+      
+      <span class="article-meta__item">2026年03月12日</span>
+      
+      <span class="article-meta__sep">·</span>
+      <span class="article-meta__item">8 分钟阅读</span>
+      
+    </div>
+    
+    <div class="article-header__tags">
+      
+      <a href="/tag/gridea-pro/" class="tag-pill tag-pill--sm">Gridea Pro</a>
+      
+      <a href="/tag/cdn/" class="tag-pill tag-pill--sm">CDN</a>
+      
+      <a href="/tag/tu-chuang/" class="tag-pill tag-pill--sm">图床</a>
+      
+      <a href="/tag/she-ji-li-nian/" class="tag-pill tag-pill--sm">设计理念</a>
+      
+      <a href="/tag/jing-tai-bo-ke/" class="tag-pill tag-pill--sm">静态博客</a>
+      
+      <a href="/tag/chan-pin-she-ji/" class="tag-pill tag-pill--sm">产品设计</a>
+      
+    </div>
+    
+  </header>
+
+  
+  <div class="article-feature">
+    <img src="https://cdn.jsdelivr.net/gh/Tespera/Assets@main/post-images/gridea-pro-cdn.png" alt="从零实现 CDN 图床：Gridea Pro 如何让图片管理彻底自动化" />
+  </div>
+  
+
+  <div class="article-content">
+    <p>试想一下，你的静态博客跑了大半年，文章越写越多，图片也越来越多。</p>
+<p>某天你注意到一个问题：站点仓库已经 800MB 了，<code>git clone</code> 要等两分钟，Vercel 构建时间从 30 秒涨到了 3 分钟。你翻了一下站点文件，绝大部分体积都是图片。</p>
+<p>更尴尬的是，来自东南亚的读者可能会反馈：你的文章写得很好，但站点、图片都加载太慢了，经常转半天圈才出来。</p>
+<p>问题的根源很简单——<strong>图片和站点代码混在一起</strong>。每次部署把全部内容推到一个仓库，图片没有经过 CDN 加速，全球用户都在从同一个源站拉取。</p>
+<p>所以有没有好的办法可以解决呢？</p>
+<p>有的。CDN 加速。</p>
+<p>这篇文章聊聊 Gridea Pro CDN 这个功能的设计思路、核心决策，以及我们对「好的图片管理体验」的理解。</p>
+<hr />
+<h2 id="-cdn">一、有没有 CDN，到底差在哪</h2>
+<p>先澄清一个认知：<strong>没有 CDN，图片也是能正常显示的。</strong> 部署时图片会跟着 HTML 一起推到托管平台，访问时不会加载不出来图片，只是很慢，当然有时候也可能裂图。</p>
+<p>那 CDN 解决的是什么？</p>
+<p>两件事：</p>
+<p><strong>第一，仓库体积。</strong> 静态站点仓库应该只放生成后的 HTML/CSS/JS，这些都是文本，压缩后很小。但图片是二进制文件，一张截图几百 KB 到几 MB，累积下来仓库会迅速膨胀。仓库越大，clone 越慢，CI/CD 构建越慢，协作体验越差。</p>
+<p><strong>第二，访问速度。</strong> GitHub Pages 或 Vercel 的服务器集中在少数几个区域。没有 CDN 时，一个深圳的读者和一个巴西的读者都从同一个源站拉图片，延迟差异巨大。CDN 把图片分发到全球节点，用户从最近的节点加载，速度可以快几倍甚至十几倍。</p>
+<p>所以 CDN 图床的本质是<strong>把图片从站点仓库中剥离出来，存到一个专门的地方，通过全球加速网络分发</strong>。</p>
+<p>听起来不复杂，但对普通用户来说，手动操作这套流程意味着：</p>
+<ol>
+<li>创建一个 GitHub 仓库专门存图片</li>
+<li>每次新增图片后手动上传到这个仓库</li>
+<li>记住哪些图片已上传、哪些还没有</li>
+<li>确保 HTML 里的图片路径正确指向 CDN 地址</li>
+</ol>
+<p>但是，很麻烦，对吧？</p>
+<p><strong>这就不应该是用户操心的事。</strong></p>
+<hr />
+<h2 id="heading">二、我们想要的最终体验</h2>
+<p>在动手之前，我们先定义了理想的用户体验：</p>
+<blockquote>
+<p>用户只需要做一次配置（填个 Token、选个路径模式），之后每次部署时，图片自动上传到 CDN 仓库，HTML 中的路径自动替换为 CDN 地址，全程无感。</p>
+</blockquote>
+<p>拆解下来，有四件事要做：</p>
+<ol>
+<li><strong>CDN 配置界面</strong>：让用户填写 GitHub 仓库信息、Token、选择路径模式</li>
+<li><strong>自动上传</strong>：部署时自动扫描并上传媒体文件到 CDN 仓库</li>
+<li><strong>URL 重写</strong>：渲染 HTML 时把 <code>/post-images/xx</code> 替换为 <code>https://cdn.jsdelivr.net/gh/user/repo@main/post-images/xx</code></li>
+<li><strong>测试验证</strong>：配置完就能立即测试，不用等到部署才发现配错了</li>
+</ol>
+<p>同时有一个硬约束：<strong>本地预览不能受影响</strong>。预览时图片必须继续走本地路径，只有部署上线后才使用 CDN 地址。</p>
+<p>为什么这么做呢？就是为了本地预览时更快，部署到线上时自动经过 CDN 加速。</p>
+<hr />
+<h2 id="heading-1">三、设计过程中的几个关键决策</h2>
+<h3 id="heading-2">决策一：路径模板，给用户可控的灵活度</h3>
+<p>图片上传到 CDN 仓库后放在哪？全堆在根目录显然不行，文件多了就是灾难。</p>
+<p>我们参考了 uPic、PicGo 等成熟图床工具的做法，设计了<strong>路径模板变量系统</strong>。用户可以用变量组合出自己想要的目录结构：</p>
+<table>
+<thead>
+<tr>
+<th>变量</th>
+<th>含义</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>{year}</code></td>
+<td>当前年份</td>
+<td>2026</td>
+</tr>
+<tr>
+<td><code>{month}</code></td>
+<td>当前月份</td>
+<td>03</td>
+</tr>
+<tr>
+<td><code>{day}</code></td>
+<td>当前日期</td>
+<td>12</td>
+</tr>
+<tr>
+<td><code>{filename}</code></td>
+<td>不含扩展名的文件名</td>
+<td>cover</td>
+</tr>
+<tr>
+<td><code>{.suffix}</code></td>
+<td>带点的扩展名</td>
+<td>.png</td>
+</tr>
+<tr>
+<td><code>{random}</code></td>
+<td>8 位随机字符串</td>
+<td>a1b2c3d4</td>
+</tr>
+</tbody>
+</table>
+<p>预设了 4 种常用模式，覆盖大多数人的需求：</p>
+<pre><code>{year}/{month}/{filename}{.suffix}               → 2026/03/cover.png
+{year}/{month}/{day}/{filename}{.suffix}          → 2026/03/12/cover.png
+blog/images/{year}/{month}/{filename}{.suffix}    → blog/images/2026/03/cover.png
+{year}/{filename}-{random}{.suffix}               → 2026/cover-a1b2c3d4.png
+</code></pre>
+<p>也留了「自定义」选项，高级用户可以随意组合。</p>
+<p>这样做的好处是：对于只想快速配好的用户，选一个预设就行；对于有强迫症的用户，路径完全可控。</p>
+<h3 id="heading-3">决策二：批量上传保持原始结构——一个差点踩进去的坑</h3>
+<p>最初我们的想法是：部署时批量上传也用路径模板来决定每个文件的远程路径。但仔细推演了一遍，发现有严重问题——</p>
+<p>假设模板是 <code>{year}/{month}/{filename}{.suffix}</code>。1 月份部署时图片传到了 <code>2026/01/</code> 下，CDN 地址也带上了 <code>2026/01</code> 前缀。到了 3 月份再部署，前缀变成 <code>2026/03</code>，<strong>所有旧文章里的图片链接全部失效</strong>。</p>
+<p>这是个很隐蔽的坑。如果没有提前想到，等用户用了几个月才发现旧图片打不开，那就是灾难性的体验问题。</p>
+<p><strong>最终方案</strong>：批量部署上传时，完全保持原始目录结构（<code>post-images/xx</code>、<code>images/xx</code>、<code>media/xx</code>），直接映射到 CDN 仓库根目录。路径模板只用在测试上传和未来的编辑器内单图上传场景。</p>
+<p>这样，无论何时部署，<code>/post-images/cover.png</code> 永远对应同一个 CDN 地址，路径稳定，不受时间影响。</p>
+<h3 id="heading-4">决策三：智能去重，不做无用功</h3>
+<p>每次部署都会扫描所有媒体目录，但绝大多数文件上次已经上传过了。如果每次都重新上传，既浪费时间又浪费 API 配额。</p>
+<p>我们的做法是：上传前先计算本地文件的内容指纹，与远程仓库中的文件指纹比对。<strong>内容相同则跳过，内容不同或文件不存在才上传。</strong></p>
+<p>这意味着，即使你的博客有 200 张图片，如果这次只新增了 3 张，实际只会上传 3 个文件。部署速度几乎不受历史图片数量的影响。</p>
+<h3 id="heading-5">决策四：单文件失败不中断部署</h3>
+<p>部署是用户等了很久才触发的操作。如果因为一张图片上传失败（比如网络抖动）就整个中断，让用户重新来过，体验太差了。</p>
+<p>我们选择了<strong>柔性策略</strong>：单个文件上传失败只记录日志继续执行，不中断部署流程。用户可以在部署日志中看到哪些文件失败了，下次部署时会自动重试（因为去重机制检测到文件不存在，会重新上传）。</p>
+<h3 id="heading-6">决策五：有并发但克制</h3>
+<p>多个文件可以并行上传，提升速度。但并发不是越多越好——GitHub API 有速率限制，短时间内请求过密会被拒绝。</p>
+<p>我们设定了 <strong>5 并发</strong>的上限。这个数字是在速度和稳定性之间找到的平衡点：比串行快了数倍，但不至于触发限流。</p>
+<hr />
+<h2 id="heading-7">四、完整的工作流程</h2>
+<p>配置完成后，用户的日常写作体验是这样的：</p>
+<pre><code>1. 打开编辑器，写文章，拖入图片
+   → 图片保存到本地 post-images/ 目录
+
+2. 点击预览
+   → 直接读本地文件，图片正常显示，毫秒级响应
+
+3. 点击部署（这是唯一需要做的操作）
+   ① 渲染静态站点
+      → HTML 中的图片路径自动替换为 CDN 地址
+   ② 扫描媒体目录，智能上传
+      → 新文件上传到 CDN 仓库
+      → 已存在且内容相同的文件自动跳过
+      → 5 并发，失败不中断
+   ③ 推送 HTML 到托管平台
+
+4. 用户访问线上站点
+   → 图片从 jsDelivr CDN 全球节点加载，速度飞快
+</code></pre>
+<p>全程只需要一次点击。没有手动上传，没有路径拼接，没有遗漏担忧。</p>
+<hr />
+<h2 id="heading-8">五、前端体验的细节打磨</h2>
+<p>功能做对了只是及格，体验做好了才是满分。我们在 UI 上也花了一些心思。</p>
+<p><strong>Token 输入框</strong>：默认密码遮盖，旁边有眼睛图标切换可见性。一个小细节，但在演示或录屏时能避免泄露敏感信息。</p>
+<p><strong>保存路径选择</strong>：下拉框提供 4 个预设方案，底部有「自定义」选项。选择自定义后展开输入框，下方提示支持的变量列表。既照顾新手，也给老手留空间。</p>
+<p><strong>测试上传按钮</strong>：配置完点一下，立即上传一个测试文件到 CDN 仓库，成功后 toast 显示完整的 CDN 访问 URL。<strong>先保存配置再测试</strong>，保证测试用的是最新配置。按钮只在满足条件时显示（CDN 已启用 + Token 已填写），避免无效操作。</p>
+<p><strong>提示信息</strong>：用主题色柔和呈现，简明扼要地告知用户「部署时将自动上传媒体文件」，不制造焦虑，给人信心。</p>
+<hr />
+<h2 id="heading-9">六、架构上的考量</h2>
+<p>在 Gridea Pro 的分层架构中，CDN 功能横跨了多个层次：</p>
+<ul>
+<li><strong>领域层</strong>定义了 CDN 配置的数据结构（仓库信息、Token、路径模板）</li>
+<li><strong>仓库层</strong>负责配置的持久化存储（JSON 文件）</li>
+<li><strong>服务层</strong>包含两个核心能力：上传服务（文件扫描、去重、并发上传）和渲染引擎中的 URL 重写</li>
+<li><strong>外观层</strong>将上传能力暴露给前端（测试上传接口）</li>
+<li><strong>部署流程</strong>在渲染和推送之间编排上传步骤</li>
+</ul>
+<p>这样的分层让每个职责都清晰独立。URL 重写不关心文件怎么上传，上传服务不关心 HTML 怎么渲染，部署流程只负责编排顺序。未来如果要支持更多 CDN 提供商（比如阿里云 OSS、七牛云），只需要在上传服务层新增实现，其他层完全不用动。</p>
+<hr />
+<h2 id="heading-10">七、为什么不在编辑器里实时上传</h2>
+<p>有人可能会问：为什么不在编辑器里粘贴图片时就实时上传到 CDN？</p>
+<p>这确实是更理想的体验，PicGo 就是这么做的。但我们有意把它放到了下一阶段：</p>
+<ol>
+<li><strong>网络依赖</strong>：实时上传意味着写作过程依赖网络。离线写作是 Gridea Pro 的核心优势之一，我们不想在这个场景引入网络依赖</li>
+<li><strong>交互复杂度</strong>：需要处理上传进度、失败重试、网络异常回退（回退到本地路径），编辑器的复杂度会显著增加</li>
+<li><strong>先把基础做稳</strong>：部署时批量上传是更安全、更可控的方案，先跑通这条路，积累经验后再做编辑器内上传</li>
+</ol>
+<p>值得一提的是，路径模板系统的设计已经为这个场景做了预留——它可以为每个文件生成独立的远程路径，正是编辑器内单图上传需要的能力。</p>
+<hr />
+<h2 id="heading-11">八、结语</h2>
+<p>CDN 图床解决的不是「图片能不能显示」的问题，而是「图片能不能又快又省心地显示」的问题。</p>
+<p>仓库体积控制、全球加速访问、自动化上传——这三件事单拿出来都不新鲜，但把它们串成一条无感的链路，让用户只需点一次部署按钮，剩下的全自动完成，这才是我们想做到的。</p>
+<p>好的工具应该是透明的——你感受不到它的存在，但它在背后把一切都安排好了。写博客应该专注在内容上，而不是和基础设施搏斗。</p>
+<p>从零到一实现这个功能，最大的收获不是写了多少代码，而是在设计过程中反复追问：<strong>用户真正需要的是什么？哪些复杂度应该由工具承担，而不是转嫁给用户？</strong></p>
+<p>答案往往很简单：能自动的就自动，能省的就省，能不让用户思考的就别让他们思考。</p>
+
+  </div>
+
+  
+  <nav class="post-nav">
+    
+    <a href="/post/migrating-from-gridea-to-gridea-pro/" class="post-nav-card post-nav-card--prev">
+      
+      <div class="post-nav-card__body">
+        <span class="post-nav-card__label meta-text">上一篇</span>
+        <span class="post-nav-card__title">从 Gridea 迁移到 Gridea Pro：零风险完整指南</span>
+      </div>
+      <span class="post-nav-card__arrow">&larr;</span>
+    </a>
+    
+    
+    <a href="/post/most-conversations-with-Claude-on-Earth-is-a-philosopher/" class="post-nav-card post-nav-card--next">
+      <div class="post-nav-card__body">
+        <span class="post-nav-card__label meta-text">下一篇</span>
+        <span class="post-nav-card__title">地球上和 Claude 对话最多的人，是一位哲学家</span>
+      </div>
+      
+      <div class="post-nav-card__img">
+        <img src="https://cdn.jsdelivr.net/gh/Tespera/Assets@main/post-images/most-conversations-with-Claude-on-Earth-is-a-philosopher.png" alt="地球上和 Claude 对话最多的人，是一位哲学家" loading="lazy" />
+      </div>
+      
+      <span class="post-nav-card__arrow">&rarr;</span>
+    </a>
+    
+  </nav>
+
+  
+  
+
+
+  
+    <section class="comment-section">
+  <h2 class="comment-section__title">评论</h2>
+  <div id="vcomments"></div>
+  <link rel="stylesheet" href="https://unpkg.com/valine@1/dist/Valine.min.css">
+  <script src="https://unpkg.com/valine@1/dist/Valine.min.js"></script>
+  <script>
+    new Valine({
+      el: '#vcomments',
+      appId: 'dAWkPrxZg50VZ7iV39rrZL5U-MdYXbMMI',
+      appKey: 'YCfYt8rhK8d0mh9vr42YTaA1',
+      serverURLs: 'https://dawkprxz.api.lncldglobal.com',
+      avatar: 'mp',
+      placeholder: '说点什么吧…'
+    });
+    // Valine 内置 locale 不支持覆盖，手动替换 placeholder
+    var linkInput = document.querySelector('#vcomments .vlink');
+    if (linkInput) linkInput.placeholder = '网址(https://)';
+  </script>
+</section>
+
+  
+
+
+
+</article>
+
+  </main>
+
+  <footer class="site-footer">
+  <div class="footer-inner">
+
+    
+    
+    <nav class="footer-nav" aria-label="页脚导航">
+      
+      <a class="footer-nav__link" href="/">首页</a>
+      
+      <a class="footer-nav__link" href="/post">博客</a>
+      
+      <a class="footer-nav__link" href="/memos">闪念</a>
+      
+      <a class="footer-nav__link" href="/archives">归档</a>
+      
+      <a class="footer-nav__link" href="/tags">标签</a>
+      
+      <a class="footer-nav__link" href="/links">友链</a>
+      
+      <a class="footer-nav__link" href="/post/about">关于</a>
+      
+    </nav>
+    
+
+    
+    <div class="footer-social">
+      
+      <a class="footer-social__link" href="https://github.com/Tespera" target="_blank" rel="noopener noreferrer"
+        aria-label="GitHub">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path
+            d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+        </svg>
+      </a>
+      
+      
+      <a class="footer-social__link" href="https://x.com" target="_blank" rel="noopener noreferrer"
+        aria-label="Twitter/X">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path
+            d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+        </svg>
+      </a>
+      
+      
+      <a class="footer-social__link" href="https://weibo.com" target="_blank" rel="noopener noreferrer"
+        aria-label="微博">
+        <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor">
+          <path d="M10.878 1.093a4.23 4.23 0 0 1 4.031 1.305 4.22 4.22 0 0 1 .886 4.14v.001a.612.612 0 0 1-1.166-.377 3.01 3.01 0 0 0-3.495-3.873.611.611 0 1 1-.256-1.196M3.753 9.465c.548-1.11 1.972-1.74 3.233-1.411 1.304.338 1.971 1.568 1.437 2.764-.541 1.221-2.095 1.875-3.416 1.449-1.271-.411-1.812-1.67-1.254-2.802m2.658.567c.16.066.365-.009.458-.168.088-.16.03-.34-.129-.397-.156-.062-.353.013-.446.168-.09.154-.041.333.117.397m-1.607 1.314c.413.188.963.009 1.219-.4.252-.413.12-.883-.296-1.062-.41-.172-.94.005-1.194.402-.256.4-.135.874.271 1.06"/>
+          <path d="m12.014 7.238.005.001c.919.285 1.941.974 1.939 2.188 0 2.007-2.895 4.535-7.246 4.535C3.393 13.962 0 12.352 0 9.708c0-1.385.876-2.985 2.384-4.493C4.4 3.199 6.751 2.28 7.634 3.165c.39.392.427 1.065.177 1.87-.132.405.38.182.38.182 1.63-.682 3.051-.722 3.57.02.278.397.252.951-.004 1.594-.116.293.035.34.257.407m-10.4 3.101c.172 1.738 2.46 2.936 5.109 2.674 2.647-.26 4.656-1.883 4.482-3.623-.17-1.738-2.458-2.937-5.107-2.674-2.647.263-4.656 1.883-4.484 3.623m11.681-6.484a2.06 2.06 0 0 0-1.962-.634.526.526 0 1 0 .219 1.031 1.008 1.008 0 0 1 1.17 1.296.528.528 0 0 0 1.005.325 2.06 2.06 0 0 0-.432-2.018"/>
+        </svg>
+      </a>
+      
+      <a class="footer-social__link" href="/feed.xml" aria-label="RSS">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M6.18 15.64a2.18 2.18 0 110 4.36 2.18 2.18 0 010-4.36zM4 4.44A15.56 15.56 0 0119.56 20h-2.83A12.73 12.73 0 004 7.27V4.44zm0 5.66a9.9 9.9 0 019.9 9.9h-2.83A7.07 7.07 0 004 12.93V10.1z"/>
+        </svg>
+      </a>
+    </div>
+
+    
+    <div class="footer-copyright">
+      <p>&copy; 2026 述尔. All rights reserved.</p>
+    </div>
+
+    
+    
+
+    
+    <div class="footer-powered">
+      <span>Powered by <a href="https://gridea.pro" target="_blank" rel="noopener noreferrer">Gridea Pro</a></span>
+    </div>
+
+  </div>
+</footer>
+
+  
+  <div class="search-overlay" id="searchOverlay" style="display:none;">
+  <div class="search-modal">
+    <div class="search-header">
+      <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+      <input type="text" class="search-input" id="searchInput" placeholder="搜索文章..." autocomplete="off" />
+      <span class="search-kbd">&#8984;K</span>
+      <button class="search-close" id="searchClose" type="button" aria-label="关闭搜索">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+    <div class="search-results" id="searchResults"></div>
+  </div>
+</div>
+
+<script src="/scripts/search.js"></script>
+  
+
+  
+
+  
+
+  
+
+<script>console.log("\n%c ✦ Gridea Pro v1.1.1 %c · Theme: flavor-theme v1.0.0 · https://gridea.pro %c\n","color:#fadfa3;background:#111111;padding:9px 14px;border-radius:4px 0 0 4px;font-weight:500;font-size:12px","color:#e05c00;background:#fff3ec;padding:9px 14px;border-radius:0 4px 4px 0;font-size:11px","")</script>
+</body>
+</html>
