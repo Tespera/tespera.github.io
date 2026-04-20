@@ -11,6 +11,8 @@
 
 
 
+<style>:root { --heatmap-color: #39d353; }</style>
+
 
 
 <script>
@@ -38,6 +40,17 @@
 <link rel="canonical" href="https://are.ink/post/gridea-pro-jinja2-theme-dev-guide/">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Gridea Pro Jinja2 主题开发完全指南：从踩坑到精通","url":"https://are.ink/post/gridea-pro-jinja2-theme-dev-guide/","description":"Gridea Pro 从 v2 开始引入了 Jinja2 模板引擎支持（基于 Go 语言的 Pongo2 实现），为主题开发者提供了比 EJS 更优雅的模板继承和组件化能力。但由于 Pongo2 与标准 Python Jinja2 存在细微但关键的语法差异，初次开发者很容易踩坑。 本文基于一次完整的 EJS 到 Jinja2 主题迁移实战（amore 主题），系统性地总结了所有已知的兼容性陷阱和最佳实践，帮助你从零开始写出一个零报错的 Jinja2 主题。","image":"/post-images/gridea-pro-jinja2-theme-dev-guide.png","datePublished":"2026-02-28T19:15:00+08:00","dateModified":"2026-03-10T13:41:07+08:00","author":{"@type":"Person","name":"述尔"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/images/avatar.png"},"name":"述尔"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://are.ink","name":"述尔","position":1},{"@type":"ListItem","item":"https://are.ink/post/gridea-pro-jinja2-theme-dev-guide/","name":"Gridea Pro Jinja2 主题开发完全指南：从踩坑到精通","position":2}]}</script>
+<meta property="og:title" content="Gridea Pro Jinja2 主题开发完全指南：从踩坑到精通">
+<meta property="og:description" content="Gridea Pro 从 v2 开始引入了 Jinja2 模板引擎支持（基于 Go 语言的 Pongo2 实现），为主题开发者提供了比 EJS 更优雅的模板继承和组件化能力。但由于 Pongo2 与标准 Python Jinja2 存在细微但关键的语法差异，初次开发者很容易踩坑。 本文基于一次完整的 EJS 到 Jinja2 主题迁移实战（amore 主题），系统性地总结了所有已知的兼容性陷阱和最佳实践，帮助你从零开始写出一个零报错的 Jinja2 主题。">
+<meta property="og:url" content="https://are.ink/post/gridea-pro-jinja2-theme-dev-guide/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="述尔">
+<meta property="og:image" content="/post-images/gridea-pro-jinja2-theme-dev-guide.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://are.ink/post/gridea-pro-jinja2-theme-dev-guide/">
+<meta name="twitter:title" content="Gridea Pro Jinja2 主题开发完全指南：从踩坑到精通">
+<meta name="twitter:description" content="Gridea Pro 从 v2 开始引入了 Jinja2 模板引擎支持（基于 Go 语言的 Pongo2 实现），为主题开发者提供了比 EJS 更优雅的模板继承和组件化能力。但由于 Pongo2 与标准 Python Jinja2 存在细微但关键的语法差异，初次开发者很容易踩坑。 本文基于一次完整的 EJS 到 Jinja2 主题迁移实战（amore 主题），系统性地总结了所有已知的兼容性陷阱和最佳实践，帮助你从零开始写出一个零报错的 Jinja2 主题。">
+<meta name="twitter:image" content="/post-images/gridea-pro-jinja2-theme-dev-guide.png">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-1SBXPCEK36"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-1SBXPCEK36');</script>
 <meta name="google-site-verification" content="googlea4223896f417412f.html">

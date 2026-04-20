@@ -11,6 +11,8 @@
 
 
 
+<style>:root { --heatmap-color: #39d353; }</style>
+
 
 
 <script>
@@ -38,6 +40,17 @@
 <link rel="canonical" href="https://are.ink/post/wails-boot/">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Wails 应用实战：重构 Boot 启动逻辑与原生菜单国际化最佳实践","url":"https://are.ink/post/wails-boot/","description":"在开发跨平台桌面应用时，菜单栏（Menu Bar）是用户体验的核心组成部分。Gridea Pro 作为一款基于 Wails 开发的现代化应用，近期对后端的启动逻辑（Boot）和菜单系统进行了深度重构。本文将分享这一过程中的技术决策、踩坑经验以及最终的最佳实践方案。 背景：为什么重构？ 在早期的开发中，我们的 boot.go 承担了过多的职责：初始化配置、启动 Http Server、\u0026hellip;","image":"/post-images/wails-boot.jpeg","datePublished":"2026-02-28T14:04:39+08:00","dateModified":"2026-03-10T13:41:07+08:00","author":{"@type":"Person","name":"述尔"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/images/avatar.png"},"name":"述尔"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://are.ink","name":"述尔","position":1},{"@type":"ListItem","item":"https://are.ink/post/wails-boot/","name":"Wails 应用实战：重构 Boot 启动逻辑与原生菜单国际化最佳实践","position":2}]}</script>
+<meta property="og:title" content="Wails 应用实战：重构 Boot 启动逻辑与原生菜单国际化最佳实践">
+<meta property="og:description" content="在开发跨平台桌面应用时，菜单栏（Menu Bar）是用户体验的核心组成部分。Gridea Pro 作为一款基于 Wails 开发的现代化应用，近期对后端的启动逻辑（Boot）和菜单系统进行了深度重构。本文将分享这一过程中的技术决策、踩坑经验以及最终的最佳实践方案。 背景：为什么重构？ 在早期的开发中，我们的 boot.go 承担了过多的职责：初始化配置、启动 Http Server、&amp;hellip;">
+<meta property="og:url" content="https://are.ink/post/wails-boot/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="述尔">
+<meta property="og:image" content="/post-images/wails-boot.jpeg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://are.ink/post/wails-boot/">
+<meta name="twitter:title" content="Wails 应用实战：重构 Boot 启动逻辑与原生菜单国际化最佳实践">
+<meta name="twitter:description" content="在开发跨平台桌面应用时，菜单栏（Menu Bar）是用户体验的核心组成部分。Gridea Pro 作为一款基于 Wails 开发的现代化应用，近期对后端的启动逻辑（Boot）和菜单系统进行了深度重构。本文将分享这一过程中的技术决策、踩坑经验以及最终的最佳实践方案。 背景：为什么重构？ 在早期的开发中，我们的 boot.go 承担了过多的职责：初始化配置、启动 Http Server、&amp;hellip;">
+<meta name="twitter:image" content="/post-images/wails-boot.jpeg">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-1SBXPCEK36"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-1SBXPCEK36');</script>
 <meta name="google-site-verification" content="googlea4223896f417412f.html">

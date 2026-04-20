@@ -11,6 +11,8 @@
 
 
 
+<style>:root { --heatmap-color: #39d353; }</style>
+
 
 
 <script>
@@ -36,6 +38,17 @@
 <link rel="canonical" href="https://are.ink/post/gridea-pro-service/">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"从 MVP 到生产级架构：Gridea Pro 桌面应用 Go 后端深度重构复盘","url":"https://are.ink/post/gridea-pro-service/","description":"从 MVP 到生产级架构：Gridea Pro 桌面应用 Go 后端深度重构复盘 导语： 每一个优秀的软件系统，其架构演进史往往比最终形态更具启发性。在 Gideora Pro 这样一个基于 Wails 构建的现代化本地优先（Local-First）桌面应用中，我们的后端 Service 层经历了从简单的 MVP（最小可行产品）原型，到如今能够承载高并发读写、具备稳定健壮性的\u0026hellip;","datePublished":"2026-02-14T23:40:00+08:00","dateModified":"2026-03-10T13:41:07+08:00","author":{"@type":"Person","name":"述尔"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/images/avatar.png"},"name":"述尔"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://are.ink","name":"述尔","position":1},{"@type":"ListItem","item":"https://are.ink/post/gridea-pro-service/","name":"从 MVP 到生产级架构：Gridea Pro 桌面应用 Go 后端深度重构复盘","position":2}]}</script>
+<meta property="og:title" content="从 MVP 到生产级架构：Gridea Pro 桌面应用 Go 后端深度重构复盘">
+<meta property="og:description" content="从 MVP 到生产级架构：Gridea Pro 桌面应用 Go 后端深度重构复盘 导语： 每一个优秀的软件系统，其架构演进史往往比最终形态更具启发性。在 Gideora Pro 这样一个基于 Wails 构建的现代化本地优先（Local-First）桌面应用中，我们的后端 Service 层经历了从简单的 MVP（最小可行产品）原型，到如今能够承载高并发读写、具备稳定健壮性的&amp;hellip;">
+<meta property="og:url" content="https://are.ink/post/gridea-pro-service/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="述尔">
+<meta property="og:image" content="/images/avatar.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://are.ink/post/gridea-pro-service/">
+<meta name="twitter:title" content="从 MVP 到生产级架构：Gridea Pro 桌面应用 Go 后端深度重构复盘">
+<meta name="twitter:description" content="从 MVP 到生产级架构：Gridea Pro 桌面应用 Go 后端深度重构复盘 导语： 每一个优秀的软件系统，其架构演进史往往比最终形态更具启发性。在 Gideora Pro 这样一个基于 Wails 构建的现代化本地优先（Local-First）桌面应用中，我们的后端 Service 层经历了从简单的 MVP（最小可行产品）原型，到如今能够承载高并发读写、具备稳定健壮性的&amp;hellip;">
+<meta name="twitter:image" content="/images/avatar.png">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-1SBXPCEK36"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-1SBXPCEK36');</script>
 <meta name="google-site-verification" content="googlea4223896f417412f.html">

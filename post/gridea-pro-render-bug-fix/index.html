@@ -11,6 +11,8 @@
 
 
 
+<style>:root { --heatmap-color: #39d353; }</style>
+
 
 
 <script>
@@ -38,6 +40,17 @@
 <link rel="canonical" href="https://are.ink/post/gridea-pro-render-bug-fix/">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Gridea Pro 渲染引擎深度排查：从“样式全丢”到“缓存穿透”的连环 Bug 修复纪实","url":"https://are.ink/post/gridea-pro-render-bug-fix/","description":"Gridea Pro 渲染引擎(Renderer)深度排查：从“样式全丢”到“缓存穿透”的连环 Bug 修复纪实 在完善 Gridea Pro 主题适配及底层渲染逻辑（Renderer Layer）的过程中，系统有时会因为几个看似微小且毫无关联的代码缺陷，引发毁灭性的“灾难”——比如今天遇到的“不管切换到哪个主题，所有页面样式全部丢失”的诡异现象。 这篇手记详细记录了本次长达数小时、犹如剥\u0026hellip;","image":"/post-images/gridea-pro-render-bug-fix.jpg","datePublished":"2026-02-27T19:28:10+08:00","dateModified":"2026-03-10T13:41:07+08:00","author":{"@type":"Person","name":"述尔"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/images/avatar.png"},"name":"述尔"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://are.ink","name":"述尔","position":1},{"@type":"ListItem","item":"https://are.ink/post/gridea-pro-render-bug-fix/","name":"Gridea Pro 渲染引擎深度排查：从“样式全丢”到“缓存穿透”的连环 Bug 修复纪实","position":2}]}</script>
+<meta property="og:title" content="Gridea Pro 渲染引擎深度排查：从“样式全丢”到“缓存穿透”的连环 Bug 修复纪实">
+<meta property="og:description" content="Gridea Pro 渲染引擎(Renderer)深度排查：从“样式全丢”到“缓存穿透”的连环 Bug 修复纪实 在完善 Gridea Pro 主题适配及底层渲染逻辑（Renderer Layer）的过程中，系统有时会因为几个看似微小且毫无关联的代码缺陷，引发毁灭性的“灾难”——比如今天遇到的“不管切换到哪个主题，所有页面样式全部丢失”的诡异现象。 这篇手记详细记录了本次长达数小时、犹如剥&amp;hellip;">
+<meta property="og:url" content="https://are.ink/post/gridea-pro-render-bug-fix/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="述尔">
+<meta property="og:image" content="/post-images/gridea-pro-render-bug-fix.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://are.ink/post/gridea-pro-render-bug-fix/">
+<meta name="twitter:title" content="Gridea Pro 渲染引擎深度排查：从“样式全丢”到“缓存穿透”的连环 Bug 修复纪实">
+<meta name="twitter:description" content="Gridea Pro 渲染引擎(Renderer)深度排查：从“样式全丢”到“缓存穿透”的连环 Bug 修复纪实 在完善 Gridea Pro 主题适配及底层渲染逻辑（Renderer Layer）的过程中，系统有时会因为几个看似微小且毫无关联的代码缺陷，引发毁灭性的“灾难”——比如今天遇到的“不管切换到哪个主题，所有页面样式全部丢失”的诡异现象。 这篇手记详细记录了本次长达数小时、犹如剥&amp;hellip;">
+<meta name="twitter:image" content="/post-images/gridea-pro-render-bug-fix.jpg">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-1SBXPCEK36"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-1SBXPCEK36');</script>
 <meta name="google-site-verification" content="googlea4223896f417412f.html">

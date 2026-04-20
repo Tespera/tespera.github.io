@@ -11,6 +11,8 @@
 
 
 
+<style>:root { --heatmap-color: #39d353; }</style>
+
 
 
 <script>
@@ -38,6 +40,17 @@
 <link rel="canonical" href="https://are.ink/post/gridea-pro-jinja2-letters-theme-troubleshooting/">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Gridea Pro Jinja2 主题开发实战：从模板报错到 CSS 断链的奇葩排查全记录","url":"https://are.ink/post/gridea-pro-jinja2-letters-theme-troubleshooting/","description":"在为 Gridea Pro 适配 letters-theme (Jinja2 引擎) 主题时，我们遇到了一系列阻碍渲染与样式加载的顽固问题。本篇开发手记详细记录了本次从报错分析、渲染器源码审查到浏览器抓包追踪的全过程，相信这些\u0026quot;踩坑\u0026quot;经验对其他 Gridea Pro 的主题开发者会有很大帮助。 第一阶段：解决满屏的 \u0026ldquo;Unable to Resolve Template\u0026rdquo; 报错 在初\u0026hellip;","image":"/post-images/gridea-pro-jinja2-letters-theme-troubleshooting.jpg","datePublished":"2026-02-27T18:42:36+08:00","dateModified":"2026-03-10T13:41:07+08:00","author":{"@type":"Person","name":"述尔"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/images/avatar.png"},"name":"述尔"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://are.ink","name":"述尔","position":1},{"@type":"ListItem","item":"https://are.ink/post/gridea-pro-jinja2-letters-theme-troubleshooting/","name":"Gridea Pro Jinja2 主题开发实战：从模板报错到 CSS 断链的奇葩排查全记录","position":2}]}</script>
+<meta property="og:title" content="Gridea Pro Jinja2 主题开发实战：从模板报错到 CSS 断链的奇葩排查全记录">
+<meta property="og:description" content="在为 Gridea Pro 适配 letters-theme (Jinja2 引擎) 主题时，我们遇到了一系列阻碍渲染与样式加载的顽固问题。本篇开发手记详细记录了本次从报错分析、渲染器源码审查到浏览器抓包追踪的全过程，相信这些&amp;quot;踩坑&amp;quot;经验对其他 Gridea Pro 的主题开发者会有很大帮助。 第一阶段：解决满屏的 &amp;ldquo;Unable to Resolve Template&amp;rdquo; 报错 在初&amp;hellip;">
+<meta property="og:url" content="https://are.ink/post/gridea-pro-jinja2-letters-theme-troubleshooting/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="述尔">
+<meta property="og:image" content="/post-images/gridea-pro-jinja2-letters-theme-troubleshooting.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://are.ink/post/gridea-pro-jinja2-letters-theme-troubleshooting/">
+<meta name="twitter:title" content="Gridea Pro Jinja2 主题开发实战：从模板报错到 CSS 断链的奇葩排查全记录">
+<meta name="twitter:description" content="在为 Gridea Pro 适配 letters-theme (Jinja2 引擎) 主题时，我们遇到了一系列阻碍渲染与样式加载的顽固问题。本篇开发手记详细记录了本次从报错分析、渲染器源码审查到浏览器抓包追踪的全过程，相信这些&amp;quot;踩坑&amp;quot;经验对其他 Gridea Pro 的主题开发者会有很大帮助。 第一阶段：解决满屏的 &amp;ldquo;Unable to Resolve Template&amp;rdquo; 报错 在初&amp;hellip;">
+<meta name="twitter:image" content="/post-images/gridea-pro-jinja2-letters-theme-troubleshooting.jpg">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-1SBXPCEK36"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-1SBXPCEK36');</script>
 <meta name="google-site-verification" content="googlea4223896f417412f.html">
