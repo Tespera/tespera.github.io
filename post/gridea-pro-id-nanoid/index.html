@@ -26,7 +26,7 @@
     } catch (e) { }
   })();
 </script>
-  <meta name="generator" content="Gridea Pro 1.1.1">
+  <meta name="generator" content="Gridea Pro 0.0.0-dev">
   <title>浅析 Gridea Pro 的全局 ID 生成策略演进：从混乱到 NanoID 的统一 | 述尔</title>
   
 <meta property="og:title" content="浅析 Gridea Pro 的全局 ID 生成策略演进：从混乱到 NanoID 的统一" />
@@ -286,7 +286,7 @@
 </code></pre>
 <h3 id="heading-2">理论碰撞率分析</h3>
 <p>虽然 6 位的长度听起来很短，但因为我们的字母表容量高达 62。<br />
-理论上产生的组合总数高达 $62^6 = 56,800,235,584$ （约 568 亿）。</p>
+理论上产生的组合总数高达 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>62</mn><mn>6</mn></msup><mo>=</mo><mn>56</mn><mo separator="true">,</mo><mn>800</mn><mo separator="true">,</mo><mn>235</mn><mo separator="true">,</mo><mn>584</mn></mrow><annotation encoding="application/x-tex">62^6 = 56,800,235,584</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord">6</span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">6</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8389em;vertical-align:-0.1944em;"></span><span class="mord">56</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">800</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">235</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">584</span></span></span></span> （约 568 亿）。</p>
 <p>即使针对最高频的博客更新应用（例如每天新增 100 篇文章和若干分类闪念），要在单机存储环境下碰到哈希碰撞，这辈子基本等不到了。同时考虑到数据均在本地仓储（或者用户的单仓库中）运行，62进制的 6 位配置既满足了超高强度的避免冲突，又做到了极致的短小精悍，生成诸如短链的优雅地址可谓信手拈来。</p>
 <h2 id="heading-3">重构带来的架构红利</h2>
 <p>通过把这一设计理念注入到前后端：</p>
@@ -476,6 +476,6 @@
 
   
 
-<script>console.log("\n%c ✦ Gridea Pro v1.1.1 %c · Theme: flavor-theme v1.0.0 · https://gridea.pro %c\n","color:#fadfa3;background:#111111;padding:9px 14px;border-radius:4px 0 0 4px;font-weight:500;font-size:12px","color:#e05c00;background:#fff3ec;padding:9px 14px;border-radius:0 4px 4px 0;font-size:11px","")</script>
+<script>console.log("\n%c ✦ Gridea Pro v0.0.0-dev %c · Theme: flavor-theme v1.0.0 · https://gridea.pro %c\n","color:#fadfa3;background:#111111;padding:9px 14px;border-radius:4px 0 0 4px;font-weight:500;font-size:12px","color:#e05c00;background:#fff3ec;padding:9px 14px;border-radius:0 4px 4px 0;font-size:11px","")</script>
 </body>
 </html>
