@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://are.ink/</loc>
-    <lastmod>2026-04-24T01:05:21+08:00</lastmod>
+    <lastmod>2026-04-24T01:07:15+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -272,337 +272,337 @@
   </url>
   <url>
     <loc>https://are.ink/post/</loc>
-    <lastmod>2026-04-24T01:05:21+08:00</lastmod>
+    <lastmod>2026-04-24T01:07:15+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://are.ink/memos/</loc>
-    <lastmod>2026-04-24T01:05:21+08:00</lastmod>
+    <lastmod>2026-04-24T01:07:15+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://are.ink/tags/</loc>
-    <lastmod>2026-04-24T01:05:21+08:00</lastmod>
+    <lastmod>2026-04-24T01:07:15+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://are.ink/archives/</loc>
-    <lastmod>2026-04-24T01:05:21+08:00</lastmod>
+    <lastmod>2026-04-24T01:07:15+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://are.ink/tag/gridea/</loc>
-    <lastmod>2026-04-24T01:05:21+08:00</lastmod>
+    <lastmod>2026-04-24T01:07:15+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://are.ink/tag/gridea-pro/</loc>
-    <lastmod>2026-04-24T01:05:21+08:00</lastmod>
+    <lastmod>2026-04-24T01:07:15+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://are.ink/tag/mcp/</loc>
-    <lastmod>2026-04-24T01:05:21+08:00</lastmod>
+    <lastmod>2026-04-24T01:07:15+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://are.ink/tag/go/</loc>
-    <lastmod>2026-04-24T01:05:21+08:00</lastmod>
+    <lastmod>2026-04-24T01:07:15+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://are.ink/tag/wails/</loc>
-    <lastmod>2026-04-24T01:05:21+08:00</lastmod>
+    <lastmod>2026-04-24T01:07:15+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://are.ink/tag/protocol/</loc>
-    <lastmod>2026-04-24T01:05:21+08:00</lastmod>
+    <lastmod>2026-04-24T01:07:15+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://are.ink/tag/agi/</loc>
-    <lastmod>2026-04-24T01:05:21+08:00</lastmod>
+    <lastmod>2026-04-24T01:07:15+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://are.ink/tag/refactor/</loc>
-    <lastmod>2026-04-24T01:05:21+08:00</lastmod>
+    <lastmod>2026-04-24T01:07:15+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://are.ink/tag/refactoring/</loc>
-    <lastmod>2026-04-24T01:05:21+08:00</lastmod>
+    <lastmod>2026-04-24T01:07:15+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://are.ink/tag/best-practices/</loc>
-    <lastmod>2026-04-24T01:05:21+08:00</lastmod>
+    <lastmod>2026-04-24T01:07:15+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://are.ink/tag/i18n/</loc>
-    <lastmod>2026-04-24T01:05:21+08:00</lastmod>
+    <lastmod>2026-04-24T01:07:15+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://are.ink/tag/jinja2/</loc>
-    <lastmod>2026-04-24T01:05:21+08:00</lastmod>
+    <lastmod>2026-04-24T01:07:15+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://are.ink/tag/pongo2/</loc>
-    <lastmod>2026-04-24T01:05:21+08:00</lastmod>
+    <lastmod>2026-04-24T01:07:15+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://are.ink/tag/uuid/</loc>
-    <lastmod>2026-04-24T01:05:21+08:00</lastmod>
+    <lastmod>2026-04-24T01:07:15+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://are.ink/tag/nanoid/</loc>
-    <lastmod>2026-04-24T01:05:21+08:00</lastmod>
+    <lastmod>2026-04-24T01:07:15+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://are.ink/tag/yaml/</loc>
-    <lastmod>2026-04-24T01:05:21+08:00</lastmod>
+    <lastmod>2026-04-24T01:07:15+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://are.ink/tag/ai/</loc>
-    <lastmod>2026-04-24T01:05:21+08:00</lastmod>
+    <lastmod>2026-04-24T01:07:15+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://are.ink/tag/dan-koe/</loc>
-    <lastmod>2026-04-24T01:05:21+08:00</lastmod>
+    <lastmod>2026-04-24T01:07:15+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://are.ink/tag/hugo/</loc>
-    <lastmod>2026-04-24T01:05:21+08:00</lastmod>
+    <lastmod>2026-04-24T01:07:15+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://are.ink/tag/hexo/</loc>
-    <lastmod>2026-04-24T01:05:21+08:00</lastmod>
+    <lastmod>2026-04-24T01:07:15+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://are.ink/tag/deep-dive/</loc>
-    <lastmod>2026-04-24T01:05:21+08:00</lastmod>
+    <lastmod>2026-04-24T01:07:15+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://are.ink/tag/philosophy/</loc>
-    <lastmod>2026-04-24T01:05:21+08:00</lastmod>
+    <lastmod>2026-04-24T01:07:15+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://are.ink/tag/law-and-humanity/</loc>
-    <lastmod>2026-04-24T01:05:21+08:00</lastmod>
+    <lastmod>2026-04-24T01:07:15+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://are.ink/tag/trends/</loc>
-    <lastmod>2026-04-24T01:05:21+08:00</lastmod>
+    <lastmod>2026-04-24T01:07:15+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://are.ink/tag/tutorial/</loc>
-    <lastmod>2026-04-24T01:05:21+08:00</lastmod>
+    <lastmod>2026-04-24T01:07:15+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://are.ink/tag/code-refactoring/</loc>
-    <lastmod>2026-04-24T01:05:21+08:00</lastmod>
+    <lastmod>2026-04-24T01:07:15+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://are.ink/tag/dev-notes/</loc>
-    <lastmod>2026-04-24T01:05:21+08:00</lastmod>
+    <lastmod>2026-04-24T01:07:15+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://are.ink/tag/theme-dev/</loc>
-    <lastmod>2026-04-24T01:05:21+08:00</lastmod>
+    <lastmod>2026-04-24T01:07:15+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://are.ink/tag/debugging/</loc>
-    <lastmod>2026-04-24T01:05:21+08:00</lastmod>
+    <lastmod>2026-04-24T01:07:15+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://are.ink/tag/architecture-design/</loc>
-    <lastmod>2026-04-24T01:05:21+08:00</lastmod>
+    <lastmod>2026-04-24T01:07:15+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://are.ink/tag/performance-tuning/</loc>
-    <lastmod>2026-04-24T01:05:21+08:00</lastmod>
+    <lastmod>2026-04-24T01:07:15+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://are.ink/tag/best-practice/</loc>
-    <lastmod>2026-04-24T01:05:21+08:00</lastmod>
+    <lastmod>2026-04-24T01:07:15+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://are.ink/tag/economy/</loc>
-    <lastmod>2026-04-24T01:05:21+08:00</lastmod>
+    <lastmod>2026-04-24T01:07:15+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://are.ink/tag/intelligence-crisis/</loc>
-    <lastmod>2026-04-24T01:05:21+08:00</lastmod>
+    <lastmod>2026-04-24T01:07:15+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://are.ink/tag/tencent-finance/</loc>
-    <lastmod>2026-04-24T01:05:21+08:00</lastmod>
+    <lastmod>2026-04-24T01:07:15+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://are.ink/tag/life-reset/</loc>
-    <lastmod>2026-04-24T01:05:21+08:00</lastmod>
+    <lastmod>2026-04-24T01:07:15+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://are.ink/tag/productivity/</loc>
-    <lastmod>2026-04-24T01:05:21+08:00</lastmod>
+    <lastmod>2026-04-24T01:07:15+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://are.ink/tag/psychology/</loc>
-    <lastmod>2026-04-24T01:05:21+08:00</lastmod>
+    <lastmod>2026-04-24T01:07:15+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://are.ink/tag/translation/</loc>
-    <lastmod>2026-04-24T01:05:21+08:00</lastmod>
+    <lastmod>2026-04-24T01:07:15+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://are.ink/tag/architecture/</loc>
-    <lastmod>2026-04-24T01:05:21+08:00</lastmod>
+    <lastmod>2026-04-24T01:07:15+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://are.ink/tag/performance/</loc>
-    <lastmod>2026-04-24T01:05:21+08:00</lastmod>
+    <lastmod>2026-04-24T01:07:15+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://are.ink/tag/anthropic/</loc>
-    <lastmod>2026-04-24T01:05:21+08:00</lastmod>
+    <lastmod>2026-04-24T01:07:15+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://are.ink/tag/claude/</loc>
-    <lastmod>2026-04-24T01:05:21+08:00</lastmod>
+    <lastmod>2026-04-24T01:07:15+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://are.ink/tag/cdn/</loc>
-    <lastmod>2026-04-24T01:05:21+08:00</lastmod>
+    <lastmod>2026-04-24T01:07:15+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://are.ink/tag/tu-chuang/</loc>
-    <lastmod>2026-04-24T01:05:21+08:00</lastmod>
+    <lastmod>2026-04-24T01:07:15+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://are.ink/tag/jing-tai-bo-ke/</loc>
-    <lastmod>2026-04-24T01:05:21+08:00</lastmod>
+    <lastmod>2026-04-24T01:07:15+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://are.ink/tag/she-ji-li-nian/</loc>
-    <lastmod>2026-04-24T01:05:21+08:00</lastmod>
+    <lastmod>2026-04-24T01:07:15+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://are.ink/tag/chan-pin-she-ji/</loc>
-    <lastmod>2026-04-24T01:05:21+08:00</lastmod>
+    <lastmod>2026-04-24T01:07:15+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://are.ink/tag/shu-ju-qian-yi/</loc>
-    <lastmod>2026-04-24T01:05:21+08:00</lastmod>
+    <lastmod>2026-04-24T01:07:15+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://are.ink/tag/zi-wo/</loc>
-    <lastmod>2026-04-24T01:05:21+08:00</lastmod>
+    <lastmod>2026-04-24T01:07:15+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://are.ink/tag/ren-sheng-si-kao/</loc>
-    <lastmod>2026-04-24T01:05:21+08:00</lastmod>
+    <lastmod>2026-04-24T01:07:15+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://are.ink/links/</loc>
-    <lastmod>2026-04-24T01:05:21+08:00</lastmod>
+    <lastmod>2026-04-24T01:07:15+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
   </url>
