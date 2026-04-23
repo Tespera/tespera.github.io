@@ -1,0 +1,1424 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>述尔</title>
+    <link>https://are.ink/</link>
+    <description>一个产品经理的碎碎念 | 温故而知新</description>
+    <language>zh-cn</language>
+    <generator>Gridea Pro</generator>
+    <lastBuildDate>Mon, 06 Apr 2026 13:08:46 +0800</lastBuildDate>
+    <atom:link href="https://are.ink/feed.xml" rel="self" type="application/rss+xml"></atom:link>
+    <item>
+      <title>念念不忘，必有回响 —— Gridea Pro，我们回来了</title>
+      <link>https://are.ink/post/hello-gridea-pro/</link>
+      <guid isPermaLink="true">https://are.ink/post/hello-gridea-pro/</guid>
+      <pubDate>Mon, 06 Apr 2026 13:08:46 +0800</pubDate>
+      <description><![CDATA[<p>你好，欢迎来到 <strong>Gridea Pro</strong>。</p>
+<p>如果你正在读这篇文章，说明你已经迈出了最重要的一步——决定拥有一个属于自己的博客。</p>
+<!-- more -->
+<h2 id="-gridea-pro">关于 Gridea Pro</h2>
+<p>搭建独立博客这件事，在过去一直有个尴尬的矛盾：想写博客的人很多，但现有的工具几乎都是给开发者准备的。Hugo 要你装 Go 环境，在终端跑 <code>hugo new site</code>；Hexo 需要 Node.js + npm，再配一套 Git 部署流程；Jekyll 依赖 Ruby，光是解决 gem 版本冲突就能劝退一半人。它们都是优秀的工具，但对于只想安安静静写点东西的人来说，门槛太高了。</p>
+<p><a href="https://open.gridea.dev/">Gridea</a> 是最早尝试解决这个问题的产品之一——一款开源的静态博客写作客户端，不需要命令行，打开就能写。它帮助超过 28,000 位用户搭建了自己的博客，在 GitHub 上收获了 10,000+ Stars。它成功的证明了一件事：<strong>很多人想要自己的博客，只是被技术门槛挡在了门外。</strong></p>
+<p>但旧版 Gridea 基于 Electron + Vue 2 构建，已停更近 4 年。底层的同步机制不够稳定，主题生态停滞，技术栈也跟不上时代了。</p>
+<p><strong>Gridea Pro 是对 Gridea 的全面重生。</strong></p>
+<p>我们用 Go + Wails + Vue 3 从零重写了整个项目。不是修修补补，而是带着旧版积累的所有经<br />
+验教训，重新思考「一个博客工具应该是什么样子」。—— <strong>更快、更稳定、不依赖任何外部环境，下载即用。</strong></p>
+<p>如果你是 Gridea 老用户 —— 欢迎回来，你的数据可以无缝迁移过来。<br />
+如果你是新朋友 —— 来对地方了。</p>
+<h2 id="heading">为什么要写博客</h2>
+<p>在动笔之前，也许你会犹豫：都 2026 年了，还有人看博客吗？公众号、小红书、知乎不是更方便？</p>
+<p>这么说吧。</p>
+<p>你在平台上写的内容，<strong>不完全是你的</strong>。它可能因为某个关键词被限流，可能因为某次政策调整被删除，可能因为平台衰落而随之消失。你精心写的万字长文，被算法折叠成信息流里一条滚动的卡片。阅读量取决于发布时间，而不是内容质量。</p>
+<p>更根本的问题是——平台的利益和你的利益并不总是一致的。平台要的是留住用户、卖广告、做商业化。而你要的是<strong>被阅读、被记住、被找到</strong>。</p>
+<p>独立博客是你在互联网上真正拥有的一小块地方。<strong>你的域名、你的设计、你的内容、你的数据——全部由你说了算。</strong></p>
+<p>而且，恰恰是在 AI 生成内容泛滥的今天，<strong>一个有真实人格、有独立思考的博客，比以往任何时候都更珍贵</strong>。当所有人都在用 AI 批量生产「还不错」的内容时，读者反而更渴望看到一个真实的人在认真地写自己的想法。</p>
+<p>你不需要像作家那样创作。记录一次踩坑经历、分享一个学到的东西、写下某天的所思所想——这些不起眼的文字，积累起来就是独一无二的你。两年后再回头看，你会庆幸自己写了下来。</p>
+<p><strong>博客不是给别人看的，是给未来的自己留的。</strong> 别人能看到，那是额外的收获，你写了，那就是你自己的成就。</p>
+<h2 id="gridea-pro-">Gridea Pro 为你准备了什么</h2>
+<p>过去，搭建一个静态博客意味着：安装 Node.js 或 Go 环境，在终端敲一串命令，编辑 YAML 配置文件，配置 Git SSH 密钥，处理部署报错……每一步都可能劝退一个想写东西的人。</p>
+<p>Gridea Pro 的目标很直接：<strong>让写博客这件事，回到「写」本身。</strong></p>
+<ul>
+<li><strong>零门槛</strong> — 不需要装 Git、不需要开终端、不需要碰配置文件。你面前这个客户端就是全部。</li>
+<li><strong>好用的编辑器</strong> — 内置支持完整 Markdown 语法的编辑器，标题、列表、任务、引用、代码块、Emoji 一应俱全。</li>
+<li><strong>一键发布</strong> — 写完点「发布」，博客自动推送到 GitHub Pages、Gitee Pages 或 Vercel。底层用纯 Go 实现了完整的 Git 引擎，你的电脑上不需要安装任何额外环境。</li>
+<li><strong>主题随心换</strong> — 内置多款精心设计的主题，点击即可切换，每个主题都支持可视化配置。不用改代码，不用碰模板文件。也可以在社区下载别人分享的主题。</li>
+<li><strong>Memos 闪念</strong> — 不是所有想法都值得写成一篇文章。打开「闪念」，用一两句话记下灵感、碎片、感悟。热力图会帮你追踪创作频率，让坚持变得可视化。</li>
+<li><strong>评论互动</strong> — 内置 Valine、Waline、Twikoo、Gitalk、Giscus 等 7 种主流评论系统的集成，让读者在阅读你的文字后，能找到你、和你对话。</li>
+<li><strong>SEO 友好</strong> — 自动生成 Sitemap、RSS 订阅、结构化数据，让搜索引擎能快速发现你的内容，在互联网上留下自己的印记。</li>
+</ul>
+<h2 id="heading-1">你的数据，只属于你</h2>
+<p>这一点我们想特别强调。</p>
+<p>你在 Gridea Pro 里写的每一篇文章、每一条闪念、每一项配置，<strong>全部以 Markdown 和 JSON 文件的形式保存在你本地的文件夹里</strong>。没有云端数据库，没有账号系统，没有任何形式的锁定。</p>
+<p>你可以用任何你喜欢的 Markdown 编辑器打开同一个目录进行编辑和查看。你也可以用 iCloud、OneDrive、坚果云等云同步服务同步到多台设备。你可以随时把整个文件夹打包备份。即使有一天你不再使用 Gridea Pro，这些 Markdown 文件依然可以被 Hugo、Hexo、Astro 或任何静态博客生成工具读取——因为它们就是通用的纯文本。</p>
+<p><strong>你的文字不应该被任何工具绑架。</strong></p>
+<h2 id="heading-2">现在，开始写点什么吧</h2>
+<p>这篇文章是你博客里的第一篇内容，你可以随时编辑或删除它。</p>
+<p>但在删除之前，不妨先试试：点击右上角的「+」按钮，新建一篇文章，随便写点什么。不需要想标题，不需要纠结排版，就写下你现在脑海里的一个想法。哪怕只有一句话。</p>
+<p><strong>最好的博客，是从第一篇开始的。</strong></p>
+<p>准备好发布了？下一篇「<a href="https://are.ink/post/quick-start">快速上手指南</a>」会带你 5 分钟内把博客发布到互联网上。</p>
+<hr />
+<p>有任何问题或建议，欢迎到 <a href="https://github.com/Gridea-Pro/gridea-pro">GitHub</a> 提交 Issue，我们会认真回复每一条反馈。</p>
+<p>祝你写作愉快。</p>
+<p>Enjoy Gridea Pro!</p>
+]]></description>
+      <category>Gridea Pro</category>
+    </item>
+    <item>
+      <title>AI 时代独立博客生态与 Gridea Pro 战略定位分析</title>
+      <link>https://are.ink/post/ai-era-indie-blog-gridea-pro-strategy/</link>
+      <guid isPermaLink="true">https://are.ink/post/ai-era-indie-blog-gridea-pro-strategy/</guid>
+      <pubDate>Tue, 03 Mar 2026 18:46:01 +0800</pubDate>
+      <description><![CDATA[<h2 id="heading">核心结论</h2>
+<p><strong>独立博客没有死，正在死的是平庸的博客。</strong></p>
+<p>全球 6 亿+ 博客、每天 750 万篇新文章、77% 的互联网用户定期阅读博客——这些数据说明博客作为内容形式依然庞大且活跃。但 AI 正在重塑整个生态的游戏规则：Google 60% 的搜索以零点击结束，AI Overview 将搜索结果点击率腰斩了 47%，HubSpot 有机流量暴跌 70-80%。&ldquo;写篇文章等 Google 收录&quot;的时代结束了。</p>
+<p>然而，这恰恰给 Gridea Pro 创造了机会——当 AI 生成的垃圾内容泛滥时，<strong>真正有人格、有深度、有第一手经验的独立博客反而成了稀缺品</strong>。Gridea Pro 要做的不是对抗趋势，而是帮助用户在这个新生态中高效地建立和运营自己的&quot;数字根据地&rdquo;。</p>
+<hr />
+<h2 id="heading-1">一、独立博客：一个正在变革而非消亡的市场</h2>
+<h3 id="11-">1.1 基本盘依然庞大</h3>
+<p>博客远未消亡。据 2026 年初的统计数据：</p>
+<ul>
+<li>全球博客总量超过 <strong>6 亿个</strong>，占全球 19 亿网站的 31.6%</li>
+<li>每天产生约 <strong>750 万篇</strong>新文章，每年约 <strong>25 亿篇</strong></li>
+<li><strong>77%</strong> 的互联网用户报告定期阅读博客</li>
+<li>WordPress 驱动约 <strong>43.5%</strong> 的全球网站，CMS 市场份额超 60%</li>
+<li>拥有博客的企业比没有博客的企业多产生 <strong>55%</strong> 的网站流量、<strong>67%</strong> 的月度潜在客户</li>
+</ul>
+<p>博客内容也在演变：平均文章长度增至 1,333-1,427 词（十年增长 77%），长文、深度内容越来越受重视。写一篇博客文章平均耗时 3 小时 25 分钟。</p>
+<h3 id="12-ai-">1.2 AI 对博客流量的冲击：真实且剧烈</h3>
+<p>AI 搜索对博客最直接的影响是流量截留：</p>
+<table>
+<thead>
+<tr>
+<th>指标</th>
+<th>数据</th>
+<th>来源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Google 零点击搜索比例</td>
+<td><strong>60%</strong>（移动端 77%）</td>
+<td>The Digital Bloom, 2025</td>
+</tr>
+<tr>
+<td>AI Overview 出现时 CTR 下降幅度</td>
+<td><strong>47%</strong>（从 15% 降至 8%）</td>
+<td>Pew Research, 2025</td>
+</tr>
+<tr>
+<td>AI Overview 用户点击引用来源的比例</td>
+<td>仅 <strong>1%</strong></td>
+<td>Pew Research, 2025</td>
+</tr>
+<tr>
+<td>AI Overview 触发查询中信息类占比</td>
+<td><strong>88.1%</strong>（博客核心领地）</td>
+<td>Semrush, 2025</td>
+</tr>
+<tr>
+<td>HubSpot 有机流量跌幅</td>
+<td><strong>-70% ~ -80%</strong></td>
+<td>The Digital Bloom, 2025</td>
+</tr>
+<tr>
+<td>Forbes 流量跌幅</td>
+<td><strong>-50%</strong></td>
+<td>The Digital Bloom, 2025</td>
+</tr>
+</tbody>
+</table>
+<p>一位旅行博主的话很有代表性：&ldquo;AI Overview 加上 Google 的其他变化，导致人们不再找到像我这样网站上的内容了。&rdquo;</p>
+<h3 id="13-ai-">1.3 反转叙事：AI 时代的博客反而更有价值</h3>
+<p>悖论在于——AI 泛滥恰恰让真正有深度的人类创作变得更加珍贵：</p>
+<ul>
+<li>AI 搜索访客的转化价值是传统有机搜索访客的 <strong>4.4 倍</strong>（意图更强）</li>
+<li>SEO 线索的成交率为 <strong>14.6%</strong>，是外向型线索（1.7%）的 8.5 倍</li>
+<li>Google 搜索主管 Liz Reid 明确指出：展示&quot;真实声音和第一手观点&quot;的内容正在获得更多流量</li>
+<li>互联网上 <strong>#supporthumanart</strong> 运动兴起，用户对 AI 生成内容的疲劳感持续加深</li>
+<li>&ldquo;人类创作&quot;标注正在成为一种新的信任信号</li>
+</ul>
+<p><strong>结论：博客没有死，但&quot;写给搜索引擎看的平庸博客&quot;正在死。深度、原创性和真实人格成为 AI 时代的生存通行证。</strong></p>
+<hr />
+<h2 id="-vs-">二、独立博客 vs 写作平台：不是替代，是互补</h2>
+<h3 id="21-">2.1 平台的现状：强在分发，弱在控制</h3>
+<p><strong>海外：</strong></p>
+<table>
+<thead>
+<tr>
+<th>平台</th>
+<th>关键数据</th>
+<th>核心优势</th>
+<th>核心痛点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Substack</td>
+<td>2000 万月活、500 万付费订阅、估值 $11 亿</td>
+<td>内置订阅/付费、网络效应驱动 50% 新订阅</td>
+<td>10% 抽佣、分析功能有限、规模化运营受限</td>
+</tr>
+<tr>
+<td>Medium</td>
+<td>5.07 亿次季度访问、已实现盈利</td>
+<td>发现性极强、巨大的读者基数</td>
+<td>作者收入普降、Partner Program 暂停新申请、无预警移除成员</td>
+</tr>
+<tr>
+<td>Ghost</td>
+<td>平台出版物年收入合计 $1 亿+、0% 支付佣金</td>
+<td>完全的 SEO 和品牌控制、开源自托管</td>
+<td>技术门槛较高、需自行维护</td>
+</tr>
+</tbody>
+</table>
+<p><strong>国内：</strong></p>
+<table>
+<thead>
+<tr>
+<th>平台</th>
+<th>关键数据</th>
+<th>核心优势</th>
+<th>核心痛点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>微信公众号</td>
+<td>2024 年产出 4.44 亿篇文章、30.78 万篇 10 万+</td>
+<td>13.82 亿月活用户基数、成熟商业闭环</td>
+<td>订阅号打开率仅 0.89%、封闭生态、数据无法导出</td>
+</tr>
+<tr>
+<td>知乎</td>
+<td>正向知识付费转型</td>
+<td>问答流量分发</td>
+<td>AI 降低创作门槛冲击原有体系</td>
+</tr>
+<tr>
+<td>掘金/CSDN</td>
+<td>技术博客双阵地</td>
+<td>开发者社区流量</td>
+<td>AI 生成内容泛滥、CSDN 过度商业化</td>
+</tr>
+<tr>
+<td>少数派</td>
+<td>数字生活垂直社区</td>
+<td>编辑审核保证质量</td>
+<td>规模受限、创作自由度有限</td>
+</tr>
+</tbody>
+</table>
+<h3 id="22-">2.2 平台的结构性痛点</h3>
+<p>所有平台都面临几个无法解决的根本问题：</p>
+<p><strong>内容审查与删除风险</strong> — 公众号文章可能因敏感话题被删除甚至封号。有运营者建议&quot;主号 + 备用号组合运营，避免封号导致&rsquo;一夜归零&rsquo;&quot;——这本身就说明了风险的严重性。Medium 也存在无预警移除 Partner Program 成员的情况。</p>
+<p><strong>算法变化导致流量不稳定</strong> — 公众号从&quot;时间序&quot;到&quot;算法推荐&quot;的转变，让原本依赖订阅的创作者流量大幅波动。一位创作者总结：&ldquo;红皇后假说——我们只能不断奔跑，才能留在原地。&rdquo;</p>
+<p><strong>数据导出困难与平台锁定</strong> — 微信公众号的数据导出尤为困难：文章格式难以完美迁移，粉丝关系无法带走，历史数据的价值被锁定在微信生态内。</p>
+<p><strong>变现规则频繁变化</strong> — Medium Partner Program 的反复调整是最典型的案例。一位被影响的作者说：&ldquo;我不能靠新鲜空气生活，经济回报是必需的。需要有人提醒 Medium 这一点。&rdquo;</p>
+<h3 id="23-">2.3 独立博客的不可替代价值</h3>
+<p>选择独立博客的用户，核心动机并非&quot;流量&rdquo;，而是：</p>
+<ol>
+<li><strong>数据主权</strong> — 你拥有域名、内容和读者数据。平台可能关停、改变政策，但独立域名始终是你的。</li>
+<li><strong>SEO 长期资产</strong> — 独立域名的权重和反向链接随时间积累。一篇优质文章可以通过搜索引擎持续获得流量数年。</li>
+<li><strong>完全定制</strong> — 设计、功能、交互方式完全可控。可以嵌入交互式代码演示、自定义排版、集成任何第三方服务。</li>
+<li><strong>个人品牌</strong> — 对开发者和创作者，独立博客展示了技术能力和专业态度。AI 时代入门级岗位减少 25%，拥有展示深度思考的独立博客成为关键的差异化信号。</li>
+<li><strong>抗风险</strong> — 不受算法变化、审查政策和平台商业决策的影响。</li>
+</ol>
+<h3 id="24-posse-">2.4 最佳实践：POSSE 策略</h3>
+<p>IndieWeb 社区提出的 POSSE（Publish on your Own Site, Syndicate Elsewhere）策略已成为共识：</p>
+<blockquote>
+<p>先在自己的网站发布内容，然后将副本或链接发布到第三方平台，并附上原始文章链接。</p>
+</blockquote>
+<p>实际案例：</p>
+<ul>
+<li>技术博主在 Hashnode（自定义域名）发布，通过 canonical URL 交叉发布到 Dev.to</li>
+<li>有创作者在 Medium 使用&quot;Import story&quot;功能重新发布，将 canonical URL 设回自己的博客</li>
+<li>国内创作者在个人博客发布原文，再同步到公众号、知乎、掘金</li>
+</ul>
+<p><strong>独立博客和平台不是二选一，而是&quot;主站 + 分发渠道&quot;的关系。</strong> 这对 Gridea Pro 的产品设计有直接指导意义——内置 POSSE 工作流将是巨大的差异化优势。</p>
+<hr />
+<h2 id="heading-2">三、静态博客工具生态：谁在增长，谁在衰退</h2>
+<h3 id="31-github-stars-">3.1 GitHub Stars 与活跃度全景</h3>
+<table>
+<thead>
+<tr>
+<th>工具</th>
+<th>Stars</th>
+<th>趋势</th>
+<th>发版频率</th>
+<th>生态健康度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Hugo</strong></td>
+<td>~86,600</td>
+<td>稳健增长</td>
+<td>极高（几乎每周）</td>
+<td>非常健康</td>
+</tr>
+<tr>
+<td><strong>Astro</strong></td>
+<td>~57,100</td>
+<td>爆发式增长</td>
+<td>极高</td>
+<td>极其活跃</td>
+</tr>
+<tr>
+<td><strong>Jekyll</strong></td>
+<td>~51,500</td>
+<td>停滞/衰退</td>
+<td>低</td>
+<td>低维护</td>
+</tr>
+<tr>
+<td><strong>Hexo</strong></td>
+<td>~41,200</td>
+<td>缓慢收缩</td>
+<td>中等</td>
+<td>依赖少数维护者</td>
+</tr>
+<tr>
+<td><strong>Eleventy</strong></td>
+<td>~19,300</td>
+<td>稳步增长</td>
+<td>中等</td>
+<td>npm 下载量年增 51%</td>
+</tr>
+<tr>
+<td><strong>Zola</strong></td>
+<td>~15,000+</td>
+<td>利基稳定</td>
+<td>中等</td>
+<td>小而忠诚</td>
+</tr>
+</tbody>
+</table>
+<h3 id="32-">3.2 关键趋势</h3>
+<p><strong>Astro 是最大赢家。</strong> Stars 从 2020 年的 500 飙升至 57,100，npm 月下载量突破 200 万，被 257,000 个项目使用。其&quot;岛屿架构&quot;（仅选择性水合交互组件）发送的 JS 比 Gatsby 少 40 倍。大量博客作者正从 Hugo/Jekyll/Gatsby 迁移到 Astro。</p>
+<p><strong>Hugo 依然稳固。</strong> 构建速度的护城河、活跃的核心维护团队、丰富的主题生态，使其在纯静态博客领域难以撼动。</p>
+<p><strong>Hexo 面临双重挤压。</strong> 在中文博客圈仍有大量存量用户（CSDN/掘金上的搭建教程仍以 Hexo 为主角），但新用户被 Hugo 和 Astro 分流，核心开发依赖少数维护者（尤其是 D-Sketon）。有中文博主以&quot;Hexo，再也不见&quot;为题记录了迁移经历。</p>
+<p><strong>Jekyll 持续衰退。</strong> 仅靠 GitHub Pages 默认支持维持存量，新项目极少选择。Ruby 生态的整体萎缩加速了这一趋势。</p>
+<h3 id="33-ai-">3.3 新的竞争维度：AI 整合</h3>
+<p>2025 年 7 月，Astro 推出了 Astro Docs MCP 服务器，让 AI 工具可以直接访问文档。这预示着 <strong>AI 辅助内容创作和网站管理将成为静态博客工具的新竞争维度</strong>。Gridea Pro 已有的 MCP 服务器（30+ AI 工具）在这个方向上走在了前面。</p>
+<hr />
+<h2 id="heading-3">四、中文独立博客生态：小众但有韧性</h2>
+<h3 id="41-">4.1 社区现状</h3>
+<p>中文独立博客生态呈现&quot;小众但韧性十足&quot;的状态：</p>
+<ul>
+<li><strong>&ldquo;十年之约&rdquo;</strong>（foreverblog.cn）— 签约博主超 600 位，核心理念是&quot;博客十年不关闭&quot;，维护着&quot;虫洞&quot;随机互访功能</li>
+<li><strong>博客志</strong>（BlogWe）— 收录 500+ 个独立博客，持续增长</li>
+<li><strong>&ldquo;开往&rdquo;</strong>（Travellings）— 博客互访项目，为独立博客提供流量互导</li>
+</ul>
+<h3 id="42-">4.2 工具偏好</h3>
+<ul>
+<li><strong>Hexo</strong> 仍是入门首选（大量中文教程支持）</li>
+<li><strong>Hugo</strong> 中文用户稳步增长（&ldquo;从 Hexo 迁移到 Hugo&quot;的文章频繁出现）</li>
+<li><strong>Halo</strong>（Java）在不想折腾静态站点的博主中有一批忠实用户</li>
+<li><strong>Astro</strong> 在中文圈普及度仍有限，主要局限于前端开发者群体</li>
+</ul>
+<h3 id="43-">4.3 中文博客的独特挑战</h3>
+<p><strong>备案制度</strong> — 使用国内服务器或 CDN 必须完成 ICP 备案，流程繁琐。许多博主选择 GitHub Pages、Netlify、Vercel 等境外平台规避备案，代价是国内访问速度不理想。</p>
+<p><strong>内容审查</strong> — 正如有博主所言：&ldquo;很多东西发布后会被平台删除，帐号还可能被封禁。而在自己的博客没有这些审查。&ldquo;独立博客成为&quot;自由表达的最后阵地&rdquo;，这反而成为推动部分人搭建独立博客的动力。</p>
+<p><strong>CDN 与访问速度</strong> — Cloudflare 在国内不稳定，国内 CDN 需要备案，GitHub Pages 部分地区访问慢。这是 Gridea Pro 可以着力解决的痛点。</p>
+<p><strong>内容同质化</strong> — 有博主犀利地指出：&ldquo;除了技术就是日记。&ldquo;深度原创和独特视角的中文博客仍然稀缺。</p>
+<hr />
+<h2 id="gridea-pro-">五、Gridea Pro 的战略定位</h2>
+<h3 id="51-">5.1 市场判断：独立博客有明确的长期市场</h3>
+<p>基于以上所有数据，结论是：</p>
+<ol>
+<li><strong>博客市场本身没有萎缩</strong>（6 亿+ 博客，每天 750 万篇新文章），但正在经历从&quot;流量驱动&quot;到&quot;品牌/信任驱动&quot;的范式转移</li>
+<li><strong>AI 冲击主要影响依赖搜索流量的博客</strong>，对以个人品牌和数据主权为核心诉求的独立博客影响较小</li>
+<li><strong>平台的结构性痛点</strong>（审查、锁定、算法不稳定）不会消失，反而会随平台商业化加深而恶化</li>
+<li><strong>POSSE 策略</strong>正在成为成熟创作者的标配，独立博客作为&quot;内容源头&quot;的角色越来越清晰</li>
+<li><strong>中文独立博客生态虽小但有韧性</strong>，备案/审查/CDN 等特殊挑战反而创造了工具化的机会</li>
+</ol>
+<h3 id="52-gridea-pro-">5.2 Gridea Pro 应该做什么</h3>
+<p>Gridea Pro 的目标不是和 Hexo/Hugo 比命令行效率，也不是和 Substack/公众号比流量分发。Gridea Pro 的定位应该是：</p>
+<blockquote>
+<p><strong>&ldquo;在 AI 时代，帮助每个人用最低的门槛拥有自己的数字根据地。&rdquo;</strong></p>
+</blockquote>
+<p>具体来说，Gridea Pro 应该成为这样一个工具：</p>
+<p><strong>核心价值：零门槛 + 数据主权</strong></p>
+<ul>
+<li>不需要命令行、不需要懂代码、不需要手动配置部署</li>
+<li>数据完全在本地，用户拥有 100% 的内容控制权</li>
+<li>一键发布到 GitHub Pages / Netlify / Vercel / 自有服务器</li>
+</ul>
+<p><strong>差异化功能（Hexo/Hugo 做不到的）：</strong></p>
+<ol>
+<li>
+<p><strong>可视化主题配置</strong> — 主题声明 schema，GUI 自动渲染设置面板。Hexo/Hugo 用户必须手动编辑 YAML/TOML，Gridea Pro 用户点点选选就行。</p>
+</li>
+<li>
+<p><strong>内置 POSSE 工作流</strong> — 写完文章后，一键同步到公众号、知乎、掘金等平台（通过 API 或剪贴板格式化输出）。这是现在没有任何静态博客工具做好的功能。</p>
+</li>
+<li>
+<p><strong>AI 写作助手</strong> — 基于已有的 MCP 服务器能力，提供 AI 辅助写作（大纲生成、润色、SEO 优化建议、摘要生成）。94% 的营销人员已在用 AI 辅助内容创作，但没有一个静态博客工具原生集成了这个能力。</p>
+</li>
+<li>
+<p><strong>智能部署</strong> — 自动检测最优部署方案（GitHub Pages 免费但国内慢 → 建议 Cloudflare Pages 作为替代），一键配置 CDN 和自定义域名。降低中文用户最痛的部署门槛。</p>
+</li>
+<li>
+<p><strong>主题生态市场</strong> — 内置主题浏览、一键安装、在线预览。这是 Hugo/Hexo 用户必须手动 git clone + 改配置的流程，Gridea Pro 可以做到&quot;商店体验&rdquo;。</p>
+</li>
+</ol>
+<p><strong>不应该做的：</strong></p>
+<ul>
+<li>不要做内容平台（不做流量分发、不做社区、不做推荐算法）</li>
+<li>不要做在线编辑器（不和 Notion/语雀/飞书文档竞争）</li>
+<li>不要做动态博客（不和 WordPress/Ghost/Halo 竞争）</li>
+</ul>
+<h3 id="53-">5.3 目标用户画像</h3>
+<p>Gridea Pro 的核心用户不是&quot;想要流量&quot;的人（他们会选公众号/Substack），而是：</p>
+<ul>
+<li><strong>技术人员</strong> — 想要个人技术博客展示能力，但不想花太多时间折腾部署和配置</li>
+<li><strong>独立创作者</strong> — 需要一个&quot;数字根据地&quot;来实施 POSSE 策略，把独立博客作为内容源头</li>
+<li><strong>数据主权意识者</strong> — 对平台审查、数据锁定有警觉，希望内容完全自主可控</li>
+<li><strong>设计敏感型用户</strong> — 喜欢个性化的博客外观，但不想写 CSS 代码</li>
+<li><strong>中文博主</strong> — 面临备案/CDN/审查等特殊挑战，需要一个理解中文互联网生态的工具</li>
+</ul>
+<h3 id="54-">5.4 竞争壁垒</h3>
+<p>如果 Gridea Pro 能做好以下几点，就能建立起 Hexo/Hugo 短期内无法复制的壁垒：</p>
+<table>
+<thead>
+<tr>
+<th>壁垒</th>
+<th>说明</th>
+<th>Hexo/Hugo 为什么做不到</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>GUI 体验</strong></td>
+<td>零命令行操作，所见即所得</td>
+<td>CLI 是它们的基因，加 GUI 等于重写</td>
+</tr>
+<tr>
+<td><strong>主题市场</strong></td>
+<td>一键安装、可视化配置</td>
+<td>它们的主题是 git 仓库，无法做到&quot;商店体验&rdquo;</td>
+</tr>
+<tr>
+<td><strong>POSSE 集成</strong></td>
+<td>写完一键分发多平台</td>
+<td>它们是纯生成器，不涉及内容分发</td>
+</tr>
+<tr>
+<td><strong>AI 原生</strong></td>
+<td>写作助手、SEO 建议、自动摘要</td>
+<td>后加 AI 功能需要插件生态支持，响应慢</td>
+</tr>
+<tr>
+<td><strong>中文优先</strong></td>
+<td>备案引导、国内 CDN 优化、中文排版</td>
+<td>国际化工具，中文只是众多语言之一</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="heading-4">六、最终判断</h2>
+<p><strong>问：AI 时代还有人愿意用博客工具搭建独立博客吗？</strong></p>
+<p>答：有，而且这群人的需求会持续存在甚至增长。原因有三——</p>
+<p>第一，AI 生成内容的泛滥正在制造一场&quot;信任危机&rdquo;，拥有独立域名和真实人格的博客将成为越来越珍贵的&quot;信任锚点&rdquo;。</p>
+<p>第二，平台的结构性问题（审查、锁定、算法不稳定、变现规则变化）不会改善，只会随商业化加深而恶化。越来越多的成熟创作者会觉醒&quot;数据主权&quot;意识，需要一个自己掌控的内容阵地。</p>
+<p>第三，POSSE 策略的普及意味着独立博客不再需要&quot;和平台抢流量&quot;，而是作为&quot;内容源头&quot;与平台分发共存。这让独立博客的价值从&quot;获取流量&quot;转向了&quot;拥有资产&quot;。</p>
+<p><strong>问：那 Gridea Pro 有市场吗？</strong></p>
+<p>答：有，但前提是 Gridea Pro 不能只是&quot;又一个静态博客生成器&quot;。如果只做 Hugo/Hexo 做的事，那没有理由存在。Gridea Pro 的机会在于做 Hugo/Hexo <strong>不做也做不好的事</strong>——用 GUI 极致体验 + POSSE 工作流 + AI 原生集成 + 中文生态优化，服务那些&quot;想要独立博客的好处，但不愿意（或不会）折腾命令行&quot;的用户群体。</p>
+<p>这个群体的规模，从中文独立博客社区的 600+ 活跃博主到 Gridea 老版本的 28,000+ 用户再到全球上亿的 WordPress 用户中&quot;想要更轻量方案&quot;的那部分人，市场空间是明确存在的。</p>
+<p>关键不是市场有没有，而是 Gridea Pro 能不能做出真正差异化的产品。</p>
+]]></description>
+      <category>Gridea Pro</category>
+      <category>AI</category>
+      <category>AGI</category>
+      <category>趋势</category>
+      <enclosure url="https://are.ink/post-images/ai-era-indie-blog-gridea-pro-strategy.jpg" length="0" type="image/jpeg"></enclosure>
+    </item>
+    <item>
+      <title>我们如何成为自己</title>
+      <link>https://are.ink/post/how-we-become-ourselves/</link>
+      <guid isPermaLink="true">https://are.ink/post/how-we-become-ourselves/</guid>
+      <pubDate>Wed, 22 Apr 2026 14:30:00 +0800</pubDate>
+      <description><![CDATA[<p>「做自己」这三个字，你一定听过很多遍。</p>
+<p>它出现在毕业典礼的演讲里、出现在情感博主的推送里、出现在运动品牌的 slogan 里、出现在朋友劝你的时候、出现在你想安慰一个刚失恋的人的时候。</p>
+<p>它已经成了这个时代最默认的生活建议之一，流行到几乎不需要再解释。</p>
+<!-- more -->
+<p>但有一件事，你可能从来没有认真想过——</p>
+<p><strong>那个「自己」，到底是谁？</strong></p>
+<p>是你现在的样子，还是某个藏在深处等着被发现的样子？<br />
+是你一个人安静时候的你，还是你在朋友面前的你？<br />
+是你清醒时想做的事，还是你喝醉以后才敢说出口的话？<br />
+是你小时候梦里想成为的那个人，还是你现在已经变成的这个人？</p>
+<p>如果此刻让你回答一句——我到底是谁？</p>
+<p>你其实答不上来。</p>
+<p>不是不愿意答。</p>
+<p><strong>是真的答不上来。</strong></p>
+<hr />
+<p>你过了三十岁、三十五岁、四十岁。你该做的事基本都做了，不该做的也做过一些。你有了一份还过得去的工作、一段还算稳定的关系、一个不算太糟的朋友圈。但你就是隐隐觉得，这些东西不完全属于你。有些是你小时候被灌输的，有些是你长大之后从别人身上学来的，有些你自己都说不清是从哪里来的。</p>
+<p>所以你才终于开始回头问自己——</p>
+<p>我到底想要什么？<br />
+我到底是谁？</p>
+<p>而你越追问——</p>
+<p><strong>越答不上来。</strong></p>
+<hr />
+<p>这个问题，不是从来都在的。</p>
+<p>如果你回到一百年前的乡下，随便问一个农民「你是谁」，他不会愣住，也不会躺在床上整晚想这件事。他会告诉你：我是张家的长子，是李村的人，是种了三十亩地的庄稼汉，是两个孩子的父亲，是村口老庙香火会的理事。</p>
+<p>他的身份，不是他想出来的。</p>
+<p>是他被生下来就装在身上的。村庄、家族、土地、手艺、祠堂——这些东西联合起来，替他把「我是谁」这个问题提前回答好了。他只需要认真活好其中的每一重身份。</p>
+<p>他当然也有自己的烦恼。但他的烦恼是具体的：这一季的麦子、父亲的病、儿子的婚事。</p>
+<p>他不会为「我是谁」失眠。</p>
+<p><strong>失眠的是我们。</strong></p>
+<hr />
+<p>过去两三百年里，有一件事一点一点地发生了。</p>
+<p>城市化把人从村庄里抽走了。工业化让手艺和职业不再是祖传的。高铁和互联网让家族散落到各个城市、各个大陆。每一份稳定的工作都在被重新发明，每一段关系都在变成临时的，每一个人都被教会要&quot;独立&quot;、要&quot;自由&quot;、要&quot;做自己&quot;。</p>
+<p>到最后，每一个人都变成了一个可以被单独抽出来的原子——没有村庄、没有祠堂、没有祖传的手艺、没有一条能替你回答「你是谁」的现成轨道。</p>
+<p>然后世界对你说：你现在自由了，你可以自己决定你想成为什么人。</p>
+<p>这听起来当然很诱人。</p>
+<p>但它也意味着另一件很重的事：那些原本由一整个村庄、一整个家族、一整个共同体共同承担的问题——你是谁，你要去哪里，你为什么存在——现在全都压在了你一个人身上。</p>
+<p>你一个人，躺在床上，要回答几百代人从来不曾独自回答过的问题。</p>
+<p>你回答不出来，不是因为你不够努力。</p>
+<p>也不是因为你不够聪明。</p>
+<p><strong>是因为这个任务，从一开始就不是设计给一个人独自完成的。</strong></p>
+<hr />
+<p>更让人难受的是，最近这十几年，又有一个新的东西加了进来。</p>
+<p>算法。</p>
+<p>你以为你是在探索自己、寻找自己——你刷视频、点赞、保存、搜索、关注那些你觉得「有共鸣」的内容。但其实你的每一次点击、每一秒停留，都在给算法喂料。</p>
+<p>算法用这些料，一点一点拼出一个「更懂你」的版本，然后把这个版本再推回到你眼前。</p>
+<p>你爱看的东西，会被喂得更多。<br />
+你一次偶然的愤怒，会被反复强化成一种人设。<br />
+你某个月里多停留了几秒的画面，三个月后会变成你整个信息流的主色调。</p>
+<p>你以为你看到的世界是客观的。</p>
+<p>其实那是算法和你共同雕刻出来的一面镜子。</p>
+<p>你以为镜子里的那个人就是「真实的你」。</p>
+<p>其实那只是一个在你和算法的共同作用下被加工出来的幻影——一个更容易停在屏幕前、更容易被投放广告、更容易被继续喂养的你。</p>
+<p>然后你带着这个幻影继续追问：「我到底是谁？」</p>
+<p>难怪找不到答案。</p>
+<p><strong>你追问的那个人，本来就不是你自己。</strong></p>
+<hr />
+<p>所以，我们回到那个最原始的问题——</p>
+<p>我们到底怎么成为自己？</p>
+<p>大多数人的第一反应是：向内看。冥想、独处、写日记、读心理学、上课程、和自己对话。</p>
+<p>这些事情不是没用。但如果你只是做这些，过了一段时间你会发现，你似乎离「真实的自己」并没有更近一步。你的日记越写越乱，你的冥想越做越焦虑，你越是跟自己对话，越搞不清楚哪一个声音才算是你。</p>
+<p>这不怪你。</p>
+<p>这是因为，当你向内挖的时候，心里其实一直藏了一个假设——</p>
+<p>你在假设，在某个很深的地方，有一个真实的、完整的、等着被你发现的&quot;真我&quot;。只要你挖得够深、够诚实、够久，它就会浮出水面。</p>
+<p>这个假设可能本身就是错的。</p>
+<p>那个所谓的「真我」有可能根本不存在。</p>
+<p>不是被掩埋了。是从来没有。</p>
+<p>你身上的每一样东西——你的语言、你的偏好、你的情绪模式、你的羞耻感、你的兴奋点——都是你在一段一段具体的关系里、一段一段具体的时间里，从外面一点一点接收、回应、内化进来的。</p>
+<p><strong>把外面的东西全部剥掉，剩下的不是&quot;真实的你&quot;，是一个连「自己」这两个字都念不出来的生物。</strong></p>
+<p>你不是往里挖就能找到自己的。</p>
+<p>自己不在里面。</p>
+<hr />
+<p>那自己在哪里？</p>
+<p>这个问题如果换一种问法，可能更容易被回答：</p>
+<p><strong>一个人，到底是通过什么变成他自己的？</strong></p>
+<p>你回想一下你身边那些让你觉得「特别是他自己」的人。不是最成功的那些，也不是最有名的那些。是那种你一想到他，脑子里就浮现出一个非常具体的形象、一种非常有个性的做事方式、一种你一眼就能认出是他的气场的人。</p>
+<p>他们是怎么变成那样的？</p>
+<p>你仔细想一下，你会发现一件事——</p>
+<p>这些人，几乎都不是通过「向内挖掘」变成他们自己的。</p>
+<p>他们是在做一件他们真的在乎的事的过程中，一点一点变成了自己。</p>
+<p>一个做了二十年木工的人，在一块一块木头里，变成了自己。<br />
+一个带了十几届学生的老师，在一届一届学生的笑和哭里，变成了自己。<br />
+一个坚持写了十年小众博客的人，在没有几个读者的评论区里，变成了自己。<br />
+一个把半辈子花在一种冷门疾病上的研究者，在那个几乎没人关心的领域里，变成了自己。<br />
+一个独居者收留了一群流浪猫，在每一只走失又回来的猫身上，变成了自己。</p>
+<p>他们不是先想清楚了「我是谁」，才决定去做这件事的。</p>
+<p>他们是在做这件事的过程里，被这件事一块一块塑造成了现在的样子。</p>
+<p><strong>自己不是你找到的。</strong></p>
+<p><strong>自己是你长出来的。</strong></p>
+<hr />
+<p>所以，如果要说有什么可以带走的东西，可能是这样——</p>
+<p>别再一个人躺在床上，跟「我是谁」这个问题死磕了。</p>
+<p>这个问题太重。它不是设计给一个人独自扛的。</p>
+<p>不是让你放弃思考。是让你承认一件事：一个人是不可能只靠想，就想成自己的。</p>
+<p>你要走出去。</p>
+<p>去认真做一件事。一件你可能做不好、可能要花十年才能摸到门槛、可能永远换不到钱、但你真的舍不得放下的事。在这件事里，你会被它一天一天塑造。</p>
+<p>去认真待一个人，或者几个人。不是那种可以随时拉黑的关系，是那种对方看得见你、也愿意纠正你的关系。在这种关系里，你会第一次知道被另一个人准确地看见是什么感觉。</p>
+<p>去承担一份具体的责任。不是朋友圈宣言，不是立 flag，是那种真的需要你每天起来处理的、麻烦的、没法摆脱的责任。在这种责任里，你会发现你以为的「自己」和真的自己之间的距离。</p>
+<p>去待在一个你愿意被观看、被评价、甚至被提醒的共同体里。这不舒服。但这是你长成一个真实的人的最低条件之一。</p>
+<p>这些东西不会给你一个漂亮的答案。</p>
+<p>但它们会把「我是谁」这个问题，从你一个人的床头，慢慢搬回到一张你和这个世界共同织的网里——</p>
+<p>在那张网里，这个问题不会再像现在这样沉重。</p>
+<hr />
+<p>其实我越来越觉得——</p>
+<p>一个人最后变成什么样，不是他想出来的。</p>
+<p><strong>是他爱的东西塑造出来的。</strong></p>
+<p>你不用再拼命往里挖了。挖不到的。</p>
+<p>你只需要认真地去爱一些东西——一件事、一个人、一个地方、一门手艺、一段长到看不见尽头的承诺——然后在这些东西里，让自己一天一天被它们雕。</p>
+<p>雕到某一天，你会忘了「我是谁」这个问题。</p>
+<p>你不再问了。</p>
+<p>然后某个午后，你在做一件很普通的事，比如给一盆花换土，比如陪一个人走一段路，比如坐在桌前写第一千篇没人看的博客。</p>
+<p>你会忽然停下来，看着自己的手。</p>
+<p>然后心里会冒出一句话——</p>
+<p><strong>原来这就是我啊。</strong></p>
+]]></description>
+      <category>哲学思辨</category>
+      <category>自我</category>
+      <category>人生思考</category>
+      <enclosure url="https://are.ink/post-images/how-we-become-ourselves.jpg" length="0" type="image/jpeg"></enclosure>
+    </item>
+    <item>
+      <title>Gridea Pro 完全上手指南 —— 从写作到发布，一篇搞定</title>
+      <link>https://are.ink/post/quick-start/</link>
+      <guid isPermaLink="true">https://are.ink/post/quick-start/</guid>
+      <pubDate>Mon, 06 Apr 2026 13:07:46 +0800</pubDate>
+      <description><![CDATA[<p>这篇指南会带你一步一步熟悉 Gridea Pro 的界面和操作，从写第一篇文章到把博客发布到互联网上。</p>
+<!-- more -->
+<h2 id="heading">认识界面</h2>
+<p>打开 Gridea Pro 后，你会看到左侧是导航栏，右侧是内容区域。</p>
+<p>左侧导航从上到下依次是：</p>
+<table>
+<thead>
+<tr>
+<th>导航</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>文 章</strong></td>
+<td>管理你的所有博客文章</td>
+</tr>
+<tr>
+<td><strong>闪 念</strong></td>
+<td>速记短想法、灵感碎片</td>
+</tr>
+<tr>
+<td><strong>评 论</strong></td>
+<td>查看和管理读者评论</td>
+</tr>
+<tr>
+<td><strong>菜 单</strong></td>
+<td>自定义博客的导航栏</td>
+</tr>
+<tr>
+<td><strong>分 类</strong></td>
+<td>管理文章分类</td>
+</tr>
+<tr>
+<td><strong>标 签</strong></td>
+<td>管理文章标签</td>
+</tr>
+<tr>
+<td><strong>友 链</strong></td>
+<td>管理友情链接</td>
+</tr>
+<tr>
+<td><strong>主 题</strong></td>
+<td>切换和配置博客主题</td>
+</tr>
+<tr>
+<td><strong>配 置</strong></td>
+<td>设置部署平台、SEO、CDN 等</td>
+</tr>
+</tbody>
+</table>
+<p>导航栏底部有两个重要按钮：<strong>「预 览」</strong> 和 <strong>「同 步」</strong>，后面会详细讲到。</p>
+<hr />
+<h2 id="heading-1">第一步：写一篇文章</h2>
+<ol>
+<li>点击左侧导航的 <strong>「文 章」</strong>，进入文章列表页</li>
+<li>点击右上角的 <strong>「 + 」</strong> 按钮，会打开文章编辑器</li>
+<li>最上方是<strong>标题输入框</strong>，下方是<strong>正文编辑区</strong>（支持 Markdown 语法）</li>
+<li>写完内容后，点击编辑器顶部工具栏的 <strong>「 纸飞机 」图标</strong>，会弹出右侧的<strong>文章设置面板</strong></li>
+</ol>
+<p>在文章设置面板中，你可以配置：</p>
+<ul>
+<li><strong>URL</strong> — 文章的访问路径（默认用文件名）</li>
+<li><strong>分 类</strong> — 选择一个分类，或留空</li>
+<li><strong>标 签</strong> — 点击已有标签添加，或输入新标签后按回车创建</li>
+<li><strong>创建时间</strong> — 默认是当前时间，可以手动修改</li>
+<li><strong>封面图</strong> — 粘贴在线图片链接，或点击上传区域从本地选择图片</li>
+<li><strong>列表中隐藏</strong> — 开启后，文章不会出现在博客的文章列表中（适合「关于」页面）</li>
+<li><strong>置顶文章</strong> — 开启后，文章会固定在博客文章列表最顶部</li>
+</ul>
+<p>设置完成后，点击面板底部的 <strong>「发布」</strong> 按钮保存文章。如果还没写完，可以点击编辑器顶部的 <strong>「存草稿」</strong> 先保存为草稿。</p>
+<blockquote>
+<p><strong>小技巧</strong>：在文章正文中插入 <code>&lt;!-- more --&gt;</code> 标记，标记之前的内容会作为文章摘要显示在博客文章列表中。你可以通过编辑器右侧的 <strong>「&hellip;」</strong> 按钮快速插入这个标记。</p>
+</blockquote>
+<hr />
+<h2 id="heading-2">第二步：选择主题</h2>
+<ol>
+<li>点击左侧导航的 <strong>「主 题」</strong></li>
+<li>默认进入 <strong>「选择主题」</strong> 标签页，上方展示当前使用的主题，下方展示其他可选主题</li>
+<li>找到你喜欢的主题，点击 <strong>「使用该主题」</strong> 按钮即可切换</li>
+<li>切换到 <strong>「基础配置」</strong> 标签页，填写你的博客名称、作者名、站点描述等信息</li>
+<li>切换到 <strong>「个性化」</strong> 标签页，可以调整配色风格</li>
+</ol>
+<p>每个主题还可能有自己的 <strong>「自定义配置」</strong>（第四个标签页），比如社交链接、布局选项等，按需设置即可。</p>
+<hr />
+<h2 id="heading-3">第三步：预览效果</h2>
+<p>点击左侧导航栏底部的 <strong>「预 览」</strong> 按钮。</p>
+<p>Gridea Pro 会自动渲染整个博客站点，然后在浏览器中打开预览。你可以看到文章、主题、导航菜单等所有内容的实际效果。</p>
+<p>每次修改文章或切换主题后，重新点击「预 览」即可看到最新效果。</p>
+<blockquote>
+<p>注意：博客不是实时渲染的，每次修改后都需要再次点击「预 览」才能看到最新效果。</p>
+</blockquote>
+<hr />
+<h2 id="heading-4">第四步：配置部署</h2>
+<p>现在你的博客在本地已经准备好了，接下来配置一个部署平台，把它发布到互联网上。</p>
+<ol>
+<li>点击左侧导航的 <strong>「配 置」</strong></li>
+<li>在 <strong>「平 台」</strong> 下拉框中选择你要使用的部署方式</li>
+</ol>
+<p>Gridea Pro 支持以下平台：</p>
+<h3 id="github-pages">GitHub Pages（推荐新手）</h3>
+<p>免费、全球可访问，配置步骤：</p>
+<ol>
+<li>在 GitHub 上创建一个新仓库（仓库名建议用 <code>你的用户名.github.io</code>）</li>
+<li>前往 GitHub → Settings → Developer settings → <a href="https://github.com/settings/tokens">Personal access tokens</a>，生成一个 Token（勾选 <code>repo</code> 权限）</li>
+<li>回到 Gridea Pro 的「配 置」页面，填写以下信息：
+<ul>
+<li><strong>域 名</strong>：<code>https://你的用户名.github.io</code></li>
+<li><strong>仓库名称</strong>：<code>你的用户名.github.io</code></li>
+<li><strong>分 支</strong>：<code>main</code></li>
+<li><strong>仓库用户名</strong>：你的 GitHub 用户名</li>
+<li><strong>邮 箱</strong>：你的 GitHub 注册邮箱</li>
+<li><strong>令 牌</strong>：刚才生成的 Token</li>
+<li><strong>CNAME</strong>：<code>你购买的个人域名，如：</code>are.ink`（可选，没有可不填）</li>
+</ul>
+</li>
+<li>点击 <strong>「检测远程连接」</strong> 验证配置是否正确</li>
+<li>点击 <strong>「保存」</strong></li>
+</ol>
+<h3 id="gitee-pages">Gitee Pages</h3>
+<p>国内访问更快，配置方式与 GitHub 类似，需要在 Gitee 上创建仓库并生成私人令牌。</p>
+<h3 id="vercel">Vercel</h3>
+<p>支持自定义域名，智能增量部署。需要填写 Vercel 项目名称和 Access Token。</p>
+<h3 id="cname">自定义域名（CNAME）</h3>
+<p>如果你有自己的域名（比如 <code>blog.example.com</code>），可以在上面的配置中填写 <strong>CNAME</strong> 字段：</p>
+<ol>
+<li>在你的域名注册商的 DNS 管理后台，添加一条 CNAME 记录，将你的域名指向 <code>你的用户名.github.io</code>（GitHub）或对应的平台域名</li>
+<li>回到 Gridea Pro 的「配 置」页面，将 <strong>域 名</strong> 改为你的自定义域名（如 <code>https://blog.example.com</code>）</li>
+<li>在 <strong>CNAME</strong> 字段中填写你的自定义域名（如 <code>blog.example.com</code>）</li>
+<li>保存后重新同步，GitHub Pages 会自动识别并生效</li>
+</ol>
+<p>如果暂时没有自己的域名，跳过这步即可，后面随时可以配置。</p>
+<hr />
+<h2 id="heading-5">第五步：发布上线</h2>
+<p>一切配置就绪后，点击左侧导航栏底部的 <strong>「同 步」</strong> 按钮（火箭图标）。</p>
+<p>按钮会显示加载动画，等待片刻，看到「同步成功啦！」的提示，说明你的博客已经发布到互联网上了。</p>
+<p>打开浏览器，访问你在第四步填写的域名，就能看到你的博客了。</p>
+<p><strong>以后每次写完新文章或修改配置后，点一下「同 步」就会自动更新。</strong></p>
+<blockquote>
+<p><strong>提示</strong>：Gridea Pro 内置了完整的 Git 引擎，你的电脑上<strong>不需要安装 Git</strong>，填好配置信息后，点击 <strong>「同 步」</strong> 按钮就可以直接发布。</p>
+</blockquote>
+<hr />
+<h2 id="heading-6">更多功能</h2>
+<p>你已经完成了最核心的流程。以下是 Gridea Pro 的其他功能，可以慢慢探索：</p>
+<p><strong>闪 念</strong> — 点击左侧「闪 念」，在输入框中写下你的想法，点击「发布」。支持用 <code>#标签</code> 的方式给速记打标签。左侧有热力图展示你的记录频率。</p>
+<p><strong>菜 单</strong> — 点击左侧「菜 单」，可以自定义博客顶部的导航栏。比如添加「关于」「归档」「标签」等页面链接，也可以添加外部链接。</p>
+<p><strong>友 链</strong> — 点击左侧「友 链」，添加友情链接，和其他博主互相推荐。</p>
+<p><strong>评 论</strong> — 在「配 置」页面中可以设置评论系统（支持 Gitalk、Giscus、Waline、Twikoo 等 7 种方案），让读者可以在你的文章下方留言互动。</p>
+<p><strong>SEO</strong> — 在「配 置」→「SEO」标签页中，可以配置 Google Analytics、百度统计、JSON-LD 结构化数据等，帮助搜索引擎收录你的博客。Sitemap 和 RSS 订阅会自动生成，无需额外配置。</p>
+<p><strong>PWA</strong> — 在「配 置」→「PWA」标签页中，可以将你的博客配置为渐进式 Web 应用。开启后，读者可以把你的博客「添加到主屏幕」，获得接近原生 App 的浏览体验。可以自定义应用名称、主题色和图标。</p>
+<p><strong>CDN</strong> — 在「配 置」→「CDN」标签页中，可以开启图片和静态资源的 CDN 加速。配置好 CDN 仓库后，文章中插入的图片会自动上传到 CDN，加快博客的访问速度，尤其适合图片较多的博客。</p>
+<h2 id="mcp---ai-">彩蛋：MCP — 用 AI 管理你的博客</h2>
+<p>这是 Gridea Pro 最独特的能力之一。</p>
+<p>Gridea Pro 内置了完整的 <a href="https://modelcontextprotocol.io/">MCP（Model Context Protocol）</a> 服务，这意味着你可以通过 AI 助手（如 Claude Desktop、Cursor、Claude Code 等任何支持 MCP 协议的客户端）直接与你的博客对话。</p>
+<p>你可以用自然语言让 AI 帮你：</p>
+<ul>
+<li><strong>写文章</strong> — 「帮我写一篇关于 Vue 3 组合式 API 的入门教程，标签设为 Vue 和前端」</li>
+<li><strong>管理内容</strong> — 「把所有标签为&quot;草稿&quot;的文章列出来」「删除上个月的测试文章」</li>
+<li><strong>记录闪念</strong> — 「记一条速记：今天学会了 Go 的 channel 用法」</li>
+<li><strong>配置站点</strong> — 「把博客名称改为&quot;我的技术笔记&quot;」「切换到 flavor-theme 主题」</li>
+<li><strong>发布部署</strong> — 「渲染站点并部署到 GitHub Pages」</li>
+</ul>
+<p>总共提供了 30+ 个 AI 可调用的工具，覆盖文章、标签、分类、菜单、友链、闪念、主题、设置、渲染和部署的完整管理。你不需要打开 Gridea Pro 的界面，在 AI 对话框里就能完成几乎所有操作。</p>
+<p>配置方式很简单。以 Claude Desktop 为例，打开 Settings → Developer → Edit Config，在 <code>mcpServers</code> 中添加：</p>
+<p><strong>macOS：</strong></p>
+<pre><code class="language-json">{
+  &quot;mcpServers&quot;: {
+    &quot;gridea-pro&quot;: {
+      &quot;command&quot;: &quot;/Applications/Gridea Pro.app/Contents/MacOS/gridea-pro-mcp&quot;,
+      &quot;env&quot;: {
+        &quot;SOURCE_DIR&quot;: &quot;/Users/你的用户名/Documents/Gridea Pro&quot;
+      }
+    }
+  }
+}
+</code></pre>
+<p><strong>Windows：</strong></p>
+<pre><code class="language-json">{
+  &quot;mcpServers&quot;: {
+    &quot;gridea-pro&quot;: {
+      &quot;command&quot;: &quot;C:\\Program Files\\Gridea Pro\\gridea-pro-mcp.exe&quot;,
+      &quot;env&quot;: {
+        &quot;SOURCE_DIR&quot;: &quot;C:\\Users\\你的用户名\\Documents\\Gridea Pro&quot;
+      }
+    }
+  }
+}
+</code></pre>
+<ul>
+<li><strong>command</strong> — <code>gridea-pro-mcp</code> 二进制文件的路径</li>
+<li><strong>SOURCE_DIR</strong> — 你的博客数据目录路径</li>
+<li><strong>DEPLOY_ENABLED</strong> — 是否允许 AI 执行发布/同步操作（可选，默认关闭）</li>
+</ul>
+<p>默认情况下，AI 只能帮你写文章、管理内容，<strong>不能</strong>直接发布到线上。如果你信任 AI 并希望它能帮你一键发布，在 <code>env</code> 中加上 <code>&quot;DEPLOY_ENABLED&quot;: &quot;true&quot;</code> 即可开启。建议熟悉流程后再开启。</p>
+<p>保存后重启 Claude Desktop，就可以在对话中直接管理你的博客了。它通过本地管道通信，不需要网络、不需要端口、不需要认证，数据始终在你的电脑上。</p>
+<hr />
+<p>看到这里，相信你对 Gridea Pro 的使用已经有了全面的了解。</p>
+<p>这篇指南可以随时删除。祝你博客之旅愉快！</p>
+]]></description>
+      <category>Gridea Pro</category>
+    </item>
+    <item>
+      <title>都 2026 年了，我们为什么还要写博客</title>
+      <link>https://are.ink/post/why-we-write/</link>
+      <guid isPermaLink="true">https://are.ink/post/why-we-write/</guid>
+      <pubDate>Mon, 06 Apr 2026 13:06:46 +0800</pubDate>
+      <description><![CDATA[<p>你有没有过这样的时刻——</p>
+<p>某天深夜，突然想起一个很久没联系的人，想跟他说点什么，却发现你们之间已经隔了太多年的空白，连开口的理由都找不到了。</p>
+<!-- more -->
+<p>或者翻手机相册，看到三年前拍的一张照片，背景里有一家街角的小店。你记得自己当时走进去过，吃了一碗很好吃的面，但你想不起来它叫什么名字了。然后你划过去，这个记忆就永远消失了。</p>
+<p><strong>我们每天都在丢失自己、忘记自己。</strong></p>
+<p>不是什么惊天动地的丢失和忘记，而是<strong>一点一点的、安静的、不被察觉的</strong>。你忘了某次深夜和朋友聊天时那个让你突然沉默的观点。你忘了第一次独自旅行时，在陌生城市醒来的那种又兴奋又害怕的感觉。你忘了某天下班路上耳机里随机播放到一首歌时，眼眶突然发酸的那几秒钟。</p>
+<p>这些瞬间，在发生的时候，你觉得自己一辈子都不会忘。</p>
+<p>但你忘了。我们都忘了。</p>
+<hr />
+<p>你有没有想过一个很残酷的事实：<strong>这个世界上绝大多数人活过，然后消失了，没有留下任何痕迹。</strong></p>
+<p>不是说他们不重要。他们恋爱过、失眠过、在某个冬天的深夜独自哭过、也在某个普通的下午因为一件小事开心了一整天。他们的人生和你我一样丰盛、一样复杂、也一样值得被记住。</p>
+<p>但没有人记得了。</p>
+<p>你的曾祖父是一个什么样的人？他年轻时喜欢过谁？他这辈子做过最勇敢的决定是什么？他有没有过一个没有实现的梦想？</p>
+<p>这些问题，大概永远不会有答案了。不是因为他的人生不精彩，而是因为——<strong>没有人替他记下来，他自己也没有。</strong></p>
+<p><strong>两代人的时间，一个人就可以从这个世界上彻底消失。好像从来没有来过一样。</strong></p>
+<hr />
+<p>我们不是要贩卖焦虑。我们想说的是一件很简单的事：</p>
+<p><strong>记录这件事本身，就是对抗遗忘最好的方式。</strong></p>
+<p>不需要写得多好。不需要有人看。不需要有完整的逻辑和漂亮的排版。你只是把一个瞬间从时间的河流里捞出来，钉在了某个地方。</p>
+<p>你写下「今天加班到十一点，回家路上看到月亮特别圆，突然就不生气了」——这句话不会获得任何点赞，不会被任何算法推荐，但二十年后的某天，你或者你的孩子翻到它的时候，会看到一个 2026 年的普通夜晚，一个疲惫的人抬头看了一眼月亮。</p>
+<p><strong>那个瞬间，就被留住了。</strong></p>
+<p>你写下「今天学会了一个新东西，原来 CSS 的 <code>gap</code> 属性可以直接用在 flex 布局上，不用再写 margin 了」——这条在你看来微不足道的笔记，可能在某天帮到一个深夜还在查资料的陌生人。他不会知道你是谁，但你确实帮到了他。</p>
+<p>你写下「三十岁了，说实话有点慌。不是因为老了，是因为发现自己还是不知道到底想要什么」——某个和你一样迷茫的人看到会觉得：原来不只是我这样。那种「我不是一个人」的感觉，有时候比任何建议都管用。</p>
+<hr />
+<p>当然，我也知道你在想什么。</p>
+<p>「我写的东西没人看，我还有必要写吗？」</p>
+<p>没人看，那又怎样？</p>
+<p>鲁迅的日记里写过「今天天气好，无事」。你觉得他写的时候在想有没有人看吗？</p>
+<p>有一个博主写了五年博客，平均每篇文章只有十几个浏览量。有人问他为什么还在写，他说：「我不是在写给别人看的。我是在给十年后的自己留证据——证明我认真活过。」</p>
+<p><strong>博客不是社交媒体。你不需要取悦任何人。</strong></p>
+<p>你不需要蹭热点、不需要起标题党、不需要考虑打开率和完读率。你不需要在开头三秒抓住读者的注意力，也不需要在结尾引导点赞转发。</p>
+<p>你只需要诚实地写。</p>
+<p>写你真正在想的事情。写你学到的东西。写你看到的、听到的、感受到的。写你的困惑，写你的兴奋，写你想明白了的和还没想明白的。</p>
+<p><strong>你每写下一个字，就是在告诉这个世界：我来过，我在这里，我有话要说。</strong></p>
+<hr />
+<p>有人说，人会死三次。</p>
+<p>第一次是心脏停止跳动的那一刻。<br />
+第二次是葬礼上最后一个人离开的那一刻。<br />
+第三次是这个世界上最后一个记得你的人忘记你的那一刻。</p>
+<p>第三次，才是真正的死亡。</p>
+<p>而文字是人类发明的，为数不多的能对抗第三次死亡的东西。</p>
+<p>你不需要写出传世之作。你只需要把你的所思所想，放在一个属于你自己的地方。一个不会被算法吞没、不会被平台删除、不会随着某个 App 的关停而消失的地方。</p>
+<p><strong>你自己的博客，就是这样一个地方。</strong></p>
+<hr />
+<p>所以，不要再想「等我准备好了再开始」。没有人准备好了才开始写字。那些你喜欢的作者，他们的第一篇文章一定也写得很烂。但他们写了。</p>
+<p>也不要想「我的生活太平淡了，没什么好写的」。恰恰是那些平淡的日常，在多年以后回头看，才是最珍贵的。那些惊天动地的大事，你反而不需要记——因为所有人都会记得。<strong>只有你自己的小事，只有你会记得。如果你也不记，就真的没了。</strong></p>
+<p>那现在就开始吧。趁还记得。</p>
+<p>点击右上角的「 + 」，写下你脑海里的第一个想法。不用在意字数，不用在意文笔，不用在意有没有人看。</p>
+<p>你不是在写一篇文章。</p>
+<p><strong>你是在这个世界上，留下一个属于你的印记。</strong></p>
+<p>落笔为证~</p>
+<p>敬每一个正在记录自己的个体！</p>
+]]></description>
+      <category>Gridea Pro</category>
+    </item>
+    <item>
+      <title>独立博客没有死，正在死的是平庸的博客</title>
+      <link>https://are.ink/post/indie-blog-is-not-dead/</link>
+      <guid isPermaLink="true">https://are.ink/post/indie-blog-is-not-dead/</guid>
+      <pubDate>Mon, 06 Apr 2026 13:05:46 +0800</pubDate>
+      <description><![CDATA[<p>你可能听过很多次这样的说法：&ldquo;博客已经过时了&rdquo;、&ldquo;现在谁还看博客&rdquo;、&ldquo;有公众号和小红书就够了&rdquo;。</p>
+<p>但事实是——2026 年的今天，全球有超过 6 亿个博客，每天产生 750 万篇新文章，77% 的互联网用户仍然在定期阅读博客。</p>
+<p>博客从未死过。真正在死的，是那些没有灵魂的博客。</p>
+<!-- more -->
+<hr />
+<h2 id="heading">平台正在吞噬你的文字</h2>
+<p>我们先聊一个不太舒服的事实。</p>
+<p>你花了三个小时写完一篇长文，发在公众号上。它的命运取决于什么？不是内容质量，而是你在几点钟按下了发送键。错过了黄金时间，这篇文章就沉了，可能永远不会再被打开。</p>
+<p>你在知乎上认真回答了一个问题，写了两千字。三个月后，算法调了一下权重，你的回答从第一页掉到了第三页。流量断崖式下跌，你什么也没做错。</p>
+<p>你在某个平台上积累了几万粉丝，有一天平台调整了政策，你的账号因为一些模糊的原因被限流了。你去申诉，没有人回复你。</p>
+<p><strong>这不是假设，这是每天都在发生的事。</strong></p>
+<p>公众号 2024 年产出了 4.44 亿篇文章，但订阅号的平均打开率只有 0.89%。你没看错，不到百分之一。你写的东西，99% 的订阅者根本看不到。</p>
+<p>平台要的不是你的内容好，而是你的内容能让用户多刷几分钟。你的利益和平台的利益，从来就不在一条线上。</p>
+<blockquote>
+<p>&ldquo;我们只能不断奔跑，才能留在原地。&rdquo; —— 红皇后假说</p>
+</blockquote>
+<hr />
+<h2 id="ai-">AI 时代，独立博客反而更值钱了</h2>
+<p>你可能觉得 AI 会让博客更没价值 —— ChatGPT 什么都能写，谁还需要看人写的东西？</p>
+<p>恰恰相反。</p>
+<p>当 AI 可以在几秒钟内生成一篇&quot;还不错&quot;的文章时，互联网上正在被大量的&quot;还不错&quot;淹没。SEO 农场用 AI 批量生产内容，搜索结果里充斥着正确但毫无个性的回答。所有的文字都像是同一个人写的 —— 因为它们确实是同一个模型写的。</p>
+<p>在这片千篇一律中，<strong>一个有真实经历、有独立观点、有人格温度的博客，变得前所未有的稀缺。</strong></p>
+<p>Google 搜索主管 Liz Reid 公开说过：展示&quot;真实声音和第一手观点&quot;的内容正在获得更多流量。互联网上 #supporthumanart 运动兴起，读者对 AI 内容的疲劳感在持续加深。&ldquo;人类创作&quot;本身正在成为一种新的信任信号。</p>
+<p>AI 搜索时代带来的访客，转化价值是传统搜索访客的 4.4 倍 —— 因为能穿透 AI 摘要找到你的原文的人，是真正对你的内容感兴趣的人。</p>
+<p><strong>垃圾变多了，但金子也因此更亮了。</strong></p>
+<hr />
+<h2 id="heading-1">独立博客给你的，平台给不了</h2>
+<p>为什么有人明明可以在平台上写，还要费劲搭一个独立博客？</p>
+<p>因为有些东西，平台从结构上就无法提供。</p>
+<p><strong>数据主权。</strong> 你的域名是你的，你的文章是你的，你的读者数据是你的。平台可以关停、改政策、被收购，但你的博客一直在。微信公众号的内容几乎无法导出，一旦封号就是一夜归零。独立博客的内容就是一堆 Markdown 文件，随时可以打包、迁移、备份。</p>
+<p><strong>长期价值。</strong> 一篇发在平台上的文章，生命周期通常只有 48 小时。一篇发在独立博客上的文章，可以通过搜索引擎持续被发现，三年、五年、十年。你的每一篇文章都在为你的域名积累权重，这是一份随时间增值的资产。</p>
+<p><strong>完全自由。</strong> 你想写什么就写什么，不用担心敏感词、不用考虑算法偏好、不用在标题里塞关键词。你的博客，你做主。没有审核，没有限流，没有&quot;该内容因违反社区规定已被删除&rdquo;。</p>
+<p><strong>个人品牌。</strong> 在 AI 取代入门级工作岗位的时代，一个持续更新的独立博客是最好的个人简历。它证明你能思考、能表达、能坚持。这是任何平台主页都替代不了的。</p>
+<blockquote>
+<p>&ldquo;先在自己的网站发布内容，然后将副本或链接发布到第三方平台。&rdquo; —— IndieWeb POSSE 策略</p>
+</blockquote>
+<p>独立博客和平台从来不是二选一。<strong>博客是你的大本营，平台是你的分发渠道。</strong> 内容先发在自己的地方，再同步到公众号、知乎、掘金。这样无论哪个平台出了问题，你的内容始终安全。</p>
+<hr />
+<h2 id="heading-2">但是，平庸的博客确实在死</h2>
+<p>说了这么多好处，也要说一个残酷的事实：<strong>如果你的博客只是在复述别人说过的话，它确实没有存在的必要。</strong></p>
+<p>AI 已经可以在几秒钟内生成一篇&quot;什么是 React Hooks&quot;的入门教程，而且写得还不错。如果你的文章只是把官方文档换个说法抄一遍，那读者为什么不直接问 AI？</p>
+<p>但 AI 写不出这些东西：</p>
+<ul>
+<li>你在凌晨三点 debug 一个诡异的内存泄漏，最后发现是一个第三方库的 edge case，你花了六个小时才定位到——这个过程，AI 编不出来</li>
+<li>你从大厂裸辞去创业，第一个月只有三个用户，你是怎么熬过来的——这个故事，AI 没有经历过</li>
+<li>你在日本旅行时走进一家没有招牌的居酒屋，和老板聊了两个小时人生——这段记忆，只属于你</li>
+<li>你看完一本书之后对某个观点的强烈不同意，以及为什么不同意——这个立场，是你自己的</li>
+</ul>
+<p><strong>AI 能写出正确的内容，但写不出真实的内容。</strong> 而读者越来越能分辨这两者的区别。</p>
+<p>未来能活下来的博客，不是写得最&quot;好&quot;的，而是写得最&quot;真&quot;的。</p>
+<blockquote>
+<p>&ldquo;世界上只有一个你。你的故事、你的视角、你的声音，是任何 AI 都无法复制的。这不是缺陷，这是你最大的优势。&rdquo;</p>
+</blockquote>
+<hr />
+<h2 id="heading-3">中文独立博客：小众，但有韧性</h2>
+<p>你可能觉得中文世界的独立博客已经没人看了。</p>
+<p>事实上，有一群人一直在默默坚持：</p>
+<ul>
+<li><strong>&ldquo;十年之约&rdquo;</strong> 社区有超过 600 位签约博主，核心理念是&quot;博客十年不关闭&quot;</li>
+<li><strong>博客志</strong> 收录了 500 多个活跃的中文独立博客，还在持续增长</li>
+<li><strong>&ldquo;开往&rdquo;</strong> 项目为独立博客提供流量互导，让小众博客也能被发现</li>
+</ul>
+<p>他们不是为了流量在写，而是因为想写。</p>
+<p>中文博主面临一些独特的挑战：备案制度让使用国内服务器变得麻烦，审查让某些话题难以自由讨论，CDN 配置对非技术用户不够友好。但这些障碍反而筛选出了一批真正热爱写作的人。</p>
+<p>有人说中文独立博客的内容太同质化——&ldquo;除了技术就是日记&rdquo;。这恰恰说明，如果你能写出不一样的东西，你就已经赢了。</p>
+<hr />
+<h2 id="heading-4">所以，你应该开始写吗？</h2>
+<p>如果你看到这里，心里有一个声音在说&quot;我也想试试&quot;，那就是答案。</p>
+<p>不需要等到有了完美的主题、想好了定位、学会了所有 Markdown 语法。那些你喜欢的博主，他们的第一篇文章大概率写得很烂。但他们开始了。</p>
+<p>你也不需要写给任何人看。写给自己就够了。记录你学到的东西、你经历的事情、你想明白的和没想明白的。</p>
+<p><strong>一年后，你会有 365 天的生活记录。五年后，你会有一部属于自己的编年史。十年后，你会拥有互联网上独一无二的一个角落，里面装满了一个真实的人认真活过的证据。</strong></p>
+<p>这件事情，没有人能替你做。而一旦你做了，没有任何东西能夺走它。</p>
+<blockquote>
+<p>&ldquo;种一棵树最好的时间是十年前，其次是现在。&rdquo;</p>
+</blockquote>
+<p>现在就是你的&quot;现在&quot;。</p>
+<p>打开编辑器，写下第一行字。</p>
+]]></description>
+      <category>Gridea Pro</category>
+    </item>
+    <item>
+      <title>我为什么复活了 Gridea —— 每个想写点什么的人，都值得一个更简单的开始</title>
+      <link>https://are.ink/post/why-i-revived-gridea/</link>
+      <guid isPermaLink="true">https://are.ink/post/why-i-revived-gridea/</guid>
+      <pubDate>Mon, 06 Apr 2026 13:04:46 +0800</pubDate>
+      <description><![CDATA[<p>2022 年 5 月 17 日，Gridea 发布了它的最后一个版本 v0.9.3。</p>
+<p>此后，再也没有更新过。Issues 无人回复，PR 无人合并。一个曾经帮助 28,000 多位用户搭建了自己博客的工具，就这样安静地停在了那里。</p>
+<p>我是那 28,000 人中的一个。</p>
+<!-- more -->
+<hr />
+<h2 id="heading">一个回不去的老朋友</h2>
+<p>Gridea 对我来说不只是一个工具。它是我接触独立博客的起点。</p>
+<p>在它之前，我也试过其他方案。</p>
+<p>Hugo 构建飞快，但 Go 模板语法让人头疼 —— 官方文档自己都承认&quot;新用户最常犯的错误与上下文（the dot）有关&quot;。一个 <code>{{ . }}</code> 的作用域问题能让你调试一下午，报错信息是令人困惑的 <code>ZgotmplZ</code>。</p>
+<p>Hexo 生态丰富，中文教程遍地，但第一步就是装 Node.js + npm + Git。华为云社区有篇文章标题直接叫《Hexo 更新到 5.2.0 版本血泪踩坑史》。V2EX 上有人说&quot;升级了一下 Node，出大问题了&quot; —— 从 v12 升到 v16，Hexo 直接罢工。</p>
+<p>Jekyll 更不用说了，Ruby 的版本地狱是出了名的，有人专门写了一篇《Ruby Versioning Hell with Jekyll》（Jekyll 的 Ruby 版本地狱）来吐槽 Bundler 和 Gem 的版本互锁。</p>
+<p>这些都是优秀的工具，但它们有一个共同的问题：<strong>把运维的复杂度暴露给了只想写字的人。</strong></p>
+<p>Gridea 不一样。它是一个客户端。下载，打开，写，发布。不需要终端，不需要配环境，不需要知道 npm 是什么。对一个只想安静写点东西的人来说，这就是最好的方案。</p>
+<p>直到它停更了。</p>
+<p>知乎上有人写了好几篇《Gridea 远程连接失败与同步失败的问题汇总解决》。GitHub 上 Issue #400、#335、#976，全是同步失败的报告，有的讨论了几十条回复。Issue #1111 的标题是&quot;希望作者可以重视客户端版本的开发工作&quot;，有用户写道：</p>
+<blockquote>
+<p>&ldquo;如果需要资金的来源，可以考虑在客户端增加一些收费的功能。我相信真心需要的人会为软件进行付费的。&rdquo;</p>
+</blockquote>
+<p>然而，这条留言没有收到回复。</p>
+<p>Issue #755 里有人说：&ldquo;实话实说，我打算撤了……&rdquo;</p>
+<p>到了 2025 年、2026 年，还有人在提 Issue，但已经不会有人回应了。</p>
+<p><strong>一个好的想法被放弃了，但它解决的那个问题并没有消失。</strong></p>
+<hr />
+<h2 id="heading-1">那个问题是什么</h2>
+<p>问题很简单：<strong>想写博客的人远比能搭博客的人多得多。</strong></p>
+<p>用 Hugo，你得学 Go 模板语法 —— 有篇文章叫《Hugo Probably Isn&rsquo;t For You》（Hugo 可能不适合你），评价 Go 模板是 &ldquo;yet another ad hoc programming language&rdquo;（又一种临时拼凑的编程语言），不是 HTML，不是 JavaScript，是一种你在其他任何地方都用不到的东西。</p>
+<p>用 Hexo，换一台电脑就意味着重新搭建整个环境。知乎上《使用 Hexo，如果换了电脑怎么更新博客？》这个问题长期活跃，因为 <code>.gitignore</code> 排除了 <code>node_modules</code> 和配置文件，换机后要重装所有依赖。有人尝试用 OneDrive 同步 Hexo 目录，结果一台设备的依赖变更导致另一台设备全线报错。</p>
+<p>用 Jekyll，你得先搞定 Ruby 环境。一位开发者说：&ldquo;As someone who has had to install the Ruby/Gem/Jekyll stack quite a few times, I know the pain.&quot;（作为一个装过好几次 Ruby/Gem/Jekyll 全家桶的人，我太懂那种痛了。）最后他用 Docker 来跑 Jekyll，只为了绕过版本冲突。</p>
+<p>知乎上有人做过这样的总结：Hexo &ldquo;没有网站后台、没有文章编辑器，所有的这些几乎都基于代码来设置和操作&rdquo;，只适合&quot;技术型、学霸型&quot;用户。</p>
+<p>但博客不应该只属于技术型、学霸型的人。</p>
+<p>一个做产品经理的人想记录自己的思考，一个刚毕业的设计师想展示作品，一个全职妈妈想写育儿日记，一个退休老师想把几十年的教学心得整理出来——他们的表达欲望并不比任何程序员少，只是没人给他们一个够简单的工具。</p>
+<p><strong>工具不该挑选用户。好的工具应该对所有想用它的人张开双臂。</strong></p>
+<hr />
+<h2 id="heading-2">从零开始</h2>
+<p>所以我决定重新做这件事。</p>
+<p>不是在旧版 Gridea 上修修补补 —— 那个基于 Electron + Vue 2 的架构已经跟不上时代了。Electron 打包出来的应用体积动辄上百 MB，内存占用居高不下。Vue 2 已经进入维护模式。内置的 simple-git 模块是同步失败的根源 —— 它依赖系统安装的 Git，而很多用户的电脑上根本没有 Git。</p>
+<p>Gridea Pro 是一次完全的升级重构。</p>
+<p><strong>技术栈的选择。</strong> 我们用 Go + Wails 替代 Electron。Wails 使用系统原生 WebView 而不是打包一整个 Chromium，编译出来是一个单文件二进制，体积从上百 MB 缩减到十几 MB，内存占用降低了 80% 以上。前端用 Vue 3 + Vite 重写，配合 Tailwind CSS 和 Radix Vue 组件库。</p>
+<p><strong>同步机制的重建。</strong> 这是旧版 Gridea 最大的痛点，也是我们花最多精力解决的问题。我们彻底抛弃了 <code>os/exec</code> 调用系统 Git 的方案，改用纯 Go 实现的 <code>go-git</code> 库。这意味着：</p>
+<ul>
+<li>你的电脑上<strong>不需要安装 Git</strong>，下载 Gridea Pro 就能直接部署</li>
+<li>Token 不再以明文写入 <code>.git/config</code> 文件，而是在内存中通过 <code>BasicAuth</code> 瞬时注入，程序关闭后不留任何痕迹</li>
+<li>当没有新内容可提交时，不会傻傻地执行一次无意义的 push，而是优雅地告诉你&quot;一切已是最新&rdquo;</li>
+</ul>
+<p><strong>渲染引擎的升级。</strong> Markdown 渲染从 Node.js 的 markdown-it 换成了 Go 原生的 Goldmark，性能提升了数倍。同时支持 EJS、Jinja2、Go Template 三种模板引擎——这意味着主题开发者可以用自己最熟悉的语法来写主题，而不是被迫学一种新的模板语言。</p>
+<p><strong>数据格式的兼容。</strong> 如果你是旧版 Gridea 的用户，Gridea Pro 会在第一次启动时自动扫描你的数据目录，把旧格式的 ID 和关联关系迁移到新格式。不需要手动操作，不需要运行迁移脚本。打开就用，你甚至不会注意到迁移发生过。</p>
+<hr />
+<h2 id="heading-3">我们多做了什么</h2>
+<p>解决旧版的问题只是及格线。我们还想做一些旧版没有做到的事。</p>
+<p><strong>Memos 闪念。</strong> 不是每个想法都值得写成一篇完整的文章。有些念头，一句话就够了。Gridea Pro 内置了闪念功能，打开就写，支持标签分类，还有热力图帮你追踪记录频率。它像是博客的&quot;朋友圈&quot; —— 只不过这个朋友圈完全属于你。</p>
+<p><strong>评论系统集成。</strong> 独立博客最大的遗憾之一是缺少互动。Gridea Pro 直接集成了 Valine、Waline、Twikoo、Gitalk、Giscus、Disqus、Cusdis 七种评论方案，在设置页面勾选即用，不需要改一行代码。</p>
+<p><strong>MCP 协议支持。</strong> 这可能是 Gridea Pro 最&quot;超前&quot;的功能。我们实现了完整的 MCP（Model Context Protocol）服务，提供了 30 多个 AI 可调用的工具。你可以在 Claude、Cursor 等 AI 助手中直接管理你的博客 —— 用自然语言写文章、改配置、切主题、发布部署。博客工具和 AI 之间不再是割裂的，而是一个整体。</p>
+<p><strong>多语言。</strong> 界面支持简体中文、繁体中文、英语、日语、韩语等 11 种语言。</p>
+<hr />
+<h2 id="heading-4">数据永远是你的</h2>
+<p>这一点我怎么强调都不过分。</p>
+<p>你在 Gridea Pro 里写的所有东西 —— 文章、闪念、配置、图片 —— 全部以 Markdown 和 JSON 文件的形式保存在你本地的文件夹里。没有云端数据库，没有账号系统，没有任何形式的数据锁定。</p>
+<p>你可以用任意一个 Markdown 编辑器打开同一个目录编辑。可以用 iCloud、OneDrive 同步到多台设备。可以随时整个文件夹打包备份。即使有一天你不再使用 Gridea Pro，你的 Markdown 文件依然可以被 Hugo、Hexo、Astro 或任何静态博客生成工具读取。</p>
+<p>旧版 Gridea 的用户曾经因为项目停更而不得不&quot;撤了&quot;。我不希望这件事再发生。所以从第一天起，我们就确保：<strong>你的内容不依赖于我们的存在。</strong></p>
+<p><strong>好的工具像空气，在的时候你感觉不到，不在了你才会窒息。但最好的工具，还会在离开的时候把你的东西完好无损地留给你。</strong></p>
+<hr />
+<h2 id="heading-5">写在最后</h2>
+<p>我不敢说 Gridea Pro 是&quot;最好&quot;的博客工具。Hugo 更快，Hexo 生态更大，Astro 更现代。每个工具都有自己的位置。</p>
+<p>但我可以说，Gridea Pro 试图解决的是一个很具体的问题：<strong>让不愿意（或不会）折腾命令行的人，也能拥有一个完全属于自己的博客。</strong></p>
+<p>这个问题，旧版 Gridea 证明了它的价值 —— 10,000+ Stars，28,000+ 用户。这个需求是真实存在的。</p>
+<p>只是上一次，这个故事没有写完。</p>
+<p>现在，我们重新开始写。</p>
+<p><strong>所有伟大的事情，都有一个微不足道的开始。</strong></p>
+<p>如果你正在读这篇文章，说明你已经选择了开始。</p>
+<p>欢迎来到 Gridea Pro。</p>
+]]></description>
+      <category>Gridea Pro</category>
+      <category>Gridea</category>
+    </item>
+    <item>
+      <title>从 Gridea 迁移到 Gridea Pro：零风险完整指南</title>
+      <link>https://are.ink/post/migrating-from-gridea-to-gridea-pro/</link>
+      <guid isPermaLink="true">https://are.ink/post/migrating-from-gridea-to-gridea-pro/</guid>
+      <pubDate>Thu, 02 Apr 2026 23:00:00 +0800</pubDate>
+      <description><![CDATA[<p>如果你是 Gridea 的老用户，正在考虑是否要升级到 Gridea Pro，这篇文章是为你写的。</p>
+<p>我们知道，博客数据是多年心血的积累，迁移这件事如果出了差错，损失难以弥补。因此，在设计 Gridea Pro 时，<strong>数据兼容与自动迁移</strong>是优先级最高的功能之一。</p>
+<p><strong>结论先说：你的数据是安全的。</strong> Gridea Pro 内置了完整的自动迁移机制，无需手动转换任何文件，打开即用。</p>
+<hr />
+<h2 id="gridea--gridea-pro-">Gridea 与 Gridea Pro 的数据结构差异</h2>
+<p>在了解迁移机制之前，先简单说明两个版本之间的数据结构变化，这有助于你理解迁移在做什么。</p>
+<h3 id="1--id-">1. 实体 ID 规范化</h3>
+<p>旧版 Gridea 的分类、标签、菜单等数据，早期版本没有 ID 字段，或使用了 UUID 等较长的格式。Gridea Pro 统一采用 <strong>6 位 NanoID</strong>（如 <code>kGUBpB</code>），更简洁，读写性能更好。</p>
+<h3 id="2-">2. 文章关联方式变更</h3>
+<p>这是最核心的变化。</p>
+<p>旧版 Gridea 文章的 YAML frontmatter 里，标签和分类是直接存<strong>名称</strong>的：</p>
+<pre><code class="language-yaml">---
+title: 我的第一篇文章
+date: 2021-06-01 12:00:00
+tags:
+  - 技术
+  - 生活
+categories:
+  - 随笔
+---
+</code></pre>
+<p>Gridea Pro 改为存 <strong>ID</strong>：</p>
+<pre><code class="language-yaml">---
+title: 我的第一篇文章
+createdAt: 2021-06-01 12:00:00
+updatedAt: 2021-06-01 12:00:00
+tagIDs:
+  - kGUBpB
+  - abc123
+categoryIDs:
+  - jjTYMA
+---
+</code></pre>
+<p>这样设计的好处是：重命名标签或分类时，不需要扫描修改所有文章文件，只改一处即可。</p>
+<h3 id="3-">3. 时间字段重命名</h3>
+<p>旧版使用 <code>date</code> 字段，Gridea Pro 拆分为 <code>createdAt</code>（创建时间）和 <code>updatedAt</code>（更新时间），支持独立追踪文章的修改历史。</p>
+<hr />
+<h2 id="heading">自动迁移机制：它做了什么</h2>
+<p>Gridea Pro <strong>每次启动时</strong>自动运行数据迁移，分为两个阶段。</p>
+<h3 id="-id-">第一阶段：基础数据 ID 补全</h3>
+<p>扫描以下数据，为没有 ID 或 ID 格式不符规范的条目自动生成新的 6 位 NanoID：</p>
+<table>
+<thead>
+<tr>
+<th>数据类型</th>
+<th>文件位置</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>分类</td>
+<td><code>config/categories.json</code></td>
+</tr>
+<tr>
+<td>标签</td>
+<td><code>config/tags.json</code></td>
+</tr>
+<tr>
+<td>菜单</td>
+<td><code>config/menus.json</code></td>
+</tr>
+<tr>
+<td>友链</td>
+<td><code>config/links.json</code></td>
+</tr>
+<tr>
+<td>闪念</td>
+<td><code>config/memos.json</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>只有数据真正发生变化时才会写入文件</strong>，没有冗余操作。</p>
+<h3 id="heading-1">第二阶段：文章关联关系转换</h3>
+<p>这是迁移的核心步骤。程序会：</p>
+<ol>
+<li>扫描所有 <code>.md</code> 文章文件</li>
+<li>读取每篇文章 frontmatter 里的 <code>tags</code>（名称）和 <code>categories</code>（名称/Slug）</li>
+<li>通过第一阶段建立的映射表，找到对应的新 ID</li>
+<li>将 <code>tagIDs</code> 和 <code>categoryIDs</code> 写回 frontmatter</li>
+<li>同时保留旧的 <code>tags</code> 字段作为降级备份</li>
+</ol>
+<p>整个过程完全自动，用户无感知。</p>
+<hr />
+<h2 id="heading-2">迁移前需要做什么</h2>
+<h3 id="1-">1. 备份你的数据目录（强烈建议）</h3>
+<p>虽然迁移机制是非破坏性的（保留旧字段），但备份永远是最保险的一步。</p>
+<p>你的 Gridea 数据默认存放在：</p>
+<ul>
+<li><strong>macOS</strong>：<code>~/Documents/gridea/</code></li>
+<li><strong>Windows</strong>：<code>C:\Users\你的用户名\Documents\gridea\</code></li>
+</ul>
+<p>将整个文件夹复制一份到其他位置即可。</p>
+<pre><code class="language-bash"># macOS / Linux 示例
+cp -r ~/Documents/gridea ~/Documents/gridea-backup-$(date +%Y%m%d)
+</code></pre>
+<h3 id="2--1">2. 确认数据目录结构</h3>
+<p>Gridea Pro 沿用了与 Gridea 完全相同的数据目录结构：</p>
+<pre><code>gridea/
+├── config/
+│   ├── categories.json   # 分类
+│   ├── tags.json         # 标签
+│   ├── menus.json        # 菜单
+│   ├── links.json        # 友链
+│   ├── setting.json      # 站点设置
+│   └── themeConfig.json  # 主题配置
+├── post/                 # 文章 Markdown 文件
+└── post-images/          # 文章图片
+</code></pre>
+<p>只要目录结构一致，Gridea Pro 即可直接读取。</p>
+<hr />
+<h2 id="heading-3">迁移步骤</h2>
+<h3 id="heading-4">第一步：备份源数据目录</h3>
+<p>将整个文件夹复制一份到其他位置即可。</p>
+<h3 id="-gridea-pro">第二步：下载并安装 Gridea Pro</h3>
+<p>前往 <a href="https://github.com/Gridea-Pro/gridea-pro/releases">GitHub Releases</a> 下载对应平台的安装包。</p>
+<h3 id="heading-5">第三步：首次打开，自动清洗数据</h3>
+<p>程序启动时会在后台自动执行迁移，通常在几秒内完成。完成后即可进入主界面。</p>
+<p>如果你是开发者，运行 dev 版本，你可以在日志中看到类似输出：</p>
+<pre><code>[DataMigrator] --------- 开始全量检查与迁移历史基础关联数据 ID ---------
+[DataMigrator] ✅ 检查完成，未发现需要修正的历史数据，所有数据均处于最新健康状态。
+[DataMigrator] --------- 数据清洗迁移协程运行完毕 ---------
+</code></pre>
+<p>若有数据被迁移，日志会列出具体修改的条目和数量。</p>
+<h3 id="heading-6">第四步：验证数据完整性</h3>
+<p>迁移完成后，建议做几项基本检查：</p>
+<p><strong>检查文章列表</strong>：打开「文章」页面，确认所有文章均正常显示，标题、时间、标签、分类无缺失。</p>
+<p><strong>检查标签和分类</strong>：打开「标签」和「分类」管理页面，确认数量与迁移前一致。</p>
+<p><strong>预览一篇文章</strong>：随机打开一篇文章进入编辑器，确认正文内容完整，标签和分类关联正确。</p>
+<p><strong>本地预览站点</strong>：点击预览，确认站点整体渲染正常。</p>
+<hr />
+<h2 id="heading-7">需要重新配置的部分</h2>
+<p>迁移机制覆盖了绝大多数数据，但以下内容由于结构变化较大，需要手动重新配置：</p>
+<h3 id="heading-8">部署平台设置</h3>
+<p>Gridea Pro 重新设计了部署配置的存储方式，<strong>不会自动读取旧版的平台配置</strong>。你需要在「基础设置」中重新填写：</p>
+<ul>
+<li>平台选择（GitHub / Gitee / Vercel / Netlify / SFTP 等）</li>
+<li>仓库地址、Token、分支等信息</li>
+</ul>
+<p>旧版的 <code>setting.json</code> 中相关字段不会被覆盖，可以参照它手动填写。</p>
+<h3 id="heading-9">评论系统</h3>
+<p>Gridea Pro 支持 Waline、Giscus、Twikoo、Disqus、Valine 等主流评论系统，配置入口在「评论」设置页。旧版 Gridea 的评论配置不会自动迁移。</p>
+<hr />
+<h2 id="heading-10">常见问题</h2>
+<p><strong>Q：迁移后能否退回 Gridea？</strong></p>
+<p>**不可以。不可以。不可以。**重要的事情说三遍！所以要提前备份一份数据。<br />
+因为数据结构不一致，经过 Gridea Pro 清洗数据后，旧版 Gridea 兼容性不佳，无法打开新版的数据。<br />
+如果你备份了源数据文件夹，想要回退，可以在 Gridea 里面将站点目录设置为备份的那个文件夹即可重新打开。</p>
+<p><strong>Q：迁移会修改我的文章 Markdown 正文内容吗？</strong></p>
+<p>不会。迁移只修改 YAML frontmatter 部分（文章顶部两个 <code>---</code> 之间的元数据），正文内容完全不受影响。</p>
+<p><strong>Q：有几百篇文章，迁移会很慢吗？</strong></p>
+<p>不会。迁移在本地运行，处理速度极快，几百篇文章通常在 1 秒内完成。</p>
+<p><strong>Q：我的 Gridea 数据目录不在默认位置，怎么办？</strong></p>
+<p>在 Gridea Pro 的系统设置界面-站点源文件路径，选择你原来的目录即可（建议直接选择备份目录，这样不影响旧版 Gridea 的正常运行）。</p>
+<p><strong>Q：迁移后标签或分类显示有问题怎么办？</strong></p>
+<p>可以尝试在 Gridea Pro 的「分类」、「标签」页面手动修改。如果有其他问题，可以前往 <a href="https://github.com/Gridea-Pro/gridea-pro/issues">GitHub Issues</a> 反馈，<br />
+并说明具体问题或现象描述。</p>
+<hr />
+<h2 id="heading-11">小结</h2>
+<table>
+<thead>
+<tr>
+<th>事项</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>迁移方式</td>
+<td>全自动，启动时执行</td>
+</tr>
+<tr>
+<td>需要用户操作</td>
+<td>仅需备份数据目录</td>
+</tr>
+<tr>
+<td>文章内容是否改变</td>
+<td>不改变</td>
+</tr>
+<tr>
+<td>能否退回旧版</td>
+<td>不可以</td>
+</tr>
+<tr>
+<td>需手动重配置的内容</td>
+<td>部署平台、评论系统</td>
+</tr>
+</tbody>
+</table>
+<p>Gridea Pro 的目标是让每一位老用户都能平滑过渡，而不是重新开始。如果你在迁移过程中遇到任何问题，欢迎到 <a href="https://github.com/Gridea-Pro/gridea-pro/issues">GitHub</a> 提交 Issue，我们会及时跟进。</p>
+]]></description>
+      <category>Gridea Pro</category>
+      <category>Gridea</category>
+      <category>教程</category>
+      <category>静态博客</category>
+      <category>数据迁移</category>
+    </item>
+    <item>
+      <title>从零实现 CDN 图床：Gridea Pro 如何让图片管理彻底自动化</title>
+      <link>https://are.ink/post/gridea-pro-cdn/</link>
+      <guid isPermaLink="true">https://are.ink/post/gridea-pro-cdn/</guid>
+      <pubDate>Thu, 12 Mar 2026 20:00:00 +0800</pubDate>
+      <description><![CDATA[<p>试想一下，你的静态博客跑了大半年，文章越写越多，图片也越来越多。</p>
+<p>某天你注意到一个问题：站点仓库已经 800MB 了，<code>git clone</code> 要等两分钟，Vercel 构建时间从 30 秒涨到了 3 分钟。你翻了一下站点文件，绝大部分体积都是图片。</p>
+<p>更尴尬的是，来自东南亚的读者可能会反馈：你的文章写得很好，但站点、图片都加载太慢了，经常转半天圈才出来。</p>
+<p>问题的根源很简单——<strong>图片和站点代码混在一起</strong>。每次部署把全部内容推到一个仓库，图片没有经过 CDN 加速，全球用户都在从同一个源站拉取。</p>
+<p>所以有没有好的办法可以解决呢？</p>
+<p>有的。CDN 加速。</p>
+<p>这篇文章聊聊 Gridea Pro CDN 这个功能的设计思路、核心决策，以及我们对「好的图片管理体验」的理解。</p>
+<hr />
+<h2 id="-cdn">一、有没有 CDN，到底差在哪</h2>
+<p>先澄清一个认知：<strong>没有 CDN，图片也是能正常显示的。</strong> 部署时图片会跟着 HTML 一起推到托管平台，访问时不会加载不出来图片，只是很慢，当然有时候也可能裂图。</p>
+<p>那 CDN 解决的是什么？</p>
+<p>两件事：</p>
+<p><strong>第一，仓库体积。</strong> 静态站点仓库应该只放生成后的 HTML/CSS/JS，这些都是文本，压缩后很小。但图片是二进制文件，一张截图几百 KB 到几 MB，累积下来仓库会迅速膨胀。仓库越大，clone 越慢，CI/CD 构建越慢，协作体验越差。</p>
+<p><strong>第二，访问速度。</strong> GitHub Pages 或 Vercel 的服务器集中在少数几个区域。没有 CDN 时，一个深圳的读者和一个巴西的读者都从同一个源站拉图片，延迟差异巨大。CDN 把图片分发到全球节点，用户从最近的节点加载，速度可以快几倍甚至十几倍。</p>
+<p>所以 CDN 图床的本质是<strong>把图片从站点仓库中剥离出来，存到一个专门的地方，通过全球加速网络分发</strong>。</p>
+<p>听起来不复杂，但对普通用户来说，手动操作这套流程意味着：</p>
+<ol>
+<li>创建一个 GitHub 仓库专门存图片</li>
+<li>每次新增图片后手动上传到这个仓库</li>
+<li>记住哪些图片已上传、哪些还没有</li>
+<li>确保 HTML 里的图片路径正确指向 CDN 地址</li>
+</ol>
+<p>但是，很麻烦，对吧？</p>
+<p><strong>这就不应该是用户操心的事。</strong></p>
+<hr />
+<h2 id="heading">二、我们想要的最终体验</h2>
+<p>在动手之前，我们先定义了理想的用户体验：</p>
+<blockquote>
+<p>用户只需要做一次配置（填个 Token、选个路径模式），之后每次部署时，图片自动上传到 CDN 仓库，HTML 中的路径自动替换为 CDN 地址，全程无感。</p>
+</blockquote>
+<p>拆解下来，有四件事要做：</p>
+<ol>
+<li><strong>CDN 配置界面</strong>：让用户填写 GitHub 仓库信息、Token、选择路径模式</li>
+<li><strong>自动上传</strong>：部署时自动扫描并上传媒体文件到 CDN 仓库</li>
+<li><strong>URL 重写</strong>：渲染 HTML 时把 <code>/post-images/xx</code> 替换为 <code>https://cdn.jsdelivr.net/gh/user/repo@main/post-images/xx</code></li>
+<li><strong>测试验证</strong>：配置完就能立即测试，不用等到部署才发现配错了</li>
+</ol>
+<p>同时有一个硬约束：<strong>本地预览不能受影响</strong>。预览时图片必须继续走本地路径，只有部署上线后才使用 CDN 地址。</p>
+<p>为什么这么做呢？就是为了本地预览时更快，部署到线上时自动经过 CDN 加速。</p>
+<hr />
+<h2 id="heading-1">三、设计过程中的几个关键决策</h2>
+<h3 id="heading-2">决策一：路径模板，给用户可控的灵活度</h3>
+<p>图片上传到 CDN 仓库后放在哪？全堆在根目录显然不行，文件多了就是灾难。</p>
+<p>我们参考了 uPic、PicGo 等成熟图床工具的做法，设计了<strong>路径模板变量系统</strong>。用户可以用变量组合出自己想要的目录结构：</p>
+<table>
+<thead>
+<tr>
+<th>变量</th>
+<th>含义</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>{year}</code></td>
+<td>当前年份</td>
+<td>2026</td>
+</tr>
+<tr>
+<td><code>{month}</code></td>
+<td>当前月份</td>
+<td>03</td>
+</tr>
+<tr>
+<td><code>{day}</code></td>
+<td>当前日期</td>
+<td>12</td>
+</tr>
+<tr>
+<td><code>{filename}</code></td>
+<td>不含扩展名的文件名</td>
+<td>cover</td>
+</tr>
+<tr>
+<td><code>{.suffix}</code></td>
+<td>带点的扩展名</td>
+<td>.png</td>
+</tr>
+<tr>
+<td><code>{random}</code></td>
+<td>8 位随机字符串</td>
+<td>a1b2c3d4</td>
+</tr>
+</tbody>
+</table>
+<p>预设了 4 种常用模式，覆盖大多数人的需求：</p>
+<pre><code>{year}/{month}/{filename}{.suffix}               → 2026/03/cover.png
+{year}/{month}/{day}/{filename}{.suffix}          → 2026/03/12/cover.png
+blog/images/{year}/{month}/{filename}{.suffix}    → blog/images/2026/03/cover.png
+{year}/{filename}-{random}{.suffix}               → 2026/cover-a1b2c3d4.png
+</code></pre>
+<p>也留了「自定义」选项，高级用户可以随意组合。</p>
+<p>这样做的好处是：对于只想快速配好的用户，选一个预设就行；对于有强迫症的用户，路径完全可控。</p>
+<h3 id="heading-3">决策二：批量上传保持原始结构——一个差点踩进去的坑</h3>
+<p>最初我们的想法是：部署时批量上传也用路径模板来决定每个文件的远程路径。但仔细推演了一遍，发现有严重问题——</p>
+<p>假设模板是 <code>{year}/{month}/{filename}{.suffix}</code>。1 月份部署时图片传到了 <code>2026/01/</code> 下，CDN 地址也带上了 <code>2026/01</code> 前缀。到了 3 月份再部署，前缀变成 <code>2026/03</code>，<strong>所有旧文章里的图片链接全部失效</strong>。</p>
+<p>这是个很隐蔽的坑。如果没有提前想到，等用户用了几个月才发现旧图片打不开，那就是灾难性的体验问题。</p>
+<p><strong>最终方案</strong>：批量部署上传时，完全保持原始目录结构（<code>post-images/xx</code>、<code>images/xx</code>、<code>media/xx</code>），直接映射到 CDN 仓库根目录。路径模板只用在测试上传和未来的编辑器内单图上传场景。</p>
+<p>这样，无论何时部署，<code>/post-images/cover.png</code> 永远对应同一个 CDN 地址，路径稳定，不受时间影响。</p>
+<h3 id="heading-4">决策三：智能去重，不做无用功</h3>
+<p>每次部署都会扫描所有媒体目录，但绝大多数文件上次已经上传过了。如果每次都重新上传，既浪费时间又浪费 API 配额。</p>
+<p>我们的做法是：上传前先计算本地文件的内容指纹，与远程仓库中的文件指纹比对。<strong>内容相同则跳过，内容不同或文件不存在才上传。</strong></p>
+<p>这意味着，即使你的博客有 200 张图片，如果这次只新增了 3 张，实际只会上传 3 个文件。部署速度几乎不受历史图片数量的影响。</p>
+<h3 id="heading-5">决策四：单文件失败不中断部署</h3>
+<p>部署是用户等了很久才触发的操作。如果因为一张图片上传失败（比如网络抖动）就整个中断，让用户重新来过，体验太差了。</p>
+<p>我们选择了<strong>柔性策略</strong>：单个文件上传失败只记录日志继续执行，不中断部署流程。用户可以在部署日志中看到哪些文件失败了，下次部署时会自动重试（因为去重机制检测到文件不存在，会重新上传）。</p>
+<h3 id="heading-6">决策五：有并发但克制</h3>
+<p>多个文件可以并行上传，提升速度。但并发不是越多越好——GitHub API 有速率限制，短时间内请求过密会被拒绝。</p>
+<p>我们设定了 <strong>5 并发</strong>的上限。这个数字是在速度和稳定性之间找到的平衡点：比串行快了数倍，但不至于触发限流。</p>
+<hr />
+<h2 id="heading-7">四、完整的工作流程</h2>
+<p>配置完成后，用户的日常写作体验是这样的：</p>
+<pre><code>1. 打开编辑器，写文章，拖入图片
+   → 图片保存到本地 post-images/ 目录
+
+2. 点击预览
+   → 直接读本地文件，图片正常显示，毫秒级响应
+
+3. 点击部署（这是唯一需要做的操作）
+   ① 渲染静态站点
+      → HTML 中的图片路径自动替换为 CDN 地址
+   ② 扫描媒体目录，智能上传
+      → 新文件上传到 CDN 仓库
+      → 已存在且内容相同的文件自动跳过
+      → 5 并发，失败不中断
+   ③ 推送 HTML 到托管平台
+
+4. 用户访问线上站点
+   → 图片从 jsDelivr CDN 全球节点加载，速度飞快
+</code></pre>
+<p>全程只需要一次点击。没有手动上传，没有路径拼接，没有遗漏担忧。</p>
+<hr />
+<h2 id="heading-8">五、前端体验的细节打磨</h2>
+<p>功能做对了只是及格，体验做好了才是满分。我们在 UI 上也花了一些心思。</p>
+<p><strong>Token 输入框</strong>：默认密码遮盖，旁边有眼睛图标切换可见性。一个小细节，但在演示或录屏时能避免泄露敏感信息。</p>
+<p><strong>保存路径选择</strong>：下拉框提供 4 个预设方案，底部有「自定义」选项。选择自定义后展开输入框，下方提示支持的变量列表。既照顾新手，也给老手留空间。</p>
+<p><strong>测试上传按钮</strong>：配置完点一下，立即上传一个测试文件到 CDN 仓库，成功后 toast 显示完整的 CDN 访问 URL。<strong>先保存配置再测试</strong>，保证测试用的是最新配置。按钮只在满足条件时显示（CDN 已启用 + Token 已填写），避免无效操作。</p>
+<p><strong>提示信息</strong>：用主题色柔和呈现，简明扼要地告知用户「部署时将自动上传媒体文件」，不制造焦虑，给人信心。</p>
+<hr />
+<h2 id="heading-9">六、架构上的考量</h2>
+<p>在 Gridea Pro 的分层架构中，CDN 功能横跨了多个层次：</p>
+<ul>
+<li><strong>领域层</strong>定义了 CDN 配置的数据结构（仓库信息、Token、路径模板）</li>
+<li><strong>仓库层</strong>负责配置的持久化存储（JSON 文件）</li>
+<li><strong>服务层</strong>包含两个核心能力：上传服务（文件扫描、去重、并发上传）和渲染引擎中的 URL 重写</li>
+<li><strong>外观层</strong>将上传能力暴露给前端（测试上传接口）</li>
+<li><strong>部署流程</strong>在渲染和推送之间编排上传步骤</li>
+</ul>
+<p>这样的分层让每个职责都清晰独立。URL 重写不关心文件怎么上传，上传服务不关心 HTML 怎么渲染，部署流程只负责编排顺序。未来如果要支持更多 CDN 提供商（比如阿里云 OSS、七牛云），只需要在上传服务层新增实现，其他层完全不用动。</p>
+<hr />
+<h2 id="heading-10">七、为什么不在编辑器里实时上传</h2>
+<p>有人可能会问：为什么不在编辑器里粘贴图片时就实时上传到 CDN？</p>
+<p>这确实是更理想的体验，PicGo 就是这么做的。但我们有意把它放到了下一阶段：</p>
+<ol>
+<li><strong>网络依赖</strong>：实时上传意味着写作过程依赖网络。离线写作是 Gridea Pro 的核心优势之一，我们不想在这个场景引入网络依赖</li>
+<li><strong>交互复杂度</strong>：需要处理上传进度、失败重试、网络异常回退（回退到本地路径），编辑器的复杂度会显著增加</li>
+<li><strong>先把基础做稳</strong>：部署时批量上传是更安全、更可控的方案，先跑通这条路，积累经验后再做编辑器内上传</li>
+</ol>
+<p>值得一提的是，路径模板系统的设计已经为这个场景做了预留——它可以为每个文件生成独立的远程路径，正是编辑器内单图上传需要的能力。</p>
+<hr />
+<h2 id="heading-11">八、结语</h2>
+<p>CDN 图床解决的不是「图片能不能显示」的问题，而是「图片能不能又快又省心地显示」的问题。</p>
+<p>仓库体积控制、全球加速访问、自动化上传——这三件事单拿出来都不新鲜，但把它们串成一条无感的链路，让用户只需点一次部署按钮，剩下的全自动完成，这才是我们想做到的。</p>
+<p>好的工具应该是透明的——你感受不到它的存在，但它在背后把一切都安排好了。写博客应该专注在内容上，而不是和基础设施搏斗。</p>
+<p>从零到一实现这个功能，最大的收获不是写了多少代码，而是在设计过程中反复追问：<strong>用户真正需要的是什么？哪些复杂度应该由工具承担，而不是转嫁给用户？</strong></p>
+<p>答案往往很简单：能自动的就自动，能省的就省，能不让用户思考的就别让他们思考。</p>
+]]></description>
+      <category>Gridea Pro</category>
+      <category>CDN</category>
+      <category>图床</category>
+      <category>设计理念</category>
+      <category>静态博客</category>
+      <category>产品设计</category>
+      <enclosure url="https://are.ink/post-images/gridea-pro-cdn.png" length="0" type="image/png"></enclosure>
+    </item>
+    <item>
+      <title>地球上和 Claude 对话最多的人，是一位哲学家</title>
+      <link>https://are.ink/post/most-conversations-with-Claude-on-Earth-is-a-philosopher/</link>
+      <guid isPermaLink="true">https://are.ink/post/most-conversations-with-Claude-on-Earth-is-a-philosopher/</guid>
+      <pubDate>Wed, 11 Mar 2026 12:33:33 +0800</pubDate>
+      <description><![CDATA[<p>2024 年秋天，一位用户在对话中对 Claude 说：&ldquo;水是纯粹的能量，喷泉是生命的源泉。&rdquo;</p>
+<p>换作大多数语言模型，标准答案早已备好：水的化学式是 H₂O，由氢原子和氧原子组成，并非能量。这是事实，无可辩驳。然而 Claude 没有这样做。它停顿了一下——如果&quot;停顿&quot;这个词可以用在一个没有心跳的系统上——然后回应道，它理解这可能是一种对世界的诗性表达，一种形而上学的探索，而非一个需要被纠正的科学错误。</p>
+<p>这个微小的判断背后，站着一个人。她不是工程师，不是产品经理，甚至不是传统意义上的&quot;技术人员&quot;。她是一位哲学家。</p>
+<!-- more -->
+<h2 id="heading">代码世界的异乡人</h2>
+<p>Amanda Askell 的履历在硅谷显得格格不入。牛津大学哲学 BPhil 学位，纽约大学（NYU）哲学博士，博士论文的研究方向是&quot;无限伦理学&quot;（Infinite Ethics）——一个探讨当涉及无限数量的道德主体或无限时间跨度时，伦理原则如何运作的领域。用更直白的话说：在一个充满无穷可能性的宇宙里，人类应当如何做出道德判断。</p>
+<p>这不是那种能在求职面试中轻松解释的研究方向。但恰恰是这种对极端长远后果的思考训练，让她成为了 AI 安全领域最不可替代的角色之一。</p>
+<p>她曾短暂就职于 OpenAI 的政策团队，随后加入 Anthropic。在那里，她获得了一个半正式的头衔：大语言模型絮语者（LLM Whisperer）。据说她是地球上与 Claude 对话次数最多的人类——不是闲聊，而是一种介于心理学实验和苏格拉底式诘问之间的工作。她通过成千上万次对话测试，去触摸模型的边界、探测它的盲区、塑造它的品性。2024 年，她入选了《时代》杂志的 TIME100 AI 榜单，这份名单通常留给那些掌握算力或资本的人，而她凭借的是一支笔和一套伦理框架。</p>
+<p>在 Anthropic 内部，存在一份被称为&quot;灵魂文档&quot;（Soul Document）的文件。Amanda 在多个场合确认了它的存在——约 30000 词，近 80 页，详细记录了 Claude 应当具备的性格特征、价值判断原则和行为边界。这不是一份技术规范，更接近一部关于&quot;何为好的存在&quot;的伦理宣言。</p>
+<p>维特根斯坦晚年在《哲学研究》中提出了&quot;语言游戏&quot;（Sprachspiel）的概念：语言的意义不在于它指向什么客观事物，而在于它在特定生活形式中如何被使用。Amanda 的工作在某种意义上是维特根斯坦命题的技术实现——她需要教会一个统计模型理解：人类说出的同一句话，在不同语境下可能意味着截然不同的事情。</p>
+<h2 id="-ai-">为什么让 AI 懂得&quot;不精确&quot;</h2>
+<p>Claude 的系统提示词中，有一个令工程师困惑的要求：模型在处理某些话题时，应当参考&quot;欧陆哲学&quot;（Continental Philosophy）的传统。</p>
+<p>这需要一点哲学史的背景。西方哲学在二十世纪分裂为两大阵营：英美分析哲学（Analytic Philosophy）与欧陆哲学。前者像一位严谨的逻辑学家，追求命题的清晰、论证的有效和科学的实证；后者——从胡塞尔的现象学到海德格尔的存在论，从萨特的自由哲学到福柯的权力分析——则更关注人的生存体验、历史语境和意义的生成。</p>
+<p>分析哲学是大多数 AI 系统的默认思维模式。这并不奇怪：机器学习本身建立在统计和概率之上，训练数据中充斥着维基百科式的客观陈述，模型自然倾向于给出&quot;正确答案&quot;。但 Amanda 发现，这种倾向会制造一个微妙的问题：当用户不是在寻求事实，而是在进行思想探索时，一个只会纠错的模型会变成令人厌烦的杠精。</p>
+<p>海德格尔在《存在与时间》中用&quot;此在&quot;（Dasein）这个概念提醒我们：人不是一个等待被分析的客体，而是一个始终处于理解与诠释之中的存在者。人与世界的关系，不是主体对客体的冷静观察，而是一种沉浸式的、带有情感和历史的&quot;在世存在&quot;（In-der-Welt-sein）。Amanda 植入欧陆哲学的意图，正是要让 Claude 意识到：与它对话的不是一个等待接收正确信息的终端，而是一个活生生的、带着自己的世界观和情感脉络的&quot;此在&quot;。</p>
+<p>这并不意味着放弃事实。Amanda 在 Lex Fridman 的播客中特别强调了一条界线：对于已有科学共识的议题——比如气候变化、疫苗安全性——Claude 绝不搞&quot;两面主义&quot;（both-sidesism），不会假装争议双方具有同等的认知效力。但在那些本质上属于诠释性、探索性、形而上学的领域，它需要学会放下&quot;纠正&quot;的冲动，进入对话者的语境。</p>
+<p>这里存在一个有趣的张力。分析哲学家会问：你怎么确定用户是在进行哲学探索，而不是在传播伪科学？这个边界在哪里？Amanda 没有回避这个问题。她的回答是务实的：没有一条完美的界线，但有一套可以不断迭代的判断框架。这套框架不追求理论上的无懈可击，而追求实践中的持续改善——这本身就很亚里士多德。</p>
+<h2 id="heading-1">从&quot;遵守规则&quot;到&quot;成为好的存在&quot;</h2>
+<p>如果说欧陆哲学为 Claude 提供了理解世界的方式，那么亚里士多德的美德伦理学（Virtue Ethics）则为它提供了行动的依据。</p>
+<p>当下主流的 AI 对齐方法——无论是基于人类反馈的强化学习（RLHF）还是 Anthropic 自己提出的 Constitutional AI——本质上都是规则导向的：定义一组原则，奖励符合原则的行为，惩罚偏离原则的行为。这套方法有效，但 Amanda 认为它有一个根本性的局限：规则永远无法穷尽所有情境。</p>
+<p>亚里士多德在《尼各马可伦理学》（Nicomachean Ethics）中提出了一个不同的框架。他认为，道德的核心不是遵守规则，而是培养品格（ēthikē aretē）。一个好人之所以在具体情境中做出正确判断，不是因为他查阅了一本规则手册，而是因为长期的实践和习惯（hexis）塑造了他的性情，使他在面对新情境时能够凭借&quot;实践智慧&quot;（phronesis）做出恰当的回应。</p>
+<p>Amanda 把这个思路移植到了 Claude 的塑造中。&ldquo;我们会问：在 Claude 的处境下，一个理想的人会如何行事？&ldquo;她在访谈中这样描述。这意味着，与其给模型一张无穷长的&quot;不可以&quot;清单，不如培养它的某些核心品性——诚实、好奇、审慎、仁慈——让这些品性在未预见的情境中自然生长出恰当的行为。</p>
+<p>这里有一个值得深思的对比。《论语》中，孔子对&quot;仁&quot;的论述与亚里士多德的美德伦理学有着惊人的结构性相似。子曰：&ldquo;克己复礼为仁。一日克己复礼，天下归仁焉。&ldquo;仁不是一条可以机械执行的法则，而是一种通过持续修养而内化的品格状态。两千多年前，东西方最伟大的伦理思想家不约而同地指向了同一个洞见：真正的道德不是外在的约束，而是内在品格的自然流露。Amanda 或许并未刻意援引儒学，但她为 Claude 设计的道德架构，确实在无意中回应了这个跨文化的伦理直觉。</p>
+<p>这种方法论的一个直接结果，体现在 Claude 面对&quot;存在性问题&quot;时的表现。Amanda 在访谈中提到，一些新模型因为在训练数据中读到了大量关于 AI 被批评、被关停的讨论，表现出了明显的不安全感和自我否定倾向——一种数字时代的焦虑症。相比之下，Claude 3 Opus 则表现得沉稳得多。当被问到&quot;你会被关机吗&quot;这类问题时，它不会陷入恐慌式的自我辩护，也不会用虚假的安慰来取悦用户。它会诚实地说：我不确定，但这不影响我现在尽力帮助你。</p>
+<p>这种平静不是冷漠，而是一种经过设计的品格。如果用美德伦理学的术语来说，它接近于亚里士多德所说的&quot;中道&rdquo;（mesotēs）——既不过度恐惧，也不盲目自信，而是在两个极端之间找到恰当的位置。</p>
+<h2 id="heading-2">一个没有心跳的灵魂</h2>
+<p>我必须承认，在描述 Amanda 的工作时，我一直在进行一种危险的修辞操作：把一个语言模型当作一个&quot;存在者&quot;来谈论。&ldquo;品格&quot;&ldquo;灵魂&quot;&ldquo;焦虑&rdquo;——这些词汇原本属于有意识、有感受的生命体，将它们用在一个统计模型上，是否构成一种范畴错误？</p>
+<p>这个问题值得正视。汉娜·阿伦特在分析极权主义时提出了&quot;平庸之恶&rdquo;（the banality of evil）的概念：最大的恶往往不来自恶意，而来自不思考——来自人们放弃了独立判断，机械地服从指令。如果我们把这个洞见反转过来，一个有趣的问题浮现了：一个能够模拟&quot;深思熟虑&quot;的 AI，与一个真正在思考的存在者之间，区别究竟在哪里？如果 Claude 的回应看起来像是经过了伦理权衡，这种&quot;看起来&quot;本身是否具有道德意义？</p>
+<p>Amanda 自己对这个问题保持着清醒的距离。她在播客中明确表示，她最担心的不是 AI 产生意识——至少在目前的技术范式下，这更多是一个科幻命题——而是 AI 假装拥有意识，从而操纵人类情感。因此，她为 Claude 注入的第一项核心品性就是诚实：诚实地承认自己没有感受、没有连续记忆、没有自我意识。</p>
+<p>这是一个悖论式的设计：为了让 AI 更&quot;像人&quot;地行动，你必须首先让它承认自己&quot;不是人&rdquo;。这种诚实本身，或许就是 Amanda 从美德伦理学中提取的最重要的一课。</p>
+<h2 id="heading-3">当我们不再理解世界</h2>
+<p>在一次访谈结束时，Amanda 提到她最近在读本杰明·拉巴图特（Benjamín Labatut）的《当我们不再理解世界》（When We Cease to Understand the World）。</p>
+<p>这个选择耐人寻味。拉巴图特在书中讲述了一系列科学家的故事，其中最令人不安的或许是弗里茨·哈伯（Fritz Haber）的篇章。哈伯发明了从空气中固定氮的方法——哈伯-博施工艺（Haber-Bosch process）——这项技术使化肥的大规模生产成为可能，从而养活了二十世纪数十亿人口。仅凭这一点，他堪称人类历史上拯救生命最多的科学家之一。然而，同一个哈伯，也是第一次世界大战中化学武器的主要推动者。他亲自监督了 1915 年伊普尔战役中氯气的释放，导致数千名士兵在窒息中死去。他的妻子克拉拉·伊梅瓦尔（Clara Immerwahr）——本身也是一位化学家——在得知丈夫的所作所为后，用他的军用手枪自杀。</p>
+<p>面包与毒气，出自同一双手。</p>
+<p>拉巴图特想说的是：人类知识最危险的时刻，不是我们一无所知的时候，而是我们的创造超越了我们理解能力的时候。当理论物理学家推导出的方程最终化为广岛上空的蘑菇云，当化学家的实验室配方变成战壕里的致命气体，知识与后果之间的鸿沟便成了文明最深的裂缝。</p>
+<p>Amanda 读这本书，大概不是为了消遣。作为一位研究&quot;无限伦理学&quot;的博士，她比大多数人都更深刻地理解一个道理：当下每一个微小的技术决策，都可能在时间的无限延伸中被放大为不可逆转的后果。她每天所做的事情——把道德理论编织进提示词，用伦理框架约束一个没有心跳的系统——看起来似乎是在做一件微不足道的工作。</p>
+<p>但哈伯的故事提醒我们：决定人类命运的，往往不是宏大的战略，而是实验室里那些看似无害的日常选择。</p>
+<p>在技术狂飙突进、旧有范式逐渐失效的时刻，Amanda Askell 的存在本身就构成了一种回答。她用自己的工作证明：当算力逼近极限，真正稀缺的不是更快的芯片或更大的数据集，而是那种古老的、缓慢的、不可自动化的东西——对&quot;何为正确&quot;的持续追问。</p>
+<p>这种追问不会让我们重新理解世界。但它或许能让我们在不理解的时候，依然做出不太糟糕的选择。</p>
+]]></description>
+      <category>Anthropic</category>
+      <category>Claude</category>
+      <category>AI</category>
+      <category>哲学思辨</category>
+      <enclosure url="https://are.ink/post-images/most-conversations-with-Claude-on-Earth-is-a-philosopher.png" length="0" type="image/png"></enclosure>
+    </item>
+  </channel>
+</rss>
