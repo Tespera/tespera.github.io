@@ -26,7 +26,7 @@
     } catch (e) { }
   })();
 </script>
-  <meta name="generator" content="Gridea Pro 1.1.1">
+  <meta name="generator" content="Gridea Pro 0.0.0-dev">
   <title>从 MVP 到生产级架构：Gridea Pro 桌面应用 Go 后端深度重构复盘 | 述尔</title>
   
 <meta property="og:title" content="从 MVP 到生产级架构：Gridea Pro 桌面应用 Go 后端深度重构复盘" />
@@ -297,7 +297,7 @@ func (s *PostService) LoadPosts() ([]Post, error) {
 </ul>
 <p>这不仅修复了隐患，更让代码意图（Intent）变得清晰。调用者可以放心地调用 <code>Load</code>，而无需担心即将会发生什么不可预知的事情。</p>
 <hr />
-<h2 id="--on-times-m--on-">四、 性能优化：从 $O(N \times M)$ 到 $O(N)$ 的跨越</h2>
+<h2 id="--on-times-m--on-">四、 性能优化：从 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>N</mi><mo>×</mo><mi>M</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(N \times M)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">O</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.109em;">N</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.109em;">M</span><span class="mclose">)</span></span></span></span> 到 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>N</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(N)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">O</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.109em;">N</span><span class="mclose">)</span></span></span></span> 的跨越</h2>
 <p>在 <code>CommentService</code> 中，我们需要为每条评论（Comment）展示其所属的文章（Post）标题。</p>
 <p><strong>原有实现：</strong><br />
 双层嵌套循环。对于每一条评论，遍历所有文章列表查找匹配的 ID。</p>
@@ -530,6 +530,6 @@ assignedPort := listener.Addr().(*net.TCPAddr).Port
 
   
 
-<script>console.log("\n%c ✦ Gridea Pro v1.1.1 %c · Theme: flavor-theme v1.0.0 · https://gridea.pro %c\n","color:#fadfa3;background:#111111;padding:9px 14px;border-radius:4px 0 0 4px;font-weight:500;font-size:12px","color:#e05c00;background:#fff3ec;padding:9px 14px;border-radius:0 4px 4px 0;font-size:11px","")</script>
+<script>console.log("\n%c ✦ Gridea Pro v0.0.0-dev %c · Theme: flavor-theme v1.0.0 · https://gridea.pro %c\n","color:#fadfa3;background:#111111;padding:9px 14px;border-radius:4px 0 0 4px;font-weight:500;font-size:12px","color:#e05c00;background:#fff3ec;padding:9px 14px;border-radius:0 4px 4px 0;font-size:11px","")</script>
 </body>
 </html>
