@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link rel="stylesheet" href="/styles/main.min.css">
+
+
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+
+
+<style>:root { --heatmap-color: #39d353; }</style>
+
+
+
+<script>
+  (function () {
+    try {
+      var saved = localStorage.getItem('flavor-theme');
+      var theme = saved || 'dark';
+      if (theme === 'light') {
+        document.documentElement.classList.add('theme-light');
+      }
+    } catch (e) { }
+  })();
+</script>
+  <meta name="generator" content="Gridea Pro 0.0.0-dev">
+  <title>Gridea Pro 与主流静态博客程序深度对比分析报告 | 述尔</title>
+  
+<meta property="og:title" content="Gridea Pro 与主流静态博客程序深度对比分析报告" />
+<meta property="og:type" content="article" />
+
+<meta property="og:image" content="/post-images/gridea-pro-vs-all-static-blog.jpg" />
+
+
+<meta name="description" content="一、Gridea 深度分析 1.1 项目概况 Gridea 是一款面向非技术用户的静态博客写作客户端，由独立开发者 EryouHao 创建。其核心定位是&amp;quot;让不会写代码的人也能拥有自己的博客&amp;quot;。 指标 数据 GitHub Stars 10,300+ Forks ~831 技术栈 Electron + Vu&amp;hellip;">
+<meta name="keywords" content="述尔，Gridea  Pro，Gridea，静态博客，AI，产品经理">
+<link rel="canonical" href="https://are.ink/post/gridea-pro-vs-all-static-blog/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Gridea Pro 与主流静态博客程序深度对比分析报告","url":"https://are.ink/post/gridea-pro-vs-all-static-blog/","description":"一、Gridea 深度分析 1.1 项目概况 Gridea 是一款面向非技术用户的静态博客写作客户端，由独立开发者 EryouHao 创建。其核心定位是\u0026quot;让不会写代码的人也能拥有自己的博客\u0026quot;。 指标 数据 GitHub Stars 10,300+ Forks ~831 技术栈 Electron + Vu\u0026hellip;","image":"/post-images/gridea-pro-vs-all-static-blog.jpg","datePublished":"2026-03-06T02:47:47+08:00","dateModified":"2026-03-10T10:38:49+08:00","author":{"@type":"Person","name":"述尔"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/images/avatar.png"},"name":"述尔"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://are.ink","name":"述尔","position":1},{"@type":"ListItem","item":"https://are.ink/post/gridea-pro-vs-all-static-blog/","name":"Gridea Pro 与主流静态博客程序深度对比分析报告","position":2}]}</script>
+<meta property="og:title" content="Gridea Pro 与主流静态博客程序深度对比分析报告">
+<meta property="og:description" content="一、Gridea 深度分析 1.1 项目概况 Gridea 是一款面向非技术用户的静态博客写作客户端，由独立开发者 EryouHao 创建。其核心定位是&amp;quot;让不会写代码的人也能拥有自己的博客&amp;quot;。 指标 数据 GitHub Stars 10,300+ Forks ~831 技术栈 Electron + Vu&amp;hellip;">
+<meta property="og:url" content="https://are.ink/post/gridea-pro-vs-all-static-blog/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="述尔">
+<meta property="og:image" content="/post-images/gridea-pro-vs-all-static-blog.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://are.ink/post/gridea-pro-vs-all-static-blog/">
+<meta name="twitter:title" content="Gridea Pro 与主流静态博客程序深度对比分析报告">
+<meta name="twitter:description" content="一、Gridea 深度分析 1.1 项目概况 Gridea 是一款面向非技术用户的静态博客写作客户端，由独立开发者 EryouHao 创建。其核心定位是&amp;quot;让不会写代码的人也能拥有自己的博客&amp;quot;。 指标 数据 GitHub Stars 10,300+ Forks ~831 技术栈 Electron + Vu&amp;hellip;">
+<meta name="twitter:image" content="/post-images/gridea-pro-vs-all-static-blog.jpg">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1SBXPCEK36"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-1SBXPCEK36');</script>
+<meta name="google-site-verification" content="googlea4223896f417412f.html">
+<script>var _hmt=_hmt||[];(function(){var hm=document.createElement("script");hm.src="https://hm.baidu.com/hm.js?4b792e215f23cf68ed571462a263feb3";var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(hm,s);})();</script>
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#000000">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="述尔">
+<link rel="apple-touch-icon" sizes="180x180" href="https://cdn.jsdelivr.net/gh/Tespera/Assets@main/images/icons/icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192" href="https://cdn.jsdelivr.net/gh/Tespera/Assets@main/images/icons/icon-192x192.png">
+<meta name="msapplication-TileColor" content="#000000">
+<meta name="msapplication-TileImage" content="/images/icons/icon-192x192.png">
+<script>if('serviceWorker' in navigator){navigator.serviceWorker.register('/sw.js')}</script>
+</head>
+<body class="flavor-theme">
+
+  <header class="site-header" id="siteHeader">
+  <div class="header-inner">
+    <div class="top-bar">
+
+      
+      <div class="top-bar__left">
+        
+        <a href="https://are.ink" class="site-avatar-link" aria-label="返回首页">
+          <img class="site-avatar" src="https://cdn.jsdelivr.net/gh/Tespera/Assets@main/images/avatar.png" alt="述尔" />
+        </a>
+        
+        <a href="https://are.ink" class="site-name-link">述尔</a>
+      </div>
+
+      
+      <nav class="top-bar__nav" id="sectionBar">
+        
+        
+        <a class="nav-item" href="/">首页</a>
+        
+        <a class="nav-item" href="/post">博客</a>
+        
+        <a class="nav-item" href="/memos">闪念</a>
+        
+        <a class="nav-item" href="/archives">归档</a>
+        
+        <a class="nav-item" href="/tags">标签</a>
+        
+        <a class="nav-item" href="/links">友链</a>
+        
+        <a class="nav-item" href="/post/about">关于</a>
+        
+        
+      </nav>
+
+      
+      <div class="top-bar__right">
+        <button class="btn-icon btn-search search-btn" id="btnSearch" type="button" aria-label="搜索">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+        </button>
+        <button class="btn-icon theme-toggle theme-toggle-sun" id="themeToggleSun" type="button"
+          aria-label="切换到浅色模式">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 1C12.5523 1 13 1.44772 13 2V4C13 4.55228 12.5523 5 12 5C11.4477 5 11 4.55228 11 4V2C11 1.44772 11.4477 1 12 1Z"></path>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M7 12C7 9.23858 9.23858 7 12 7C14.7614 7 17 9.23858 17 12C17 14.7614 14.7614 17 12 17C9.23858 17 7 14.7614 7 12ZM12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9Z"></path>
+            <path d="M13 20C13 19.4477 12.5523 19 12 19C11.4477 19 11 19.4477 11 20V22C11 22.5523 11.4477 23 12 23C12.5523 23 13 22.5523 13 22V20Z"></path>
+            <path d="M4.22282 4.22289C4.61335 3.83236 5.24651 3.83236 5.63704 4.22289L7.04704 5.63289C7.43756 6.02341 7.43756 6.65658 7.04704 7.0471C6.65651 7.43762 6.02335 7.43762 5.63283 7.0471L4.22282 5.6371C3.8323 5.24658 3.8323 4.61341 4.22282 4.22289Z"></path>
+            <path d="M18.367 16.9529C17.9765 16.5623 17.3433 16.5623 16.9528 16.9529C16.5623 17.3434 16.5623 17.9766 16.9528 18.3671L18.3628 19.7771C18.7533 20.1676 19.3865 20.1676 19.777 19.7771C20.1675 19.3866 20.1675 18.7534 19.777 18.3629L18.367 16.9529Z"></path>
+            <path d="M1 12C1 11.4477 1.44772 11 2 11H4C4.55228 11 5 11.4477 5 12C5 12.5523 4.55228 13 4 13H2C1.44772 13 1 12.5523 1 12Z"></path>
+            <path d="M20 11C19.4477 11 19 11.4477 19 12C19 12.5523 19.4477 13 20 13H22C22.5523 13 23 12.5523 23 12C23 11.4477 22.5523 11 22 11H20Z"></path>
+            <path d="M7.04704 16.9529C7.43756 17.3434 7.43756 17.9766 7.04704 18.3671L5.63704 19.7771C5.24651 20.1676 4.61335 20.1676 4.22282 19.7771C3.8323 19.3866 3.8323 18.7534 4.22283 18.3629L5.63283 16.9529C6.02335 16.5623 6.65651 16.5623 7.04704 16.9529Z"></path>
+            <path d="M19.777 5.6371C20.1675 5.24657 20.1675 4.61341 19.777 4.22289C19.3865 3.83236 18.7533 3.83236 18.3628 4.22289L16.9528 5.63289C16.5623 6.02341 16.5623 6.65658 16.9528 7.0471C17.3433 7.43762 17.9765 7.43762 18.367 7.0471L19.777 5.6371Z"></path>
+          </svg>
+        </button>
+        <button class="btn-icon theme-toggle theme-toggle-moon" id="themeToggleMoon" type="button"
+          aria-label="切换到深色模式">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C10.0222 2 8.08879 2.58649 6.4443 3.6853C4.79981 4.78412 3.51809 6.3459 2.76121 8.17317C2.00433 10.0004 1.8063 12.0111 2.19215 13.9509C2.578 15.8907 3.53041 17.6725 4.92894 19.0711C6.32746 20.4696 8.10929 21.422 10.0491 21.8079C11.9889 22.1937 13.9996 21.9957 15.8268 21.2388C17.6541 20.4819 19.2159 19.2002 20.3147 17.5557C21.4135 15.9112 22 13.9778 22 12C22 11.5955 21.7564 11.2309 21.3827 11.0761C21.009 10.9213 20.5789 11.0069 20.2929 11.2929C19.287 12.2988 17.9226 12.864 16.5 12.864C15.0774 12.864 13.713 12.2988 12.7071 11.2929C11.7012 10.287 11.136 8.92261 11.136 7.5C11.136 6.07739 11.7012 4.71304 12.7071 3.70711C12.9931 3.42111 13.0787 2.99099 12.9239 2.61732C12.7691 2.24364 12.4045 2 12 2ZM7.55544 5.34824C8.27036 4.87055 9.05353 4.51389 9.87357 4.28778C9.39271 5.27979 9.13604 6.37666 9.13604 7.5C9.13604 9.45304 9.91189 11.3261 11.2929 12.7071C12.6739 14.0881 14.547 14.864 16.5 14.864C17.6233 14.864 18.7202 14.6073 19.7122 14.1264C19.4861 14.9465 19.1295 15.7296 18.6518 16.4446C17.7727 17.7602 16.5233 18.7855 15.0615 19.391C13.5997 19.9965 11.9911 20.155 10.4393 19.8463C8.88743 19.5376 7.46197 18.7757 6.34315 17.6569C5.21447 16.538 4.4624 15.1126 4.15372 13.5607C3.84504 12.0089 4.00347 10.4003 4.60897 8.93853C5.21447 7.47672 6.23985 6.22729 7.55544 5.34824Z"></path>
+            <path d="M19 2C19.5523 2 20 2.44772 20 3V4H21C21.5523 4 22 4.44772 22 5C22 5.55228 21.5523 6 21 6H20V7C20 7.55228 19.5523 8 19 8C18.4477 8 18 7.55228 18 7V6H17C16.4477 6 16 5.55228 16 5C16 4.44772 16.4477 4 17 4H18V3C18 2.44772 18.4477 2 19 2Z"></path>
+          </svg>
+        </button>
+        <button class="btn-icon btn-nav-toggle mobile-only" id="btnNavToggle" type="button" aria-label="切换导航">
+          <div class="hamburger" id="hamburger">
+            <span class="hamburger__line hamburger__line--top"></span>
+            <span class="hamburger__line hamburger__line--bottom"></span>
+          </div>
+        </button>
+      </div>
+
+    </div>
+  </div>
+</header>
+
+
+<div class="header-spacer"></div>
+
+<script>
+(function(){
+  var btn = document.getElementById('btnNavToggle');
+  var nav = document.getElementById('sectionBar');
+  var hamburger = document.getElementById('hamburger');
+  if (btn && nav) {
+    btn.addEventListener('click', function(){
+      nav.classList.toggle('top-bar__nav--open');
+      if (hamburger) hamburger.classList.toggle('is-active');
+    });
+    nav.querySelectorAll('.nav-item').forEach(function(item){
+      item.addEventListener('click', function(){
+        nav.classList.remove('top-bar__nav--open');
+        if (hamburger) hamburger.classList.remove('is-active');
+      });
+    });
+  }
+
+  var root = document.documentElement;
+  var applyTheme = function(theme, persist){
+    if (theme === 'light') {
+      root.classList.add('theme-light');
+    } else {
+      root.classList.remove('theme-light');
+    }
+    if (persist) {
+      try { localStorage.setItem('flavor-theme', theme); } catch (e) {}
+    }
+  };
+  document.querySelectorAll('.theme-toggle').forEach(function(el){
+    el.addEventListener('click', function(){
+      applyTheme(root.classList.contains('theme-light') ? 'dark' : 'light', true);
+    });
+  });
+})();
+</script>
+
+  <main class="site-main" role="main">
+    
+<article class="article-container">
+  <header class="article-header">
+    <h1 class="article-title">Gridea Pro 与主流静态博客程序深度对比分析报告</h1>
+    <div class="article-meta">
+      
+      
+      <a href="/category/Gridea-Pro/" class="article-meta__category">Gridea Pro</a>
+      
+      
+      <span class="article-meta__sep">·</span>
+      
+      <span class="article-meta__item">2026年03月06日</span>
+      
+      <span class="article-meta__sep">·</span>
+      <span class="article-meta__item">16 分钟阅读</span>
+      
+    </div>
+    
+    <div class="article-header__tags">
+      
+      <a href="/tag/gridea/" class="tag-pill tag-pill--sm">Gridea</a>
+      
+      <a href="/tag/gridea-pro/" class="tag-pill tag-pill--sm">Gridea Pro</a>
+      
+      <a href="/tag/deep-dive/" class="tag-pill tag-pill--sm">Deep Dive</a>
+      
+    </div>
+    
+  </header>
+
+  
+  <div class="article-feature">
+    <img src="https://cdn.jsdelivr.net/gh/Tespera/Assets@main/post-images/gridea-pro-vs-all-static-blog.jpg" alt="Gridea Pro 与主流静态博客程序深度对比分析报告" />
+  </div>
+  
+
+  <div class="article-content">
+    <h2 id="gridea-">一、Gridea 深度分析</h2>
+<h3 id="11-">1.1 项目概况</h3>
+<p>Gridea 是一款面向非技术用户的静态博客写作客户端，由独立开发者 EryouHao 创建。其核心定位是&quot;让不会写代码的人也能拥有自己的博客&quot;。</p>
+<table>
+<thead>
+<tr>
+<th>指标</th>
+<th>数据</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GitHub Stars</td>
+<td>10,300+</td>
+</tr>
+<tr>
+<td>Forks</td>
+<td>~831</td>
+</tr>
+<tr>
+<td>技术栈</td>
+<td>Electron + Vue 2 + TypeScript</td>
+</tr>
+<tr>
+<td>最后客户端版本</td>
+<td>v0.9.3（2022年5月17日）</td>
+</tr>
+<tr>
+<td>开源协议</td>
+<td>MIT</td>
+</tr>
+<tr>
+<td>贡献者</td>
+<td>19人（核心开发仅作者1人）</td>
+</tr>
+<tr>
+<td>用户规模</td>
+<td>官网声称超过 28,155 位用户</td>
+</tr>
+</tbody>
+</table>
+<h3 id="12-">1.2 产品形态演变</h3>
+<p>Gridea 经历了一次根本性的产品转型：</p>
+<p><strong>旧版（开源客户端 · open.gridea.dev）</strong> — Electron 桌面应用，本地 Markdown 编辑 + Git 推送部署到 GitHub Pages/Coding Pages/SFTP/Netlify/Gitee。数据完全在本地，用户对内容有完整控制权。</p>
+<p><strong>新版（SaaS 服务 · gridea.dev）</strong> — 完全转型为在线博客平台，使用 Vercel 边缘网络 + Supabase 数据存储，闭源商业化运营。新增了 Thought Box（想法盒子）、Read（稍后阅读）等功能模块，支持自定义域名和多站点。</p>
+<p>这一转型意味着：开源客户端被事实性放弃，用户从&quot;数据本地化&quot;转向&quot;数据托管于第三方&quot;，产品哲学发生了根本改变。</p>
+<h3 id="13-">1.3 用户评价汇总</h3>
+<p><strong>用户认可的优点：</strong></p>
+<p>Gridea 的核心吸引力在于极低的使用门槛。掘金用户评价&quot;对于小白用户来说，Gridea 真的是一款很友好的博客工具&quot;。知乎用户总结其优点为&quot;使用简单、无需写任何代码、快捷方便、离线编辑博客&quot;。Gridea 搭配 GitHub Pages 的方案&quot;好处显而易见，操作简单，完全免费&quot;。UI 设计也获得认可，多位用户称赞界面简洁美观。</p>
+<p><strong>用户反映的核心痛点：</strong></p>
+<p>第一大痛点是<strong>同步/部署频繁失败</strong>。GitHub Issues 中数十个 issue 与此相关（#400、#335、#976、#1185 等），内置的 Git 推送机制是最不稳定的核心模块。第二大痛点是<strong>客户端停止维护</strong>，Issue #1111 明确呼吁&quot;希望作者可以重视客户端版本的开发工作&quot;。第三是<strong>可定制性差</strong>，有评价指出&quot;Gridea 部署简单，但可定制性较差，只能用其专用编辑器&quot;。V2EX 用户评价编辑器&quot;对小白还差点意思&quot;。还有用户坦言&quot;选它并不是因为它好用，而是因为上面有一款主题我比较喜欢，我自己花了些时间将该主题的 bug 修复了&quot;。</p>
+<p><strong>用户期望的功能：</strong> 手机版/移动端支持、导出完整静态文件供手动部署、更强大的编辑器、更多主题选择、更稳定的同步机制、文章搜索功能。</p>
+<h3 id="14-">1.4 核心问题诊断</h3>
+<table>
+<thead>
+<tr>
+<th>问题维度</th>
+<th>现状</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>维护状态</td>
+<td>客户端已停更近4年，Issues 无人回复</td>
+</tr>
+<tr>
+<td>技术债务</td>
+<td>Electron 老旧、Vue 2 已进入维护模式、Git 同步机制脆弱</td>
+</tr>
+<tr>
+<td>主题生态</td>
+<td>仅约5-6个主题，所有主题库最后更新停留在2022年12月</td>
+</tr>
+<tr>
+<td>插件系统</td>
+<td>完全没有插件机制</td>
+</tr>
+<tr>
+<td>社区</td>
+<td>近乎消亡，19位贡献者中绝大多数是早期参与</td>
+</tr>
+<tr>
+<td>可扩展性</td>
+<td>极低，功能固定，EJS 模板系统封闭</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="heading">二、竞品深度分析</h2>
+<h3 id="21-hexonodejs">2.1 Hexo（Node.js）</h3>
+<p><strong>项目状态：</strong> 41,200+ Stars，最新版本 v8.1.1（2025年10月），持续活跃维护。核心维护者 D-Sketon 非常活跃，hexojs 组织下多个子项目在2026年2月仍有更新。</p>
+<p><strong>核心优势：</strong></p>
+<p>Hexo 8.x 在性能上有了质的飞跃。基准测试显示，Hexo 3.9.0 生成 4000 篇文章需约 301 秒，而 8.0.0 仅需约 23 秒，提升超过 13 倍。即使 10,000 篇文章也能在约 1 分钟内完成冷构建。</p>
+<p>生态方面，Hexo 官网收录 434+ 主题（中文主题超过 200 个），插件生态完全融入 npm 体系，评论、搜索、SEO 优化、RSS 等均有成熟插件。Hexo 由台湾开发者创建，天然对中文社区友好，被称为&quot;中文博客的天选之子&quot;。</p>
+<p><strong>主要缺点：</strong></p>
+<p>环境依赖复杂（需安装 Node.js、npm、Git），无 Web 后台（无法随时随地写作），换电脑需重新配置整个环境，评论系统需外接第三方。BetterLink 博客总结：&ldquo;如果你只是单纯想写些东西，不推荐使用 Hexo。&rdquo; 构建速度虽已大幅优化，但在大规模场景下仍不及 Hugo。</p>
+<h3 id="22-hugogo">2.2 Hugo（Go）</h3>
+<p><strong>项目状态：</strong> 86,757 Stars（所有 SSG 中最高），最新版本 v0.153.0（2025年12月），由核心维护者 bep 主力推动，几乎每月都有版本更新。2025年4月发布的 v0.146.0 引入了全新模板系统，是一次重大架构升级。</p>
+<p><strong>核心优势：</strong></p>
+<p>构建速度无可匹敌：10,000 页面构建仅需约 2.95 秒，500 篇文章构建 0.8-1.2 秒，增量构建 0.1-0.3 秒。单二进制文件零依赖部署，无需安装任何运行时环境，不存在&quot;依赖地狱&quot;。功能极其丰富，原生支持 Sass/SCSS 处理、Hugo Modules、多语言/i18n、Shortcodes、图片处理、自动 Sitemap 和 RSS 等，无需额外插件。</p>
+<p>CloudCannon 博客（2025年）评价：&ldquo;Hugo is my go-to SSG for new sites when I have a short turnaround time or have a huge number of Markdown pages.&rdquo;</p>
+<p><strong>主要缺点：</strong></p>
+<p>Go Template 模板语法学习曲线陡峭，是用户最集中的抱怨。BetterLink 博客坦言&quot;Hugo 的 Go 模板语法，我当初学了好久才上手&quot;。不同主题之间内容组织方式差异大，Reddit 用户反映&quot;once I start using a theme, I&rsquo;m stuck with it, no easy way to move to another theme&quot;。插件生态相对薄弱，没有像 npm 那样的插件注册中心。中文社区资源相对 Hexo 不足，遇到问题往往需要查阅英文资源。</p>
+<h3 id="23-vuepress--vitepressvue">2.3 VuePress / VitePress（Vue）</h3>
+<p><strong>项目状态：</strong> VitePress 约 14,000+ Stars，已进入 v2.0-alpha 阶段。VuePress 约 22,000 Stars 但已进入维护模式。Vue 团队已明确将 VitePress 作为未来方向。</p>
+<p><strong>核心优势：</strong></p>
+<p>深度融入 Vue 3 + Vite 生态，Vue 3、Vite 等官方文档本身就使用 VitePress 构建。在技术文档场景下体验极佳，内置搜索、自动导航、代码高亮等功能。由 Vite 驱动的极速开发体验（热更新 &lt;100ms），支持在 Markdown 中直接使用 Vue 组件。</p>
+<p><strong>主要缺点：</strong></p>
+<p>官方默认不支持构建博客网站，缺少文章列表、分类、标签、归档、RSS 等博客核心功能，需自行实现或使用社区主题。使用场景较窄，主要针对文档站点。CSDN 文章指出：&ldquo;VitePress 基于 Vue 的 SSG 框架，可以快速构建个人的技术文档系统，但是官方默认是不支持构建博客网站的。&rdquo; Reddit 用户也直言：&ldquo;I use VitePress in prod for documentation websites, I&rsquo;d say it&rsquo;s not suitable for what you want to do.&rdquo;</p>
+<h3 id="24-jekyllruby">2.4 Jekyll（Ruby）</h3>
+<p><strong>项目状态：</strong> 49,000+ Stars，历经 18 年发展，是最老牌的 SSG。目前处于维护模式而非活跃创新，更新频率较低。</p>
+<p><strong>核心优势：</strong></p>
+<p>GitHub Pages 的默认引擎，这是其最大护城河。用户无需任何构建配置，将 Jekyll 项目推送到 GitHub 仓库即可自动构建部署。从设计之初就是 &ldquo;blog-aware&rdquo;，文章、分类、标签、永久链接、分页等博客功能都是一等公民。久经考验的稳定性。</p>
+<p><strong>主要缺点：</strong></p>
+<p>Ruby 环境问题是最大痛点。版本管理、gem 依赖冲突、Bundler 版本不兼容等问题困扰大量用户。有开发者用 Docker 编译 Jekyll 项目来规避这些问题，感叹&quot;As someone who has had to install the Ruby/Gem/Jekyll stack quite a few times in the past, I know the pain.&quot; 构建速度在所有主流 SSG 中处于较慢水平。缺乏热模块替换（HMR）、不支持 TypeScript、Liquid 模板语言功能有限。越来越多开发者正从 Jekyll 迁移到 Hugo、Astro 等更现代的方案。</p>
+<h3 id="25-gatsbyreact">2.5 Gatsby（React）</h3>
+<p><strong>项目状态：</strong> 55,900+ Stars（历史积累），但项目实质已被废弃。Netlify 收购 Gatsby Inc. 后，Gatsby Cloud 关闭，核心团队大幅裁员。2026年1月起 Netlify 不再支持 Gatsby 4.4 所需的环境参数。Netlify 项目经理明确表示 Gatsby 框架&quot;most likely NOT be supported anymore&quot;。</p>
+<p><strong>历史优势：</strong></p>
+<p>曾是将 React 组件化开发引入静态站点的先驱。GraphQL 数据层被 Smashing Magazine 评价为&quot;by far the best Gatsby feature&quot;。丰富的插件生态（CMS 集成、图片优化、SEO 等）。</p>
+<p><strong>致命缺陷：</strong></p>
+<p>项目实质已死亡。一个全新 Gatsby 项目有 168 个依赖和 18 个已知漏洞（对比 Next.js 仅 16 个依赖）。State of JavaScript 调查显示，开发者使用后愿意再次使用的比例从 2019 年的 89% 暴跌到 2022 年的 38%。构建速度极慢（开发服务器启动 30 秒以上），Astro 构建同等规模站点仅需其 1/3 时间且 JS 体积小 40 倍。<strong>2026 年不推荐用于任何新项目。</strong></p>
+<hr />
+<h2 id="heading-1">三、六大平台全景对比</h2>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>Gridea</th>
+<th>Hexo</th>
+<th>Hugo</th>
+<th>VitePress</th>
+<th>Jekyll</th>
+<th>Gatsby</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Stars</strong></td>
+<td>10.3k</td>
+<td>41.2k</td>
+<td>86.8k</td>
+<td>14k+</td>
+<td>49k+</td>
+<td>55.9k</td>
+</tr>
+<tr>
+<td><strong>语言/框架</strong></td>
+<td>Electron+Vue2</td>
+<td>Node.js</td>
+<td>Go</td>
+<td>Vue3+Vite</td>
+<td>Ruby</td>
+<td>React</td>
+</tr>
+<tr>
+<td><strong>最新更新</strong></td>
+<td>2022.5 停更</td>
+<td>2025.10 活跃</td>
+<td>2025.12 活跃</td>
+<td>活跃(v2α)</td>
+<td>维护模式</td>
+<td>已废弃</td>
+</tr>
+<tr>
+<td><strong>构建速度</strong></td>
+<td>N/A</td>
+<td>快(8.x优化)</td>
+<td>极快(秒级)</td>
+<td>极快(Vite)</td>
+<td>慢</td>
+<td>很慢</td>
+</tr>
+<tr>
+<td><strong>上手难度</strong></td>
+<td>极低(GUI)</td>
+<td>中等(CLI)</td>
+<td>中高(模板)</td>
+<td>中(需Vue)</td>
+<td>低-中</td>
+<td>高</td>
+</tr>
+<tr>
+<td><strong>主题数量</strong></td>
+<td>~5-6个</td>
+<td>434+</td>
+<td>300+</td>
+<td>增长中</td>
+<td>数百个</td>
+<td>数百个(过时)</td>
+</tr>
+<tr>
+<td><strong>插件生态</strong></td>
+<td>无</td>
+<td>丰富(npm)</td>
+<td>中等(内置)</td>
+<td>中等</td>
+<td>丰富(老化)</td>
+<td>丰富(过时)</td>
+</tr>
+<tr>
+<td><strong>中文社区</strong></td>
+<td>小众</td>
+<td>极强</td>
+<td>一般</td>
+<td>中等</td>
+<td>一般</td>
+<td>一般</td>
+</tr>
+<tr>
+<td><strong>博客支持</strong></td>
+<td>原生</td>
+<td>原生</td>
+<td>原生</td>
+<td>需自行实现</td>
+<td>原生</td>
+<td>通过插件</td>
+</tr>
+<tr>
+<td><strong>可扩展性</strong></td>
+<td>极低</td>
+<td>高</td>
+<td>高</td>
+<td>高</td>
+<td>中</td>
+<td>高</td>
+</tr>
+<tr>
+<td><strong>数据控制</strong></td>
+<td>本地(旧)/云(新)</td>
+<td>本地</td>
+<td>本地</td>
+<td>本地</td>
+<td>本地</td>
+<td>本地</td>
+</tr>
+<tr>
+<td><strong>2026推荐度</strong></td>
+<td>❌ 不推荐</td>
+<td>✅ 推荐</td>
+<td>✅✅ 强烈推荐</td>
+<td>⚠️ 文档场景</td>
+<td>⚠️ 谨慎</td>
+<td>❌ 不推荐</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="-gridea">四、竞品核心优势提炼（对比 Gridea）</h2>
+<h3 id="41-gridea-">4.1 Gridea 缺失而竞品具备的关键能力</h3>
+<p><strong>1. 持续活跃的维护和社区</strong><br />
+Hexo 和 Hugo 都有强大的开源社区和持续的版本迭代。Hexo 在 2025 年发布了 8.x 大版本、Hugo 几乎每月更新。Gridea 客户端近 4 年无任何更新，Issues 无人回复，这是最致命的短板。</p>
+<p><strong>2. 丰富的主题和插件生态</strong><br />
+Hexo 有 434+ 主题、Hugo 有 300+ 主题，均有大量社区贡献的插件/模块。Gridea 仅有约 5-6 个主题，无插件系统。用户反馈&quot;Gridea 的缺点就是主题太少&quot;。</p>
+<p><strong>3. 高度可扩展的架构</strong><br />
+Hugo 的 Module 系统、Hexo 的 npm 插件体系、VitePress 的 Vue 组件机制都允许用户深度定制。Gridea 的功能完全固定，无法通过第三方扩展。</p>
+<p><strong>4. 极致的构建性能</strong><br />
+Hugo 构建万级页面仅需秒级，Hexo 8.x 也有 13 倍的性能提升。Gridea 作为客户端应用没有可比的构建性能优化。</p>
+<p><strong>5. 现代化的 CI/CD 集成</strong><br />
+Hexo 和 Hugo 普遍通过 GitHub Actions 实现自动部署，Jekyll 原生集成 GitHub Pages。Gridea 的手动&quot;同步&quot;按钮模式显得落后，且同步失败是最高频的用户投诉。</p>
+<p><strong>6. 跨设备无缝体验</strong><br />
+现代 SSG + Git 仓库 + CI/CD 的工作流天然支持多设备协作（任何设备 push 即可触发构建）。Gridea 的多设备同步是用户高频痛点。</p>
+<h3 id="42-gridea-">4.2 Gridea 仍然具备的差异化优势</h3>
+<p>必须承认，Gridea 有一个竞品普遍不具备的核心价值：<strong>图形化操作界面对纯新手极度友好</strong>。所有竞品（Hexo、Hugo、Jekyll、VitePress）都需要命令行操作、配置文件编辑和 Git 知识。这个市场空白是真实存在的——&ldquo;不愿折腾命令行但想拥有静态博客&quot;的用户群体确实被忽视了。10,000+ Stars 和 28,000+ 用户的数据证明了这一需求的真实性。</p>
+<hr />
+<h2 id="gridea--1">五、Gridea 升级重构建议</h2>
+<p>基于以上全部研究，如果要升级重构 Gridea，以下是按优先级排序的建议：</p>
+<h3 id="-p0">🔴 P0：生存级（必须做）</h3>
+<p><strong>1. 技术栈现代化</strong></p>
+<p>将 Electron + Vue 2 升级为更现代的方案。推荐两个方向：</p>
+<ul>
+<li><strong>方向 A（桌面优先）：</strong> 采用 Tauri 2.0 + Vue 3/React + TypeScript。Tauri 使用系统原生 WebView 而非 Chromium，安装包从 ~100MB 缩小到 ~5MB，内存占用降低 80%+，启动速度大幅提升。</li>
+<li><strong>方向 B（Web 优先）：</strong> 采用 Next.js/Nuxt 构建 PWA Web 应用 + 可选的 Electron/Tauri 桌面壳。优先保证浏览器端可用，解决&quot;任意设备随时写作&quot;的核心痛点。</li>
+</ul>
+<p><strong>2. 彻底重构部署/同步机制</strong></p>
+<p>同步失败是用户反馈最多的问题。建议：</p>
+<ul>
+<li>弃用内置的 Git 操作模块，改为调用 GitHub/Gitee API（REST/GraphQL）直接操作仓库</li>
+<li>增加 GitHub Actions / Vercel / Netlify 的自动部署配置生成器（一键生成 CI/CD 配置）</li>
+<li>内置部署状态监控和错误诊断，同步失败时提供明确的错误原因和修复建议</li>
+<li>支持 S3/R2/COS 等对象存储的直接部署</li>
+</ul>
+<p><strong>3. 构建引擎升级</strong></p>
+<p>当前 Gridea 使用自己的简单构建逻辑。建议：</p>
+<ul>
+<li>将底层构建引擎替换为 Hugo（通过 WASM 或子进程调用），继承其秒级构建速度和丰富的内置功能</li>
+<li>或者采用 Vite 作为构建引擎，获得极速 HMR 和现代前端工具链支持</li>
+<li>支持增量构建，仅重新生成变更的内容</li>
+</ul>
+<h3 id="-p1">🟡 P1：竞争级（应该做）</h3>
+<p><strong>4. 开放的主题/插件生态系统</strong></p>
+<p>这是与 Hexo/Hugo 竞争的关键：</p>
+<ul>
+<li>设计规范化的主题 API 和模板规范，降低主题开发门槛</li>
+<li>建设主题市场（内置浏览、预览、一键安装），参考 VS Code 扩展市场的体验</li>
+<li>支持插件系统（评论、搜索、统计、SEO 等功能可通过插件添加）</li>
+<li>提供主题/插件开发 SDK 和文档，吸引社区贡献</li>
+<li>可考虑兼容 Hugo/Hexo 主题格式，直接继承其庞大的主题库</li>
+</ul>
+<p><strong>5. 专业级编辑器</strong></p>
+<p>编辑器是 Gridea 作为&quot;写作客户端&quot;的核心体验，但当前编辑器被评价为&quot;对小白还差点意思&rdquo;：</p>
+<ul>
+<li>采用 Milkdown、Tiptap 或 BlockNote 等现代编辑器框架，实现 Notion 级别的块编辑体验</li>
+<li>支持所见即所得（WYSIWYG）与 Markdown 源码双模式无缝切换</li>
+<li>内置图片拖拽上传 + 多图床支持（GitHub、S3、Cloudflare R2、SM.MS 等）</li>
+<li>支持实时预览（编辑器左侧编辑，右侧实时预览最终页面效果）</li>
+<li>AI 辅助写作能力（语法检查、摘要生成、SEO 标题建议等）</li>
+</ul>
+<p><strong>6. 数据管理与多设备同步</strong></p>
+<p>解决&quot;换电脑就丢数据&quot;的痛点：</p>
+<ul>
+<li>源文件本地优先 + Git 仓库自动同步（像 Obsidian 的 Git 同步一样透明）</li>
+<li>支持标准 Markdown 目录结构，用户可以用任何编辑器（VS Code、Typora）编辑同一套内容</li>
+<li>提供数据导入/导出工具，支持从 Hexo、Hugo、Jekyll、WordPress 一键迁移</li>
+<li>内容格式兼容通用 frontmatter 规范，避免 vendor lock-in</li>
+</ul>
+<h3 id="-p2">🟢 P2：差异化（应该做）</h3>
+<p><strong>7. 移动端支持</strong></p>
+<p>这是 Gridea 用户明确提出的需求（Issue #1192），也是所有静态博客工具的共同短板：</p>
+<ul>
+<li>PWA 优先策略，移动浏览器中即可完成写作和管理</li>
+<li>如果走桌面应用路线，可通过 Tauri 2.0 的移动端支持同时覆盖 iOS/Android</li>
+<li>支持快速发布（类似 Gridea 新版的 Thought Box，轻量级短内容发布）</li>
+</ul>
+<p><strong>8. 内置 SEO 与分析</strong></p>
+<p>静态博客普遍缺乏的能力：</p>
+<ul>
+<li>内置 SEO 检查清单（标题优化、meta description、Open Graph、结构化数据）</li>
+<li>集成 Umami/Plausible 等隐私友好的开源分析工具</li>
+<li>Sitemap 和 RSS 自动生成和优化</li>
+<li>社交分享预览（发布前预览在 Twitter/微信等平台的分享卡片效果）</li>
+</ul>
+<p><strong>9. 评论系统集成</strong></p>
+<p>所有静态博客的共同痛点：</p>
+<ul>
+<li>内置多评论系统的一键配置向导（Giscus、Waline、Twikoo、Artalk 等）</li>
+<li>在客户端中直接管理和回复评论（聚合面板）</li>
+<li>可选的内置评论方案（通过 Supabase/PlanetScale 等 serverless 数据库）</li>
+</ul>
+<p><strong>10. 内容管理增强</strong></p>
+<ul>
+<li>文章搜索和全文检索</li>
+<li>文章草稿/已发布状态管理</li>
+<li>定时发布功能</li>
+<li>内容分析（字数统计、阅读时间预估、发布频率）</li>
+<li>多作者/协作支持</li>
+<li>系列文章管理（将多篇文章组织为有序系列）</li>
+</ul>
+<h3 id="-p3">🔵 P3：前瞻性（可以做）</h3>
+<p><strong>11. AI 集成</strong></p>
+<ul>
+<li>AI 辅助写作（续写、改写、翻译、摘要）</li>
+<li>AI 图片生成（文章配图、封面图自动生成）</li>
+<li>AI 驱动的 SEO 优化建议</li>
+<li>智能标签推荐</li>
+</ul>
+<p><strong>12. 社交化功能</strong></p>
+<ul>
+<li>内置博客发现和订阅网络（类似 Micro.blog）</li>
+<li>WebMention / IndieWeb 协议支持</li>
+<li>交叉发布到 Medium、Dev.to、微信公众号等平台</li>
+</ul>
+<p><strong>13. 多站点管理</strong></p>
+<ul>
+<li>一个客户端管理多个博客站点</li>
+<li>站点模板一键克隆</li>
+<li>统一的多站点分析面板</li>
+</ul>
+<hr />
+<h2 id="heading-2">六、重构路线图建议</h2>
+<h3 id="0-3">阶段一：基础重建（0-3个月）</h3>
+<ul>
+<li>确定技术栈（推荐 Tauri 2.0 + Vue 3 或 Web PWA 方案）</li>
+<li>重构部署引擎（GitHub API + CI/CD 自动配置）</li>
+<li>升级编辑器（Milkdown/Tiptap 块编辑器）</li>
+<li>确保从旧版 Gridea 的数据无损迁移</li>
+</ul>
+<h3 id="3-6">阶段二：生态构建（3-6个月）</h3>
+<ul>
+<li>设计并实现主题系统 2.0（考虑兼容 Hugo 主题格式）</li>
+<li>插件系统 MVP</li>
+<li>移动端 PWA 支持</li>
+<li>数据同步机制（Git 透明同步）</li>
+</ul>
+<h3 id="6-12">阶段三：差异化竞争（6-12个月）</h3>
+<ul>
+<li>主题/插件市场上线</li>
+<li>AI 写作辅助</li>
+<li>评论系统聚合管理</li>
+<li>SEO 工具集</li>
+<li>社区建设和开发者生态</li>
+</ul>
+<h3 id="heading-3">核心竞争策略</h3>
+<p>Gridea 不应该试图在命令行工具领域与 Hugo/Hexo 正面竞争——它们在技术生态和社区规模上的优势是碾压级的。Gridea 的机会在于做**&ldquo;静态博客领域的 Notion&rdquo;**：</p>
+<blockquote>
+<p>用 GUI 的极致体验降低静态博客的使用门槛，同时通过开放的主题/插件生态保证可扩展性，让&quot;不会写代码但追求高质量博客&quot;的用户群体拥有一个<strong>真正好用的工具</strong>。</p>
+</blockquote>
+<p>关键差异化定位：<strong>GUI 优先 + 开放生态 + 现代技术栈</strong>。</p>
+<p>这个定位之所以成立，是因为 2026 年的静态博客市场仍然存在一个巨大的未被满足的需求：<strong>数以百万计想写博客但不愿意（或不会）使用命令行的人</strong>。Hexo 和 Hugo 再强大，对这些用户来说门槛依然太高。Gridea 的 10,000+ Stars 和 28,000+ 用户已经验证了这个需求的真实性——现在需要的是用现代技术和开放生态来真正满足它。</p>
+<hr />
+<p><em>数据来源：GitHub 官方页面、Hexo/Hugo/VitePress/Jekyll/Gatsby 官网、D-Sketon Hexo Benchmark 2025、BetterLink/咕咕鸽/Smashing Magazine 等博客文章、知乎/V2EX/Reddit/CSDN/掘金社区讨论、State of JavaScript 调查等。</em></p>
+
+  </div>
+
+  
+  <nav class="post-nav">
+    
+    <a href="/post/gridea-pro-backend-architecture-deep-dive/" class="post-nav-card post-nav-card--prev">
+      
+      <div class="post-nav-card__img">
+        <img src="https://cdn.jsdelivr.net/gh/Tespera/Assets@main/post-images/gridea-pro-backend-architecture-deep-dive.jpg" alt="Gridea Pro 后端架构深度解析：一个桌面端静态博客系统的工程哲学" loading="lazy" />
+      </div>
+      
+      <div class="post-nav-card__body">
+        <span class="post-nav-card__label meta-text">上一篇</span>
+        <span class="post-nav-card__title">Gridea Pro 后端架构深度解析：一个桌面端静态博客系统的工程哲学</span>
+      </div>
+      <span class="post-nav-card__arrow">&larr;</span>
+    </a>
+    
+    
+    <a href="/post/gridea-pro-vs-hexo-vs-hugo/" class="post-nav-card post-nav-card--next">
+      <div class="post-nav-card__body">
+        <span class="post-nav-card__label meta-text">下一篇</span>
+        <span class="post-nav-card__title">Gridea Pro vs Hexo vs Hugo — 深度对比分析报告</span>
+      </div>
+      
+      <div class="post-nav-card__img">
+        <img src="https://cdn.jsdelivr.net/gh/Tespera/Assets@main/post-images/gridea-pro-vs-hexo-vs-hugo.jpg" alt="Gridea Pro vs Hexo vs Hugo — 深度对比分析报告" loading="lazy" />
+      </div>
+      
+      <span class="post-nav-card__arrow">&rarr;</span>
+    </a>
+    
+  </nav>
+
+  
+  
+
+
+  
+    <section class="comment-section">
+  <h2 class="comment-section__title">评论</h2>
+  <div id="vcomments"></div>
+  <link rel="stylesheet" href="https://unpkg.com/valine@1/dist/Valine.min.css">
+  <script src="https://unpkg.com/valine@1/dist/Valine.min.js"></script>
+  <script>
+    new Valine({
+      el: '#vcomments',
+      appId: 'dAWkPrxZg50VZ7iV39rrZL5U-MdYXbMMI',
+      appKey: 'YCfYt8rhK8d0mh9vr42YTaA1',
+      serverURLs: 'https://dawkprxz.api.lncldglobal.com',
+      avatar: 'mp',
+      placeholder: '说点什么吧…'
+    });
+    // Valine 内置 locale 不支持覆盖，手动替换 placeholder
+    var linkInput = document.querySelector('#vcomments .vlink');
+    if (linkInput) linkInput.placeholder = '网址(https://)';
+  </script>
+</section>
+
+  
+
+
+
+</article>
+
+  </main>
+
+  <footer class="site-footer">
+  <div class="footer-inner">
+
+    
+    
+    <nav class="footer-nav" aria-label="页脚导航">
+      
+      <a class="footer-nav__link" href="/">首页</a>
+      
+      <a class="footer-nav__link" href="/post">博客</a>
+      
+      <a class="footer-nav__link" href="/memos">闪念</a>
+      
+      <a class="footer-nav__link" href="/archives">归档</a>
+      
+      <a class="footer-nav__link" href="/tags">标签</a>
+      
+      <a class="footer-nav__link" href="/links">友链</a>
+      
+      <a class="footer-nav__link" href="/post/about">关于</a>
+      
+    </nav>
+    
+
+    
+    <div class="footer-social">
+      
+      <a class="footer-social__link" href="https://github.com/Tespera" target="_blank" rel="noopener noreferrer"
+        aria-label="GitHub">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path
+            d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+        </svg>
+      </a>
+      
+      
+      <a class="footer-social__link" href="https://x.com" target="_blank" rel="noopener noreferrer"
+        aria-label="Twitter/X">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path
+            d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+        </svg>
+      </a>
+      
+      
+      <a class="footer-social__link" href="https://weibo.com" target="_blank" rel="noopener noreferrer"
+        aria-label="微博">
+        <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor">
+          <path d="M10.878 1.093a4.23 4.23 0 0 1 4.031 1.305 4.22 4.22 0 0 1 .886 4.14v.001a.612.612 0 0 1-1.166-.377 3.01 3.01 0 0 0-3.495-3.873.611.611 0 1 1-.256-1.196M3.753 9.465c.548-1.11 1.972-1.74 3.233-1.411 1.304.338 1.971 1.568 1.437 2.764-.541 1.221-2.095 1.875-3.416 1.449-1.271-.411-1.812-1.67-1.254-2.802m2.658.567c.16.066.365-.009.458-.168.088-.16.03-.34-.129-.397-.156-.062-.353.013-.446.168-.09.154-.041.333.117.397m-1.607 1.314c.413.188.963.009 1.219-.4.252-.413.12-.883-.296-1.062-.41-.172-.94.005-1.194.402-.256.4-.135.874.271 1.06"/>
+          <path d="m12.014 7.238.005.001c.919.285 1.941.974 1.939 2.188 0 2.007-2.895 4.535-7.246 4.535C3.393 13.962 0 12.352 0 9.708c0-1.385.876-2.985 2.384-4.493C4.4 3.199 6.751 2.28 7.634 3.165c.39.392.427 1.065.177 1.87-.132.405.38.182.38.182 1.63-.682 3.051-.722 3.57.02.278.397.252.951-.004 1.594-.116.293.035.34.257.407m-10.4 3.101c.172 1.738 2.46 2.936 5.109 2.674 2.647-.26 4.656-1.883 4.482-3.623-.17-1.738-2.458-2.937-5.107-2.674-2.647.263-4.656 1.883-4.484 3.623m11.681-6.484a2.06 2.06 0 0 0-1.962-.634.526.526 0 1 0 .219 1.031 1.008 1.008 0 0 1 1.17 1.296.528.528 0 0 0 1.005.325 2.06 2.06 0 0 0-.432-2.018"/>
+        </svg>
+      </a>
+      
+      <a class="footer-social__link" href="/feed.xml" aria-label="RSS">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M6.18 15.64a2.18 2.18 0 110 4.36 2.18 2.18 0 010-4.36zM4 4.44A15.56 15.56 0 0119.56 20h-2.83A12.73 12.73 0 004 7.27V4.44zm0 5.66a9.9 9.9 0 019.9 9.9h-2.83A7.07 7.07 0 004 12.93V10.1z"/>
+        </svg>
+      </a>
+    </div>
+
+    
+    <div class="footer-copyright">
+      <p>&copy; 2026 述尔. All rights reserved.</p>
+    </div>
+
+    
+    
+
+    
+    <div class="footer-powered">
+      <span>Powered by <a href="https://gridea.pro" target="_blank" rel="noopener noreferrer">Gridea Pro</a></span>
+    </div>
+
+  </div>
+</footer>
+
+  
+  <div class="search-overlay" id="searchOverlay" style="display:none;">
+  <div class="search-modal">
+    <div class="search-header">
+      <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+      <input type="text" class="search-input" id="searchInput" placeholder="搜索文章..." autocomplete="off" />
+      <span class="search-kbd">&#8984;K</span>
+      <button class="search-close" id="searchClose" type="button" aria-label="关闭搜索">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+    <div class="search-results" id="searchResults"></div>
+  </div>
+</div>
+
+<script src="/scripts/search.js"></script>
+  
+
+  
+
+  
+
+  
+
+<script>console.log("\n%c ✦ Gridea Pro v0.0.0-dev %c · Theme: flavor-theme v1.0.0 · https://gridea.pro %c\n","color:#fadfa3;background:#111111;padding:9px 14px;border-radius:4px 0 0 4px;font-weight:500;font-size:12px","color:#e05c00;background:#fff3ec;padding:9px 14px;border-radius:0 4px 4px 0;font-size:11px","")</script>
+</body>
+</html>

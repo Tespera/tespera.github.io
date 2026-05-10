@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link rel="stylesheet" href="/styles/main.min.css">
+
+
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+
+
+<style>:root { --heatmap-color: #39d353; }</style>
+
+
+
+<script>
+  (function () {
+    try {
+      var saved = localStorage.getItem('flavor-theme');
+      var theme = saved || 'dark';
+      if (theme === 'light') {
+        document.documentElement.classList.add('theme-light');
+      }
+    } catch (e) { }
+  })();
+</script>
+  <meta name="generator" content="Gridea Pro 0.0.0-dev">
+  <title>Gridea Pro MCP 的设计理念与技术取舍 | 述尔</title>
+  
+<meta property="og:title" content="Gridea Pro MCP 的设计理念与技术取舍" />
+<meta property="og:type" content="article" />
+
+<meta property="og:image" content="/post-images/gridea-pro-mcp-design-philosophy.png" />
+
+
+<meta name="description" content="当我们决定为一个桌面博客客户端实现 MCP 服务时，面对的不仅是&amp;quot;如何让 AI 调用几个 API&amp;quot;的技术问题，更是一系列关于信任边界、能力暴露、人机协作模式的设计抉择。这篇文章记录了这些抉择背后的思考。 一、为什么是 MCP，而不是 REST API 或插件系统 在 AI 辅助写作的浪潮中，大多数工具选择了两条路径：要么在应用内嵌入一个 AI 聊天窗口，要么暴露一套 REST &amp;hellip;">
+<meta name="keywords" content="述尔，Gridea  Pro，Gridea，静态博客，AI，产品经理">
+<link rel="canonical" href="https://are.ink/post/gridea-pro-mcp-design-philosophy/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Gridea Pro MCP 的设计理念与技术取舍","url":"https://are.ink/post/gridea-pro-mcp-design-philosophy/","description":"当我们决定为一个桌面博客客户端实现 MCP 服务时，面对的不仅是\u0026quot;如何让 AI 调用几个 API\u0026quot;的技术问题，更是一系列关于信任边界、能力暴露、人机协作模式的设计抉择。这篇文章记录了这些抉择背后的思考。 一、为什么是 MCP，而不是 REST API 或插件系统 在 AI 辅助写作的浪潮中，大多数工具选择了两条路径：要么在应用内嵌入一个 AI 聊天窗口，要么暴露一套 REST \u0026hellip;","image":"/post-images/gridea-pro-mcp-design-philosophy.png","datePublished":"2026-03-11T04:00:00+08:00","dateModified":"2026-03-10T13:41:07+08:00","author":{"@type":"Person","name":"述尔"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/images/avatar.png"},"name":"述尔"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://are.ink","name":"述尔","position":1},{"@type":"ListItem","item":"https://are.ink/post/gridea-pro-mcp-design-philosophy/","name":"Gridea Pro MCP 的设计理念与技术取舍","position":2}]}</script>
+<meta property="og:title" content="Gridea Pro MCP 的设计理念与技术取舍">
+<meta property="og:description" content="当我们决定为一个桌面博客客户端实现 MCP 服务时，面对的不仅是&amp;quot;如何让 AI 调用几个 API&amp;quot;的技术问题，更是一系列关于信任边界、能力暴露、人机协作模式的设计抉择。这篇文章记录了这些抉择背后的思考。 一、为什么是 MCP，而不是 REST API 或插件系统 在 AI 辅助写作的浪潮中，大多数工具选择了两条路径：要么在应用内嵌入一个 AI 聊天窗口，要么暴露一套 REST &amp;hellip;">
+<meta property="og:url" content="https://are.ink/post/gridea-pro-mcp-design-philosophy/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="述尔">
+<meta property="og:image" content="/post-images/gridea-pro-mcp-design-philosophy.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://are.ink/post/gridea-pro-mcp-design-philosophy/">
+<meta name="twitter:title" content="Gridea Pro MCP 的设计理念与技术取舍">
+<meta name="twitter:description" content="当我们决定为一个桌面博客客户端实现 MCP 服务时，面对的不仅是&amp;quot;如何让 AI 调用几个 API&amp;quot;的技术问题，更是一系列关于信任边界、能力暴露、人机协作模式的设计抉择。这篇文章记录了这些抉择背后的思考。 一、为什么是 MCP，而不是 REST API 或插件系统 在 AI 辅助写作的浪潮中，大多数工具选择了两条路径：要么在应用内嵌入一个 AI 聊天窗口，要么暴露一套 REST &amp;hellip;">
+<meta name="twitter:image" content="/post-images/gridea-pro-mcp-design-philosophy.png">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1SBXPCEK36"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-1SBXPCEK36');</script>
+<meta name="google-site-verification" content="googlea4223896f417412f.html">
+<script>var _hmt=_hmt||[];(function(){var hm=document.createElement("script");hm.src="https://hm.baidu.com/hm.js?4b792e215f23cf68ed571462a263feb3";var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(hm,s);})();</script>
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#000000">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="述尔">
+<link rel="apple-touch-icon" sizes="180x180" href="https://cdn.jsdelivr.net/gh/Tespera/Assets@main/images/icons/icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192" href="https://cdn.jsdelivr.net/gh/Tespera/Assets@main/images/icons/icon-192x192.png">
+<meta name="msapplication-TileColor" content="#000000">
+<meta name="msapplication-TileImage" content="/images/icons/icon-192x192.png">
+<script>if('serviceWorker' in navigator){navigator.serviceWorker.register('/sw.js')}</script>
+</head>
+<body class="flavor-theme">
+
+  <header class="site-header" id="siteHeader">
+  <div class="header-inner">
+    <div class="top-bar">
+
+      
+      <div class="top-bar__left">
+        
+        <a href="https://are.ink" class="site-avatar-link" aria-label="返回首页">
+          <img class="site-avatar" src="https://cdn.jsdelivr.net/gh/Tespera/Assets@main/images/avatar.png" alt="述尔" />
+        </a>
+        
+        <a href="https://are.ink" class="site-name-link">述尔</a>
+      </div>
+
+      
+      <nav class="top-bar__nav" id="sectionBar">
+        
+        
+        <a class="nav-item" href="/">首页</a>
+        
+        <a class="nav-item" href="/post">博客</a>
+        
+        <a class="nav-item" href="/memos">闪念</a>
+        
+        <a class="nav-item" href="/archives">归档</a>
+        
+        <a class="nav-item" href="/tags">标签</a>
+        
+        <a class="nav-item" href="/links">友链</a>
+        
+        <a class="nav-item" href="/post/about">关于</a>
+        
+        
+      </nav>
+
+      
+      <div class="top-bar__right">
+        <button class="btn-icon btn-search search-btn" id="btnSearch" type="button" aria-label="搜索">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+        </button>
+        <button class="btn-icon theme-toggle theme-toggle-sun" id="themeToggleSun" type="button"
+          aria-label="切换到浅色模式">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 1C12.5523 1 13 1.44772 13 2V4C13 4.55228 12.5523 5 12 5C11.4477 5 11 4.55228 11 4V2C11 1.44772 11.4477 1 12 1Z"></path>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M7 12C7 9.23858 9.23858 7 12 7C14.7614 7 17 9.23858 17 12C17 14.7614 14.7614 17 12 17C9.23858 17 7 14.7614 7 12ZM12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9Z"></path>
+            <path d="M13 20C13 19.4477 12.5523 19 12 19C11.4477 19 11 19.4477 11 20V22C11 22.5523 11.4477 23 12 23C12.5523 23 13 22.5523 13 22V20Z"></path>
+            <path d="M4.22282 4.22289C4.61335 3.83236 5.24651 3.83236 5.63704 4.22289L7.04704 5.63289C7.43756 6.02341 7.43756 6.65658 7.04704 7.0471C6.65651 7.43762 6.02335 7.43762 5.63283 7.0471L4.22282 5.6371C3.8323 5.24658 3.8323 4.61341 4.22282 4.22289Z"></path>
+            <path d="M18.367 16.9529C17.9765 16.5623 17.3433 16.5623 16.9528 16.9529C16.5623 17.3434 16.5623 17.9766 16.9528 18.3671L18.3628 19.7771C18.7533 20.1676 19.3865 20.1676 19.777 19.7771C20.1675 19.3866 20.1675 18.7534 19.777 18.3629L18.367 16.9529Z"></path>
+            <path d="M1 12C1 11.4477 1.44772 11 2 11H4C4.55228 11 5 11.4477 5 12C5 12.5523 4.55228 13 4 13H2C1.44772 13 1 12.5523 1 12Z"></path>
+            <path d="M20 11C19.4477 11 19 11.4477 19 12C19 12.5523 19.4477 13 20 13H22C22.5523 13 23 12.5523 23 12C23 11.4477 22.5523 11 22 11H20Z"></path>
+            <path d="M7.04704 16.9529C7.43756 17.3434 7.43756 17.9766 7.04704 18.3671L5.63704 19.7771C5.24651 20.1676 4.61335 20.1676 4.22282 19.7771C3.8323 19.3866 3.8323 18.7534 4.22283 18.3629L5.63283 16.9529C6.02335 16.5623 6.65651 16.5623 7.04704 16.9529Z"></path>
+            <path d="M19.777 5.6371C20.1675 5.24657 20.1675 4.61341 19.777 4.22289C19.3865 3.83236 18.7533 3.83236 18.3628 4.22289L16.9528 5.63289C16.5623 6.02341 16.5623 6.65658 16.9528 7.0471C17.3433 7.43762 17.9765 7.43762 18.367 7.0471L19.777 5.6371Z"></path>
+          </svg>
+        </button>
+        <button class="btn-icon theme-toggle theme-toggle-moon" id="themeToggleMoon" type="button"
+          aria-label="切换到深色模式">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C10.0222 2 8.08879 2.58649 6.4443 3.6853C4.79981 4.78412 3.51809 6.3459 2.76121 8.17317C2.00433 10.0004 1.8063 12.0111 2.19215 13.9509C2.578 15.8907 3.53041 17.6725 4.92894 19.0711C6.32746 20.4696 8.10929 21.422 10.0491 21.8079C11.9889 22.1937 13.9996 21.9957 15.8268 21.2388C17.6541 20.4819 19.2159 19.2002 20.3147 17.5557C21.4135 15.9112 22 13.9778 22 12C22 11.5955 21.7564 11.2309 21.3827 11.0761C21.009 10.9213 20.5789 11.0069 20.2929 11.2929C19.287 12.2988 17.9226 12.864 16.5 12.864C15.0774 12.864 13.713 12.2988 12.7071 11.2929C11.7012 10.287 11.136 8.92261 11.136 7.5C11.136 6.07739 11.7012 4.71304 12.7071 3.70711C12.9931 3.42111 13.0787 2.99099 12.9239 2.61732C12.7691 2.24364 12.4045 2 12 2ZM7.55544 5.34824C8.27036 4.87055 9.05353 4.51389 9.87357 4.28778C9.39271 5.27979 9.13604 6.37666 9.13604 7.5C9.13604 9.45304 9.91189 11.3261 11.2929 12.7071C12.6739 14.0881 14.547 14.864 16.5 14.864C17.6233 14.864 18.7202 14.6073 19.7122 14.1264C19.4861 14.9465 19.1295 15.7296 18.6518 16.4446C17.7727 17.7602 16.5233 18.7855 15.0615 19.391C13.5997 19.9965 11.9911 20.155 10.4393 19.8463C8.88743 19.5376 7.46197 18.7757 6.34315 17.6569C5.21447 16.538 4.4624 15.1126 4.15372 13.5607C3.84504 12.0089 4.00347 10.4003 4.60897 8.93853C5.21447 7.47672 6.23985 6.22729 7.55544 5.34824Z"></path>
+            <path d="M19 2C19.5523 2 20 2.44772 20 3V4H21C21.5523 4 22 4.44772 22 5C22 5.55228 21.5523 6 21 6H20V7C20 7.55228 19.5523 8 19 8C18.4477 8 18 7.55228 18 7V6H17C16.4477 6 16 5.55228 16 5C16 4.44772 16.4477 4 17 4H18V3C18 2.44772 18.4477 2 19 2Z"></path>
+          </svg>
+        </button>
+        <button class="btn-icon btn-nav-toggle mobile-only" id="btnNavToggle" type="button" aria-label="切换导航">
+          <div class="hamburger" id="hamburger">
+            <span class="hamburger__line hamburger__line--top"></span>
+            <span class="hamburger__line hamburger__line--bottom"></span>
+          </div>
+        </button>
+      </div>
+
+    </div>
+  </div>
+</header>
+
+
+<div class="header-spacer"></div>
+
+<script>
+(function(){
+  var btn = document.getElementById('btnNavToggle');
+  var nav = document.getElementById('sectionBar');
+  var hamburger = document.getElementById('hamburger');
+  if (btn && nav) {
+    btn.addEventListener('click', function(){
+      nav.classList.toggle('top-bar__nav--open');
+      if (hamburger) hamburger.classList.toggle('is-active');
+    });
+    nav.querySelectorAll('.nav-item').forEach(function(item){
+      item.addEventListener('click', function(){
+        nav.classList.remove('top-bar__nav--open');
+        if (hamburger) hamburger.classList.remove('is-active');
+      });
+    });
+  }
+
+  var root = document.documentElement;
+  var applyTheme = function(theme, persist){
+    if (theme === 'light') {
+      root.classList.add('theme-light');
+    } else {
+      root.classList.remove('theme-light');
+    }
+    if (persist) {
+      try { localStorage.setItem('flavor-theme', theme); } catch (e) {}
+    }
+  };
+  document.querySelectorAll('.theme-toggle').forEach(function(el){
+    el.addEventListener('click', function(){
+      applyTheme(root.classList.contains('theme-light') ? 'dark' : 'light', true);
+    });
+  });
+})();
+</script>
+
+  <main class="site-main" role="main">
+    
+<article class="article-container">
+  <header class="article-header">
+    <h1 class="article-title">Gridea Pro MCP 的设计理念与技术取舍</h1>
+    <div class="article-meta">
+      
+      
+      <a href="/category/Gridea-Pro/" class="article-meta__category">Gridea Pro</a>
+      
+      
+      <span class="article-meta__sep">·</span>
+      
+      <span class="article-meta__item">2026年03月11日</span>
+      
+      <span class="article-meta__sep">·</span>
+      <span class="article-meta__item">9 分钟阅读</span>
+      
+    </div>
+    
+    <div class="article-header__tags">
+      
+      <a href="/tag/gridea-pro/" class="tag-pill tag-pill--sm">Gridea Pro</a>
+      
+      <a href="/tag/mcp/" class="tag-pill tag-pill--sm">MCP</a>
+      
+      <a href="/tag/architecture-design/" class="tag-pill tag-pill--sm">架构设计</a>
+      
+      <a href="/tag/best-practice/" class="tag-pill tag-pill--sm">最佳实践</a>
+      
+    </div>
+    
+  </header>
+
+  
+  <div class="article-feature">
+    <img src="https://cdn.jsdelivr.net/gh/Tespera/Assets@main/post-images/gridea-pro-mcp-design-philosophy.png" alt="Gridea Pro MCP 的设计理念与技术取舍" />
+  </div>
+  
+
+  <div class="article-content">
+    <p>当我们决定为一个桌面博客客户端实现 MCP 服务时，面对的不仅是&quot;如何让 AI 调用几个 API&quot;的技术问题，更是一系列关于信任边界、能力暴露、人机协作模式的设计抉择。这篇文章记录了这些抉择背后的思考。</p>
+<hr />
+<h2 id="-mcp-rest-api-">一、为什么是 MCP，而不是 REST API 或插件系统</h2>
+<p>在 AI 辅助写作的浪潮中，大多数工具选择了两条路径：要么在应用内嵌入一个 AI 聊天窗口，要么暴露一套 REST API 供外部调用。我们都没有选。</p>
+<p><strong>内嵌 AI 的问题</strong>在于绑定。你被锁死在某个模型、某个提供商、某个交互范式里。当更好的模型出现，当用户有不同的 AI 偏好，内嵌方案就变成了技术债。</p>
+<p><strong>REST API 的问题</strong>在于定位。博客客户端是一个本地应用，数据存储在用户的文件系统上，不存在&quot;服务器&quot;。为了让 AI 调用而强行启动一个 HTTP 服务，引入了不必要的网络层、认证机制、端口管理 —— 这些复杂性与&quot;在本地管理我的博客&quot;的场景完全不匹配。</p>
+<p>MCP 的 stdio 传输方式精准地解决了这个矛盾：<strong>AI 客户端直接启动一个本地进程，通过管道通信，没有网络、没有端口、没有认证。</strong> 进程随 AI 客户端的生命周期启停，不留后台残余。这不是对 REST 的妥协，而是对本地应用场景的正确抽象。</p>
+<p>更重要的是，MCP 是一个<strong>协议而非实现</strong>。用户可以自由选择 Claude Desktop、Cursor、Claude Code 或任何未来的 MCP 兼容客户端。我们不绑定 AI 提供商，不绑定交互界面，只定义能力边界。博客应用负责&quot;我能做什么&quot;，AI 客户端负责&quot;怎么和用户交互&quot;。</p>
+<hr />
+<h2 id="heading">二、独立二进制：一个关于耦合的决定</h2>
+<p>MCP 服务最终以 <code>gridea-pro-mcp</code> 独立二进制的形式存在，而不是作为主应用的子命令（<code>gridea-pro mcp</code>）。这个决定看似是工程细节，实则反映了一个架构原则：<strong>运行时独立，代码共享。</strong></p>
+<p>Gridea Pro 的桌面应用基于 Wails 构建，打包后是一个包含 GUI 运行时的 <code>.app</code> bundle。MCP 服务不需要窗口、不需要菜单、不需要事件循环 —— 它是一个纯粹的 stdio 进程。将两者打包在一起意味着：</p>
+<ul>
+<li>MCP 进程启动时需要跳过所有 GUI 初始化逻辑</li>
+<li>macOS 的 <code>.app</code> bundle 路径规则给命令行调用带来额外复杂性</li>
+<li>二进制体积膨胀（包含了永远不会用到的 GUI 依赖）</li>
+</ul>
+<p>但独立二进制不意味着独立代码库。<code>gridea-pro-mcp</code> 和桌面应用共享同一套 Service 层和 Repository 层。文章的创建逻辑、标签的自动匹配、闪念的标签提取 —— 这些业务规则只存在一份。当我们修复了 Service 层的一个 bug，MCP 服务同步受益，反之亦然。</p>
+<p>这就是&quot;独立二进制，共享代码&quot;的含义：<strong>部署形态上解耦，业务逻辑上统一。</strong> 两个入口、一套逻辑、一份数据。</p>
+<hr />
+<h2 id="heading-1">三、能力暴露的层次：工具、资源、提示词</h2>
+<p>MCP 协议定义了三种能力暴露方式，它们不是同一件事的三种写法，而是 AI 与应用交互的三个层次。理解这个层次结构，是理解 Gridea Pro MCP 设计的关键。</p>
+<h3 id="tools-">工具（Tools）—— 原子操作</h3>
+<p>工具是最底层的能力单元。<code>create_post</code> 创建一篇文章，<code>delete_tag</code> 删除一个标签 —— 每个工具做且只做一件事。AI 根据用户意图自主决定调用哪些工具、以什么顺序调用。</p>
+<p>这里有一个有意思的设计张力：<strong>工具应该多细粒度？</strong></p>
+<p>太粗粒度（比如一个 <code>manage_blog</code> 工具包揽一切），AI 无法灵活组合；太细粒度（比如把&quot;创建文章&quot;拆成&quot;创建文件&quot;&ldquo;写入内容&quot;&ldquo;更新索引&rdquo;），AI 需要理解不必要的实现细节。</p>
+<p>我们的原则是：<strong>工具的粒度应该对应用户心智模型中的一个动作。</strong> 用户会说&quot;创建一篇文章&quot;&ldquo;删除一个标签&rdquo;，不会说&quot;向 posts 目录写入一个 markdown 文件&rdquo;。工具的边界应该与用户意图的边界一致。</p>
+<h3 id="resources-">资源（Resources）—— 上下文感知</h3>
+<p>资源是 AI 主动获取的上下文信息。<code>gridea://site/info</code> 告诉 AI 这个博客叫什么名字、谁是作者；<code>gridea://posts/summary</code> 让 AI 快速了解博客的全貌。</p>
+<p>资源的价值不在于&quot;提供数据&quot;—— 工具也能做到。资源的价值在于<strong>让 AI 具备上下文感知能力</strong>。当用户说&quot;帮我写一篇技术博客&quot;时，AI 不是在真空中写作。它知道这个博客的主题倾向、现有的标签体系、最近的内容趋势。这种感知让 AI 的输出从&quot;通用&quot;变成&quot;贴合&quot;。</p>
+<h3 id="prompts-">提示词模板（Prompts）—— 工作流编排</h3>
+<p>提示词模板是最高层的抽象。<code>blog_writing_assistant</code> 不是一个工具，而是一套工作流：先查阅现有标签和分类，再拟定大纲，再撰写全文，最后发布。它编排了多个工具的调用顺序和决策逻辑。</p>
+<p><strong>提示词模板体现了一个核心理念：把专家知识固化为可复用的流程。</strong></p>
+<p>一个熟练的 Gridea Pro 用户知道，写完文章后应该检查标签是否已存在、分类是否合理、文件名是否规范。新用户不知道这些。提示词模板弥合了这个认知差距 —— AI 按照模板中的专家流程执行，即使用户只说了一句&quot;帮我写篇博客&quot;。</p>
+<p>三个层次的关系可以这样理解：</p>
+<pre><code>提示词模板  →  定义&quot;做什么&quot;和&quot;怎么做&quot;的流程
+    ↓ 编排
+  工具       →  执行每一步具体操作
+    ↑ 参考
+  资源       →  提供决策所需的上下文
+</code></pre>
+<hr />
+<h2 id="heading-2">四、安全设计：信任的梯度</h2>
+<p>让 AI 操作用户数据，最敏感的问题不是技术实现，而是信任。Gridea Pro MCP 的安全设计基于一个前提：<strong>信任不是二元的开关，而是连续的梯度。</strong></p>
+<h3 id="heading-3">第一层：读操作自由，写操作谨慎</h3>
+<p>查看文章列表、读取站点配置 —— 这些读操作没有副作用，无需确认。但任何写操作都需要经过 AI 的判断，而删除操作则进一步要求用户显式确认。这不是技术限制，而是对操作风险的分级响应。</p>
+<h3 id="heading-4">第二层：两步确认，而非权限模型</h3>
+<p>我们没有实现传统意义上的权限系统（&ldquo;AI 可以创建但不能删除&rdquo;），因为这种静态权限无法适应动态的使用场景。一个用户可能在整理博客时需要批量删除过时文章，另一个用户可能永远不想让 AI 动已有内容。</p>
+<p>取而代之的是<strong>两步确认机制</strong>：AI 首次调用危险操作时，只返回预览（&ldquo;即将删除《Go 并发编程》，确认吗？&quot;）；用户确认后才真正执行。这个设计把决策权交还给用户，同时保留了 AI 的操作能力。</p>
+<p>更微妙的是，两步确认不仅是安全机制，也是<strong>交互设计</strong>。它创造了一个自然的对话节点，让用户有机会修正 AI 的理解偏差。&ldquo;我说的不是这篇文章&quot;比&quot;我不知道 AI 删了什么&quot;好得多。</p>
+<h3 id="heading-5">第三层：能力隔离，默认最小化</h3>
+<p>部署功能通过环境变量 <code>DEPLOY_ENABLED</code> 控制，默认不注册。这不是简单的功能开关，而是<strong>能力隔离</strong>的体现 —— 未注册的工具在 MCP 协议层面不存在，AI 既不知道它的存在，也无法尝试调用。</p>
+<p>这比&quot;注册但拒绝执行&quot;更安全。后者仍然暴露了工具的存在，AI 可能反复尝试或向用户建议&quot;开启此功能&rdquo;。完全不注册意味着：<strong>能力边界由配置决定，而非由 AI 的自我约束决定。</strong></p>
+<h3 id="heading-6">第四层：敏感信息永不出境</h3>
+<p>通过 MCP 获取部署设置时，token、password、privateKey 等字段自动替换为 <code>***</code>。这个处理发生在 MCP 服务内部，在数据序列化为 JSON 之前。敏感信息永远不会进入 AI 的上下文窗口，从根源上消除了泄露路径。</p>
+<hr />
+<h2 id="heading-7">五、数据一致性：两个入口，一份真相</h2>
+<p>Gridea Pro 的数据存储在本地文件系统中 —— JSON 文件存配置和元数据，Markdown 文件存文章内容。桌面应用和 MCP 服务都直接读写这些文件，没有中间层。</p>
+<p>这带来了一个必须正视的问题：<strong>两个写入者，一份数据。</strong></p>
+<p>我们的做法是让 MCP 服务复用桌面应用完全相同的 Repository 和 Service 代码。不是&quot;类似的逻辑&rdquo;，不是&quot;参考实现&quot;，而是同一份代码。当 Service 层规定&quot;创建闪念时自动提取 #标签&quot;，MCP 路径和 GUI 路径走的是同一个 <code>extractTags</code> 函数，用的是同一个 Unicode 正则表达式。</p>
+<p>这个决策有一个直接推论：<strong>MCP 服务必须与桌面应用在同一个代码仓库中。</strong> 我们曾考虑过将 MCP 独立为一个单独的项目，但很快放弃了 —— 两个仓库意味着两份 Domain 模型、两份数据访问逻辑、两套需要同步维护的代码。任何一次 Post 结构的变更都需要在两个地方修改，这在实践中是不可持续的。</p>
+<p>同一份代码、同一份数据、同一组业务规则。这是保证一致性的唯一可靠方式。</p>
+<hr />
+<h2 id="heading-8">六、面向意图的接口设计</h2>
+<p>MCP 工具的接口设计不是&quot;暴露后端 API&quot;，而是<strong>面向 AI 的意图表达</strong>。两者的区别体现在很多细节中。</p>
+<h3 id="heading-9">参数应该符合自然语言的表达</h3>
+<p>创建文章时，分类参数是 <code>category</code>（单数），不是 <code>categories</code>（复数），也不是 <code>categoryId</code>。因为用户会说&quot;归到&rsquo;技术&rsquo;分类下&quot;，而不是&quot;关联 category ID <code>a3f8e2</code>&quot;。AI 传入分类名称，Service 层负责匹配已有分类或创建新分类 —— 这个转换对 AI 是透明的。</p>
+<p>标签参数接受逗号分隔的字符串（<code>&quot;Go, 并发, 编程&quot;</code>），而不是 JSON 数组。因为在自然语言中，标签就是一组逗号分隔的词。</p>
+<h3 id="heading-10">返回值应该服务于决策</h3>
+<p><code>list_posts</code> 不返回文章的完整内容（那可能是几万字），只返回元数据（标题、日期、标签、发布状态）。这不是因为性能 —— 虽然确实更高效 —— 而是因为 AI 在&quot;选择操作哪篇文章&quot;的场景下，不需要全文内容。元数据足够支撑决策。</p>
+<p>当 AI 确实需要全文时，<code>get_post</code> 提供了这个能力。两个工具、两个场景、两种数据粒度。</p>
+<h3 id="-ai-">工具描述应该指导 AI 的行为</h3>
+<p><code>render_site</code> 的描述是 &ldquo;Render the static site. <strong>Call this after making changes to posts or settings.</strong>&rdquo; 后半句不是功能说明，而是<strong>使用时机的提示</strong>。AI 读到这个描述后，会在创建或修改文章后主动建议&quot;需要渲染站点吗？&quot;。</p>
+<p>工具描述是 MCP 中最被低估的设计表面。它不是给人读的 API 文档，而是给 AI 读的行为指导。</p>
+<hr />
+<h2 id="heading-11">七、渐进式能力暴露</h2>
+<p>不是所有用户都需要所有功能。一个只想用 AI 写文章的用户，不需要（也不应该）面对部署相关的复杂性。</p>
+<p>Gridea Pro MCP 通过<strong>环境变量</strong>实现能力的渐进式暴露：</p>
+<pre><code class="language-json">// 基础配置：内容管理 + 渲染
+{
+  &quot;env&quot;: {
+    &quot;SOURCE_DIR&quot;: &quot;/path/to/site&quot;
+  }
+}
+
+// 完整配置：内容管理 + 渲染 + 部署
+{
+  &quot;env&quot;: {
+    &quot;SOURCE_DIR&quot;: &quot;/path/to/site&quot;,
+    &quot;DEPLOY_ENABLED&quot;: &quot;true&quot;
+  }
+}
+</code></pre>
+<p>这个设计的微妙之处在于：环境变量控制的不是&quot;权限&quot;，而是&quot;能力的存在性&quot;。<code>DEPLOY_ENABLED</code> 为 false 时，<code>deploy_site</code> 工具在 MCP 协议层面不存在。AI 的工具列表中没有这个选项，它不会建议用户部署，也不会在工作流中考虑部署步骤。</p>
+<p>这比传统的权限控制更优雅。权限控制说&quot;你不能做这件事&quot;，能力隔离说&quot;这件事不存在&quot;。前者需要处理拒绝的交互（&ldquo;为什么不能？怎么开启？&quot;），后者从根本上消除了这个问题。</p>
+<p>未来如果需要更多可选能力（比如 SFTP 部署、Netlify 部署、自定义渲染管线），同样的模式可以自然扩展，而不需要引入复杂的权限管理系统。</p>
+<hr />
+<h2 id="heading-12">八、从&quot;工具箱&quot;到&quot;工作伙伴&rdquo;</h2>
+<p>MCP 协议的三层能力模型（工具、资源、提示词）暗示了一个更大的设计愿景：AI 不仅是被动的工具执行者，更是主动的工作伙伴。</p>
+<p><strong>工具</strong>让 AI 能做事。<br />
+<strong>资源</strong>让 AI 了解上下文。<br />
+<strong>提示词模板</strong>让 AI 懂得流程。</p>
+<p>三者组合，AI 从&quot;调用 API 的自动化脚本&quot;进化为&quot;理解博客运营的协作者&quot;。它知道创建文章前应该先查阅现有标签体系，知道部署前应该先渲染，知道删除操作需要谨慎确认。这些不是硬编码的 if-else，而是通过工具描述和提示词模板传递给 AI 的领域知识。</p>
+<p>这也是我们选择在 MCP 中实现 5 个提示词模板的原因。它们不是&quot;快捷方式&quot;，而是<strong>博客运营最佳实践的编码化表达</strong>。<code>site_health_check</code> 编码了&quot;什么是健康的博客站点&quot;的知识，<code>content_review</code> 编码了&quot;好文章应该具备哪些元素&quot;的标准。这些知识原本只存在于经验丰富的博主脑中，现在通过 MCP 提示词模板，任何用户都可以借助 AI 获得同等质量的运营指导。</p>
+<hr />
+<h2 id="heading-13">结语</h2>
+<p>Gridea Pro MCP 的设计，归根到底是在回答一个问题：<strong>在 AI 时代，一个本地应用应该如何与 AI 协作？</strong></p>
+<p>我们的答案是：</p>
+<ul>
+<li><strong>不嵌入，而是开放</strong> —— 通过标准协议暴露能力，不绑定任何 AI 提供商</li>
+<li><strong>不复制，而是共享</strong> —— 独立进程、共享代码，保证一致性</li>
+<li><strong>不信任，而是验证</strong> —— 分层的安全机制，把最终决策权交给用户</li>
+<li><strong>不罗列，而是编排</strong> —— 从原子工具到工作流模板，传递领域知识而非仅仅暴露功能</li>
+</ul>
+<p>这些原则不仅适用于博客客户端，也适用于任何想要接入 AI 生态的本地应用。MCP 协议提供了技术基础，但好的设计决策才是真正决定用户体验的因素。</p>
+
+  </div>
+
+  
+  <nav class="post-nav">
+    
+    <a href="/post/most-conversations-with-Claude-on-Earth-is-a-philosopher/" class="post-nav-card post-nav-card--prev">
+      
+      <div class="post-nav-card__img">
+        <img src="https://cdn.jsdelivr.net/gh/Tespera/Assets@main/post-images/most-conversations-with-Claude-on-Earth-is-a-philosopher.png" alt="地球上和 Claude 对话最多的人，是一位哲学家" loading="lazy" />
+      </div>
+      
+      <div class="post-nav-card__body">
+        <span class="post-nav-card__label meta-text">上一篇</span>
+        <span class="post-nav-card__title">地球上和 Claude 对话最多的人，是一位哲学家</span>
+      </div>
+      <span class="post-nav-card__arrow">&larr;</span>
+    </a>
+    
+    
+    <a href="/post/procedura-justice-and-substantive-justice/" class="post-nav-card post-nav-card--next">
+      <div class="post-nav-card__body">
+        <span class="post-nav-card__label meta-text">下一篇</span>
+        <span class="post-nav-card__title">程序正义与实体正义：在规则与良知之间寻找文明的支点</span>
+      </div>
+      
+      <div class="post-nav-card__img">
+        <img src="https://cdn.jsdelivr.net/gh/Tespera/Assets@main/post-images/procedura-justice-and-substantive-justice.png" alt="程序正义与实体正义：在规则与良知之间寻找文明的支点" loading="lazy" />
+      </div>
+      
+      <span class="post-nav-card__arrow">&rarr;</span>
+    </a>
+    
+  </nav>
+
+  
+  
+
+
+  
+    <section class="comment-section">
+  <h2 class="comment-section__title">评论</h2>
+  <div id="vcomments"></div>
+  <link rel="stylesheet" href="https://unpkg.com/valine@1/dist/Valine.min.css">
+  <script src="https://unpkg.com/valine@1/dist/Valine.min.js"></script>
+  <script>
+    new Valine({
+      el: '#vcomments',
+      appId: 'dAWkPrxZg50VZ7iV39rrZL5U-MdYXbMMI',
+      appKey: 'YCfYt8rhK8d0mh9vr42YTaA1',
+      serverURLs: 'https://dawkprxz.api.lncldglobal.com',
+      avatar: 'mp',
+      placeholder: '说点什么吧…'
+    });
+    // Valine 内置 locale 不支持覆盖，手动替换 placeholder
+    var linkInput = document.querySelector('#vcomments .vlink');
+    if (linkInput) linkInput.placeholder = '网址(https://)';
+  </script>
+</section>
+
+  
+
+
+
+</article>
+
+  </main>
+
+  <footer class="site-footer">
+  <div class="footer-inner">
+
+    
+    
+    <nav class="footer-nav" aria-label="页脚导航">
+      
+      <a class="footer-nav__link" href="/">首页</a>
+      
+      <a class="footer-nav__link" href="/post">博客</a>
+      
+      <a class="footer-nav__link" href="/memos">闪念</a>
+      
+      <a class="footer-nav__link" href="/archives">归档</a>
+      
+      <a class="footer-nav__link" href="/tags">标签</a>
+      
+      <a class="footer-nav__link" href="/links">友链</a>
+      
+      <a class="footer-nav__link" href="/post/about">关于</a>
+      
+    </nav>
+    
+
+    
+    <div class="footer-social">
+      
+      <a class="footer-social__link" href="https://github.com/Tespera" target="_blank" rel="noopener noreferrer"
+        aria-label="GitHub">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path
+            d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+        </svg>
+      </a>
+      
+      
+      <a class="footer-social__link" href="https://x.com" target="_blank" rel="noopener noreferrer"
+        aria-label="Twitter/X">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path
+            d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+        </svg>
+      </a>
+      
+      
+      <a class="footer-social__link" href="https://weibo.com" target="_blank" rel="noopener noreferrer"
+        aria-label="微博">
+        <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor">
+          <path d="M10.878 1.093a4.23 4.23 0 0 1 4.031 1.305 4.22 4.22 0 0 1 .886 4.14v.001a.612.612 0 0 1-1.166-.377 3.01 3.01 0 0 0-3.495-3.873.611.611 0 1 1-.256-1.196M3.753 9.465c.548-1.11 1.972-1.74 3.233-1.411 1.304.338 1.971 1.568 1.437 2.764-.541 1.221-2.095 1.875-3.416 1.449-1.271-.411-1.812-1.67-1.254-2.802m2.658.567c.16.066.365-.009.458-.168.088-.16.03-.34-.129-.397-.156-.062-.353.013-.446.168-.09.154-.041.333.117.397m-1.607 1.314c.413.188.963.009 1.219-.4.252-.413.12-.883-.296-1.062-.41-.172-.94.005-1.194.402-.256.4-.135.874.271 1.06"/>
+          <path d="m12.014 7.238.005.001c.919.285 1.941.974 1.939 2.188 0 2.007-2.895 4.535-7.246 4.535C3.393 13.962 0 12.352 0 9.708c0-1.385.876-2.985 2.384-4.493C4.4 3.199 6.751 2.28 7.634 3.165c.39.392.427 1.065.177 1.87-.132.405.38.182.38.182 1.63-.682 3.051-.722 3.57.02.278.397.252.951-.004 1.594-.116.293.035.34.257.407m-10.4 3.101c.172 1.738 2.46 2.936 5.109 2.674 2.647-.26 4.656-1.883 4.482-3.623-.17-1.738-2.458-2.937-5.107-2.674-2.647.263-4.656 1.883-4.484 3.623m11.681-6.484a2.06 2.06 0 0 0-1.962-.634.526.526 0 1 0 .219 1.031 1.008 1.008 0 0 1 1.17 1.296.528.528 0 0 0 1.005.325 2.06 2.06 0 0 0-.432-2.018"/>
+        </svg>
+      </a>
+      
+      <a class="footer-social__link" href="/feed.xml" aria-label="RSS">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M6.18 15.64a2.18 2.18 0 110 4.36 2.18 2.18 0 010-4.36zM4 4.44A15.56 15.56 0 0119.56 20h-2.83A12.73 12.73 0 004 7.27V4.44zm0 5.66a9.9 9.9 0 019.9 9.9h-2.83A7.07 7.07 0 004 12.93V10.1z"/>
+        </svg>
+      </a>
+    </div>
+
+    
+    <div class="footer-copyright">
+      <p>&copy; 2026 述尔. All rights reserved.</p>
+    </div>
+
+    
+    
+
+    
+    <div class="footer-powered">
+      <span>Powered by <a href="https://gridea.pro" target="_blank" rel="noopener noreferrer">Gridea Pro</a></span>
+    </div>
+
+  </div>
+</footer>
+
+  
+  <div class="search-overlay" id="searchOverlay" style="display:none;">
+  <div class="search-modal">
+    <div class="search-header">
+      <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+      <input type="text" class="search-input" id="searchInput" placeholder="搜索文章..." autocomplete="off" />
+      <span class="search-kbd">&#8984;K</span>
+      <button class="search-close" id="searchClose" type="button" aria-label="关闭搜索">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+    <div class="search-results" id="searchResults"></div>
+  </div>
+</div>
+
+<script src="/scripts/search.js"></script>
+  
+
+  
+
+  
+
+  
+
+<script>console.log("\n%c ✦ Gridea Pro v0.0.0-dev %c · Theme: flavor-theme v1.0.0 · https://gridea.pro %c\n","color:#fadfa3;background:#111111;padding:9px 14px;border-radius:4px 0 0 4px;font-weight:500;font-size:12px","color:#e05c00;background:#fff3ec;padding:9px 14px;border-radius:0 4px 4px 0;font-size:11px","")</script>
+</body>
+</html>

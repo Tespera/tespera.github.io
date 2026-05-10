@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link rel="stylesheet" href="/styles/main.min.css">
+
+
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+
+
+<style>:root { --heatmap-color: #39d353; }</style>
+
+
+
+<script>
+  (function () {
+    try {
+      var saved = localStorage.getItem('flavor-theme');
+      var theme = saved || 'dark';
+      if (theme === 'light') {
+        document.documentElement.classList.add('theme-light');
+      }
+    } catch (e) { }
+  })();
+</script>
+  <meta name="generator" content="Gridea Pro 0.0.0-dev">
+  <title>从 Gridea 迁移到 Gridea Pro：零风险完整指南 | 述尔</title>
+  
+<meta property="og:title" content="从 Gridea 迁移到 Gridea Pro：零风险完整指南" />
+<meta property="og:type" content="article" />
+
+
+<meta name="description" content="如果你是 Gridea 的老用户，正在考虑是否要升级到 Gridea Pro，这篇文章是为你写的。 我们知道，博客数据是多年心血的积累，迁移这件事如果出了差错，损失难以弥补。因此，在设计 Gridea Pro 时，数据兼容与自动迁移是优先级最高的功能之一。 结论先说：你的数据是安全的。 Gridea Pro 内置了完整的自动迁移机制，无需手动转换任何文件，打开即用。 &amp;hellip;">
+<meta name="keywords" content="述尔，Gridea  Pro，Gridea，静态博客，AI，产品经理">
+<link rel="canonical" href="https://are.ink/post/migrating-from-gridea-to-gridea-pro/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"从 Gridea 迁移到 Gridea Pro：零风险完整指南","url":"https://are.ink/post/migrating-from-gridea-to-gridea-pro/","description":"如果你是 Gridea 的老用户，正在考虑是否要升级到 Gridea Pro，这篇文章是为你写的。 我们知道，博客数据是多年心血的积累，迁移这件事如果出了差错，损失难以弥补。因此，在设计 Gridea Pro 时，数据兼容与自动迁移是优先级最高的功能之一。 结论先说：你的数据是安全的。 Gridea Pro 内置了完整的自动迁移机制，无需手动转换任何文件，打开即用。 \u0026hellip;","datePublished":"2026-04-02T23:00:00+08:00","dateModified":"2026-04-03T00:19:05+08:00","author":{"@type":"Person","name":"述尔"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/images/avatar.png"},"name":"述尔"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://are.ink","name":"述尔","position":1},{"@type":"ListItem","item":"https://are.ink/post/migrating-from-gridea-to-gridea-pro/","name":"从 Gridea 迁移到 Gridea Pro：零风险完整指南","position":2}]}</script>
+<meta property="og:title" content="从 Gridea 迁移到 Gridea Pro：零风险完整指南">
+<meta property="og:description" content="如果你是 Gridea 的老用户，正在考虑是否要升级到 Gridea Pro，这篇文章是为你写的。 我们知道，博客数据是多年心血的积累，迁移这件事如果出了差错，损失难以弥补。因此，在设计 Gridea Pro 时，数据兼容与自动迁移是优先级最高的功能之一。 结论先说：你的数据是安全的。 Gridea Pro 内置了完整的自动迁移机制，无需手动转换任何文件，打开即用。 &amp;hellip;">
+<meta property="og:url" content="https://are.ink/post/migrating-from-gridea-to-gridea-pro/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="述尔">
+<meta property="og:image" content="/images/avatar.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://are.ink/post/migrating-from-gridea-to-gridea-pro/">
+<meta name="twitter:title" content="从 Gridea 迁移到 Gridea Pro：零风险完整指南">
+<meta name="twitter:description" content="如果你是 Gridea 的老用户，正在考虑是否要升级到 Gridea Pro，这篇文章是为你写的。 我们知道，博客数据是多年心血的积累，迁移这件事如果出了差错，损失难以弥补。因此，在设计 Gridea Pro 时，数据兼容与自动迁移是优先级最高的功能之一。 结论先说：你的数据是安全的。 Gridea Pro 内置了完整的自动迁移机制，无需手动转换任何文件，打开即用。 &amp;hellip;">
+<meta name="twitter:image" content="/images/avatar.png">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1SBXPCEK36"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-1SBXPCEK36');</script>
+<meta name="google-site-verification" content="googlea4223896f417412f.html">
+<script>var _hmt=_hmt||[];(function(){var hm=document.createElement("script");hm.src="https://hm.baidu.com/hm.js?4b792e215f23cf68ed571462a263feb3";var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(hm,s);})();</script>
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#000000">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="述尔">
+<link rel="apple-touch-icon" sizes="180x180" href="https://cdn.jsdelivr.net/gh/Tespera/Assets@main/images/icons/icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192" href="https://cdn.jsdelivr.net/gh/Tespera/Assets@main/images/icons/icon-192x192.png">
+<meta name="msapplication-TileColor" content="#000000">
+<meta name="msapplication-TileImage" content="/images/icons/icon-192x192.png">
+<script>if('serviceWorker' in navigator){navigator.serviceWorker.register('/sw.js')}</script>
+</head>
+<body class="flavor-theme">
+
+  <header class="site-header" id="siteHeader">
+  <div class="header-inner">
+    <div class="top-bar">
+
+      
+      <div class="top-bar__left">
+        
+        <a href="https://are.ink" class="site-avatar-link" aria-label="返回首页">
+          <img class="site-avatar" src="https://cdn.jsdelivr.net/gh/Tespera/Assets@main/images/avatar.png" alt="述尔" />
+        </a>
+        
+        <a href="https://are.ink" class="site-name-link">述尔</a>
+      </div>
+
+      
+      <nav class="top-bar__nav" id="sectionBar">
+        
+        
+        <a class="nav-item" href="/">首页</a>
+        
+        <a class="nav-item" href="/post">博客</a>
+        
+        <a class="nav-item" href="/memos">闪念</a>
+        
+        <a class="nav-item" href="/archives">归档</a>
+        
+        <a class="nav-item" href="/tags">标签</a>
+        
+        <a class="nav-item" href="/links">友链</a>
+        
+        <a class="nav-item" href="/post/about">关于</a>
+        
+        
+      </nav>
+
+      
+      <div class="top-bar__right">
+        <button class="btn-icon btn-search search-btn" id="btnSearch" type="button" aria-label="搜索">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+        </button>
+        <button class="btn-icon theme-toggle theme-toggle-sun" id="themeToggleSun" type="button"
+          aria-label="切换到浅色模式">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 1C12.5523 1 13 1.44772 13 2V4C13 4.55228 12.5523 5 12 5C11.4477 5 11 4.55228 11 4V2C11 1.44772 11.4477 1 12 1Z"></path>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M7 12C7 9.23858 9.23858 7 12 7C14.7614 7 17 9.23858 17 12C17 14.7614 14.7614 17 12 17C9.23858 17 7 14.7614 7 12ZM12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9Z"></path>
+            <path d="M13 20C13 19.4477 12.5523 19 12 19C11.4477 19 11 19.4477 11 20V22C11 22.5523 11.4477 23 12 23C12.5523 23 13 22.5523 13 22V20Z"></path>
+            <path d="M4.22282 4.22289C4.61335 3.83236 5.24651 3.83236 5.63704 4.22289L7.04704 5.63289C7.43756 6.02341 7.43756 6.65658 7.04704 7.0471C6.65651 7.43762 6.02335 7.43762 5.63283 7.0471L4.22282 5.6371C3.8323 5.24658 3.8323 4.61341 4.22282 4.22289Z"></path>
+            <path d="M18.367 16.9529C17.9765 16.5623 17.3433 16.5623 16.9528 16.9529C16.5623 17.3434 16.5623 17.9766 16.9528 18.3671L18.3628 19.7771C18.7533 20.1676 19.3865 20.1676 19.777 19.7771C20.1675 19.3866 20.1675 18.7534 19.777 18.3629L18.367 16.9529Z"></path>
+            <path d="M1 12C1 11.4477 1.44772 11 2 11H4C4.55228 11 5 11.4477 5 12C5 12.5523 4.55228 13 4 13H2C1.44772 13 1 12.5523 1 12Z"></path>
+            <path d="M20 11C19.4477 11 19 11.4477 19 12C19 12.5523 19.4477 13 20 13H22C22.5523 13 23 12.5523 23 12C23 11.4477 22.5523 11 22 11H20Z"></path>
+            <path d="M7.04704 16.9529C7.43756 17.3434 7.43756 17.9766 7.04704 18.3671L5.63704 19.7771C5.24651 20.1676 4.61335 20.1676 4.22282 19.7771C3.8323 19.3866 3.8323 18.7534 4.22283 18.3629L5.63283 16.9529C6.02335 16.5623 6.65651 16.5623 7.04704 16.9529Z"></path>
+            <path d="M19.777 5.6371C20.1675 5.24657 20.1675 4.61341 19.777 4.22289C19.3865 3.83236 18.7533 3.83236 18.3628 4.22289L16.9528 5.63289C16.5623 6.02341 16.5623 6.65658 16.9528 7.0471C17.3433 7.43762 17.9765 7.43762 18.367 7.0471L19.777 5.6371Z"></path>
+          </svg>
+        </button>
+        <button class="btn-icon theme-toggle theme-toggle-moon" id="themeToggleMoon" type="button"
+          aria-label="切换到深色模式">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C10.0222 2 8.08879 2.58649 6.4443 3.6853C4.79981 4.78412 3.51809 6.3459 2.76121 8.17317C2.00433 10.0004 1.8063 12.0111 2.19215 13.9509C2.578 15.8907 3.53041 17.6725 4.92894 19.0711C6.32746 20.4696 8.10929 21.422 10.0491 21.8079C11.9889 22.1937 13.9996 21.9957 15.8268 21.2388C17.6541 20.4819 19.2159 19.2002 20.3147 17.5557C21.4135 15.9112 22 13.9778 22 12C22 11.5955 21.7564 11.2309 21.3827 11.0761C21.009 10.9213 20.5789 11.0069 20.2929 11.2929C19.287 12.2988 17.9226 12.864 16.5 12.864C15.0774 12.864 13.713 12.2988 12.7071 11.2929C11.7012 10.287 11.136 8.92261 11.136 7.5C11.136 6.07739 11.7012 4.71304 12.7071 3.70711C12.9931 3.42111 13.0787 2.99099 12.9239 2.61732C12.7691 2.24364 12.4045 2 12 2ZM7.55544 5.34824C8.27036 4.87055 9.05353 4.51389 9.87357 4.28778C9.39271 5.27979 9.13604 6.37666 9.13604 7.5C9.13604 9.45304 9.91189 11.3261 11.2929 12.7071C12.6739 14.0881 14.547 14.864 16.5 14.864C17.6233 14.864 18.7202 14.6073 19.7122 14.1264C19.4861 14.9465 19.1295 15.7296 18.6518 16.4446C17.7727 17.7602 16.5233 18.7855 15.0615 19.391C13.5997 19.9965 11.9911 20.155 10.4393 19.8463C8.88743 19.5376 7.46197 18.7757 6.34315 17.6569C5.21447 16.538 4.4624 15.1126 4.15372 13.5607C3.84504 12.0089 4.00347 10.4003 4.60897 8.93853C5.21447 7.47672 6.23985 6.22729 7.55544 5.34824Z"></path>
+            <path d="M19 2C19.5523 2 20 2.44772 20 3V4H21C21.5523 4 22 4.44772 22 5C22 5.55228 21.5523 6 21 6H20V7C20 7.55228 19.5523 8 19 8C18.4477 8 18 7.55228 18 7V6H17C16.4477 6 16 5.55228 16 5C16 4.44772 16.4477 4 17 4H18V3C18 2.44772 18.4477 2 19 2Z"></path>
+          </svg>
+        </button>
+        <button class="btn-icon btn-nav-toggle mobile-only" id="btnNavToggle" type="button" aria-label="切换导航">
+          <div class="hamburger" id="hamburger">
+            <span class="hamburger__line hamburger__line--top"></span>
+            <span class="hamburger__line hamburger__line--bottom"></span>
+          </div>
+        </button>
+      </div>
+
+    </div>
+  </div>
+</header>
+
+
+<div class="header-spacer"></div>
+
+<script>
+(function(){
+  var btn = document.getElementById('btnNavToggle');
+  var nav = document.getElementById('sectionBar');
+  var hamburger = document.getElementById('hamburger');
+  if (btn && nav) {
+    btn.addEventListener('click', function(){
+      nav.classList.toggle('top-bar__nav--open');
+      if (hamburger) hamburger.classList.toggle('is-active');
+    });
+    nav.querySelectorAll('.nav-item').forEach(function(item){
+      item.addEventListener('click', function(){
+        nav.classList.remove('top-bar__nav--open');
+        if (hamburger) hamburger.classList.remove('is-active');
+      });
+    });
+  }
+
+  var root = document.documentElement;
+  var applyTheme = function(theme, persist){
+    if (theme === 'light') {
+      root.classList.add('theme-light');
+    } else {
+      root.classList.remove('theme-light');
+    }
+    if (persist) {
+      try { localStorage.setItem('flavor-theme', theme); } catch (e) {}
+    }
+  };
+  document.querySelectorAll('.theme-toggle').forEach(function(el){
+    el.addEventListener('click', function(){
+      applyTheme(root.classList.contains('theme-light') ? 'dark' : 'light', true);
+    });
+  });
+})();
+</script>
+
+  <main class="site-main" role="main">
+    
+<article class="article-container">
+  <header class="article-header">
+    <h1 class="article-title">从 Gridea 迁移到 Gridea Pro：零风险完整指南</h1>
+    <div class="article-meta">
+      
+      
+      <a href="/category/Gridea-Pro/" class="article-meta__category">Gridea Pro</a>
+      
+      
+      <span class="article-meta__sep">·</span>
+      
+      <span class="article-meta__item">2026年04月02日</span>
+      
+      <span class="article-meta__sep">·</span>
+      <span class="article-meta__item">6 分钟阅读</span>
+      
+    </div>
+    
+    <div class="article-header__tags">
+      
+      <a href="/tag/gridea-pro/" class="tag-pill tag-pill--sm">Gridea Pro</a>
+      
+      <a href="/tag/gridea/" class="tag-pill tag-pill--sm">Gridea</a>
+      
+      <a href="/tag/tutorial/" class="tag-pill tag-pill--sm">教程</a>
+      
+      <a href="/tag/jing-tai-bo-ke/" class="tag-pill tag-pill--sm">静态博客</a>
+      
+      <a href="/tag/shu-ju-qian-yi/" class="tag-pill tag-pill--sm">数据迁移</a>
+      
+    </div>
+    
+  </header>
+
+  
+
+  <div class="article-content">
+    <p>如果你是 Gridea 的老用户，正在考虑是否要升级到 Gridea Pro，这篇文章是为你写的。</p>
+<p>我们知道，博客数据是多年心血的积累，迁移这件事如果出了差错，损失难以弥补。因此，在设计 Gridea Pro 时，<strong>数据兼容与自动迁移</strong>是优先级最高的功能之一。</p>
+<p><strong>结论先说：你的数据是安全的。</strong> Gridea Pro 内置了完整的自动迁移机制，无需手动转换任何文件，打开即用。</p>
+<hr />
+<h2 id="gridea--gridea-pro-">Gridea 与 Gridea Pro 的数据结构差异</h2>
+<p>在了解迁移机制之前，先简单说明两个版本之间的数据结构变化，这有助于你理解迁移在做什么。</p>
+<h3 id="1--id-">1. 实体 ID 规范化</h3>
+<p>旧版 Gridea 的分类、标签、菜单等数据，早期版本没有 ID 字段，或使用了 UUID 等较长的格式。Gridea Pro 统一采用 <strong>6 位 NanoID</strong>（如 <code>kGUBpB</code>），更简洁，读写性能更好。</p>
+<h3 id="2-">2. 文章关联方式变更</h3>
+<p>这是最核心的变化。</p>
+<p>旧版 Gridea 文章的 YAML frontmatter 里，标签和分类是直接存<strong>名称</strong>的：</p>
+<pre><code class="language-yaml">---
+title: 我的第一篇文章
+date: 2021-06-01 12:00:00
+tags:
+  - 技术
+  - 生活
+categories:
+  - 随笔
+---
+</code></pre>
+<p>Gridea Pro 改为存 <strong>ID</strong>：</p>
+<pre><code class="language-yaml">---
+title: 我的第一篇文章
+createdAt: 2021-06-01 12:00:00
+updatedAt: 2021-06-01 12:00:00
+tagIDs:
+  - kGUBpB
+  - abc123
+categoryIDs:
+  - jjTYMA
+---
+</code></pre>
+<p>这样设计的好处是：重命名标签或分类时，不需要扫描修改所有文章文件，只改一处即可。</p>
+<h3 id="3-">3. 时间字段重命名</h3>
+<p>旧版使用 <code>date</code> 字段，Gridea Pro 拆分为 <code>createdAt</code>（创建时间）和 <code>updatedAt</code>（更新时间），支持独立追踪文章的修改历史。</p>
+<hr />
+<h2 id="heading">自动迁移机制：它做了什么</h2>
+<p>Gridea Pro <strong>每次启动时</strong>自动运行数据迁移，分为两个阶段。</p>
+<h3 id="-id-">第一阶段：基础数据 ID 补全</h3>
+<p>扫描以下数据，为没有 ID 或 ID 格式不符规范的条目自动生成新的 6 位 NanoID：</p>
+<table>
+<thead>
+<tr>
+<th>数据类型</th>
+<th>文件位置</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>分类</td>
+<td><code>config/categories.json</code></td>
+</tr>
+<tr>
+<td>标签</td>
+<td><code>config/tags.json</code></td>
+</tr>
+<tr>
+<td>菜单</td>
+<td><code>config/menus.json</code></td>
+</tr>
+<tr>
+<td>友链</td>
+<td><code>config/links.json</code></td>
+</tr>
+<tr>
+<td>闪念</td>
+<td><code>config/memos.json</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>只有数据真正发生变化时才会写入文件</strong>，没有冗余操作。</p>
+<h3 id="heading-1">第二阶段：文章关联关系转换</h3>
+<p>这是迁移的核心步骤。程序会：</p>
+<ol>
+<li>扫描所有 <code>.md</code> 文章文件</li>
+<li>读取每篇文章 frontmatter 里的 <code>tags</code>（名称）和 <code>categories</code>（名称/Slug）</li>
+<li>通过第一阶段建立的映射表，找到对应的新 ID</li>
+<li>将 <code>tagIDs</code> 和 <code>categoryIDs</code> 写回 frontmatter</li>
+<li>同时保留旧的 <code>tags</code> 字段作为降级备份</li>
+</ol>
+<p>整个过程完全自动，用户无感知。</p>
+<hr />
+<h2 id="heading-2">迁移前需要做什么</h2>
+<h3 id="1-">1. 备份你的数据目录（强烈建议）</h3>
+<p>虽然迁移机制是非破坏性的（保留旧字段），但备份永远是最保险的一步。</p>
+<p>你的 Gridea 数据默认存放在：</p>
+<ul>
+<li><strong>macOS</strong>：<code>~/Documents/gridea/</code></li>
+<li><strong>Windows</strong>：<code>C:\Users\你的用户名\Documents\gridea\</code></li>
+</ul>
+<p>将整个文件夹复制一份到其他位置即可。</p>
+<pre><code class="language-bash"># macOS / Linux 示例
+cp -r ~/Documents/gridea ~/Documents/gridea-backup-$(date +%Y%m%d)
+</code></pre>
+<h3 id="2--1">2. 确认数据目录结构</h3>
+<p>Gridea Pro 沿用了与 Gridea 完全相同的数据目录结构：</p>
+<pre><code>gridea/
+├── config/
+│   ├── categories.json   # 分类
+│   ├── tags.json         # 标签
+│   ├── menus.json        # 菜单
+│   ├── links.json        # 友链
+│   ├── setting.json      # 站点设置
+│   └── themeConfig.json  # 主题配置
+├── post/                 # 文章 Markdown 文件
+└── post-images/          # 文章图片
+</code></pre>
+<p>只要目录结构一致，Gridea Pro 即可直接读取。</p>
+<hr />
+<h2 id="heading-3">迁移步骤</h2>
+<h3 id="heading-4">第一步：备份源数据目录</h3>
+<p>将整个文件夹复制一份到其他位置即可。</p>
+<h3 id="-gridea-pro">第二步：下载并安装 Gridea Pro</h3>
+<p>前往 <a href="https://github.com/Gridea-Pro/gridea-pro/releases">GitHub Releases</a> 下载对应平台的安装包。</p>
+<h3 id="heading-5">第三步：首次打开，自动清洗数据</h3>
+<p>程序启动时会在后台自动执行迁移，通常在几秒内完成。完成后即可进入主界面。</p>
+<p>如果你是开发者，运行 dev 版本，你可以在日志中看到类似输出：</p>
+<pre><code>[DataMigrator] --------- 开始全量检查与迁移历史基础关联数据 ID ---------
+[DataMigrator] ✅ 检查完成，未发现需要修正的历史数据，所有数据均处于最新健康状态。
+[DataMigrator] --------- 数据清洗迁移协程运行完毕 ---------
+</code></pre>
+<p>若有数据被迁移，日志会列出具体修改的条目和数量。</p>
+<h3 id="heading-6">第四步：验证数据完整性</h3>
+<p>迁移完成后，建议做几项基本检查：</p>
+<p><strong>检查文章列表</strong>：打开「文章」页面，确认所有文章均正常显示，标题、时间、标签、分类无缺失。</p>
+<p><strong>检查标签和分类</strong>：打开「标签」和「分类」管理页面，确认数量与迁移前一致。</p>
+<p><strong>预览一篇文章</strong>：随机打开一篇文章进入编辑器，确认正文内容完整，标签和分类关联正确。</p>
+<p><strong>本地预览站点</strong>：点击预览，确认站点整体渲染正常。</p>
+<hr />
+<h2 id="heading-7">需要重新配置的部分</h2>
+<p>迁移机制覆盖了绝大多数数据，但以下内容由于结构变化较大，需要手动重新配置：</p>
+<h3 id="heading-8">部署平台设置</h3>
+<p>Gridea Pro 重新设计了部署配置的存储方式，<strong>不会自动读取旧版的平台配置</strong>。你需要在「基础设置」中重新填写：</p>
+<ul>
+<li>平台选择（GitHub / Gitee / Vercel / Netlify / SFTP 等）</li>
+<li>仓库地址、Token、分支等信息</li>
+</ul>
+<p>旧版的 <code>setting.json</code> 中相关字段不会被覆盖，可以参照它手动填写。</p>
+<h3 id="heading-9">评论系统</h3>
+<p>Gridea Pro 支持 Waline、Giscus、Twikoo、Disqus、Valine 等主流评论系统，配置入口在「评论」设置页。旧版 Gridea 的评论配置不会自动迁移。</p>
+<hr />
+<h2 id="heading-10">常见问题</h2>
+<p><strong>Q：迁移后能否退回 Gridea？</strong></p>
+<p>**不可以。不可以。不可以。**重要的事情说三遍！所以要提前备份一份数据。<br />
+因为数据结构不一致，经过 Gridea Pro 清洗数据后，旧版 Gridea 兼容性不佳，无法打开新版的数据。<br />
+如果你备份了源数据文件夹，想要回退，可以在 Gridea 里面将站点目录设置为备份的那个文件夹即可重新打开。</p>
+<p><strong>Q：迁移会修改我的文章 Markdown 正文内容吗？</strong></p>
+<p>不会。迁移只修改 YAML frontmatter 部分（文章顶部两个 <code>---</code> 之间的元数据），正文内容完全不受影响。</p>
+<p><strong>Q：有几百篇文章，迁移会很慢吗？</strong></p>
+<p>不会。迁移在本地运行，处理速度极快，几百篇文章通常在 1 秒内完成。</p>
+<p><strong>Q：我的 Gridea 数据目录不在默认位置，怎么办？</strong></p>
+<p>在 Gridea Pro 的系统设置界面-站点源文件路径，选择你原来的目录即可（建议直接选择备份目录，这样不影响旧版 Gridea 的正常运行）。</p>
+<p><strong>Q：迁移后标签或分类显示有问题怎么办？</strong></p>
+<p>可以尝试在 Gridea Pro 的「分类」、「标签」页面手动修改。如果有其他问题，可以前往 <a href="https://github.com/Gridea-Pro/gridea-pro/issues">GitHub Issues</a> 反馈，<br />
+并说明具体问题或现象描述。</p>
+<hr />
+<h2 id="heading-11">小结</h2>
+<table>
+<thead>
+<tr>
+<th>事项</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>迁移方式</td>
+<td>全自动，启动时执行</td>
+</tr>
+<tr>
+<td>需要用户操作</td>
+<td>仅需备份数据目录</td>
+</tr>
+<tr>
+<td>文章内容是否改变</td>
+<td>不改变</td>
+</tr>
+<tr>
+<td>能否退回旧版</td>
+<td>不可以</td>
+</tr>
+<tr>
+<td>需手动重配置的内容</td>
+<td>部署平台、评论系统</td>
+</tr>
+</tbody>
+</table>
+<p>Gridea Pro 的目标是让每一位老用户都能平滑过渡，而不是重新开始。如果你在迁移过程中遇到任何问题，欢迎到 <a href="https://github.com/Gridea-Pro/gridea-pro/issues">GitHub</a> 提交 Issue，我们会及时跟进。</p>
+
+  </div>
+
+  
+  <nav class="post-nav">
+    
+    <a href="/post/why-i-revived-gridea/" class="post-nav-card post-nav-card--prev">
+      
+      <div class="post-nav-card__body">
+        <span class="post-nav-card__label meta-text">上一篇</span>
+        <span class="post-nav-card__title">我为什么复活了 Gridea —— 每个想写点什么的人，都值得一个更简单的开始</span>
+      </div>
+      <span class="post-nav-card__arrow">&larr;</span>
+    </a>
+    
+    
+    <a href="/post/gridea-pro-cdn/" class="post-nav-card post-nav-card--next">
+      <div class="post-nav-card__body">
+        <span class="post-nav-card__label meta-text">下一篇</span>
+        <span class="post-nav-card__title">从零实现 CDN 图床：Gridea Pro 如何让图片管理彻底自动化</span>
+      </div>
+      
+      <div class="post-nav-card__img">
+        <img src="https://cdn.jsdelivr.net/gh/Tespera/Assets@main/post-images/gridea-pro-cdn.png" alt="从零实现 CDN 图床：Gridea Pro 如何让图片管理彻底自动化" loading="lazy" />
+      </div>
+      
+      <span class="post-nav-card__arrow">&rarr;</span>
+    </a>
+    
+  </nav>
+
+  
+  
+
+
+  
+    <section class="comment-section">
+  <h2 class="comment-section__title">评论</h2>
+  <div id="vcomments"></div>
+  <link rel="stylesheet" href="https://unpkg.com/valine@1/dist/Valine.min.css">
+  <script src="https://unpkg.com/valine@1/dist/Valine.min.js"></script>
+  <script>
+    new Valine({
+      el: '#vcomments',
+      appId: 'dAWkPrxZg50VZ7iV39rrZL5U-MdYXbMMI',
+      appKey: 'YCfYt8rhK8d0mh9vr42YTaA1',
+      serverURLs: 'https://dawkprxz.api.lncldglobal.com',
+      avatar: 'mp',
+      placeholder: '说点什么吧…'
+    });
+    // Valine 内置 locale 不支持覆盖，手动替换 placeholder
+    var linkInput = document.querySelector('#vcomments .vlink');
+    if (linkInput) linkInput.placeholder = '网址(https://)';
+  </script>
+</section>
+
+  
+
+
+
+</article>
+
+  </main>
+
+  <footer class="site-footer">
+  <div class="footer-inner">
+
+    
+    
+    <nav class="footer-nav" aria-label="页脚导航">
+      
+      <a class="footer-nav__link" href="/">首页</a>
+      
+      <a class="footer-nav__link" href="/post">博客</a>
+      
+      <a class="footer-nav__link" href="/memos">闪念</a>
+      
+      <a class="footer-nav__link" href="/archives">归档</a>
+      
+      <a class="footer-nav__link" href="/tags">标签</a>
+      
+      <a class="footer-nav__link" href="/links">友链</a>
+      
+      <a class="footer-nav__link" href="/post/about">关于</a>
+      
+    </nav>
+    
+
+    
+    <div class="footer-social">
+      
+      <a class="footer-social__link" href="https://github.com/Tespera" target="_blank" rel="noopener noreferrer"
+        aria-label="GitHub">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path
+            d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+        </svg>
+      </a>
+      
+      
+      <a class="footer-social__link" href="https://x.com" target="_blank" rel="noopener noreferrer"
+        aria-label="Twitter/X">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path
+            d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+        </svg>
+      </a>
+      
+      
+      <a class="footer-social__link" href="https://weibo.com" target="_blank" rel="noopener noreferrer"
+        aria-label="微博">
+        <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor">
+          <path d="M10.878 1.093a4.23 4.23 0 0 1 4.031 1.305 4.22 4.22 0 0 1 .886 4.14v.001a.612.612 0 0 1-1.166-.377 3.01 3.01 0 0 0-3.495-3.873.611.611 0 1 1-.256-1.196M3.753 9.465c.548-1.11 1.972-1.74 3.233-1.411 1.304.338 1.971 1.568 1.437 2.764-.541 1.221-2.095 1.875-3.416 1.449-1.271-.411-1.812-1.67-1.254-2.802m2.658.567c.16.066.365-.009.458-.168.088-.16.03-.34-.129-.397-.156-.062-.353.013-.446.168-.09.154-.041.333.117.397m-1.607 1.314c.413.188.963.009 1.219-.4.252-.413.12-.883-.296-1.062-.41-.172-.94.005-1.194.402-.256.4-.135.874.271 1.06"/>
+          <path d="m12.014 7.238.005.001c.919.285 1.941.974 1.939 2.188 0 2.007-2.895 4.535-7.246 4.535C3.393 13.962 0 12.352 0 9.708c0-1.385.876-2.985 2.384-4.493C4.4 3.199 6.751 2.28 7.634 3.165c.39.392.427 1.065.177 1.87-.132.405.38.182.38.182 1.63-.682 3.051-.722 3.57.02.278.397.252.951-.004 1.594-.116.293.035.34.257.407m-10.4 3.101c.172 1.738 2.46 2.936 5.109 2.674 2.647-.26 4.656-1.883 4.482-3.623-.17-1.738-2.458-2.937-5.107-2.674-2.647.263-4.656 1.883-4.484 3.623m11.681-6.484a2.06 2.06 0 0 0-1.962-.634.526.526 0 1 0 .219 1.031 1.008 1.008 0 0 1 1.17 1.296.528.528 0 0 0 1.005.325 2.06 2.06 0 0 0-.432-2.018"/>
+        </svg>
+      </a>
+      
+      <a class="footer-social__link" href="/feed.xml" aria-label="RSS">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M6.18 15.64a2.18 2.18 0 110 4.36 2.18 2.18 0 010-4.36zM4 4.44A15.56 15.56 0 0119.56 20h-2.83A12.73 12.73 0 004 7.27V4.44zm0 5.66a9.9 9.9 0 019.9 9.9h-2.83A7.07 7.07 0 004 12.93V10.1z"/>
+        </svg>
+      </a>
+    </div>
+
+    
+    <div class="footer-copyright">
+      <p>&copy; 2026 述尔. All rights reserved.</p>
+    </div>
+
+    
+    
+
+    
+    <div class="footer-powered">
+      <span>Powered by <a href="https://gridea.pro" target="_blank" rel="noopener noreferrer">Gridea Pro</a></span>
+    </div>
+
+  </div>
+</footer>
+
+  
+  <div class="search-overlay" id="searchOverlay" style="display:none;">
+  <div class="search-modal">
+    <div class="search-header">
+      <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+      <input type="text" class="search-input" id="searchInput" placeholder="搜索文章..." autocomplete="off" />
+      <span class="search-kbd">&#8984;K</span>
+      <button class="search-close" id="searchClose" type="button" aria-label="关闭搜索">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+    <div class="search-results" id="searchResults"></div>
+  </div>
+</div>
+
+<script src="/scripts/search.js"></script>
+  
+
+  
+
+  
+
+  
+
+<script>console.log("\n%c ✦ Gridea Pro v0.0.0-dev %c · Theme: flavor-theme v1.0.0 · https://gridea.pro %c\n","color:#fadfa3;background:#111111;padding:9px 14px;border-radius:4px 0 0 4px;font-weight:500;font-size:12px","color:#e05c00;background:#fff3ec;padding:9px 14px;border-radius:0 4px 4px 0;font-size:11px","")</script>
+</body>
+</html>
