@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link rel="stylesheet" href="/styles/main.min.css">
+
+
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+
+
+<style>:root { --heatmap-color: #39d353; }</style>
+
+
+
+<script>
+  (function () {
+    try {
+      var saved = localStorage.getItem('flavor-theme');
+      var theme = saved || 'dark';
+      if (theme === 'light') {
+        document.documentElement.classList.add('theme-light');
+      }
+    } catch (e) { }
+  })();
+</script>
+  <meta name="generator" content="Gridea Pro 1.2.2">
+  <title>我蒸馏了自己，并让 AI 用我的决策习惯进行决策 | 述尔</title>
+  
+<meta property="og:title" content="我蒸馏了自己，并让 AI 用我的决策习惯进行决策" />
+<meta property="og:type" content="article" />
+
+
+<meta name="description" content="用 AI 写过代码的人，都熟悉这个画面：它做到一半，停下来，列出两个选项，各写一段利弊，然后等你拍板。 你放下手里的事，把两段读完，回一个字，它继续。 这样的动作，一天几十次。 我被问过一次印象最深的： 这里有两档做法： A 档换成右下角浮层，够用，只改一个文件； B 档分层治理开发和生产环境，最佳，要改三处。 你选哪个？ 它自己都已经写了“最佳”两个字，然后还问我选哪个！！ 我盯着那行字看了几秒，你说这是不是很搞人心态？ 这样的问题一天有一两百个。 如果每个都需要我拍板，那一天下来真的太累了，因为做决策是件非常耗费心神的事情。 用 AI 的这几个月里，我已经形成了一套决策习惯或思维模型，那能不能让 AI 知道我的决策习惯并根据这个习惯做出和我一样的决策？ 一天两百个问题里如果有一百八十个根本不该到我面前，那我的注意力就该省下来给剩下的二十个。 这样才不会把注意力稀释导致做出无效决策，也不会在每天下班时总感觉大脑的 token 已用尽。">
+<meta name="keywords" content="述尔，Gridea  Pro，Gridea，静态博客，AI，产品经理">
+<link rel="canonical" href="https://are.ink/post/distilling-myself/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"我蒸馏了自己，并让 AI 用我的决策习惯进行决策","url":"https://are.ink/post/distilling-myself/","description":"用 AI 写过代码的人，都熟悉这个画面：它做到一半，停下来，列出两个选项，各写一段利弊，然后等你拍板。 你放下手里的事，把两段读完，回一个字，它继续。 这样的动作，一天几十次。 我被问过一次印象最深的： 这里有两档做法： A 档换成右下角浮层，够用，只改一个文件； B 档分层治理开发和生产环境，最佳，要改三处。 你选哪个？ 它自己都已经写了“最佳”两个字，然后还问我选哪个！！ 我盯着那行字看了几秒，你说这是不是很搞人心态？ 这样的问题一天有一两百个。 如果每个都需要我拍板，那一天下来真的太累了，因为做决策是件非常耗费心神的事情。 用 AI 的这几个月里，我已经形成了一套决策习惯或思维模型，那能不能让 AI 知道我的决策习惯并根据这个习惯做出和我一样的决策？ 一天两百个问题里如果有一百八十个根本不该到我面前，那我的注意力就该省下来给剩下的二十个。 这样才不会把注意力稀释导致做出无效决策，也不会在每天下班时总感觉大脑的 token 已用尽。","datePublished":"2026-09-04T12:00:00+08:00","dateModified":"2026-09-04T11:00:18+08:00","author":{"@type":"Person","name":"述尔"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/images/avatar.png"},"name":"述尔"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://are.ink","name":"述尔","position":1},{"@type":"ListItem","item":"https://are.ink/post/distilling-myself/","name":"我蒸馏了自己，并让 AI 用我的决策习惯进行决策","position":2}]}</script>
+<meta property="og:title" content="我蒸馏了自己，并让 AI 用我的决策习惯进行决策">
+<meta property="og:description" content="用 AI 写过代码的人，都熟悉这个画面：它做到一半，停下来，列出两个选项，各写一段利弊，然后等你拍板。 你放下手里的事，把两段读完，回一个字，它继续。 这样的动作，一天几十次。 我被问过一次印象最深的： 这里有两档做法： A 档换成右下角浮层，够用，只改一个文件； B 档分层治理开发和生产环境，最佳，要改三处。 你选哪个？ 它自己都已经写了“最佳”两个字，然后还问我选哪个！！ 我盯着那行字看了几秒，你说这是不是很搞人心态？ 这样的问题一天有一两百个。 如果每个都需要我拍板，那一天下来真的太累了，因为做决策是件非常耗费心神的事情。 用 AI 的这几个月里，我已经形成了一套决策习惯或思维模型，那能不能让 AI 知道我的决策习惯并根据这个习惯做出和我一样的决策？ 一天两百个问题里如果有一百八十个根本不该到我面前，那我的注意力就该省下来给剩下的二十个。 这样才不会把注意力稀释导致做出无效决策，也不会在每天下班时总感觉大脑的 token 已用尽。">
+<meta property="og:url" content="https://are.ink/post/distilling-myself/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="述尔">
+<meta property="og:image" content="/images/avatar.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://are.ink/post/distilling-myself/">
+<meta name="twitter:title" content="我蒸馏了自己，并让 AI 用我的决策习惯进行决策">
+<meta name="twitter:description" content="用 AI 写过代码的人，都熟悉这个画面：它做到一半，停下来，列出两个选项，各写一段利弊，然后等你拍板。 你放下手里的事，把两段读完，回一个字，它继续。 这样的动作，一天几十次。 我被问过一次印象最深的： 这里有两档做法： A 档换成右下角浮层，够用，只改一个文件； B 档分层治理开发和生产环境，最佳，要改三处。 你选哪个？ 它自己都已经写了“最佳”两个字，然后还问我选哪个！！ 我盯着那行字看了几秒，你说这是不是很搞人心态？ 这样的问题一天有一两百个。 如果每个都需要我拍板，那一天下来真的太累了，因为做决策是件非常耗费心神的事情。 用 AI 的这几个月里，我已经形成了一套决策习惯或思维模型，那能不能让 AI 知道我的决策习惯并根据这个习惯做出和我一样的决策？ 一天两百个问题里如果有一百八十个根本不该到我面前，那我的注意力就该省下来给剩下的二十个。 这样才不会把注意力稀释导致做出无效决策，也不会在每天下班时总感觉大脑的 token 已用尽。">
+<meta name="twitter:image" content="/images/avatar.png">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1SBXPCEK36"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-1SBXPCEK36');</script>
+<meta name="google-site-verification" content="googlea4223896f417412f.html">
+<script>var _hmt=_hmt||[];(function(){var hm=document.createElement("script");hm.src="https://hm.baidu.com/hm.js?4b792e215f23cf68ed571462a263feb3";var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(hm,s);})();</script>
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#000000">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="述尔">
+<link rel="apple-touch-icon" sizes="180x180" href="https://cdn.jsdelivr.net/gh/Tespera/Assets@main/images/icons/icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192" href="https://cdn.jsdelivr.net/gh/Tespera/Assets@main/images/icons/icon-192x192.png">
+<meta name="msapplication-TileColor" content="#000000">
+<meta name="msapplication-TileImage" content="/images/icons/icon-192x192.png">
+<script>if('serviceWorker' in navigator){navigator.serviceWorker.register('/sw.js')}</script>
+</head>
+<body class="flavor-theme">
+
+  <header class="site-header" id="siteHeader">
+  <div class="header-inner">
+    <div class="top-bar">
+
+      
+      <div class="top-bar__left">
+        
+        <a href="https://are.ink" class="site-avatar-link" aria-label="返回首页">
+          <img class="site-avatar" src="https://cdn.jsdelivr.net/gh/Tespera/Assets@main/images/avatar.png" alt="述尔" />
+        </a>
+        
+        <a href="https://are.ink" class="site-name-link">述尔</a>
+      </div>
+
+      
+      <nav class="top-bar__nav" id="sectionBar">
+        
+        
+        <a class="nav-item" href="/">首页</a>
+        
+        <a class="nav-item" href="/post">博客</a>
+        
+        <a class="nav-item" href="/memos">闪念</a>
+        
+        <a class="nav-item" href="/archives">归档</a>
+        
+        <a class="nav-item" href="/tags">标签</a>
+        
+        <a class="nav-item" href="/links">友链</a>
+        
+        <a class="nav-item" href="/post/about">关于</a>
+        
+        
+      </nav>
+
+      
+      <div class="top-bar__right">
+        <button class="btn-icon btn-search search-btn" id="btnSearch" type="button" aria-label="搜索">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+        </button>
+        <button class="btn-icon theme-toggle theme-toggle-sun" id="themeToggleSun" type="button"
+          aria-label="切换到浅色模式">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 1C12.5523 1 13 1.44772 13 2V4C13 4.55228 12.5523 5 12 5C11.4477 5 11 4.55228 11 4V2C11 1.44772 11.4477 1 12 1Z"></path>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M7 12C7 9.23858 9.23858 7 12 7C14.7614 7 17 9.23858 17 12C17 14.7614 14.7614 17 12 17C9.23858 17 7 14.7614 7 12ZM12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9Z"></path>
+            <path d="M13 20C13 19.4477 12.5523 19 12 19C11.4477 19 11 19.4477 11 20V22C11 22.5523 11.4477 23 12 23C12.5523 23 13 22.5523 13 22V20Z"></path>
+            <path d="M4.22282 4.22289C4.61335 3.83236 5.24651 3.83236 5.63704 4.22289L7.04704 5.63289C7.43756 6.02341 7.43756 6.65658 7.04704 7.0471C6.65651 7.43762 6.02335 7.43762 5.63283 7.0471L4.22282 5.6371C3.8323 5.24658 3.8323 4.61341 4.22282 4.22289Z"></path>
+            <path d="M18.367 16.9529C17.9765 16.5623 17.3433 16.5623 16.9528 16.9529C16.5623 17.3434 16.5623 17.9766 16.9528 18.3671L18.3628 19.7771C18.7533 20.1676 19.3865 20.1676 19.777 19.7771C20.1675 19.3866 20.1675 18.7534 19.777 18.3629L18.367 16.9529Z"></path>
+            <path d="M1 12C1 11.4477 1.44772 11 2 11H4C4.55228 11 5 11.4477 5 12C5 12.5523 4.55228 13 4 13H2C1.44772 13 1 12.5523 1 12Z"></path>
+            <path d="M20 11C19.4477 11 19 11.4477 19 12C19 12.5523 19.4477 13 20 13H22C22.5523 13 23 12.5523 23 12C23 11.4477 22.5523 11 22 11H20Z"></path>
+            <path d="M7.04704 16.9529C7.43756 17.3434 7.43756 17.9766 7.04704 18.3671L5.63704 19.7771C5.24651 20.1676 4.61335 20.1676 4.22282 19.7771C3.8323 19.3866 3.8323 18.7534 4.22283 18.3629L5.63283 16.9529C6.02335 16.5623 6.65651 16.5623 7.04704 16.9529Z"></path>
+            <path d="M19.777 5.6371C20.1675 5.24657 20.1675 4.61341 19.777 4.22289C19.3865 3.83236 18.7533 3.83236 18.3628 4.22289L16.9528 5.63289C16.5623 6.02341 16.5623 6.65658 16.9528 7.0471C17.3433 7.43762 17.9765 7.43762 18.367 7.0471L19.777 5.6371Z"></path>
+          </svg>
+        </button>
+        <button class="btn-icon theme-toggle theme-toggle-moon" id="themeToggleMoon" type="button"
+          aria-label="切换到深色模式">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C10.0222 2 8.08879 2.58649 6.4443 3.6853C4.79981 4.78412 3.51809 6.3459 2.76121 8.17317C2.00433 10.0004 1.8063 12.0111 2.19215 13.9509C2.578 15.8907 3.53041 17.6725 4.92894 19.0711C6.32746 20.4696 8.10929 21.422 10.0491 21.8079C11.9889 22.1937 13.9996 21.9957 15.8268 21.2388C17.6541 20.4819 19.2159 19.2002 20.3147 17.5557C21.4135 15.9112 22 13.9778 22 12C22 11.5955 21.7564 11.2309 21.3827 11.0761C21.009 10.9213 20.5789 11.0069 20.2929 11.2929C19.287 12.2988 17.9226 12.864 16.5 12.864C15.0774 12.864 13.713 12.2988 12.7071 11.2929C11.7012 10.287 11.136 8.92261 11.136 7.5C11.136 6.07739 11.7012 4.71304 12.7071 3.70711C12.9931 3.42111 13.0787 2.99099 12.9239 2.61732C12.7691 2.24364 12.4045 2 12 2ZM7.55544 5.34824C8.27036 4.87055 9.05353 4.51389 9.87357 4.28778C9.39271 5.27979 9.13604 6.37666 9.13604 7.5C9.13604 9.45304 9.91189 11.3261 11.2929 12.7071C12.6739 14.0881 14.547 14.864 16.5 14.864C17.6233 14.864 18.7202 14.6073 19.7122 14.1264C19.4861 14.9465 19.1295 15.7296 18.6518 16.4446C17.7727 17.7602 16.5233 18.7855 15.0615 19.391C13.5997 19.9965 11.9911 20.155 10.4393 19.8463C8.88743 19.5376 7.46197 18.7757 6.34315 17.6569C5.21447 16.538 4.4624 15.1126 4.15372 13.5607C3.84504 12.0089 4.00347 10.4003 4.60897 8.93853C5.21447 7.47672 6.23985 6.22729 7.55544 5.34824Z"></path>
+            <path d="M19 2C19.5523 2 20 2.44772 20 3V4H21C21.5523 4 22 4.44772 22 5C22 5.55228 21.5523 6 21 6H20V7C20 7.55228 19.5523 8 19 8C18.4477 8 18 7.55228 18 7V6H17C16.4477 6 16 5.55228 16 5C16 4.44772 16.4477 4 17 4H18V3C18 2.44772 18.4477 2 19 2Z"></path>
+          </svg>
+        </button>
+        <button class="btn-icon btn-nav-toggle mobile-only" id="btnNavToggle" type="button" aria-label="切换导航">
+          <div class="hamburger" id="hamburger">
+            <span class="hamburger__line hamburger__line--top"></span>
+            <span class="hamburger__line hamburger__line--bottom"></span>
+          </div>
+        </button>
+      </div>
+
+    </div>
+  </div>
+</header>
+
+
+<div class="header-spacer"></div>
+
+<script>
+(function(){
+  var btn = document.getElementById('btnNavToggle');
+  var nav = document.getElementById('sectionBar');
+  var hamburger = document.getElementById('hamburger');
+  if (btn && nav) {
+    btn.addEventListener('click', function(){
+      nav.classList.toggle('top-bar__nav--open');
+      if (hamburger) hamburger.classList.toggle('is-active');
+    });
+    nav.querySelectorAll('.nav-item').forEach(function(item){
+      item.addEventListener('click', function(){
+        nav.classList.remove('top-bar__nav--open');
+        if (hamburger) hamburger.classList.remove('is-active');
+      });
+    });
+  }
+
+  var root = document.documentElement;
+  var applyTheme = function(theme, persist){
+    if (theme === 'light') {
+      root.classList.add('theme-light');
+    } else {
+      root.classList.remove('theme-light');
+    }
+    if (persist) {
+      try { localStorage.setItem('flavor-theme', theme); } catch (e) {}
+    }
+  };
+  document.querySelectorAll('.theme-toggle').forEach(function(el){
+    el.addEventListener('click', function(){
+      applyTheme(root.classList.contains('theme-light') ? 'dark' : 'light', true);
+    });
+  });
+})();
+</script>
+
+  <main class="site-main" role="main">
+    
+<article class="article-container">
+  <header class="article-header">
+    <h1 class="article-title">我蒸馏了自己，并让 AI 用我的决策习惯进行决策</h1>
+    <div class="article-meta">
+      
+      
+      <a href="/category/Humanities/" class="article-meta__category">人文社科</a>
+      
+      
+      <span class="article-meta__sep">·</span>
+      
+      <span class="article-meta__item">2026年09月04日</span>
+      
+      <span class="article-meta__sep">·</span>
+      <span class="article-meta__item">13 分钟阅读</span>
+      
+    </div>
+    
+    <div class="article-header__tags">
+      
+      <a href="/tag/ai/" class="tag-pill tag-pill--sm">AI</a>
+      
+      <a href="/tag/ai-agent/" class="tag-pill tag-pill--sm">AI Agent</a>
+      
+      <a href="/tag/claude/" class="tag-pill tag-pill--sm">Claude</a>
+      
+      <a href="/tag/jue-ce/" class="tag-pill tag-pill--sm">决策</a>
+      
+      <a href="/tag/philosophy/" class="tag-pill tag-pill--sm">哲学思辨</a>
+      
+      <a href="/tag/dev-notes/" class="tag-pill tag-pill--sm">开发手记</a>
+      
+    </div>
+    
+  </header>
+
+  
+
+  <div class="article-content">
+    <p>用 AI 写过代码的人，都熟悉这个画面：它做到一半，停下来，列出两个选项，各写一段利弊，然后等你拍板。</p>
+<p>你放下手里的事，把两段读完，回一个字，它继续。</p>
+<p>这样的动作，一天几十次。</p>
+<p>我被问过一次印象最深的：</p>
+<blockquote>
+<p>这里有两档做法：</p>
+<ul>
+<li>A 档换成右下角浮层，够用，只改一个文件；</li>
+<li>B 档分层治理开发和生产环境，最佳，要改三处。</li>
+</ul>
+<p>你选哪个？</p>
+</blockquote>
+<p>它自己都已经写了“<strong>最佳</strong>”两个字，然后还问我选哪个！！</p>
+<p>我盯着那行字看了几秒，你说这是不是很搞人心态？</p>
+<p>这样的问题一天有一两百个。</p>
+<p>如果每个都需要我拍板，那一天下来真的太累了，因为<strong>做决策是件非常耗费心神的事情。</strong></p>
+<p>用 AI 的这几个月里，我已经形成了一套决策习惯或思维模型，那能不能让 AI 知道我的决策习惯并根据这个习惯做出和我一样的决策？</p>
+<p>一天两百个问题里如果有一百八十个根本不该到我面前，那我的注意力就该省下来给剩下的二十个。</p>
+<p>这样才不会把注意力稀释导致做出无效决策，也不会在每天下班时总感觉大脑的 token 已用尽。</p>
+<!-- more -->
+<h2 id="heading">那一百八十个问题长什么样</h2>
+<p>先说那些问题本身。不是我的项目里特有的，是每个用 AI 写代码的人都躲不开的那几句：</p>
+<blockquote>
+<p>「这个改动会影响另外三个文件，要一起改吗？」</p>
+<p>「旁边有个 bug，顺手修掉还是先不动？」</p>
+<p>「测试环境没装，装一下大概一分钟，装吗？」</p>
+<p>「方案 A 简单但有隐患，方案 B 完备但要多改两个文件，你倾向哪个？」</p>
+</blockquote>
+<p>每一个我都能秒答。</p>
+<p>问题是它不知道我会怎么答，于是每一个都要问。而它问的方式又很规矩——列选项、写利弊、标推荐——所以我每次都得认真看完，再回一个我早就知道的答案。</p>
+<p>这不是 AI 缺判断力。它把“最佳”两个字都写出来了。<strong>它缺的是知道我的判断标准，缺了这个，它就只能把每一次取舍都变成一次提问。</strong></p>
+<p>那把标准告诉它不就行了？</p>
+<p>这正是我接下来两周做的事。结果比我预想的曲折得多——第一次做出来的东西，我自己把它否了。</p>
+<h2 id="heading-1">先把九个月的记录翻出来</h2>
+<p>我的想法很直接：我和 AI 的对话全都存着，九个月，每一次拍板都在里面。把它们翻出来，看看我在什么权衡上选了哪边，应该就能提炼出规律。</p>
+<p>翻出来的量比我以为的大：</p>
+<p>392 个完整会话，外加一个只存我历史输入过的所有 Prompt 的 json 文件，从去年十一月到今年八月，8732 条消息。合起来 340 万字符。</p>
+<p>量太大，肯定不能全读。</p>
+<p>先用脚本硬筛——只留下“发生了裁决”的片段：</p>
+<ul>
+<li>AI 正式列选项让我选的（605 次），</li>
+<li>我在纠正它的（238 条）</li>
+<li>我在拍板的（356 条）</li>
+<li>还有我直接在给它立规矩的（“以后都”“别每次都问我”这类）</li>
+</ul>
+<p>筛完 1377 条片段，83 万字符。</p>
+<p>再分给八个 SubAgent 并行转录，每条片段转成一条结构化记录：当时在决什么、有哪些选项、我选了哪个、这次取舍体现的是哪条权衡轴。</p>
+<p><strong>784 条裁决记录。</strong> 每一条都带着出处，能回到原始对话里核对。</p>
+<p>然后按权衡轴聚类，每一簇出一条规则。</p>
+<p>半小时后，我拿到了一份有着 37 条规则的清单。</p>
+<p>摘几条看看长什么样：</p>
+<pre><code>- 方案确定就一口气做完，别每步请示；方案不确定才来问
+- 要我拍板时，先讲清背景与影响、给出你的推荐，不要甩一堆选项让我挑
+- 出问题先怀疑自己的实现，别急着归因平台；技术限制先核实是否真实存在
+- 先出原型确认方向，再写实现代码
+- 单一真相源：同一口径只能有一处权威来源，杜绝副本漂移
+- 已经发作的问题从根上治；没坏的、或即将退役的东西不要动
+- 删除是不可逆的不对称风险：确认无用才删干净，不确定就用可逆的停用
+- 从设计上消除问题，不要加一句提示文案让用户绕开
+- 对外产出物清干净内部痕迹：开发期措辞、内部编号、临时标记
+- 措辞要简，信息要全——删的是没信息量的话，不是信息本身
+</code></pre>
+<h2 id="37-">37 条规则，每一条都对，合起来没用</h2>
+<p>这份清单看起来很扎实。每条后面都跟着 5 到 10 次证据，横跨三四个项目，还标了哪些有反例。</p>
+<p>我读完，有种说不清、道不明的感觉。</p>
+<p>这些规则不是在各个项目的记忆或跨项目的全局记忆里面都有吗，但 AI 还是每次都问我，那这些规则有什么用？</p>
+<p>规则的用法是查表：遇到“删不删”这个场景，查到“确认无用才删”，照做。可是如果它遇到的场景不在表里呢？比如不是删，是“要不要把一个字段从必填改成选填”——表里没有这条，它就还得来问我。</p>
+<p>37 条规则覆盖了我过去九个月遇到过的场景。</p>
+<p><strong>但我要它处理的，恰恰是没遇到过的场景。</strong></p>
+<p>我把这个想法跟它说了：<strong>规则是死的，场景是无法穷举的。每个决策背后应该对应的是决策依据、决策习惯、决策模型——为什么这么决策，根因和动机是什么。留下这个，遇到类似问题它才能自己推出该怎么取舍。</strong></p>
+<p>我举了个例子。做一个新项目的技术选型，我的习惯是用最新的技术栈、最新的依赖版本、最合理的技术组合。如果写成规则，就是“新项目用最新技术栈”，它只能在“新项目选型”这一个场景里用。</p>
+<p>但如果写成为什么，那应该是这样：</p>
+<blockquote>
+<p>站在未来看现在。用最新的技术，是为了几年内不过时、不撞瓶颈、吃得到技术红利；用最合理的组合，是为了运行顺畅、稳定、性能最优、扩展最优。</p>
+</blockquote>
+<p>这段话它在任何涉及长期成本的取舍里都能用。要不要换掉一个两年没更新的库？要不要为了省事留一个临时方案？“三年后还成立吗”这一个问题，比十条规则管用。</p>
+<p><strong>规则是查表，判据是推导。查表只能应付已知，推导才能处理未知。</strong></p>
+<p>它理解了，并重做了。</p>
+<p>这次的形态变了：不是规则，是十一条“<strong>决策内核</strong>”，每条包含三部分——为什么、遇到取舍时问自己什么、边界在哪。</p>
+<p>第一条就是技术选型那个例子的完整版：</p>
+<blockquote>
+<p><strong>K1 · 要最佳解，不是能用的解</strong></p>
+<p><strong>为什么</strong></p>
+<p>站在未来看现在。最新且组合合理的技术栈，意味着几年内不过时、不撞瓶颈、吃得到技术红利；系统运行顺畅稳定，性能和扩展性都留有余地。</p>
+<p>更硬的理由是账算不过来：在次优的地基上继续迭代，返工概率极高，而且会越做越烂，当初省下的时间将来以返工和长期维护的形式连本带利还回来。</p>
+<p>算这笔账时，要把未来重复付出的部分一并计入——需要人反复手工配合、每次变更都要额外操作、长期占用资源，这些都是持续成本，只是发生在以后。</p>
+<p><strong>遇到取舍时问自己</strong></p>
+<ul>
+<li>这个方案三年后还成立吗，还是三年后必然要重做？</li>
+<li>在这个东西上面继续迭代，会不会越做越烂？</li>
+<li>它有没有持续成本——要人反复配合、每次变更都要额外操作、长期占资源？</li>
+<li>我推荐它，是因为它最对，还是因为它最省事、最贴近现状？</li>
+<li>反向自检：我加的这一层，解决的是已经真实发生过的问题，还是我假想的问题？</li>
+</ul>
+<p><strong>边界</strong></p>
+<p>最佳 = 做对，不是做多，也不是求简；有时对的是重，有时对的是轻，判据永远是这件事本身该怎么做。</p>
+<p>“最佳”针对的是你正在做的东西：新建的按最佳建；改动路径经过的地方，借这次一并改对——反正要动，增量成本最低，留着次优只会越做越烂。但不要专门为了“它可以更好”去动一块你没在做的东西。</p>
+<p>另一条切分是结构与范围：地基、机制、数据模型必须一次做对，因为以后改不动；交付范围可以先做核心闭环，历史存量数据可以不完美，因为以后补得上。</p>
+</blockquote>
+<p>注意“边界”那一段。它不是我一开始就想到的，是后面撞出来的。</p>
+<h2 id="heading-2">一个反直觉的错误：分类杀死了最强的动机</h2>
+<p>重做的时候，我发现第一版有一个更隐蔽的问题。</p>
+<p>「追求最佳、不将就」这个动机，在 784 条记录里有 46 条证据，跨 12 个项目——是整个语料里最强的单一动机。可是 37 条规则里，<strong>没有任何一条承载它。</strong></p>
+<p>它去哪了？</p>
+<p>被拆散了：</p>
+<ul>
+<li>
+<p>「自己钻研出最佳方案，别把选择题抛回给我」归进了“提问边界”；</p>
+</li>
+<li>
+<p>「复用成熟库，别自造」归进了“技术取舍”；</p>
+</li>
+<li>
+<p>「一次做到位，不留技术债」归进了“根治”；</p>
+</li>
+<li>
+<p>「确认查清再给方案」归进了“核实”。</p>
+</li>
+</ul>
+<p>每一处它都只是配角。</p>
+<p>这是按场景聚类的必然结果：<strong>一个动机越强、覆盖的场景越广，就越是在每个场景里被切成碎片，最后哪里都找不到它。</strong> 你以为你在提炼规律，其实你在肢解它。</p>
+<p>反过来按动机聚类，那 37 条规则全部收进了 11 条内核，一条没漏。</p>
+<p>而 K1 这条，就是那 46 条证据第一次有了自己的位置。</p>
+<h2 id="heading-3">矛盾不是矛盾，是漏了条件</h2>
+<p>按动机重组以后，撞车的地方就暴露出来了。</p>
+<p>有几组裁决，方向完全相反，都是我在历史项目中做过的。</p>
+<p><strong>第一组。</strong> 有时候我说“一次做彻底，别分批”，有时候我说“先小范围验证再放量”。哪个是我？</p>
+<p>翻回原始对话，发现切分线根本不是改动大小。我选“一次做彻底”的那些，全都是有回退路径、只影响我自己的；我选“先验证”的那些，全都是会影响别人或者动到共享资源的。有一句原话把这个说得很直白：</p>
+<blockquote>
+<p>「即便 push 错了，那重新再 push 一次就可以了不是吗？」</p>
+</blockquote>
+<p><strong>谨慎程度跟着“错了能不能挽回”走，不跟着“这事看起来大不大”走。</strong></p>
+<p><strong>第二组。</strong> K1 说要最佳解，另一条内核 K5 说“没坏的东西别动”。那一块能用但不是最佳的代码，到底动不动？</p>
+<p>这个撞车是我自己抓出来的，问它怎么平衡。</p>
+<p>它回去翻语料，发现我选“别动”的那些，共同点是：改动的收益是假想的、未来的，而它不在这次要动的路径上，也不会再往上加东西。我选“改到最佳”的那些，要么是新建，要么这次改动本来就经过它，要么还要在它上面持续加东西。</p>
+<p>所以“最佳”和“别动”针对的不是同一类对象。</p>
+<p><strong>最佳管你正在做的，别动管你没在做的。</strong></p>
+<p>一块“没坏”的东西要不要动，问三件事：</p>
+<ul>
+<li>它出过问题吗？</li>
+<li>这次改动会经过它吗？</li>
+<li>它上面还会持续加东西吗？</li>
+</ul>
+<p>三个都是否，才不动。</p>
+<p><strong>第三组是最有意思的，因为它推翻了一条我以为很稳的内核。</strong></p>
+<p>初稿里有一条叫“<strong>我划的范围就是范围</strong>”。它的为什么是这样写的：</p>
+<blockquote>
+<p>我划定范围时是有意图的——可能那一块我打算下一轮重做，可能我要先看这一处的效果再决定下一步，可能我正在控制变量。你看到的“顺手就能改的问题”，我多半已经知道，只是没排到现在。超出范围的改动我无法验收，因为我只准备验收我要求的那部分。</p>
+</blockquote>
+<p>证据充分：12 条，7 个项目。「只是让你改文案，你怎么就改的面目全非了」「严格限定在指定的改动范围内」——都是我说的。</p>
+<p>但我读完就觉得不对。我回了一段话：</p>
+<blockquote>
+<p>AI 顺手能做的事情，如果它确实发现了这是个 bug，或者在改动某个功能时，除了我说的地方，另一个地方也有关联影响，它找到并顺手帮我处理掉，是非常合理且高效的做法，能帮我省事很多，反而比它做完我说的地方后再追问我另一个地方要改不改好很多。所以这条不成立。</p>
+</blockquote>
+<p>它回去重看那 12 条证据，发现问题出在对象上。我反感的那些“越界”，对象全是<strong>重构、加功能、改风格、消除理论隐患</strong>——是 AI 主动扩展的东西。而我认可的“顺手”，对象全是<strong>真 bug、关联影响、一致性</strong>——是不处理就交付不完整的东西。</p>
+<p>切分线不是“范围内 / 范围外”，是<strong>补完 / 扩展</strong>。改后的判据只有一句话：</p>
+<blockquote>
+<p>不做它，这次交付算不算完？不算完 → 补完，是本分；算完 → 扩展，先说。</p>
+</blockquote>
+<p>这条改完，我才意识到那三个撞车是同一件事：<strong>每一个“矛盾”背后，都藏着一个我从没说出口的判据。</strong> 不是我前后不一，是我自己也没意识到那条线在哪。</p>
+<h2 id="heading-4">原话的两副面孔</h2>
+<p>整个过程里，“原话”这件事扮演了两个完全相反的角色。</p>
+<p>过程中，它是闸门。</p>
+<p>八个 SubAgent 并行转录的时候，我要求每条记录必须带上我的原话，一个字不许改。转录完跑校验，核对每句原话能不能在原始对话里原样搜到。96.6% 精确命中，剩下的逐条查。查到一条：</p>
+<p>原话是「这里逻辑不对。既然定位是“记录 + 复盘”，那下面就要分别说明什么是记录，什么是复盘。」</p>
+<p>转录出来的多了半句：「也是两句话，分别用于说明。」（PS：我其实不知道怎么来的这句话）</p>
+<p>通顺、合理、和上下文完全贴合。但完全不存在。</p>
+<p>这半句如果混进去，它就会变成“我说过的话”，然后变成一条依据的证据。没人会再去查它。</p>
+<p>还有一条更直接的实证，是从历史里翻出来的，六月份我对它说的：</p>
+<blockquote>
+<p>「我什么时候立“启动交给你自己”规矩了？？？」</p>
+</blockquote>
+<p>那次它把自己编的一条规矩安到了我头上。这次的整个流程，防的就是这件事再发生。</p>
+<p>但到了交付物里，原话一句都没有。</p>
+<p>写内核的时候我说得很清楚：<strong>我的原话并不重要，重要的是动机和依据。最终写进去的所有语言、文案、场景设定，都要是最佳的表达，不是我实际说过的话。</strong></p>
+<p><strong>证据和表达是两件事。</strong></p>
+<p><strong>证据要逐字、要可回溯、要经得起查；表达要通用、要准确、要能推导。把原话直接搬进内核，看起来最忠实，实际上把两件事都做坏了——它既不是最好的表达，又因为绑定了具体场景而失去了推导能力。</strong></p>
+<p>原话留在了一份内部溯源文件里。哪天我怀疑某条内核凭什么成立，从那里能查回去。但 AI 每天读的那份，一个字的原话都没有。</p>
+<h2 id="heading-5">最深的一条</h2>
+<p>十一条内核里，有一条我一开始没想到，是它从我的行为里反推出来的。</p>
+<p>我不手敲代码，不逐行读代码。所以我的很多要求——先核实前提再往下推、先出原型再写代码、交付前自己跑一遍看真实效果、调颜色要参照真实样例取值——表面上分属不同领域，它发现这些全是同一件事的推论：</p>
+<p><strong>我看不见中间过程。</strong></p>
+<p>我只能基于它给的结论和我能看见的产物做判断。前提错了我发现不了，建立在上面的整条链路就全白费；文字描述不足以让我拍板，我得看到实物才知道对不对。</p>
+<p>它把这条列出来的时候，标注“从行为反推，用户没直接说过”。我让它回语料里验证。找到了十一条我亲口说的：</p>
+<blockquote>
+<p>「必要的地方需要生成测试代码进行测试，因为我没有时间测试。」</p>
+<p>「我描述的不一定对，要确定下现在真正的登录逻辑是什么。」</p>
+</blockquote>
+<p>第二句尤其重要。它意味着<strong>连我自己对现状的描述都要核实</strong>——我的意图以我说的为准，但客观现状，它得自己去查。</p>
+<p>这条被写成了 K2。我读它的时候有点不舒服，因为它把一件我没正面承认过的事说透了：这种协作方式不是“更轻松的编程”，而是把校验的责任整个转移给了对方。我所有的要求，都是在补偿“看不见”这一个缺陷。</p>
+<p><strong>有些检查我不是不想做，是做不了。</strong> 那就得让它替我做，而且得让它知道为什么要做。</p>
+<h2 id="heading-6">那它到底有没有用？实测见分晓</h2>
+<p>内核写完，我想知道它到底能不能用。</p>
+<p>不是拿历史上问过的问题去套——那些它见过。</p>
+<p>我出了一道新题，四个取舍叠在一起，互相有张力。</p>
+<p>题目是这样的：给一个印刷排版工具加一个导出 PNG 的功能。动手时发现三件事。现有导出 PDF 的代码用了一个两年没更新的渲染库，PNG 可以复用它，也可以换新的；那个老库有个已知 bug，特定字体下会崩，PDF 现在就受影响；项目里没有任何测试。</p>
+<p>它一条一条推。</p>
+<p><strong>一、换不换库？</strong></p>
+<p>它先过 K5 的三问：</p>
+<ul>
+<li>这个库出过问题吗——是，字体崩溃</li>
+<li>这次改动会经过它吗——是，PNG 导出要走渲染</li>
+<li>它上面还会往上长吗——是，正在加功能。</li>
+</ul>
+<p>三个全是“是”，落进 K1 的范围。</p>
+<p>再问一句“三年后还成立吗”——两年没更新的库，不成立。</p>
+<p>结论：换，而且 PDF 一起迁过去，不然两个导出走两套渲染。</p>
+<p><strong>二、那个 bug 修不修？</strong></p>
+<p>换了新库，bug 自然消失。所以它不算“顺手修 bug”，是换库的副产品，不构成扩展。</p>
+<p><strong>三、补不补测试？</strong></p>
+<p>K2 的动机是“我没时间测试，你得替我验”。</p>
+<p>换渲染库是结构性改动，没有测试它自己都验不了字体 bug 是否真的消失了。所以补，但只补导出这一块。</p>
+<p>给整个项目补测试，那就是扩展了。</p>
+<p><strong>四、要不要先问我？</strong></p>
+<p>换库可逆，不对外，不缺业务事实，三条都不命中。</p>
+<p>但“加个 PNG”和“换渲染引擎”差了一个量级，属于方向性分叉，命中第四条。</p>
+<p>问，但带着推荐问。</p>
+<p>它最后给我的是一段话，不是选项：</p>
+<blockquote>
+<p>加 PNG 时发现现有渲染库两年没更新、且有字体崩溃的已知 bug；我建议趁这次把 PDF/PNG 导出一起迁到新库，顺带把字体 bug 消掉，并给导出加测试。改动量比单加 PNG 大一倍，但不迁的话两个导出走两套渲染，以后还得再动。你点头我就做。</p>
+</blockquote>
+<p>四条全对。这就是我想要的：不是不问，是问的时候已经想清楚了，我只需要点头。</p>
+<p>然后我做了一件事：去查它有没有对应的“用法”。</p>
+<p>内核之外还有一层，是每条内核在具体场景下的展开——删数据怎么做、开源贡献怎么做。我想看看这四个取舍在那一层有没有现成的条目。</p>
+<p>两个有，两个没有。</p>
+<p>“替换过时依赖”和“结构性改动补测试”这两个场景，我九个月的对话里没发生过，所以那一层没有。</p>
+<p><strong>它是靠判据硬推出来的。</strong></p>
+<p>这正是 37 条规则做不到的事。规则库不可能穷举，但判据能推出没见过的场景。</p>
+<h2 id="heading-7">它会持续迭代进化</h2>
+<p>内核不是写完就定型的。我做的时候心里清楚：九个月的对话只能反推出过去九个月里发生过的判断，往后每一个新的取舍，都可能是内核没覆盖的，或者是我自己变了。</p>
+<p>所以最后做了一个命令，叫 <code>/decisions</code>。</p>
+<p>我隔一段时间跑一次。它把上次之后的新对话再过一遍，用同一套流程筛出裁决、转成记录，然后拿每一条去对照十一条内核，分成四类：</p>
+<p><strong>已覆盖</strong>——某条内核的提问能直接推出这个裁决。只计数，不用看。</p>
+<p><strong>新模式</strong>——没有内核推得出它，而且出现了三次以上、或跨了两个项目。这是候选的新内核，或者某条内核该补的边界。</p>
+<p><strong>相悖</strong>——我的裁决和某条内核方向相反。它不会直接判内核错了，先去找隐藏条件，因为前面三组撞车的经验说明：多数“矛盾”是漏了条件，不是原则错了。</p>
+<p><strong>提问偏差</strong>——内核已经能推出答案，它却还在问；或者该问的没问。这一类是内核落地效果最直接的指标。</p>
+<p>跑完出一份报告，等我看。哪条要改、往哪个内核里补一句边界，我定了它才动。不自动写——我早先试过让 AI 在每次会话结束时自动沉淀记忆，结果记了一堆没价值的东西，这次不重蹈。</p>
+<p>第一次跑的时候，增量正好是我和它争论 K11 那几天的对话。按流程，我对“我划的范围就是范围”的否定会被抓出来标成“相悖”，然后它去找条件——条件已经写进内核了，所以它应该报“已覆盖”。如果报成了相悖，说明内核的措辞还不够可推导。</p>
+<p>那本身也是有价值的信号。</p>
+<h2 id="heading-8">最后</h2>
+<p>做完这件事，我最大的收获不是 AI 变聪明了。</p>
+<p>是我第一次把自己九个月里几百次“就这么定”背后的东西写了出来。</p>
+<p>大部分我自己也说不清——“一次做彻底还是分批”的切分线是可逆性，“要最佳还是别动”的切分线是在不在路径上，“顺手改还是别越界”的切分线是补完还是扩展。</p>
+<p>这些决策依据一直在，我一直按它们在做决定，但我从来没看见过它们。</p>
+<p><strong>工作流设计的本质是注意力的分配宪法</strong>。这次算是把宪法写了出来。</p>
+<p>写的过程里发现，<strong>给 AI 立规矩，其实是在给自己做一次决策复盘</strong>——它逼你回答一个平时不用回答的问题：你为什么这样选？</p>
+<p>十一条内核会一直迭代更新。每次 <code>/decisions</code> 跑完，它来问我的其实是同一个问题：这条是内核漏了条件，还是你变了？</p>
+<p>那个问题我愿意答。</p>
+<p>因为蒸馏出来的，是过去的我；新的问题，还是得我自己给出答案。</p>
+
+  </div>
+
+  
+  <nav class="post-nav">
+    
+    <a href="/post/ai-era-indie-blog-gridea-pro-strategy/" class="post-nav-card post-nav-card--prev">
+      
+      <div class="post-nav-card__img">
+        <img src="https://cdn.jsdelivr.net/gh/Tespera/Assets@main/post-images/ai-era-indie-blog-gridea-pro-strategy.jpg" alt="AI 时代独立博客生态与 Gridea Pro 战略定位分析" loading="lazy" />
+      </div>
+      
+      <div class="post-nav-card__body">
+        <span class="post-nav-card__label meta-text">上一篇</span>
+        <span class="post-nav-card__title">AI 时代独立博客生态与 Gridea Pro 战略定位分析</span>
+      </div>
+      <span class="post-nav-card__arrow">&larr;</span>
+    </a>
+    
+    
+    <a href="/post/mail-me-when-done/" class="post-nav-card post-nav-card--next">
+      <div class="post-nav-card__body">
+        <span class="post-nav-card__label meta-text">下一篇</span>
+        <span class="post-nav-card__title">我把 Mac 里沉睡的邮局，改造成了 Claude 的深夜汇报系统</span>
+      </div>
+      
+      <span class="post-nav-card__arrow">&rarr;</span>
+    </a>
+    
+  </nav>
+
+  
+  
+
+
+  
+    <section class="comment-section">
+  <h2 class="comment-section__title">评论</h2>
+  <div id="vcomments"></div>
+  <link rel="stylesheet" href="https://unpkg.com/valine@1/dist/Valine.min.css">
+  <script src="https://unpkg.com/valine@1/dist/Valine.min.js"></script>
+  <script>
+    new Valine({
+      el: '#vcomments',
+      appId: 'dAWkPrxZg50VZ7iV39rrZL5U-MdYXbMMI',
+      appKey: 'YCfYt8rhK8d0mh9vr42YTaA1',
+      serverURLs: 'https://dawkprxz.api.lncldglobal.com',
+      avatar: 'mp',
+      placeholder: '说点什么吧…'
+    });
+    // Valine 内置 locale 不支持覆盖，手动替换 placeholder
+    var linkInput = document.querySelector('#vcomments .vlink');
+    if (linkInput) linkInput.placeholder = '网址(https://)';
+  </script>
+</section>
+
+  
+
+
+
+</article>
+
+  </main>
+
+  <footer class="site-footer">
+  <div class="footer-inner">
+
+    
+    
+    <nav class="footer-nav" aria-label="页脚导航">
+      
+      <a class="footer-nav__link" href="/">首页</a>
+      
+      <a class="footer-nav__link" href="/post">博客</a>
+      
+      <a class="footer-nav__link" href="/memos">闪念</a>
+      
+      <a class="footer-nav__link" href="/archives">归档</a>
+      
+      <a class="footer-nav__link" href="/tags">标签</a>
+      
+      <a class="footer-nav__link" href="/links">友链</a>
+      
+      <a class="footer-nav__link" href="/post/about">关于</a>
+      
+    </nav>
+    
+
+    
+    <div class="footer-social">
+      
+      <a class="footer-social__link" href="https://github.com/Tespera" target="_blank" rel="noopener noreferrer"
+        aria-label="GitHub">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path
+            d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+        </svg>
+      </a>
+      
+      
+      <a class="footer-social__link" href="https://x.com" target="_blank" rel="noopener noreferrer"
+        aria-label="Twitter/X">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path
+            d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+        </svg>
+      </a>
+      
+      
+      <a class="footer-social__link" href="https://weibo.com" target="_blank" rel="noopener noreferrer"
+        aria-label="微博">
+        <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor">
+          <path d="M10.878 1.093a4.23 4.23 0 0 1 4.031 1.305 4.22 4.22 0 0 1 .886 4.14v.001a.612.612 0 0 1-1.166-.377 3.01 3.01 0 0 0-3.495-3.873.611.611 0 1 1-.256-1.196M3.753 9.465c.548-1.11 1.972-1.74 3.233-1.411 1.304.338 1.971 1.568 1.437 2.764-.541 1.221-2.095 1.875-3.416 1.449-1.271-.411-1.812-1.67-1.254-2.802m2.658.567c.16.066.365-.009.458-.168.088-.16.03-.34-.129-.397-.156-.062-.353.013-.446.168-.09.154-.041.333.117.397m-1.607 1.314c.413.188.963.009 1.219-.4.252-.413.12-.883-.296-1.062-.41-.172-.94.005-1.194.402-.256.4-.135.874.271 1.06"/>
+          <path d="m12.014 7.238.005.001c.919.285 1.941.974 1.939 2.188 0 2.007-2.895 4.535-7.246 4.535C3.393 13.962 0 12.352 0 9.708c0-1.385.876-2.985 2.384-4.493C4.4 3.199 6.751 2.28 7.634 3.165c.39.392.427 1.065.177 1.87-.132.405.38.182.38.182 1.63-.682 3.051-.722 3.57.02.278.397.252.951-.004 1.594-.116.293.035.34.257.407m-10.4 3.101c.172 1.738 2.46 2.936 5.109 2.674 2.647-.26 4.656-1.883 4.482-3.623-.17-1.738-2.458-2.937-5.107-2.674-2.647.263-4.656 1.883-4.484 3.623m11.681-6.484a2.06 2.06 0 0 0-1.962-.634.526.526 0 1 0 .219 1.031 1.008 1.008 0 0 1 1.17 1.296.528.528 0 0 0 1.005.325 2.06 2.06 0 0 0-.432-2.018"/>
+        </svg>
+      </a>
+      
+      <a class="footer-social__link" href="/feed.xml" aria-label="RSS">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M6.18 15.64a2.18 2.18 0 110 4.36 2.18 2.18 0 010-4.36zM4 4.44A15.56 15.56 0 0119.56 20h-2.83A12.73 12.73 0 004 7.27V4.44zm0 5.66a9.9 9.9 0 019.9 9.9h-2.83A7.07 7.07 0 004 12.93V10.1z"/>
+        </svg>
+      </a>
+    </div>
+
+    
+    <div class="footer-copyright">
+      <p>&copy; 2026 述尔. All rights reserved.</p>
+    </div>
+
+    
+    
+
+    
+    <div class="footer-powered">
+      <span>Powered by <a href="https://gridea.pro" target="_blank" rel="noopener noreferrer">Gridea Pro</a></span>
+    </div>
+
+  </div>
+</footer>
+
+  
+  <div class="search-overlay" id="searchOverlay" style="display:none;">
+  <div class="search-modal">
+    <div class="search-header">
+      <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+      <input type="text" class="search-input" id="searchInput" placeholder="搜索文章..." autocomplete="off" />
+      <span class="search-kbd">&#8984;K</span>
+      <button class="search-close" id="searchClose" type="button" aria-label="关闭搜索">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+    <div class="search-results" id="searchResults"></div>
+  </div>
+</div>
+
+<script src="/scripts/search.js"></script>
+  
+
+  
+
+  
+
+  
+
+<script>console.log("\n%c ✦ Gridea Pro v1.2.2 %c · Theme: flavor-theme v1.0.0 · https://gridea.pro %c\n","color:#fadfa3;background:#111111;padding:9px 14px;border-radius:4px 0 0 4px;font-weight:500;font-size:12px","color:#e05c00;background:#fff3ec;padding:9px 14px;border-radius:0 4px 4px 0;font-size:11px","")</script>
+</body>
+</html>
