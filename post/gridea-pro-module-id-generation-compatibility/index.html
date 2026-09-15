@@ -26,7 +26,7 @@
     } catch (e) { }
   })();
 </script>
-  <meta name="generator" content="Gridea Pro 1.2.2">
+  <meta name="generator" content="Gridea Pro 0.0.0-dev">
   <title>Gridea Pro 各模块 ID 生成机制与历史兼容性分析 | 述尔</title>
   
 <meta property="og:title" content="Gridea Pro 各模块 ID 生成机制与历史兼容性分析" />
@@ -35,13 +35,13 @@
 <meta property="og:image" content="/post-images/gridea-pro-module-id-generation-compatibility.jpg" />
 
 
-<meta name="description" content="核心问题解答 如果在文章、分类、标签等历史数据中没有 ID，或者 ID 不是 6 位 NanoID，能否打开预览？ 能打开预览和正常渲染。 Gridea Pro 底层的加载逻辑（如 BaseJSONRepository 解析 JSON，以及 PostRepository.scanPosts 解析 Markdown）对于缺失的字段均有极高的容错率。缺失 ID 在内存中会被解析为空字符串 &amp;ldquo;&amp;hellip;">
+<meta name="description" content="核心问题解答 如果在文章、分类、标签等历史数据中没有 ID，或者 ID 不是 6 位 NanoID，能否打开预览？ 能打开预览和正常渲染。 Gridea Pro 底层的加载逻辑（如 BaseJSONRepository 解析 JSON，以及 PostRepository.scanPosts 解析 Markdown）对于缺失的字段均有极高的容错率。缺失 ID 在内存中会被解析为空字符串 “&amp;hellip;">
 <meta name="keywords" content="述尔，Gridea  Pro，Gridea，静态博客，AI，产品经理">
 <link rel="canonical" href="https://are.ink/post/gridea-pro-module-id-generation-compatibility/">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Gridea Pro 各模块 ID 生成机制与历史兼容性分析","url":"https://are.ink/post/gridea-pro-module-id-generation-compatibility/","description":"核心问题解答 如果在文章、分类、标签等历史数据中没有 ID，或者 ID 不是 6 位 NanoID，能否打开预览？ 能打开预览和正常渲染。 Gridea Pro 底层的加载逻辑（如 BaseJSONRepository 解析 JSON，以及 PostRepository.scanPosts 解析 Markdown）对于缺失的字段均有极高的容错率。缺失 ID 在内存中会被解析为空字符串 \u0026ldquo;\u0026hellip;","image":"/post-images/gridea-pro-module-id-generation-compatibility.jpg","datePublished":"2026-03-02T06:17:28+08:00","dateModified":"2026-03-10T13:41:07+08:00","author":{"@type":"Person","name":"述尔"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/images/avatar.png"},"name":"述尔"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Gridea Pro 各模块 ID 生成机制与历史兼容性分析","url":"https://are.ink/post/gridea-pro-module-id-generation-compatibility/","description":"核心问题解答 如果在文章、分类、标签等历史数据中没有 ID，或者 ID 不是 6 位 NanoID，能否打开预览？ 能打开预览和正常渲染。 Gridea Pro 底层的加载逻辑（如 BaseJSONRepository 解析 JSON，以及 PostRepository.scanPosts 解析 Markdown）对于缺失的字段均有极高的容错率。缺失 ID 在内存中会被解析为空字符串 “\u0026hellip;","image":"/post-images/gridea-pro-module-id-generation-compatibility.jpg","datePublished":"2026-03-02T06:17:28+01:00","dateModified":"2026-03-10T13:41:07+01:00","author":{"@type":"Person","name":"述尔"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/images/avatar.png"},"name":"述尔"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://are.ink","name":"述尔","position":1},{"@type":"ListItem","item":"https://are.ink/post/gridea-pro-module-id-generation-compatibility/","name":"Gridea Pro 各模块 ID 生成机制与历史兼容性分析","position":2}]}</script>
 <meta property="og:title" content="Gridea Pro 各模块 ID 生成机制与历史兼容性分析">
-<meta property="og:description" content="核心问题解答 如果在文章、分类、标签等历史数据中没有 ID，或者 ID 不是 6 位 NanoID，能否打开预览？ 能打开预览和正常渲染。 Gridea Pro 底层的加载逻辑（如 BaseJSONRepository 解析 JSON，以及 PostRepository.scanPosts 解析 Markdown）对于缺失的字段均有极高的容错率。缺失 ID 在内存中会被解析为空字符串 &amp;ldquo;&amp;hellip;">
+<meta property="og:description" content="核心问题解答 如果在文章、分类、标签等历史数据中没有 ID，或者 ID 不是 6 位 NanoID，能否打开预览？ 能打开预览和正常渲染。 Gridea Pro 底层的加载逻辑（如 BaseJSONRepository 解析 JSON，以及 PostRepository.scanPosts 解析 Markdown）对于缺失的字段均有极高的容错率。缺失 ID 在内存中会被解析为空字符串 “&amp;hellip;">
 <meta property="og:url" content="https://are.ink/post/gridea-pro-module-id-generation-compatibility/">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="述尔">
@@ -49,7 +49,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:url" content="https://are.ink/post/gridea-pro-module-id-generation-compatibility/">
 <meta name="twitter:title" content="Gridea Pro 各模块 ID 生成机制与历史兼容性分析">
-<meta name="twitter:description" content="核心问题解答 如果在文章、分类、标签等历史数据中没有 ID，或者 ID 不是 6 位 NanoID，能否打开预览？ 能打开预览和正常渲染。 Gridea Pro 底层的加载逻辑（如 BaseJSONRepository 解析 JSON，以及 PostRepository.scanPosts 解析 Markdown）对于缺失的字段均有极高的容错率。缺失 ID 在内存中会被解析为空字符串 &amp;ldquo;&amp;hellip;">
+<meta name="twitter:description" content="核心问题解答 如果在文章、分类、标签等历史数据中没有 ID，或者 ID 不是 6 位 NanoID，能否打开预览？ 能打开预览和正常渲染。 Gridea Pro 底层的加载逻辑（如 BaseJSONRepository 解析 JSON，以及 PostRepository.scanPosts 解析 Markdown）对于缺失的字段均有极高的容错率。缺失 ID 在内存中会被解析为空字符串 “&amp;hellip;">
 <meta name="twitter:image" content="/post-images/gridea-pro-module-id-generation-compatibility.jpg">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-1SBXPCEK36"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-1SBXPCEK36');</script>
@@ -235,7 +235,7 @@
 BaseJSONRepository<br />
 解析 JSON，以及 PostRepository.scanPosts 解析 Markdown）对于缺失的字段均有极高的容错率。缺失<br />
 ID<br />
-在内存中会被解析为空字符串 &quot;&quot; 或者保留历史的旧版 ID。<br />
+在内存中会被解析为空字符串 &quot;“ 或者保留历史的旧版 ID。<br />
 渲染引擎在执行<br />
 RenderAll<br />
 和读取数据构建<br />
@@ -318,7 +318,7 @@ Create<br />
 SaveAll<br />
 时自动生成补齐。	展示层仅强依赖内容（Content）与时间，缺失 ID 不影响基于时间的倒序排列展现。	否<br />
 总结<br />
-统一的生成算法：所有的数据实体（Post, Category, Tag, Link, Menu, Memo）都使用了形如 gonanoid.Generate(&ldquo;0123&hellip;&rdquo;, 6) 定义的 6 位高密度短 ID。<br />
+统一的生成算法：所有的数据实体（Post, Category, Tag, Link, Menu, Memo）都使用了形如 gonanoid.Generate(”0123&hellip;“, 6) 定义的 6 位高密度短 ID。<br />
 底层仓储的一致性保护：除 文章（Post） 因其本身在本地就是一个个独立 Markdown 而独享文件写入流提取 ID 逻辑之外，其它基于列表配置的实体在仓储（Repository）层面皆拥有一套命名统一的保护方法（如<br />
 ensureTagID<br />
 、<br />
@@ -505,6 +505,6 @@ Create<br />
 
   
 
-<script>console.log("\n%c ✦ Gridea Pro v1.2.2 %c · Theme: flavor-theme v1.0.0 · https://gridea.pro %c\n","color:#fadfa3;background:#111111;padding:9px 14px;border-radius:4px 0 0 4px;font-weight:500;font-size:12px","color:#e05c00;background:#fff3ec;padding:9px 14px;border-radius:0 4px 4px 0;font-size:11px","")</script>
+<script>console.log("\n%c ✦ Gridea Pro v0.0.0-dev %c · Theme: flavor-theme v1.0.0 · https://gridea.pro %c\n","color:#fadfa3;background:#111111;padding:9px 14px;border-radius:4px 0 0 4px;font-weight:500;font-size:12px","color:#e05c00;background:#fff3ec;padding:9px 14px;border-radius:0 4px 4px 0;font-size:11px","")</script>
 </body>
 </html>

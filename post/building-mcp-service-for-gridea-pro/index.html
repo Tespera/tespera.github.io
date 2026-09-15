@@ -26,20 +26,20 @@
     } catch (e) { }
   })();
 </script>
-  <meta name="generator" content="Gridea Pro 1.2.2">
+  <meta name="generator" content="Gridea Pro 0.0.0-dev">
   <title>从零构建 MCP 服务：让 AI 直接操作你的博客 | 述尔</title>
   
 <meta property="og:title" content="从零构建 MCP 服务：让 AI 直接操作你的博客" />
 <meta property="og:type" content="article" />
 
 
-<meta name="description" content="作为一个独立开发者，我一直在想：能不能让 AI 直接操作我的博客？ 不是那种&amp;quot;帮我写个草稿我再复制粘贴&amp;quot;的伪自动化，而是真正的 AI 原生工作流——AI 理解我的站点结构、读我的闪念、帮我组织内容、一键发布。 这篇文章记录了我为 Gridea Pro 实现 MCP (Model Context Protocol) 服务的完整过程。从零到一，28 个 Tools、3 个 Resources&amp;hellip;">
+<meta name="description" content="作为一个独立开发者，我一直在想：能不能让 AI 直接操作我的博客？ 不是那种“帮我写个草稿我再复制粘贴”的伪自动化，而是真正的 AI 原生工作流——AI 理解我的站点结构、读我的闪念、帮我组织内容、一键发布。 这篇文章记录了我为 Gridea Pro 实现 MCP (Model Context Protocol) 服务的完整过程。从零到一，28 个 Tools、3 个 Resources&amp;hellip;">
 <meta name="keywords" content="述尔，Gridea  Pro，Gridea，静态博客，AI，产品经理">
 <link rel="canonical" href="https://are.ink/post/building-mcp-service-for-gridea-pro/">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"从零构建 MCP 服务：让 AI 直接操作你的博客","url":"https://are.ink/post/building-mcp-service-for-gridea-pro/","description":"作为一个独立开发者，我一直在想：能不能让 AI 直接操作我的博客？ 不是那种\u0026quot;帮我写个草稿我再复制粘贴\u0026quot;的伪自动化，而是真正的 AI 原生工作流——AI 理解我的站点结构、读我的闪念、帮我组织内容、一键发布。 这篇文章记录了我为 Gridea Pro 实现 MCP (Model Context Protocol) 服务的完整过程。从零到一，28 个 Tools、3 个 Resources\u0026hellip;","datePublished":"2026-02-13T13:58:00+08:00","dateModified":"2026-03-10T23:32:25+08:00","author":{"@type":"Person","name":"述尔"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/images/avatar.png"},"name":"述尔"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"从零构建 MCP 服务：让 AI 直接操作你的博客","url":"https://are.ink/post/building-mcp-service-for-gridea-pro/","description":"作为一个独立开发者，我一直在想：能不能让 AI 直接操作我的博客？ 不是那种“帮我写个草稿我再复制粘贴”的伪自动化，而是真正的 AI 原生工作流——AI 理解我的站点结构、读我的闪念、帮我组织内容、一键发布。 这篇文章记录了我为 Gridea Pro 实现 MCP (Model Context Protocol) 服务的完整过程。从零到一，28 个 Tools、3 个 Resources\u0026hellip;","datePublished":"2026-02-13T13:58:00+01:00","dateModified":"2026-03-10T23:32:25+01:00","author":{"@type":"Person","name":"述尔"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/images/avatar.png"},"name":"述尔"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://are.ink","name":"述尔","position":1},{"@type":"ListItem","item":"https://are.ink/post/building-mcp-service-for-gridea-pro/","name":"从零构建 MCP 服务：让 AI 直接操作你的博客","position":2}]}</script>
 <meta property="og:title" content="从零构建 MCP 服务：让 AI 直接操作你的博客">
-<meta property="og:description" content="作为一个独立开发者，我一直在想：能不能让 AI 直接操作我的博客？ 不是那种&amp;quot;帮我写个草稿我再复制粘贴&amp;quot;的伪自动化，而是真正的 AI 原生工作流——AI 理解我的站点结构、读我的闪念、帮我组织内容、一键发布。 这篇文章记录了我为 Gridea Pro 实现 MCP (Model Context Protocol) 服务的完整过程。从零到一，28 个 Tools、3 个 Resources&amp;hellip;">
+<meta property="og:description" content="作为一个独立开发者，我一直在想：能不能让 AI 直接操作我的博客？ 不是那种“帮我写个草稿我再复制粘贴”的伪自动化，而是真正的 AI 原生工作流——AI 理解我的站点结构、读我的闪念、帮我组织内容、一键发布。 这篇文章记录了我为 Gridea Pro 实现 MCP (Model Context Protocol) 服务的完整过程。从零到一，28 个 Tools、3 个 Resources&amp;hellip;">
 <meta property="og:url" content="https://are.ink/post/building-mcp-service-for-gridea-pro/">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="述尔">
@@ -47,7 +47,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:url" content="https://are.ink/post/building-mcp-service-for-gridea-pro/">
 <meta name="twitter:title" content="从零构建 MCP 服务：让 AI 直接操作你的博客">
-<meta name="twitter:description" content="作为一个独立开发者，我一直在想：能不能让 AI 直接操作我的博客？ 不是那种&amp;quot;帮我写个草稿我再复制粘贴&amp;quot;的伪自动化，而是真正的 AI 原生工作流——AI 理解我的站点结构、读我的闪念、帮我组织内容、一键发布。 这篇文章记录了我为 Gridea Pro 实现 MCP (Model Context Protocol) 服务的完整过程。从零到一，28 个 Tools、3 个 Resources&amp;hellip;">
+<meta name="twitter:description" content="作为一个独立开发者，我一直在想：能不能让 AI 直接操作我的博客？ 不是那种“帮我写个草稿我再复制粘贴”的伪自动化，而是真正的 AI 原生工作流——AI 理解我的站点结构、读我的闪念、帮我组织内容、一键发布。 这篇文章记录了我为 Gridea Pro 实现 MCP (Model Context Protocol) 服务的完整过程。从零到一，28 个 Tools、3 个 Resources&amp;hellip;">
 <meta name="twitter:image" content="/images/avatar.png">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-1SBXPCEK36"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-1SBXPCEK36');</script>
@@ -221,7 +221,7 @@
   
 
   <div class="article-content">
-    <p>作为一个独立开发者，我一直在想：<strong>能不能让 AI 直接操作我的博客？</strong> 不是那种&quot;帮我写个草稿我再复制粘贴&quot;的伪自动化，而是真正的 AI 原生工作流——AI 理解我的站点结构、读我的闪念、帮我组织内容、一键发布。</p>
+    <p>作为一个独立开发者，我一直在想：<strong>能不能让 AI 直接操作我的博客？</strong> 不是那种“帮我写个草稿我再复制粘贴”的伪自动化，而是真正的 AI 原生工作流——AI 理解我的站点结构、读我的闪念、帮我组织内容、一键发布。</p>
 <p>这篇文章记录了我为 Gridea Pro 实现 MCP (Model Context Protocol) 服务的完整过程。从零到一，28 个 Tools、3 个 Resources、5 个 Prompts，以及那些踩过的坑。</p>
 <blockquote>
 <p>🎯 <strong>有趣的是，你正在阅读的这篇文章，就是通过 MCP 服务由 AI 直接创建并发布的。</strong></p>
@@ -250,7 +250,7 @@
 <h2 id="-vs-">架构决策：独立二进制 vs 子命令</h2>
 <p>第一个需要做的决策是：MCP Server 应该怎么启动？</p>
 <h3 id="-a">方案 A：集成到主程序</h3>
-<p>把 MCP 功能塞进 Gridea Pro 主程序，通过 <code>gridea-pro mcp</code> 子命令启动。看起来优雅，但有个致命问题——Gridea Pro 基于 Wails 框架，主程序启动会初始化整个 GUI 环境。一个&quot;无头&quot;的 MCP 服务进程并不需要窗口系统。</p>
+<p>把 MCP 功能塞进 Gridea Pro 主程序，通过 <code>gridea-pro mcp</code> 子命令启动。看起来优雅，但有个致命问题——Gridea Pro 基于 Wails 框架，主程序启动会初始化整个 GUI 环境。一个“无头”的 MCP 服务进程并不需要窗口系统。</p>
 <h3 id="-b">方案 B：独立二进制</h3>
 <p>编译一个轻量的 <code>gridea-mcp</code> 二进制。它只包含 Service 层和 MCP 协议处理，不依赖 Wails。</p>
 <pre><code class="language-bash">go build -o gridea-mcp ./backend/cmd/mcp
@@ -320,7 +320,7 @@ func deletePostHandler(s *service.PostService) server.ToolHandlerFunc {
 <hr />
 <h2 id="heading">危险操作确认机制</h2>
 <p>让 AI 操作你的博客，最怕的是什么？<strong>AI 一个手滑，把文章全删了。</strong></p>
-<p>所以我设计了一个&quot;两步确认&quot;机制。所有危险操作（删除、部署、修改配置）都需要 <code>confirm</code> 参数：</p>
+<p>所以我设计了一个“两步确认”机制。所有危险操作（删除、部署、修改配置）都需要 <code>confirm</code> 参数：</p>
 <pre><code class="language-go">func deletePostHandler(s *service.PostService) server.ToolHandlerFunc {
     return func(ctx context.Context, req mcp.CallToolRequest) (*mcp.CallToolResult, error) {
         filename, _ := req.RequireString(&quot;filename&quot;)
@@ -352,7 +352,7 @@ The following changes will be applied:
 
 Call update_theme_config again with confirm=true to apply.
 </code></pre>
-<p>这个设计的精妙之处在于：<strong>AI 自己会&quot;读懂&quot;这个预览信息，然后向用户确认是否继续。</strong> 人类始终在回路中。</p>
+<p>这个设计的精妙之处在于：<strong>AI 自己会“读懂”这个预览信息，然后向用户确认是否继续。</strong> 人类始终在回路中。</p>
 <hr />
 <h2 id="mcp-go-sdk-">踩坑记录：mcp-go SDK 的版本陷阱</h2>
 <p>我们使用的是 <code>mark3labs/mcp-go</code> v0.8.x，这是 Go 生态最成熟的 MCP SDK。但在开发过程中踩了不少坑。</p>
@@ -388,13 +388,13 @@ s.mcpServer.AddTool(
     listPostsHandler(s.services.Post),
 )
 </code></pre>
-<p>但 Tool 定义函数只是构造 JSON Schema，根本不需要 Service 实例。这导致了大量 &ldquo;unused parameter&rdquo; lint 警告。修正后：</p>
+<p>但 Tool 定义函数只是构造 JSON Schema，根本不需要 Service 实例。这导致了大量 “unused parameter” lint 警告。修正后：</p>
 <pre><code class="language-go">// 清爽的写法
 s.mcpServer.AddTool(listPostsTool(), listPostsHandler(s.services.Post))
 </code></pre>
 <p><strong>教训：先写接口再写实现，不要让惯性驱动设计。</strong></p>
 <hr />
-<h2 id="prompts">Prompts：从&quot;工具箱&quot;到&quot;智能工作流&quot;</h2>
+<h2 id="prompts">Prompts：从“工具箱”到“智能工作流”</h2>
 <p>MCP 不只是一个 Tool 集合。通过 <strong>Prompts</strong>，我们可以把散装的 Tools 编排成有意义的工作流。</p>
 <p>比如 <code>site_health_check</code> 这个 Prompt，它告诉 AI：</p>
 <blockquote>
@@ -452,17 +452,17 @@ s.mcpServer.AddTool(listPostsTool(), listPostsHandler(s.services.Post))
 </code></pre>
 <p>然后你就可以对 Claude 说：</p>
 <ul>
-<li><em>&ldquo;帮我把最近的闪念整理成一篇文章&rdquo;</em></li>
-<li><em>&ldquo;检查我的博客有什么问题&rdquo;</em></li>
-<li><em>&ldquo;把这篇文章翻译成英文&rdquo;</em></li>
-<li><em>&ldquo;帮我写一篇关于 Go 并发的技术博客&rdquo;</em></li>
+<li><em>“帮我把最近的闪念整理成一篇文章”</em></li>
+<li><em>“检查我的博客有什么问题”</em></li>
+<li><em>“把这篇文章翻译成英文”</em></li>
+<li><em>“帮我写一篇关于 Go 并发的技术博客”</em></li>
 </ul>
 <p>AI 会自动调用对应的 Tools，完成整个工作流。</p>
 <hr />
 <h2 id="heading-2">写在最后</h2>
 <p>MCP 不是银弹。它不会让你的应用变得更好——它只是让你的应用对 AI 可见、可操作、可编排。</p>
 <p>但光是这一点，就已经足够改变游戏规则了。</p>
-<p>当每个桌面应用都支持 MCP 时，AI 就不再是一个&quot;对话框里的聊天机器人&quot;，而是一个真正的<strong>数字助手</strong>——它能看到你的文件、理解你的数据、执行你的操作，而且在关键时刻还会停下来问你一句：&quot;确定要这样做吗？&quot;</p>
+<p>当每个桌面应用都支持 MCP 时，AI 就不再是一个“对话框里的聊天机器人”，而是一个真正的<strong>数字助手</strong>——它能看到你的文件、理解你的数据、执行你的操作，而且在关键时刻还会停下来问你一句：&quot;确定要这样做吗？&quot;</p>
 <p>这才是 AI 原生时代应有的样子。</p>
 <p><em>— 本文由 Claude 通过 Gridea Pro MCP 服务创建并发布 🤖</em></p>
 
@@ -631,6 +631,6 @@ s.mcpServer.AddTool(listPostsTool(), listPostsHandler(s.services.Post))
 
   
 
-<script>console.log("\n%c ✦ Gridea Pro v1.2.2 %c · Theme: flavor-theme v1.0.0 · https://gridea.pro %c\n","color:#fadfa3;background:#111111;padding:9px 14px;border-radius:4px 0 0 4px;font-weight:500;font-size:12px","color:#e05c00;background:#fff3ec;padding:9px 14px;border-radius:0 4px 4px 0;font-size:11px","")</script>
+<script>console.log("\n%c ✦ Gridea Pro v0.0.0-dev %c · Theme: flavor-theme v1.0.0 · https://gridea.pro %c\n","color:#fadfa3;background:#111111;padding:9px 14px;border-radius:4px 0 0 4px;font-weight:500;font-size:12px","color:#e05c00;background:#fff3ec;padding:9px 14px;border-radius:0 4px 4px 0;font-size:11px","")</script>
 </body>
 </html>

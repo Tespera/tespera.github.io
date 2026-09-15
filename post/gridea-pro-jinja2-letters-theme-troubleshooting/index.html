@@ -26,7 +26,7 @@
     } catch (e) { }
   })();
 </script>
-  <meta name="generator" content="Gridea Pro 1.2.2">
+  <meta name="generator" content="Gridea Pro 0.0.0-dev">
   <title>Gridea Pro Jinja2 主题开发实战：从模板报错到 CSS 断链的奇葩排查全记录 | 述尔</title>
   
 <meta property="og:title" content="Gridea Pro Jinja2 主题开发实战：从模板报错到 CSS 断链的奇葩排查全记录" />
@@ -35,13 +35,13 @@
 <meta property="og:image" content="/post-images/gridea-pro-jinja2-letters-theme-troubleshooting.jpg" />
 
 
-<meta name="description" content="在为 Gridea Pro 适配 letters-theme (Jinja2 引擎) 主题时，我们遇到了一系列阻碍渲染与样式加载的顽固问题。本篇开发手记详细记录了本次从报错分析、渲染器源码审查到浏览器抓包追踪的全过程，相信这些&amp;quot;踩坑&amp;quot;经验对其他 Gridea Pro 的主题开发者会有很大帮助。 第一阶段：解决满屏的 &amp;ldquo;Unable to Resolve Template&amp;rdquo; 报错 在初&amp;hellip;">
+<meta name="description" content="在为 Gridea Pro 适配 letters-theme (Jinja2 引擎) 主题时，我们遇到了一系列阻碍渲染与样式加载的顽固问题。本篇开发手记详细记录了本次从报错分析、渲染器源码审查到浏览器抓包追踪的全过程，相信这些“踩坑”经验对其他 Gridea Pro 的主题开发者会有很大帮助。 第一阶段：解决满屏的 “Unable to Resolve Template” 报错 在初&amp;hellip;">
 <meta name="keywords" content="述尔，Gridea  Pro，Gridea，静态博客，AI，产品经理">
 <link rel="canonical" href="https://are.ink/post/gridea-pro-jinja2-letters-theme-troubleshooting/">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Gridea Pro Jinja2 主题开发实战：从模板报错到 CSS 断链的奇葩排查全记录","url":"https://are.ink/post/gridea-pro-jinja2-letters-theme-troubleshooting/","description":"在为 Gridea Pro 适配 letters-theme (Jinja2 引擎) 主题时，我们遇到了一系列阻碍渲染与样式加载的顽固问题。本篇开发手记详细记录了本次从报错分析、渲染器源码审查到浏览器抓包追踪的全过程，相信这些\u0026quot;踩坑\u0026quot;经验对其他 Gridea Pro 的主题开发者会有很大帮助。 第一阶段：解决满屏的 \u0026ldquo;Unable to Resolve Template\u0026rdquo; 报错 在初\u0026hellip;","image":"/post-images/gridea-pro-jinja2-letters-theme-troubleshooting.jpg","datePublished":"2026-02-27T18:42:36+08:00","dateModified":"2026-03-10T13:41:07+08:00","author":{"@type":"Person","name":"述尔"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/images/avatar.png"},"name":"述尔"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Gridea Pro Jinja2 主题开发实战：从模板报错到 CSS 断链的奇葩排查全记录","url":"https://are.ink/post/gridea-pro-jinja2-letters-theme-troubleshooting/","description":"在为 Gridea Pro 适配 letters-theme (Jinja2 引擎) 主题时，我们遇到了一系列阻碍渲染与样式加载的顽固问题。本篇开发手记详细记录了本次从报错分析、渲染器源码审查到浏览器抓包追踪的全过程，相信这些“踩坑”经验对其他 Gridea Pro 的主题开发者会有很大帮助。 第一阶段：解决满屏的 “Unable to Resolve Template” 报错 在初\u0026hellip;","image":"/post-images/gridea-pro-jinja2-letters-theme-troubleshooting.jpg","datePublished":"2026-02-27T18:42:36+01:00","dateModified":"2026-03-10T13:41:07+01:00","author":{"@type":"Person","name":"述尔"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/images/avatar.png"},"name":"述尔"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://are.ink","name":"述尔","position":1},{"@type":"ListItem","item":"https://are.ink/post/gridea-pro-jinja2-letters-theme-troubleshooting/","name":"Gridea Pro Jinja2 主题开发实战：从模板报错到 CSS 断链的奇葩排查全记录","position":2}]}</script>
 <meta property="og:title" content="Gridea Pro Jinja2 主题开发实战：从模板报错到 CSS 断链的奇葩排查全记录">
-<meta property="og:description" content="在为 Gridea Pro 适配 letters-theme (Jinja2 引擎) 主题时，我们遇到了一系列阻碍渲染与样式加载的顽固问题。本篇开发手记详细记录了本次从报错分析、渲染器源码审查到浏览器抓包追踪的全过程，相信这些&amp;quot;踩坑&amp;quot;经验对其他 Gridea Pro 的主题开发者会有很大帮助。 第一阶段：解决满屏的 &amp;ldquo;Unable to Resolve Template&amp;rdquo; 报错 在初&amp;hellip;">
+<meta property="og:description" content="在为 Gridea Pro 适配 letters-theme (Jinja2 引擎) 主题时，我们遇到了一系列阻碍渲染与样式加载的顽固问题。本篇开发手记详细记录了本次从报错分析、渲染器源码审查到浏览器抓包追踪的全过程，相信这些“踩坑”经验对其他 Gridea Pro 的主题开发者会有很大帮助。 第一阶段：解决满屏的 “Unable to Resolve Template” 报错 在初&amp;hellip;">
 <meta property="og:url" content="https://are.ink/post/gridea-pro-jinja2-letters-theme-troubleshooting/">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="述尔">
@@ -49,7 +49,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:url" content="https://are.ink/post/gridea-pro-jinja2-letters-theme-troubleshooting/">
 <meta name="twitter:title" content="Gridea Pro Jinja2 主题开发实战：从模板报错到 CSS 断链的奇葩排查全记录">
-<meta name="twitter:description" content="在为 Gridea Pro 适配 letters-theme (Jinja2 引擎) 主题时，我们遇到了一系列阻碍渲染与样式加载的顽固问题。本篇开发手记详细记录了本次从报错分析、渲染器源码审查到浏览器抓包追踪的全过程，相信这些&amp;quot;踩坑&amp;quot;经验对其他 Gridea Pro 的主题开发者会有很大帮助。 第一阶段：解决满屏的 &amp;ldquo;Unable to Resolve Template&amp;rdquo; 报错 在初&amp;hellip;">
+<meta name="twitter:description" content="在为 Gridea Pro 适配 letters-theme (Jinja2 引擎) 主题时，我们遇到了一系列阻碍渲染与样式加载的顽固问题。本篇开发手记详细记录了本次从报错分析、渲染器源码审查到浏览器抓包追踪的全过程，相信这些“踩坑”经验对其他 Gridea Pro 的主题开发者会有很大帮助。 第一阶段：解决满屏的 “Unable to Resolve Template” 报错 在初&amp;hellip;">
 <meta name="twitter:image" content="/post-images/gridea-pro-jinja2-letters-theme-troubleshooting.jpg">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-1SBXPCEK36"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-1SBXPCEK36');</script>
@@ -227,8 +227,8 @@
   
 
   <div class="article-content">
-    <p>在为 Gridea Pro 适配 <code>letters-theme</code> (Jinja2 引擎) 主题时，我们遇到了一系列阻碍渲染与样式加载的顽固问题。本篇开发手记详细记录了本次从报错分析、渲染器源码审查到浏览器抓包追踪的全过程，相信这些&quot;踩坑&quot;经验对其他 Gridea Pro 的主题开发者会有很大帮助。</p>
-<h2 id="-unable-to-resolve-template-">第一阶段：解决满屏的 &ldquo;Unable to Resolve Template&rdquo; 报错</h2>
+    <p>在为 Gridea Pro 适配 <code>letters-theme</code> (Jinja2 引擎) 主题时，我们遇到了一系列阻碍渲染与样式加载的顽固问题。本篇开发手记详细记录了本次从报错分析、渲染器源码审查到浏览器抓包追踪的全过程，相信这些“踩坑”经验对其他 Gridea Pro 的主题开发者会有很大帮助。</p>
+<h2 id="-unable-to-resolve-template-">第一阶段：解决满屏的 “Unable to Resolve Template” 报错</h2>
 <p>在初始启动预览时，终端（Wails Dev）疯狂输出各种 <code>[Error (where: fromfile) in xxx] unable to resolve template</code>。页面大部分渲染失败。</p>
 <h3 id="-1">问题 1：模板文件名与渲染层约定不符</h3>
 <p><strong>现象</strong>：<code>archives.html</code> 和 <code>friends.html</code> 渲染失败。<br />
@@ -272,7 +272,7 @@
 &lt;link rel=&quot;stylesheet&quot; href=&quot;{{ cdnPrefix }}/styles/main.css&quot;&gt;
 </code></pre>
 <hr />
-<h2 id="--bug">第三阶段：致命的 &ldquo;幽灵&rdquo; Bug：修改毫无反应</h2>
+<h2 id="--bug">第三阶段：致命的 “幽灵” Bug：修改毫无反应</h2>
 <p>在完成了上述修复后，发现了一个极其恼人的问题：<strong>输出目录的 CSS 文件已经更新并存在，但是在浏览器请求的却是旧的路径 <code>/css/style.css</code>！不管怎么刷新，改动仿佛没生效！</strong></p>
 <h3 id="heading">排查热重载链路：被遗忘的模板缓存</h3>
 <p>顺着 <code>ResourceWatcher</code> 一路追查：</p>
@@ -517,6 +517,6 @@ module.exports = generateOverride
 
   
 
-<script>console.log("\n%c ✦ Gridea Pro v1.2.2 %c · Theme: flavor-theme v1.0.0 · https://gridea.pro %c\n","color:#fadfa3;background:#111111;padding:9px 14px;border-radius:4px 0 0 4px;font-weight:500;font-size:12px","color:#e05c00;background:#fff3ec;padding:9px 14px;border-radius:0 4px 4px 0;font-size:11px","")</script>
+<script>console.log("\n%c ✦ Gridea Pro v0.0.0-dev %c · Theme: flavor-theme v1.0.0 · https://gridea.pro %c\n","color:#fadfa3;background:#111111;padding:9px 14px;border-radius:4px 0 0 4px;font-weight:500;font-size:12px","color:#e05c00;background:#fff3ec;padding:9px 14px;border-radius:0 4px 4px 0;font-size:11px","")</script>
 </body>
 </html>

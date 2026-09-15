@@ -26,7 +26,7 @@
     } catch (e) { }
   })();
 </script>
-  <meta name="generator" content="Gridea Pro 1.2.2">
+  <meta name="generator" content="Gridea Pro 0.0.0-dev">
   <title>深入解析 Gridea Pro 架构演进：打造健壮的 Wails 应用后端 | 述尔</title>
   
 <meta property="og:title" content="深入解析 Gridea Pro 架构演进：打造健壮的 Wails 应用后端" />
@@ -38,7 +38,7 @@
 <meta name="description" content="在开发 Gridea Pro 的过程中，我们选择 Wails 作为跨平台桌面应用开发框架。Wails 允许我们使用 Go 编写后端逻辑，使用现代 Web 技术（Vue3, TypeScript）构建前端界面，这对于 Go 开发者来说是一个极具吸引力的组合。 然而，随着系统复杂度的增加，我们遇到了典型的架构挑战：如何在前端（JS/TS）与后端（Go）之间构&amp;hellip;">
 <meta name="keywords" content="述尔，Gridea  Pro，Gridea，静态博客，AI，产品经理">
 <link rel="canonical" href="https://are.ink/post/Gridea-pro-wails-enhance/">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"深入解析 Gridea Pro 架构演进：打造健壮的 Wails 应用后端","url":"https://are.ink/post/Gridea-pro-wails-enhance/","description":"在开发 Gridea Pro 的过程中，我们选择 Wails 作为跨平台桌面应用开发框架。Wails 允许我们使用 Go 编写后端逻辑，使用现代 Web 技术（Vue3, TypeScript）构建前端界面，这对于 Go 开发者来说是一个极具吸引力的组合。 然而，随着系统复杂度的增加，我们遇到了典型的架构挑战：如何在前端（JS/TS）与后端（Go）之间构\u0026hellip;","image":"/post-images/Gridea-pro-wails-enhance.jpg","datePublished":"2026-02-15T14:15:00+08:00","dateModified":"2026-03-10T13:41:07+08:00","author":{"@type":"Person","name":"述尔"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/images/avatar.png"},"name":"述尔"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"深入解析 Gridea Pro 架构演进：打造健壮的 Wails 应用后端","url":"https://are.ink/post/Gridea-pro-wails-enhance/","description":"在开发 Gridea Pro 的过程中，我们选择 Wails 作为跨平台桌面应用开发框架。Wails 允许我们使用 Go 编写后端逻辑，使用现代 Web 技术（Vue3, TypeScript）构建前端界面，这对于 Go 开发者来说是一个极具吸引力的组合。 然而，随着系统复杂度的增加，我们遇到了典型的架构挑战：如何在前端（JS/TS）与后端（Go）之间构\u0026hellip;","image":"/post-images/Gridea-pro-wails-enhance.jpg","datePublished":"2026-02-15T14:15:00+01:00","dateModified":"2026-03-10T13:41:07+01:00","author":{"@type":"Person","name":"述尔"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/images/avatar.png"},"name":"述尔"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://are.ink","name":"述尔","position":1},{"@type":"ListItem","item":"https://are.ink/post/Gridea-pro-wails-enhance/","name":"深入解析 Gridea Pro 架构演进：打造健壮的 Wails 应用后端","position":2}]}</script>
 <meta property="og:title" content="深入解析 Gridea Pro 架构演进：打造健壮的 Wails 应用后端">
 <meta property="og:description" content="在开发 Gridea Pro 的过程中，我们选择 Wails 作为跨平台桌面应用开发框架。Wails 允许我们使用 Go 编写后端逻辑，使用现代 Web 技术（Vue3, TypeScript）构建前端界面，这对于 Go 开发者来说是一个极具吸引力的组合。 然而，随着系统复杂度的增加，我们遇到了典型的架构挑战：如何在前端（JS/TS）与后端（Go）之间构&amp;hellip;">
@@ -231,7 +231,7 @@
   <div class="article-content">
     <p>在开发 Gridea Pro 的过程中，我们选择 <a href="https://wails.io/">Wails</a> 作为跨平台桌面应用开发框架。Wails 允许我们使用 Go 编写后端逻辑，使用现代 Web 技术（Vue3, TypeScript）构建前端界面，这对于 Go 开发者来说是一个极具吸引力的组合。</p>
 <p>然而，随着系统复杂度的增加，我们遇到了典型的架构挑战：如何在前端（JS/TS）与后端（Go）之间构建一个高效、类型安全且易于维护的交互层？最近，我们对后端的 <strong>Facade 层</strong> 和 <strong>Service 层</strong> 进行了一次深度重构，主要解决了 Context 管理混乱、服务状态化以及竞态条件等问题。本文将详细复盘这次架构演进的过程与经验。</p>
-<h2 id="--">背景：从 &ldquo;能跑就行&rdquo; 到架构腐化</h2>
+<h2 id="--">背景：从 “能跑就行” 到架构腐化</h2>
 <p>在项目初期，为了快速迭代，我们的后端代码往往遵循“最简路径”原则。Wails 的运行时（Runtime）提供了一个 <code>context.Context</code>，它是与前端通信的核心（例如发送事件、调用 JS 方法）。</p>
 <p>早期的代码模式通常是这样的：</p>
 <pre><code class="language-go">type SomeService struct {
@@ -510,6 +510,6 @@ func (f *ThemeFacade) SaveThemeConfigFromFrontend(config domain.ThemeConfig) err
 
   
 
-<script>console.log("\n%c ✦ Gridea Pro v1.2.2 %c · Theme: flavor-theme v1.0.0 · https://gridea.pro %c\n","color:#fadfa3;background:#111111;padding:9px 14px;border-radius:4px 0 0 4px;font-weight:500;font-size:12px","color:#e05c00;background:#fff3ec;padding:9px 14px;border-radius:0 4px 4px 0;font-size:11px","")</script>
+<script>console.log("\n%c ✦ Gridea Pro v0.0.0-dev %c · Theme: flavor-theme v1.0.0 · https://gridea.pro %c\n","color:#fadfa3;background:#111111;padding:9px 14px;border-radius:4px 0 0 4px;font-weight:500;font-size:12px","color:#e05c00;background:#fff3ec;padding:9px 14px;border-radius:0 4px 4px 0;font-size:11px","")</script>
 </body>
 </html>

@@ -26,7 +26,7 @@
     } catch (e) { }
   })();
 </script>
-  <meta name="generator" content="Gridea Pro 1.2.2">
+  <meta name="generator" content="Gridea Pro 0.0.0-dev">
   <title>Wails 应用实战：重构 Boot 启动逻辑与原生菜单国际化最佳实践 | 述尔</title>
   
 <meta property="og:title" content="Wails 应用实战：重构 Boot 启动逻辑与原生菜单国际化最佳实践" />
@@ -38,7 +38,7 @@
 <meta name="description" content="在开发跨平台桌面应用时，菜单栏（Menu Bar）是用户体验的核心组成部分。Gridea Pro 作为一款基于 Wails 开发的现代化应用，近期对后端的启动逻辑（Boot）和菜单系统进行了深度重构。本文将分享这一过程中的技术决策、踩坑经验以及最终的最佳实践方案。 背景：为什么重构？ 在早期的开发中，我们的 boot.go 承担了过多的职责：初始化配置、启动 Http Server、&amp;hellip;">
 <meta name="keywords" content="述尔，Gridea  Pro，Gridea，静态博客，AI，产品经理">
 <link rel="canonical" href="https://are.ink/post/wails-boot/">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Wails 应用实战：重构 Boot 启动逻辑与原生菜单国际化最佳实践","url":"https://are.ink/post/wails-boot/","description":"在开发跨平台桌面应用时，菜单栏（Menu Bar）是用户体验的核心组成部分。Gridea Pro 作为一款基于 Wails 开发的现代化应用，近期对后端的启动逻辑（Boot）和菜单系统进行了深度重构。本文将分享这一过程中的技术决策、踩坑经验以及最终的最佳实践方案。 背景：为什么重构？ 在早期的开发中，我们的 boot.go 承担了过多的职责：初始化配置、启动 Http Server、\u0026hellip;","image":"/post-images/wails-boot.jpeg","datePublished":"2026-02-28T14:04:39+08:00","dateModified":"2026-03-10T13:41:07+08:00","author":{"@type":"Person","name":"述尔"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/images/avatar.png"},"name":"述尔"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Wails 应用实战：重构 Boot 启动逻辑与原生菜单国际化最佳实践","url":"https://are.ink/post/wails-boot/","description":"在开发跨平台桌面应用时，菜单栏（Menu Bar）是用户体验的核心组成部分。Gridea Pro 作为一款基于 Wails 开发的现代化应用，近期对后端的启动逻辑（Boot）和菜单系统进行了深度重构。本文将分享这一过程中的技术决策、踩坑经验以及最终的最佳实践方案。 背景：为什么重构？ 在早期的开发中，我们的 boot.go 承担了过多的职责：初始化配置、启动 Http Server、\u0026hellip;","image":"/post-images/wails-boot.jpeg","datePublished":"2026-02-28T14:04:39+01:00","dateModified":"2026-03-10T13:41:07+01:00","author":{"@type":"Person","name":"述尔"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/images/avatar.png"},"name":"述尔"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://are.ink","name":"述尔","position":1},{"@type":"ListItem","item":"https://are.ink/post/wails-boot/","name":"Wails 应用实战：重构 Boot 启动逻辑与原生菜单国际化最佳实践","position":2}]}</script>
 <meta property="og:title" content="Wails 应用实战：重构 Boot 启动逻辑与原生菜单国际化最佳实践">
 <meta property="og:description" content="在开发跨平台桌面应用时，菜单栏（Menu Bar）是用户体验的核心组成部分。Gridea Pro 作为一款基于 Wails 开发的现代化应用，近期对后端的启动逻辑（Boot）和菜单系统进行了深度重构。本文将分享这一过程中的技术决策、踩坑经验以及最终的最佳实践方案。 背景：为什么重构？ 在早期的开发中，我们的 boot.go 承担了过多的职责：初始化配置、启动 Http Server、&amp;hellip;">
@@ -232,12 +232,12 @@
     <p>在开发跨平台桌面应用时，菜单栏（Menu Bar）是用户体验的核心组成部分。Gridea Pro 作为一款基于 Wails 开发的现代化应用，近期对后端的启动逻辑（Boot）和菜单系统进行了深度重构。本文将分享这一过程中的技术决策、踩坑经验以及最终的最佳实践方案。</p>
 <h2 id="heading">背景：为什么重构？</h2>
 <p>在早期的开发中，我们的 <code>boot.go</code> 承担了过多的职责：初始化配置、启动 Http Server、构建菜单、处理系统信号等。随着功能的增加，<code>buildMenu</code> 函数变得臃肿不堪，且菜单项不支持多语言（i18n），这与 Gridea Pro 全球化的目标不符。</p>
-<p>此外，Wails 默认的 <code>menu.WindowMenu()</code> 虽然方便，但其内部生成的 &ldquo;Minimize&rdquo;, &ldquo;Zoom&rdquo; 等标准菜单项无法被修改，导致无法汉化，这在中文环境下显得格格不入。</p>
+<p>此外，Wails 默认的 <code>menu.WindowMenu()</code> 虽然方便，但其内部生成的 “Minimize”, “Zoom” 等标准菜单项无法被修改，导致无法汉化，这在中文环境下显得格格不入。</p>
 <h2 id="part-1-boot-">Part 1: Boot 代码的瘦身与解耦</h2>
 <p>所有的重构都始于清理。我们将 <code>boot.go</code> 的职责进行了重新梳理：</p>
 <ol>
 <li><strong>Run 函数的纯粹化</strong>：<code>Run</code> 函数现在只负责核心依赖的注入（如 <code>embed.FS</code>）和生命周期的管理。</li>
-<li><strong>Context 管理</strong>：引入了包级变量 <code>appCtx</code> 和 <code>processMenu</code> 相关的 handler，使得在应用运行的任何阶段都能安全地访问 Wails Context，这对于实现 &ldquo;Check for Updates&rdquo; 或 &ldquo;Open Preferences&rdquo; 等需要与前端交互的功能至关重要。</li>
+<li><strong>Context 管理</strong>：引入了包级变量 <code>appCtx</code> 和 <code>processMenu</code> 相关的 handler，使得在应用运行的任何阶段都能安全地访问 Wails Context，这对于实现 “Check for Updates” 或 “Open Preferences” 等需要与前端交互的功能至关重要。</li>
 <li><strong>依赖注入</strong>：通过 <code>InitLocales</code> 等函数，在启动阶段完成多语言环境的准备，确保菜单构建时已有可用的翻译数据。</li>
 </ol>
 <pre><code class="language-go">// 现在的 Run 函数（简化版）
@@ -265,7 +265,7 @@ func Run(assets embed.FS) {
 <li><strong>缺点</strong>：不支持英文环境，完全不可扩展。</li>
 </ul>
 <h3 id="-b-jsonv2---">方案 B：前后端共享 JSON（V2 - 激进尝试）</h3>
-<p>为了统一维护翻译，我们尝试了 &ldquo;Single Source of Truth&rdquo; 方案：</p>
+<p>为了统一维护翻译，我们尝试了 “Single Source of Truth” 方案：</p>
 <ul>
 <li>在 <code>main.go</code> 中使用 <code>//go:embed</code> 将前端的 <code>locales/*.json</code> 嵌入到二进制中。</li>
 <li>启动时解析这些 JSON，提取 <code>nativeMenu</code> 字段。</li>
@@ -300,7 +300,7 @@ wailsRuntime.EventsOn(ctx, &quot;app:change-locale&quot;, func(data ...interface
 })
 </code></pre>
 <h2 id="part-3--window-">Part 3: 攻克 Window 菜单的汉化难点</h2>
-<p>Wails 提供的 <code>menu.WindowMenu()</code> 是一个原生封装，无法修改文本。为了实现 &ldquo;最小化&rdquo;、&ldquo;缩放&rdquo; 等标准功能的国际化，我们要<strong>手动构建 Window 菜单</strong>：</p>
+<p>Wails 提供的 <code>menu.WindowMenu()</code> 是一个原生封装，无法修改文本。为了实现 “最小化”、“缩放” 等标准功能的国际化，我们要<strong>手动构建 Window 菜单</strong>：</p>
 <pre><code class="language-go">// 放弃 menu.WindowMenu()，手动构建：
 windowMenu := appMenu.AddSubmenu(T(&quot;window&quot;))
 
@@ -502,6 +502,6 @@ windowMenu.AddText(T(&quot;window.zoom&quot;), nil, func(_ *menu.CallbackData) {
 
   
 
-<script>console.log("\n%c ✦ Gridea Pro v1.2.2 %c · Theme: flavor-theme v1.0.0 · https://gridea.pro %c\n","color:#fadfa3;background:#111111;padding:9px 14px;border-radius:4px 0 0 4px;font-weight:500;font-size:12px","color:#e05c00;background:#fff3ec;padding:9px 14px;border-radius:0 4px 4px 0;font-size:11px","")</script>
+<script>console.log("\n%c ✦ Gridea Pro v0.0.0-dev %c · Theme: flavor-theme v1.0.0 · https://gridea.pro %c\n","color:#fadfa3;background:#111111;padding:9px 14px;border-radius:4px 0 0 4px;font-weight:500;font-size:12px","color:#e05c00;background:#fff3ec;padding:9px 14px;border-radius:0 4px 4px 0;font-size:11px","")</script>
 </body>
 </html>

@@ -26,7 +26,7 @@
     } catch (e) { }
   })();
 </script>
-  <meta name="generator" content="Gridea Pro 1.2.2">
+  <meta name="generator" content="Gridea Pro 0.0.0-dev">
   <title>Gridea Pro MCP 的设计理念与技术取舍 | 述尔</title>
   
 <meta property="og:title" content="Gridea Pro MCP 的设计理念与技术取舍" />
@@ -35,13 +35,13 @@
 <meta property="og:image" content="/post-images/gridea-pro-mcp-design-philosophy.png" />
 
 
-<meta name="description" content="当我们决定为一个桌面博客客户端实现 MCP 服务时，面对的不仅是&amp;quot;如何让 AI 调用几个 API&amp;quot;的技术问题，更是一系列关于信任边界、能力暴露、人机协作模式的设计抉择。这篇文章记录了这些抉择背后的思考。 一、为什么是 MCP，而不是 REST API 或插件系统 在 AI 辅助写作的浪潮中，大多数工具选择了两条路径：要么在应用内嵌入一个 AI 聊天窗口，要么暴露一套 REST &amp;hellip;">
+<meta name="description" content="当我们决定为一个桌面博客客户端实现 MCP 服务时，面对的不仅是“如何让 AI 调用几个 API”的技术问题，更是一系列关于信任边界、能力暴露、人机协作模式的设计抉择。这篇文章记录了这些抉择背后的思考。 一、为什么是 MCP，而不是 REST API 或插件系统 在 AI 辅助写作的浪潮中，大多数工具选择了两条路径：要么在应用内嵌入一个 AI 聊天窗口，要么暴露一套 REST &amp;hellip;">
 <meta name="keywords" content="述尔，Gridea  Pro，Gridea，静态博客，AI，产品经理">
 <link rel="canonical" href="https://are.ink/post/gridea-pro-mcp-design-philosophy/">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Gridea Pro MCP 的设计理念与技术取舍","url":"https://are.ink/post/gridea-pro-mcp-design-philosophy/","description":"当我们决定为一个桌面博客客户端实现 MCP 服务时，面对的不仅是\u0026quot;如何让 AI 调用几个 API\u0026quot;的技术问题，更是一系列关于信任边界、能力暴露、人机协作模式的设计抉择。这篇文章记录了这些抉择背后的思考。 一、为什么是 MCP，而不是 REST API 或插件系统 在 AI 辅助写作的浪潮中，大多数工具选择了两条路径：要么在应用内嵌入一个 AI 聊天窗口，要么暴露一套 REST \u0026hellip;","image":"/post-images/gridea-pro-mcp-design-philosophy.png","datePublished":"2026-03-11T04:00:00+08:00","dateModified":"2026-03-10T13:41:07+08:00","author":{"@type":"Person","name":"述尔"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/images/avatar.png"},"name":"述尔"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Gridea Pro MCP 的设计理念与技术取舍","url":"https://are.ink/post/gridea-pro-mcp-design-philosophy/","description":"当我们决定为一个桌面博客客户端实现 MCP 服务时，面对的不仅是“如何让 AI 调用几个 API”的技术问题，更是一系列关于信任边界、能力暴露、人机协作模式的设计抉择。这篇文章记录了这些抉择背后的思考。 一、为什么是 MCP，而不是 REST API 或插件系统 在 AI 辅助写作的浪潮中，大多数工具选择了两条路径：要么在应用内嵌入一个 AI 聊天窗口，要么暴露一套 REST \u0026hellip;","image":"/post-images/gridea-pro-mcp-design-philosophy.png","datePublished":"2026-03-11T04:00:00+01:00","dateModified":"2026-03-10T13:41:07+01:00","author":{"@type":"Person","name":"述尔"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/images/avatar.png"},"name":"述尔"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://are.ink","name":"述尔","position":1},{"@type":"ListItem","item":"https://are.ink/post/gridea-pro-mcp-design-philosophy/","name":"Gridea Pro MCP 的设计理念与技术取舍","position":2}]}</script>
 <meta property="og:title" content="Gridea Pro MCP 的设计理念与技术取舍">
-<meta property="og:description" content="当我们决定为一个桌面博客客户端实现 MCP 服务时，面对的不仅是&amp;quot;如何让 AI 调用几个 API&amp;quot;的技术问题，更是一系列关于信任边界、能力暴露、人机协作模式的设计抉择。这篇文章记录了这些抉择背后的思考。 一、为什么是 MCP，而不是 REST API 或插件系统 在 AI 辅助写作的浪潮中，大多数工具选择了两条路径：要么在应用内嵌入一个 AI 聊天窗口，要么暴露一套 REST &amp;hellip;">
+<meta property="og:description" content="当我们决定为一个桌面博客客户端实现 MCP 服务时，面对的不仅是“如何让 AI 调用几个 API”的技术问题，更是一系列关于信任边界、能力暴露、人机协作模式的设计抉择。这篇文章记录了这些抉择背后的思考。 一、为什么是 MCP，而不是 REST API 或插件系统 在 AI 辅助写作的浪潮中，大多数工具选择了两条路径：要么在应用内嵌入一个 AI 聊天窗口，要么暴露一套 REST &amp;hellip;">
 <meta property="og:url" content="https://are.ink/post/gridea-pro-mcp-design-philosophy/">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="述尔">
@@ -49,7 +49,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:url" content="https://are.ink/post/gridea-pro-mcp-design-philosophy/">
 <meta name="twitter:title" content="Gridea Pro MCP 的设计理念与技术取舍">
-<meta name="twitter:description" content="当我们决定为一个桌面博客客户端实现 MCP 服务时，面对的不仅是&amp;quot;如何让 AI 调用几个 API&amp;quot;的技术问题，更是一系列关于信任边界、能力暴露、人机协作模式的设计抉择。这篇文章记录了这些抉择背后的思考。 一、为什么是 MCP，而不是 REST API 或插件系统 在 AI 辅助写作的浪潮中，大多数工具选择了两条路径：要么在应用内嵌入一个 AI 聊天窗口，要么暴露一套 REST &amp;hellip;">
+<meta name="twitter:description" content="当我们决定为一个桌面博客客户端实现 MCP 服务时，面对的不仅是“如何让 AI 调用几个 API”的技术问题，更是一系列关于信任边界、能力暴露、人机协作模式的设计抉择。这篇文章记录了这些抉择背后的思考。 一、为什么是 MCP，而不是 REST API 或插件系统 在 AI 辅助写作的浪潮中，大多数工具选择了两条路径：要么在应用内嵌入一个 AI 聊天窗口，要么暴露一套 REST &amp;hellip;">
 <meta name="twitter:image" content="/post-images/gridea-pro-mcp-design-philosophy.png">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-1SBXPCEK36"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-1SBXPCEK36');</script>
@@ -227,14 +227,14 @@
   
 
   <div class="article-content">
-    <p>当我们决定为一个桌面博客客户端实现 MCP 服务时，面对的不仅是&quot;如何让 AI 调用几个 API&quot;的技术问题，更是一系列关于信任边界、能力暴露、人机协作模式的设计抉择。这篇文章记录了这些抉择背后的思考。</p>
+    <p>当我们决定为一个桌面博客客户端实现 MCP 服务时，面对的不仅是“如何让 AI 调用几个 API”的技术问题，更是一系列关于信任边界、能力暴露、人机协作模式的设计抉择。这篇文章记录了这些抉择背后的思考。</p>
 <hr />
 <h2 id="-mcp-rest-api-">一、为什么是 MCP，而不是 REST API 或插件系统</h2>
 <p>在 AI 辅助写作的浪潮中，大多数工具选择了两条路径：要么在应用内嵌入一个 AI 聊天窗口，要么暴露一套 REST API 供外部调用。我们都没有选。</p>
 <p><strong>内嵌 AI 的问题</strong>在于绑定。你被锁死在某个模型、某个提供商、某个交互范式里。当更好的模型出现，当用户有不同的 AI 偏好，内嵌方案就变成了技术债。</p>
-<p><strong>REST API 的问题</strong>在于定位。博客客户端是一个本地应用，数据存储在用户的文件系统上，不存在&quot;服务器&quot;。为了让 AI 调用而强行启动一个 HTTP 服务，引入了不必要的网络层、认证机制、端口管理 —— 这些复杂性与&quot;在本地管理我的博客&quot;的场景完全不匹配。</p>
+<p><strong>REST API 的问题</strong>在于定位。博客客户端是一个本地应用，数据存储在用户的文件系统上，不存在“服务器”。为了让 AI 调用而强行启动一个 HTTP 服务，引入了不必要的网络层、认证机制、端口管理 —— 这些复杂性与“在本地管理我的博客”的场景完全不匹配。</p>
 <p>MCP 的 stdio 传输方式精准地解决了这个矛盾：<strong>AI 客户端直接启动一个本地进程，通过管道通信，没有网络、没有端口、没有认证。</strong> 进程随 AI 客户端的生命周期启停，不留后台残余。这不是对 REST 的妥协，而是对本地应用场景的正确抽象。</p>
-<p>更重要的是，MCP 是一个<strong>协议而非实现</strong>。用户可以自由选择 Claude Desktop、Cursor、Claude Code 或任何未来的 MCP 兼容客户端。我们不绑定 AI 提供商，不绑定交互界面，只定义能力边界。博客应用负责&quot;我能做什么&quot;，AI 客户端负责&quot;怎么和用户交互&quot;。</p>
+<p>更重要的是，MCP 是一个<strong>协议而非实现</strong>。用户可以自由选择 Claude Desktop、Cursor、Claude Code 或任何未来的 MCP 兼容客户端。我们不绑定 AI 提供商，不绑定交互界面，只定义能力边界。博客应用负责“我能做什么”，AI 客户端负责“怎么和用户交互”。</p>
 <hr />
 <h2 id="heading">二、独立二进制：一个关于耦合的决定</h2>
 <p>MCP 服务最终以 <code>gridea-pro-mcp</code> 独立二进制的形式存在，而不是作为主应用的子命令（<code>gridea-pro mcp</code>）。这个决定看似是工程细节，实则反映了一个架构原则：<strong>运行时独立，代码共享。</strong></p>
@@ -245,22 +245,22 @@
 <li>二进制体积膨胀（包含了永远不会用到的 GUI 依赖）</li>
 </ul>
 <p>但独立二进制不意味着独立代码库。<code>gridea-pro-mcp</code> 和桌面应用共享同一套 Service 层和 Repository 层。文章的创建逻辑、标签的自动匹配、闪念的标签提取 —— 这些业务规则只存在一份。当我们修复了 Service 层的一个 bug，MCP 服务同步受益，反之亦然。</p>
-<p>这就是&quot;独立二进制，共享代码&quot;的含义：<strong>部署形态上解耦，业务逻辑上统一。</strong> 两个入口、一套逻辑、一份数据。</p>
+<p>这就是“独立二进制，共享代码”的含义：<strong>部署形态上解耦，业务逻辑上统一。</strong> 两个入口、一套逻辑、一份数据。</p>
 <hr />
 <h2 id="heading-1">三、能力暴露的层次：工具、资源、提示词</h2>
 <p>MCP 协议定义了三种能力暴露方式，它们不是同一件事的三种写法，而是 AI 与应用交互的三个层次。理解这个层次结构，是理解 Gridea Pro MCP 设计的关键。</p>
 <h3 id="tools-">工具（Tools）—— 原子操作</h3>
 <p>工具是最底层的能力单元。<code>create_post</code> 创建一篇文章，<code>delete_tag</code> 删除一个标签 —— 每个工具做且只做一件事。AI 根据用户意图自主决定调用哪些工具、以什么顺序调用。</p>
 <p>这里有一个有意思的设计张力：<strong>工具应该多细粒度？</strong></p>
-<p>太粗粒度（比如一个 <code>manage_blog</code> 工具包揽一切），AI 无法灵活组合；太细粒度（比如把&quot;创建文章&quot;拆成&quot;创建文件&quot;&ldquo;写入内容&quot;&ldquo;更新索引&rdquo;），AI 需要理解不必要的实现细节。</p>
-<p>我们的原则是：<strong>工具的粒度应该对应用户心智模型中的一个动作。</strong> 用户会说&quot;创建一篇文章&quot;&ldquo;删除一个标签&rdquo;，不会说&quot;向 posts 目录写入一个 markdown 文件&rdquo;。工具的边界应该与用户意图的边界一致。</p>
+<p>太粗粒度（比如一个 <code>manage_blog</code> 工具包揽一切），AI 无法灵活组合；太细粒度（比如把“创建文章”拆成“创建文件&quot;”写入内容&quot;“更新索引”），AI 需要理解不必要的实现细节。</p>
+<p>我们的原则是：<strong>工具的粒度应该对应用户心智模型中的一个动作。</strong> 用户会说“创建一篇文章&quot;”删除一个标签“，不会说”向 posts 目录写入一个 markdown 文件“。工具的边界应该与用户意图的边界一致。</p>
 <h3 id="resources-">资源（Resources）—— 上下文感知</h3>
 <p>资源是 AI 主动获取的上下文信息。<code>gridea://site/info</code> 告诉 AI 这个博客叫什么名字、谁是作者；<code>gridea://posts/summary</code> 让 AI 快速了解博客的全貌。</p>
-<p>资源的价值不在于&quot;提供数据&quot;—— 工具也能做到。资源的价值在于<strong>让 AI 具备上下文感知能力</strong>。当用户说&quot;帮我写一篇技术博客&quot;时，AI 不是在真空中写作。它知道这个博客的主题倾向、现有的标签体系、最近的内容趋势。这种感知让 AI 的输出从&quot;通用&quot;变成&quot;贴合&quot;。</p>
+<p>资源的价值不在于”提供数据“—— 工具也能做到。资源的价值在于<strong>让 AI 具备上下文感知能力</strong>。当用户说”帮我写一篇技术博客“时，AI 不是在真空中写作。它知道这个博客的主题倾向、现有的标签体系、最近的内容趋势。这种感知让 AI 的输出从”通用“变成”贴合“。</p>
 <h3 id="prompts-">提示词模板（Prompts）—— 工作流编排</h3>
 <p>提示词模板是最高层的抽象。<code>blog_writing_assistant</code> 不是一个工具，而是一套工作流：先查阅现有标签和分类，再拟定大纲，再撰写全文，最后发布。它编排了多个工具的调用顺序和决策逻辑。</p>
 <p><strong>提示词模板体现了一个核心理念：把专家知识固化为可复用的流程。</strong></p>
-<p>一个熟练的 Gridea Pro 用户知道，写完文章后应该检查标签是否已存在、分类是否合理、文件名是否规范。新用户不知道这些。提示词模板弥合了这个认知差距 —— AI 按照模板中的专家流程执行，即使用户只说了一句&quot;帮我写篇博客&quot;。</p>
+<p>一个熟练的 Gridea Pro 用户知道，写完文章后应该检查标签是否已存在、分类是否合理、文件名是否规范。新用户不知道这些。提示词模板弥合了这个认知差距 —— AI 按照模板中的专家流程执行，即使用户只说了一句”帮我写篇博客“。</p>
 <p>三个层次的关系可以这样理解：</p>
 <pre><code>提示词模板  →  定义&quot;做什么&quot;和&quot;怎么做&quot;的流程
     ↓ 编排
@@ -274,32 +274,32 @@
 <h3 id="heading-3">第一层：读操作自由，写操作谨慎</h3>
 <p>查看文章列表、读取站点配置 —— 这些读操作没有副作用，无需确认。但任何写操作都需要经过 AI 的判断，而删除操作则进一步要求用户显式确认。这不是技术限制，而是对操作风险的分级响应。</p>
 <h3 id="heading-4">第二层：两步确认，而非权限模型</h3>
-<p>我们没有实现传统意义上的权限系统（&ldquo;AI 可以创建但不能删除&rdquo;），因为这种静态权限无法适应动态的使用场景。一个用户可能在整理博客时需要批量删除过时文章，另一个用户可能永远不想让 AI 动已有内容。</p>
-<p>取而代之的是<strong>两步确认机制</strong>：AI 首次调用危险操作时，只返回预览（&ldquo;即将删除《Go 并发编程》，确认吗？&quot;）；用户确认后才真正执行。这个设计把决策权交还给用户，同时保留了 AI 的操作能力。</p>
-<p>更微妙的是，两步确认不仅是安全机制，也是<strong>交互设计</strong>。它创造了一个自然的对话节点，让用户有机会修正 AI 的理解偏差。&ldquo;我说的不是这篇文章&quot;比&quot;我不知道 AI 删了什么&quot;好得多。</p>
+<p>我们没有实现传统意义上的权限系统（”AI 可以创建但不能删除“），因为这种静态权限无法适应动态的使用场景。一个用户可能在整理博客时需要批量删除过时文章，另一个用户可能永远不想让 AI 动已有内容。</p>
+<p>取而代之的是<strong>两步确认机制</strong>：AI 首次调用危险操作时，只返回预览（”即将删除《Go 并发编程》，确认吗？“）；用户确认后才真正执行。这个设计把决策权交还给用户，同时保留了 AI 的操作能力。</p>
+<p>更微妙的是，两步确认不仅是安全机制，也是<strong>交互设计</strong>。它创造了一个自然的对话节点，让用户有机会修正 AI 的理解偏差。”我说的不是这篇文章“比”我不知道 AI 删了什么“好得多。</p>
 <h3 id="heading-5">第三层：能力隔离，默认最小化</h3>
 <p>部署功能通过环境变量 <code>DEPLOY_ENABLED</code> 控制，默认不注册。这不是简单的功能开关，而是<strong>能力隔离</strong>的体现 —— 未注册的工具在 MCP 协议层面不存在，AI 既不知道它的存在，也无法尝试调用。</p>
-<p>这比&quot;注册但拒绝执行&quot;更安全。后者仍然暴露了工具的存在，AI 可能反复尝试或向用户建议&quot;开启此功能&rdquo;。完全不注册意味着：<strong>能力边界由配置决定，而非由 AI 的自我约束决定。</strong></p>
+<p>这比”注册但拒绝执行“更安全。后者仍然暴露了工具的存在，AI 可能反复尝试或向用户建议”开启此功能“。完全不注册意味着：<strong>能力边界由配置决定，而非由 AI 的自我约束决定。</strong></p>
 <h3 id="heading-6">第四层：敏感信息永不出境</h3>
 <p>通过 MCP 获取部署设置时，token、password、privateKey 等字段自动替换为 <code>***</code>。这个处理发生在 MCP 服务内部，在数据序列化为 JSON 之前。敏感信息永远不会进入 AI 的上下文窗口，从根源上消除了泄露路径。</p>
 <hr />
 <h2 id="heading-7">五、数据一致性：两个入口，一份真相</h2>
 <p>Gridea Pro 的数据存储在本地文件系统中 —— JSON 文件存配置和元数据，Markdown 文件存文章内容。桌面应用和 MCP 服务都直接读写这些文件，没有中间层。</p>
 <p>这带来了一个必须正视的问题：<strong>两个写入者，一份数据。</strong></p>
-<p>我们的做法是让 MCP 服务复用桌面应用完全相同的 Repository 和 Service 代码。不是&quot;类似的逻辑&rdquo;，不是&quot;参考实现&quot;，而是同一份代码。当 Service 层规定&quot;创建闪念时自动提取 #标签&quot;，MCP 路径和 GUI 路径走的是同一个 <code>extractTags</code> 函数，用的是同一个 Unicode 正则表达式。</p>
+<p>我们的做法是让 MCP 服务复用桌面应用完全相同的 Repository 和 Service 代码。不是”类似的逻辑“，不是”参考实现“，而是同一份代码。当 Service 层规定”创建闪念时自动提取 #标签“，MCP 路径和 GUI 路径走的是同一个 <code>extractTags</code> 函数，用的是同一个 Unicode 正则表达式。</p>
 <p>这个决策有一个直接推论：<strong>MCP 服务必须与桌面应用在同一个代码仓库中。</strong> 我们曾考虑过将 MCP 独立为一个单独的项目，但很快放弃了 —— 两个仓库意味着两份 Domain 模型、两份数据访问逻辑、两套需要同步维护的代码。任何一次 Post 结构的变更都需要在两个地方修改，这在实践中是不可持续的。</p>
 <p>同一份代码、同一份数据、同一组业务规则。这是保证一致性的唯一可靠方式。</p>
 <hr />
 <h2 id="heading-8">六、面向意图的接口设计</h2>
-<p>MCP 工具的接口设计不是&quot;暴露后端 API&quot;，而是<strong>面向 AI 的意图表达</strong>。两者的区别体现在很多细节中。</p>
+<p>MCP 工具的接口设计不是”暴露后端 API“，而是<strong>面向 AI 的意图表达</strong>。两者的区别体现在很多细节中。</p>
 <h3 id="heading-9">参数应该符合自然语言的表达</h3>
-<p>创建文章时，分类参数是 <code>category</code>（单数），不是 <code>categories</code>（复数），也不是 <code>categoryId</code>。因为用户会说&quot;归到&rsquo;技术&rsquo;分类下&quot;，而不是&quot;关联 category ID <code>a3f8e2</code>&quot;。AI 传入分类名称，Service 层负责匹配已有分类或创建新分类 —— 这个转换对 AI 是透明的。</p>
+<p>创建文章时，分类参数是 <code>category</code>（单数），不是 <code>categories</code>（复数），也不是 <code>categoryId</code>。因为用户会说”归到&rsquo;技术&rsquo;分类下“，而不是”关联 category ID <code>a3f8e2</code>“。AI 传入分类名称，Service 层负责匹配已有分类或创建新分类 —— 这个转换对 AI 是透明的。</p>
 <p>标签参数接受逗号分隔的字符串（<code>&quot;Go, 并发, 编程&quot;</code>），而不是 JSON 数组。因为在自然语言中，标签就是一组逗号分隔的词。</p>
 <h3 id="heading-10">返回值应该服务于决策</h3>
-<p><code>list_posts</code> 不返回文章的完整内容（那可能是几万字），只返回元数据（标题、日期、标签、发布状态）。这不是因为性能 —— 虽然确实更高效 —— 而是因为 AI 在&quot;选择操作哪篇文章&quot;的场景下，不需要全文内容。元数据足够支撑决策。</p>
+<p><code>list_posts</code> 不返回文章的完整内容（那可能是几万字），只返回元数据（标题、日期、标签、发布状态）。这不是因为性能 —— 虽然确实更高效 —— 而是因为 AI 在”选择操作哪篇文章“的场景下，不需要全文内容。元数据足够支撑决策。</p>
 <p>当 AI 确实需要全文时，<code>get_post</code> 提供了这个能力。两个工具、两个场景、两种数据粒度。</p>
 <h3 id="-ai-">工具描述应该指导 AI 的行为</h3>
-<p><code>render_site</code> 的描述是 &ldquo;Render the static site. <strong>Call this after making changes to posts or settings.</strong>&rdquo; 后半句不是功能说明，而是<strong>使用时机的提示</strong>。AI 读到这个描述后，会在创建或修改文章后主动建议&quot;需要渲染站点吗？&quot;。</p>
+<p><code>render_site</code> 的描述是 ”Render the static site. <strong>Call this after making changes to posts or settings.</strong>“ 后半句不是功能说明，而是<strong>使用时机的提示</strong>。AI 读到这个描述后，会在创建或修改文章后主动建议”需要渲染站点吗？“。</p>
 <p>工具描述是 MCP 中最被低估的设计表面。它不是给人读的 API 文档，而是给 AI 读的行为指导。</p>
 <hr />
 <h2 id="heading-11">七、渐进式能力暴露</h2>
@@ -320,17 +320,17 @@
   }
 }
 </code></pre>
-<p>这个设计的微妙之处在于：环境变量控制的不是&quot;权限&quot;，而是&quot;能力的存在性&quot;。<code>DEPLOY_ENABLED</code> 为 false 时，<code>deploy_site</code> 工具在 MCP 协议层面不存在。AI 的工具列表中没有这个选项，它不会建议用户部署，也不会在工作流中考虑部署步骤。</p>
-<p>这比传统的权限控制更优雅。权限控制说&quot;你不能做这件事&quot;，能力隔离说&quot;这件事不存在&quot;。前者需要处理拒绝的交互（&ldquo;为什么不能？怎么开启？&quot;），后者从根本上消除了这个问题。</p>
+<p>这个设计的微妙之处在于：环境变量控制的不是”权限“，而是”能力的存在性“。<code>DEPLOY_ENABLED</code> 为 false 时，<code>deploy_site</code> 工具在 MCP 协议层面不存在。AI 的工具列表中没有这个选项，它不会建议用户部署，也不会在工作流中考虑部署步骤。</p>
+<p>这比传统的权限控制更优雅。权限控制说”你不能做这件事“，能力隔离说”这件事不存在“。前者需要处理拒绝的交互（”为什么不能？怎么开启？“），后者从根本上消除了这个问题。</p>
 <p>未来如果需要更多可选能力（比如 SFTP 部署、Netlify 部署、自定义渲染管线），同样的模式可以自然扩展，而不需要引入复杂的权限管理系统。</p>
 <hr />
-<h2 id="heading-12">八、从&quot;工具箱&quot;到&quot;工作伙伴&rdquo;</h2>
+<h2 id="heading-12">八、从”工具箱“到”工作伙伴“</h2>
 <p>MCP 协议的三层能力模型（工具、资源、提示词）暗示了一个更大的设计愿景：AI 不仅是被动的工具执行者，更是主动的工作伙伴。</p>
 <p><strong>工具</strong>让 AI 能做事。<br />
 <strong>资源</strong>让 AI 了解上下文。<br />
 <strong>提示词模板</strong>让 AI 懂得流程。</p>
-<p>三者组合，AI 从&quot;调用 API 的自动化脚本&quot;进化为&quot;理解博客运营的协作者&quot;。它知道创建文章前应该先查阅现有标签体系，知道部署前应该先渲染，知道删除操作需要谨慎确认。这些不是硬编码的 if-else，而是通过工具描述和提示词模板传递给 AI 的领域知识。</p>
-<p>这也是我们选择在 MCP 中实现 5 个提示词模板的原因。它们不是&quot;快捷方式&quot;，而是<strong>博客运营最佳实践的编码化表达</strong>。<code>site_health_check</code> 编码了&quot;什么是健康的博客站点&quot;的知识，<code>content_review</code> 编码了&quot;好文章应该具备哪些元素&quot;的标准。这些知识原本只存在于经验丰富的博主脑中，现在通过 MCP 提示词模板，任何用户都可以借助 AI 获得同等质量的运营指导。</p>
+<p>三者组合，AI 从”调用 API 的自动化脚本“进化为”理解博客运营的协作者“。它知道创建文章前应该先查阅现有标签体系，知道部署前应该先渲染，知道删除操作需要谨慎确认。这些不是硬编码的 if-else，而是通过工具描述和提示词模板传递给 AI 的领域知识。</p>
+<p>这也是我们选择在 MCP 中实现 5 个提示词模板的原因。它们不是”快捷方式“，而是<strong>博客运营最佳实践的编码化表达</strong>。<code>site_health_check</code> 编码了”什么是健康的博客站点“的知识，<code>content_review</code> 编码了”好文章应该具备哪些元素“的标准。这些知识原本只存在于经验丰富的博主脑中，现在通过 MCP 提示词模板，任何用户都可以借助 AI 获得同等质量的运营指导。</p>
 <hr />
 <h2 id="heading-13">结语</h2>
 <p>Gridea Pro MCP 的设计，归根到底是在回答一个问题：<strong>在 AI 时代，一个本地应用应该如何与 AI 协作？</strong></p>
@@ -518,6 +518,6 @@
 
   
 
-<script>console.log("\n%c ✦ Gridea Pro v1.2.2 %c · Theme: flavor-theme v1.0.0 · https://gridea.pro %c\n","color:#fadfa3;background:#111111;padding:9px 14px;border-radius:4px 0 0 4px;font-weight:500;font-size:12px","color:#e05c00;background:#fff3ec;padding:9px 14px;border-radius:0 4px 4px 0;font-size:11px","")</script>
+<script>console.log("\n%c ✦ Gridea Pro v0.0.0-dev %c · Theme: flavor-theme v1.0.0 · https://gridea.pro %c\n","color:#fadfa3;background:#111111;padding:9px 14px;border-radius:4px 0 0 4px;font-weight:500;font-size:12px","color:#e05c00;background:#fff3ec;padding:9px 14px;border-radius:0 4px 4px 0;font-size:11px","")</script>
 </body>
 </html>
