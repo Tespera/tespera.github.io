@@ -6,13 +6,13 @@
     <description>一个产品经理的碎碎念 | 温故而知新</description>
     <language>zh-cn</language>
     <generator>Gridea Pro</generator>
-    <lastBuildDate>Sat, 14 Mar 2026 20:37:55 +0100</lastBuildDate>
+    <lastBuildDate>Sat, 14 Mar 2026 20:37:55 +0800</lastBuildDate>
     <atom:link href="https://are.ink/feed.xml" rel="self" type="application/rss+xml"></atom:link>
     <item>
       <title>AI 时代独立博客生态与 Gridea Pro 战略定位分析</title>
       <link>https://are.ink/post/ai-era-indie-blog-gridea-pro-strategy/</link>
       <guid isPermaLink="true">https://are.ink/post/ai-era-indie-blog-gridea-pro-strategy/</guid>
-      <pubDate>Tue, 03 Mar 2026 18:46:01 +0100</pubDate>
+      <pubDate>Tue, 03 Mar 2026 18:46:01 +0800</pubDate>
       <description><![CDATA[<h2 id="heading">核心结论</h2>
 <p><strong>独立博客没有死，正在死的是平庸的博客。</strong></p>
 <p>全球 6 亿+ 博客、每天 750 万篇新文章、77% 的互联网用户定期阅读博客——这些数据说明博客作为内容形式依然庞大且活跃。但 AI 正在重塑整个生态的游戏规则：Google 60% 的搜索以零点击结束，AI Overview 将搜索结果点击率腰斩了 47%，HubSpot 有机流量暴跌 70-80%。“写篇文章等 Google 收录”的时代结束了。</p>
@@ -383,7 +383,7 @@
       <title>我蒸馏了自己，并让 AI 用我的决策习惯进行决策</title>
       <link>https://are.ink/post/distilling-myself/</link>
       <guid isPermaLink="true">https://are.ink/post/distilling-myself/</guid>
-      <pubDate>Fri, 04 Sep 2026 12:00:00 +0200</pubDate>
+      <pubDate>Fri, 04 Sep 2026 12:00:00 +0800</pubDate>
       <description><![CDATA[<p>用 AI 写过代码的人，都熟悉这个画面：它做到一半，停下来，列出两个选项，各写一段利弊，然后等你拍板。</p>
 <p>你放下手里的事，把两段读完，回一个字，它继续。</p>
 <p>这样的动作，一天几十次。</p>
@@ -646,7 +646,7 @@
       <title>我把 Mac 里沉睡的邮局，改造成了 Claude 的深夜汇报系统</title>
       <link>https://are.ink/post/mail-me-when-done/</link>
       <guid isPermaLink="true">https://are.ink/post/mail-me-when-done/</guid>
-      <pubDate>Fri, 14 Aug 2026 12:40:00 +0200</pubDate>
+      <pubDate>Fri, 14 Aug 2026 12:40:00 +0800</pubDate>
       <description><![CDATA[<h2 id="heading">先看效果</h2>
 <p>下班前给 Claude Code 留一句话：</p>
 <blockquote>
@@ -756,7 +756,7 @@ sudo postmap hash:/etc/postfix/generic
       <title>我一天做了两百个决定，然后开始怀疑自己的脑子</title>
       <link>https://are.ink/post/two-hundred-decisions-a-day/</link>
       <guid isPermaLink="true">https://are.ink/post/two-hundred-decisions-a-day/</guid>
-      <pubDate>Wed, 12 Aug 2026 18:15:06 +0200</pubDate>
+      <pubDate>Wed, 12 Aug 2026 18:15:06 +0800</pubDate>
       <description><![CDATA[<p>今天下班前，我干了件闲事：把这一天和 AI 的对话记录从头翻了一遍，数我拍了多少次板。</p>
 <p><span style="color: #52C41A"><strong>三个技术方案里选一个，算一次。五处“这样改行不行”，算五次。一份分析看完说“结论站不住，重来”，也算一次。数到第四个会话窗口我放弃了——照这个密度推下去，一天两百个只多不少。</strong></span></p>
 <p><span style="color: #4096ff">这个数字解释了一件我最近一直没想通的事：我明明一行代码没写，没开一个会，没有任何东西能填进“今天的产出”那一栏，为什么每天下班，累得像跑完半马。</span></p>
@@ -807,7 +807,7 @@ sudo postmap hash:/etc/postfix/generic
       <title>把倪海厦的中医讲义，做成了一个能对话的 Skill</title>
       <link>https://are.ink/post/nihaisha-tcm-agent-skill/</link>
       <guid isPermaLink="true">https://are.ink/post/nihaisha-tcm-agent-skill/</guid>
-      <pubDate>Thu, 06 Aug 2026 11:08:12 +0200</pubDate>
+      <pubDate>Thu, 06 Aug 2026 11:08:12 +0800</pubDate>
       <description><![CDATA[<p>同样是感冒，有人让你赶紧喝碗姜汤发发汗，有人说千万别发汗、会更虚。同样是发烧，有人说要捂着，有人说要散热。你追问一句为什么，通常得到的答案是“体质不一样”——这话等于没说。</p>
 <p>如果你去看中医，可能会遇到这样的场景：医生没怎么看化验单，先问三句话。出汗吗？怕冷还是怕热？脖子后面僵不僵？然后落笔开方。</p>
 <p>这三句话不是随口问的。它背后有一套两千年前就定下来的判断框架，出自东汉张仲景的《伤寒论》。你回家想搞明白刚才那张方子，搜一下名字，比如<strong>桂枝汤</strong>，得到的通常是这样一段：</p>
@@ -1067,7 +1067,7 @@ sudo postmap hash:/etc/postfix/generic
       <title>为什么我一感冒就要命，朋友却两三天就好？</title>
       <link>https://are.ink/post/cold-04-immune-library/</link>
       <guid isPermaLink="true">https://are.ink/post/cold-04-immune-library/</guid>
-      <pubDate>Wed, 29 Apr 2026 15:30:00 +0200</pubDate>
+      <pubDate>Wed, 29 Apr 2026 15:30:00 +0800</pubDate>
       <description><![CDATA[<blockquote>
 <p>系列第 4 篇 / 共 4 篇 · 完结篇 · 接<a href="https://are.ink/post/cold-03-evolution-design/">第 3 篇</a></p>
 </blockquote>
@@ -1208,7 +1208,7 @@ sudo postmap hash:/etc/postfix/generic
       <title>一场感冒，让我开始想：人到底是不是被设计的？</title>
       <link>https://are.ink/post/cold-03-evolution-design/</link>
       <guid isPermaLink="true">https://are.ink/post/cold-03-evolution-design/</guid>
-      <pubDate>Wed, 29 Apr 2026 15:00:00 +0200</pubDate>
+      <pubDate>Wed, 29 Apr 2026 15:00:00 +0800</pubDate>
       <description><![CDATA[<blockquote>
 <p>系列第 3 篇 / 共 4 篇 · 接<a href="https://are.ink/post/cold-02-immune-battle/">第 2 篇</a></p>
 </blockquote>
@@ -1329,7 +1329,7 @@ sudo postmap hash:/etc/postfix/generic
       <title>感冒时，身体里到底在打什么仗？</title>
       <link>https://are.ink/post/cold-02-immune-battle/</link>
       <guid isPermaLink="true">https://are.ink/post/cold-02-immune-battle/</guid>
-      <pubDate>Wed, 29 Apr 2026 14:30:00 +0200</pubDate>
+      <pubDate>Wed, 29 Apr 2026 14:30:00 +0800</pubDate>
       <description><![CDATA[<blockquote>
 <p>系列第 2 篇 / 共 4 篇 · 接<a href="https://are.ink/post/cold-01-survival-guide/">第 1 篇</a></p>
 </blockquote>
@@ -1508,7 +1508,7 @@ sudo postmap hash:/etc/postfix/generic
       <title>感冒求生手册：90% 的感冒不需要消炎药</title>
       <link>https://are.ink/post/cold-01-survival-guide/</link>
       <guid isPermaLink="true">https://are.ink/post/cold-01-survival-guide/</guid>
-      <pubDate>Wed, 29 Apr 2026 14:00:00 +0200</pubDate>
+      <pubDate>Wed, 29 Apr 2026 14:00:00 +0800</pubDate>
       <description><![CDATA[<blockquote>
 <p>系列第 1 篇 / 共 4 篇</p>
 </blockquote>
@@ -1670,7 +1670,7 @@ sudo postmap hash:/etc/postfix/generic
       <title>我们如何成为自己</title>
       <link>https://are.ink/post/how-we-become-ourselves/</link>
       <guid isPermaLink="true">https://are.ink/post/how-we-become-ourselves/</guid>
-      <pubDate>Wed, 22 Apr 2026 14:30:00 +0200</pubDate>
+      <pubDate>Wed, 22 Apr 2026 14:30:00 +0800</pubDate>
       <description><![CDATA[<p>「做自己」这三个字，你一定听过很多遍。</p>
 <p>它出现在毕业典礼的演讲里、出现在情感博主的推送里、出现在运动品牌的 slogan 里、出现在朋友劝你的时候、出现在你想安慰一个刚失恋的人的时候。</p>
 <p>它已经成了这个时代最默认的生活建议之一，流行到几乎不需要再解释。</p>

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="theme-dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>分类落地页 · 三版设计对比</title>
+<link rel="stylesheet" href="/styles/main.min.css">
+<style>
+/* ===== 原型专用：方案标注条（最终不会进主题） ===== */
+.proto-label{max-width:1200px;margin:72px auto 0;padding:0 24px;}
+.proto-label h2{font-family:var(--font-heading);font-size:13px;font-weight:600;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--color-badge-gold);}
+.proto-label p{font-size:13px;color:var(--color-text-muted);margin-top:6px;line-height:1.6;}
+.proto-state{max-width:1200px;margin:28px auto 10px;padding:0 24px;font-size:12px;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--color-text-muted);}
+.proto-rule{max-width:1200px;margin:64px auto 0;padding:0 24px;}
+.proto-rule hr{border:0;border-top:1px solid var(--color-border);}
+
+/* ============================================================
+   方案 A · 沉浸封面
+   ============================================================ */
+.cat-hero{position:relative;height:340px;overflow:hidden;}
+.cat-hero__img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+.cat-hero__scrim{position:absolute;inset:0;z-index:1;
+  background:linear-gradient(to top,rgba(0,0,0,.92) 0%,rgba(0,0,0,.55) 45%,rgba(0,0,0,.15) 100%);}
+.cat-hero__inner{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);
+  width:100%;max-width:var(--max-width);padding:0 24px;z-index:2;}
+.cat-hero__eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--color-badge-gold);margin-bottom:14px;}
+.cat-hero__eyebrow::before{content:"";width:22px;height:1px;background:var(--color-badge-gold);}
+.cat-hero__title{font-family:var(--font-heading);font-size:3rem;font-weight:700;letter-spacing:-.04em;
+  line-height:1.05;color:#fff;margin:0;}
+.cat-hero__desc{margin-top:12px;font-size:15px;line-height:1.6;color:rgba(255,255,255,.72);max-width:620px;}
+.cat-hero__count{display:block;margin-top:16px;font-size:13px;color:rgba(255,255,255,.55);}
+/* 无封面降级：纯色底 + 细网格纹理，保持同样的版式骨架 */
+.cat-hero--bare{height:auto;background:var(--color-surface);
+  border-bottom:1px solid var(--color-border);}
+.cat-hero--bare .cat-hero__inner{position:static;transform:none;margin:0 auto;padding:56px 24px 44px;}
+.cat-hero--bare .cat-hero__title{color:var(--color-text-primary);}
+.cat-hero--bare .cat-hero__desc{color:var(--color-text-secondary);}
+.cat-hero--bare .cat-hero__count{color:var(--color-text-muted);}
+
+/* ============================================================
+   方案 B · 编辑部卡片
+   ============================================================ */
+.cat-slab{max-width:var(--max-width);margin:64px auto 0;padding:0 24px;}
+.cat-slab__inner{display:flex;gap:28px;align-items:stretch;
+  border:1px solid var(--color-border);border-radius:14px;background:var(--color-surface);
+  padding:24px;}
+.cat-slab__cover{width:200px;height:200px;flex-shrink:0;border-radius:10px;overflow:hidden;
+  background:var(--color-bg);}
+.cat-slab__cover img{width:100%;height:100%;object-fit:cover;display:block;}
+.cat-slab__initial{width:200px;height:200px;flex-shrink:0;border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  background:#141414;border:1px solid var(--color-border);
+  font-family:var(--font-heading);font-size:4rem;font-weight:700;letter-spacing:-.04em;
+  color:rgba(255,255,255,.15);}
+.cat-slab__body{display:flex;flex-direction:column;justify-content:center;min-width:0;}
+.cat-slab__eyebrow{font-size:12px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--color-badge-gold);margin-bottom:12px;}
+.cat-slab__title{font-family:var(--font-heading);font-size:2.4rem;font-weight:700;
+  letter-spacing:-.04em;line-height:1.1;color:var(--color-text-primary);margin:0;}
+.cat-slab__desc{margin-top:12px;font-size:15px;line-height:1.6;color:var(--color-text-secondary);}
+.cat-slab__meta{margin-top:18px;font-size:13px;color:var(--color-text-muted);
+  display:flex;align-items:center;gap:10px;}
+.cat-slab__dot{width:3px;height:3px;border-radius:50%;background:var(--color-text-muted);}
+
+/* ============================================================
+   方案 C · 紧凑缩略图
+   ============================================================ */
+.cat-slim{max-width:var(--max-width);margin:64px auto 0;padding:0 24px;}
+.cat-slim__row{display:flex;align-items:center;gap:20px;}
+.cat-slim__thumb{width:88px;height:88px;flex-shrink:0;border-radius:10px;overflow:hidden;
+  border:1px solid var(--color-border);}
+.cat-slim__thumb img{width:100%;height:100%;object-fit:cover;display:block;}
+.cat-slim__bar{width:3px;align-self:stretch;min-height:56px;border-radius:2px;
+  background:var(--color-badge-gold);flex-shrink:0;}
+.cat-slim__title{font-family:var(--font-heading);font-size:2rem;font-weight:700;
+  letter-spacing:-.04em;line-height:1.1;color:var(--color-text-primary);margin:0;}
+.cat-slim__desc{margin-top:8px;font-size:14px;color:var(--color-text-secondary);line-height:1.5;}
+.cat-slim__count{margin-top:8px;font-size:13px;color:var(--color-text-muted);}
+.cat-slim__divider{max-width:var(--max-width);margin:28px auto 0;padding:0 24px;}
+.cat-slim__divider hr{border:0;border-top:1px solid var(--color-border);}
+
+/* 原型里的文章列表容器 */
+.proto-posts{max-width:var(--max-width);margin:0 auto;padding:36px 24px 0;}
+</style>
+</head>
+<body>
+
+<div class="proto-label" style="margin-top:48px">
+  <h2>分类落地页 · 三版设计对比</h2>
+  <p>同一个分类「技术实践」，三种封面处理方式。每版都给出<b>有封面</b>和<b>没配封面</b>两种状态——
+     大多数分类一开始不会有图，降级形态好不好看，和有图时一样重要。</p>
+</div>
+
+<!-- ============ A ============ -->
+<div class="proto-label">
+  <h2>方案 A · 沉浸封面</h2>
+  <p>全幅 340px 大图，黑色渐变压暗，标题压在左下角。和首页 Hero 同一套语言，最有冲击力；
+     代价是每个分类都得配一张够格的横图，不配图时形态落差最大。</p>
+</div>
+<div class="proto-state">— 配了封面</div>
+<header class="cat-hero">
+  <img class="cat-hero__img" src="/post-images/wails-boot.jpeg" alt="">
+  <div class="cat-hero__scrim"></div>
+  <div class="cat-hero__inner">
+    <span class="cat-hero__eyebrow">分类</span>
+    <h1 class="cat-hero__title">技术实践</h1>
+    <p class="cat-hero__desc">技术文章</p>
+    <span class="cat-hero__count">共 12 篇文章</span>
+  </div>
+</header>
+<div class="proto-posts">
+  <div class="post-list">
+    <article class="post-card post-card--list">
+      <div class="post-card__body">
+        <h3 class="post-card__title clamp-3">我把 Mac 里沉睡的邮局，改造成了 Claude 的深夜汇报系统</h3>
+        <div class="post-card__excerpt clamp-2">先看效果 下班前给 Claude Code 留一句话：把这批测试全跑一遍，失败的修掉，做完邮件通知我。</div>
+        <div class="post-card__meta meta-text">2026年08月14日</div>
+      </div>
+    </article>
+  </div>
+</div>
+<div class="proto-state">— 没配封面</div>
+<header class="cat-hero cat-hero--bare">
+  <div class="cat-hero__inner">
+    <span class="cat-hero__eyebrow">分类</span>
+    <h1 class="cat-hero__title">深度思考</h1>
+    <p class="cat-hero__desc">慢下来想清楚的那些事</p>
+    <span class="cat-hero__count">共 1 篇文章</span>
+  </div>
+</header>
+
+<div class="proto-rule"><hr></div>
+
+<!-- ============ B ============ -->
+<div class="proto-label">
+  <h2>方案 B · 编辑部卡片</h2>
+  <p>封面缩成 200×200 方图放左边，右边是分类名、描述和元信息，整体收在一张卡片里。
+     有图无图都成立——没图时用分类首字取色块顶上，不会塌。信息密度最高。</p>
+</div>
+<div class="proto-state">— 配了封面</div>
+<header class="cat-slab">
+  <div class="cat-slab__inner">
+    <div class="cat-slab__cover">
+      <img src="/post-images/wails-boot.jpeg" alt="">
+    </div>
+    <div class="cat-slab__body">
+      <span class="cat-slab__eyebrow">分类</span>
+      <h1 class="cat-slab__title">技术实践</h1>
+      <p class="cat-slab__desc">技术文章</p>
+      <div class="cat-slab__meta">
+        <span>12 篇文章</span><span class="cat-slab__dot"></span><span>最近更新 2026年08月14日</span>
+      </div>
+    </div>
+  </div>
+</header>
+<div class="proto-posts">
+  <div class="post-list">
+    <article class="post-card post-card--list">
+      <div class="post-card__body">
+        <h3 class="post-card__title clamp-3">我把 Mac 里沉睡的邮局，改造成了 Claude 的深夜汇报系统</h3>
+        <div class="post-card__excerpt clamp-2">先看效果 下班前给 Claude Code 留一句话：把这批测试全跑一遍，失败的修掉，做完邮件通知我。</div>
+        <div class="post-card__meta meta-text">2026年08月14日</div>
+      </div>
+    </article>
+  </div>
+</div>
+<div class="proto-state">— 没配封面</div>
+<header class="cat-slab">
+  <div class="cat-slab__inner">
+    <div class="cat-slab__initial">深</div>
+    <div class="cat-slab__body">
+      <span class="cat-slab__eyebrow">分类</span>
+      <h1 class="cat-slab__title">深度思考</h1>
+      <p class="cat-slab__desc">慢下来想清楚的那些事</p>
+      <div class="cat-slab__meta">
+        <span>1 篇文章</span><span class="cat-slab__dot"></span><span>最近更新 2026年07月02日</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="proto-rule"><hr></div>
+
+<!-- ============ C ============ -->
+<div class="proto-label">
+  <h2>方案 C · 紧凑缩略图</h2>
+  <p>封面只做 88×88 缩略图，和标题并排一行。最克制，几乎不占首屏，文章列表马上就能看到；
+     没配图时换成一根金色竖线，两种状态几乎无落差。最接近现在的排版。</p>
+</div>
+<div class="proto-state">— 配了封面</div>
+<header class="cat-slim">
+  <div class="cat-slim__row">
+    <div class="cat-slim__thumb">
+      <img src="/post-images/wails-boot.jpeg" alt="">
+    </div>
+    <div>
+      <h1 class="cat-slim__title">技术实践</h1>
+      <p class="cat-slim__desc">技术文章</p>
+      <div class="cat-slim__count">共 12 篇文章</div>
+    </div>
+  </div>
+</header>
+<div class="cat-slim__divider"><hr></div>
+<div class="proto-posts">
+  <div class="post-list">
+    <article class="post-card post-card--list">
+      <div class="post-card__body">
+        <h3 class="post-card__title clamp-3">我把 Mac 里沉睡的邮局，改造成了 Claude 的深夜汇报系统</h3>
+        <div class="post-card__excerpt clamp-2">先看效果 下班前给 Claude Code 留一句话：把这批测试全跑一遍，失败的修掉，做完邮件通知我。</div>
+        <div class="post-card__meta meta-text">2026年08月14日</div>
+      </div>
+    </article>
+  </div>
+</div>
+<div class="proto-state">— 没配封面</div>
+<header class="cat-slim">
+  <div class="cat-slim__row">
+    <div class="cat-slim__bar"></div>
+    <div>
+      <h1 class="cat-slim__title">深度思考</h1>
+      <p class="cat-slim__desc">慢下来想清楚的那些事</p>
+      <div class="cat-slim__count">共 1 篇文章</div>
+    </div>
+  </div>
+</header>
+
+<div style="height:120px"></div>
+</body>
+</html>

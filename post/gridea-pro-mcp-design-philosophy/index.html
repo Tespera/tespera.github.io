@@ -26,7 +26,7 @@
     } catch (e) { }
   })();
 </script>
-  <meta name="generator" content="Gridea Pro 0.0.0-dev">
+  <meta name="generator" content="Gridea Pro 1.3.0-beta.2">
   <title>Gridea Pro MCP 的设计理念与技术取舍 | 述尔</title>
   
 <meta property="og:title" content="Gridea Pro MCP 的设计理念与技术取舍" />
@@ -38,7 +38,7 @@
 <meta name="description" content="当我们决定为一个桌面博客客户端实现 MCP 服务时，面对的不仅是“如何让 AI 调用几个 API”的技术问题，更是一系列关于信任边界、能力暴露、人机协作模式的设计抉择。这篇文章记录了这些抉择背后的思考。 一、为什么是 MCP，而不是 REST API 或插件系统 在 AI 辅助写作的浪潮中，大多数工具选择了两条路径：要么在应用内嵌入一个 AI 聊天窗口，要么暴露一套 REST &amp;hellip;">
 <meta name="keywords" content="述尔，Gridea  Pro，Gridea，静态博客，AI，产品经理">
 <link rel="canonical" href="https://are.ink/post/gridea-pro-mcp-design-philosophy/">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Gridea Pro MCP 的设计理念与技术取舍","url":"https://are.ink/post/gridea-pro-mcp-design-philosophy/","description":"当我们决定为一个桌面博客客户端实现 MCP 服务时，面对的不仅是“如何让 AI 调用几个 API”的技术问题，更是一系列关于信任边界、能力暴露、人机协作模式的设计抉择。这篇文章记录了这些抉择背后的思考。 一、为什么是 MCP，而不是 REST API 或插件系统 在 AI 辅助写作的浪潮中，大多数工具选择了两条路径：要么在应用内嵌入一个 AI 聊天窗口，要么暴露一套 REST \u0026hellip;","image":"/post-images/gridea-pro-mcp-design-philosophy.png","datePublished":"2026-03-11T04:00:00+01:00","dateModified":"2026-03-10T13:41:07+01:00","author":{"@type":"Person","name":"述尔"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/images/avatar.png"},"name":"述尔"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Gridea Pro MCP 的设计理念与技术取舍","url":"https://are.ink/post/gridea-pro-mcp-design-philosophy/","description":"当我们决定为一个桌面博客客户端实现 MCP 服务时，面对的不仅是“如何让 AI 调用几个 API”的技术问题，更是一系列关于信任边界、能力暴露、人机协作模式的设计抉择。这篇文章记录了这些抉择背后的思考。 一、为什么是 MCP，而不是 REST API 或插件系统 在 AI 辅助写作的浪潮中，大多数工具选择了两条路径：要么在应用内嵌入一个 AI 聊天窗口，要么暴露一套 REST \u0026hellip;","image":"/post-images/gridea-pro-mcp-design-philosophy.png","datePublished":"2026-03-11T04:00:00+08:00","dateModified":"2026-03-10T13:41:07+08:00","author":{"@type":"Person","name":"述尔"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/images/avatar.png"},"name":"述尔"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://are.ink","name":"述尔","position":1},{"@type":"ListItem","item":"https://are.ink/post/gridea-pro-mcp-design-philosophy/","name":"Gridea Pro MCP 的设计理念与技术取舍","position":2}]}</script>
 <meta property="og:title" content="Gridea Pro MCP 的设计理念与技术取舍">
 <meta property="og:description" content="当我们决定为一个桌面博客客户端实现 MCP 服务时，面对的不仅是“如何让 AI 调用几个 API”的技术问题，更是一系列关于信任边界、能力暴露、人机协作模式的设计抉择。这篇文章记录了这些抉择背后的思考。 一、为什么是 MCP，而不是 REST API 或插件系统 在 AI 辅助写作的浪潮中，大多数工具选择了两条路径：要么在应用内嵌入一个 AI 聊天窗口，要么暴露一套 REST &amp;hellip;">
@@ -94,6 +94,8 @@
         <a class="nav-item" href="/memos">闪念</a>
         
         <a class="nav-item" href="/archives">归档</a>
+        
+        <a class="nav-item" href="/categories">分类</a>
         
         <a class="nav-item" href="/tags">标签</a>
         
@@ -425,6 +427,8 @@
       
       <a class="footer-nav__link" href="/archives">归档</a>
       
+      <a class="footer-nav__link" href="/categories">分类</a>
+      
       <a class="footer-nav__link" href="/tags">标签</a>
       
       <a class="footer-nav__link" href="/links">友链</a>
@@ -518,6 +522,6 @@
 
   
 
-<script>console.log("\n%c ✦ Gridea Pro v0.0.0-dev %c · Theme: flavor-theme v1.0.0 · https://gridea.pro %c\n","color:#fadfa3;background:#111111;padding:9px 14px;border-radius:4px 0 0 4px;font-weight:500;font-size:12px","color:#e05c00;background:#fff3ec;padding:9px 14px;border-radius:0 4px 4px 0;font-size:11px","")</script>
+<script>console.log("\n%c ✦ Gridea Pro v1.3.0-beta.2 %c · Theme: flavor-theme v1.0.0 · https://gridea.pro %c\n","color:#fadfa3;background:#111111;padding:9px 14px;border-radius:4px 0 0 4px;font-weight:500;font-size:12px","color:#e05c00;background:#fff3ec;padding:9px 14px;border-radius:0 4px 4px 0;font-size:11px","")</script>
 </body>
 </html>

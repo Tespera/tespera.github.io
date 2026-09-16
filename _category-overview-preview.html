@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="theme-dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>分类总览页 · 两版设计对比</title>
+<link rel="stylesheet" href="/styles/main.min.css">
+<style>
+.proto-label{max-width:1200px;margin:72px auto 0;padding:0 24px;}
+.proto-label h2{font-family:var(--font-heading);font-size:13px;font-weight:600;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--color-badge-gold);}
+.proto-label p{font-size:13px;color:var(--color-text-muted);margin-top:6px;line-height:1.6;max-width:820px;}
+.proto-rule{max-width:1200px;margin:72px auto 0;padding:0 24px;}
+.proto-rule hr{border:0;border-top:1px solid var(--color-border);}
+
+/* ============================================================
+   总览 1 · 封面网格
+   ============================================================ */
+.catgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:8px;}
+.catgrid__item{display:block;text-decoration:none;border:1px solid var(--color-border);
+  border-radius:12px;overflow:hidden;background:var(--color-surface);
+  transition:border-color var(--transition-fast),transform var(--transition-fast);}
+.catgrid__item:hover{border-color:var(--color-border-hover);transform:translateY(-2px);}
+.catgrid__media{position:relative;aspect-ratio:16/10;overflow:hidden;background:var(--color-bg);}
+.catgrid__media img{width:100%;height:100%;object-fit:cover;display:block;}
+.catgrid__fallback{width:100%;height:100%;display:flex;align-items:center;justify-content:center;
+  background:#141414;
+  font-family:var(--font-heading);font-size:3.4rem;font-weight:700;letter-spacing:-.04em;
+  color:rgba(255,255,255,.14);}
+.catgrid__count{position:absolute;right:10px;bottom:10px;
+  padding:3px 9px;border-radius:999px;font-size:12px;
+  background:rgba(0,0,0,.62);color:#fff;backdrop-filter:blur(6px);}
+.catgrid__body{padding:14px 16px 16px;}
+.catgrid__name{font-family:var(--font-heading);font-size:1.05rem;font-weight:600;
+  letter-spacing:-.02em;color:var(--color-text-primary);}
+.catgrid__desc{margin-top:5px;font-size:13px;line-height:1.5;color:var(--color-text-muted);
+  display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden;}
+
+/* ============================================================
+   总览 2 · 横向列表
+   ============================================================ */
+.catrow{margin-top:8px;max-width:var(--content-width);}
+.catrow__item{display:flex;align-items:center;gap:18px;padding:16px 0;
+  border-bottom:1px solid var(--color-border-light);text-decoration:none;
+  transition:padding-left var(--transition-fast);}
+.catrow__item:hover{padding-left:6px;}
+.catrow__item:last-child{border-bottom:0;}
+.catrow__thumb{width:76px;height:76px;flex-shrink:0;border-radius:9px;overflow:hidden;
+  background:var(--color-bg);border:1px solid var(--color-border);}
+.catrow__thumb img{width:100%;height:100%;object-fit:cover;display:block;}
+.catrow__fallback{width:76px;height:76px;flex-shrink:0;border-radius:9px;
+  display:flex;align-items:center;justify-content:center;
+  background:#141414;border:1px solid var(--color-border);
+  font-family:var(--font-heading);font-size:1.7rem;font-weight:700;color:rgba(255,255,255,.16);}
+.catrow__body{flex:1;min-width:0;}
+.catrow__name{font-family:var(--font-heading);font-size:1.2rem;font-weight:600;
+  letter-spacing:-.02em;color:var(--color-text-primary);}
+.catrow__desc{margin-top:4px;font-size:13.5px;line-height:1.5;color:var(--color-text-secondary);}
+.catrow__count{flex-shrink:0;font-size:13px;color:var(--color-text-muted);
+  padding:4px 12px;border:1px solid var(--color-border);border-radius:999px;}
+
+.proto-wrap{max-width:var(--max-width);margin:0 auto;padding:0 24px;}
+</style>
+</head>
+<body>
+
+<div class="proto-label" style="margin-top:48px">
+  <h2>分类总览页 /categories/ · 两版设计对比</h2>
+  <p>用的是你站点真实的 7 个分类和真实篇数。<b>刻意做成混合状态</b>：只有「技术实践」「Gridea Pro」「人文社科」配了封面，
+     其余 4 个没配——这才是你上线后的真实样子，降级形态好不好看比满图好看更重要。</p>
+</div>
+
+<!-- ============ 总览 1 ============ -->
+<div class="proto-label">
+  <h2>总览 1 · 封面网格</h2>
+  <p>三列卡片，封面 16:10，篇数做成右下角的浮层胶囊。像一个专题画廊，封面的价值在这里最大化；
+     没配图的分类用首字渐变块，混在一起不会塌。</p>
+</div>
+<div class="proto-wrap">
+  <div class="page-header">
+    <h1 class="page-title">分类</h1>
+    <p class="page-subtitle meta-text">共 7 个分类</p>
+  </div>
+  <div class="catgrid">
+    <a class="catgrid__item" href="#">
+      <div class="catgrid__media"><img src="/post-images/wails-boot.jpeg" alt=""><span class="catgrid__count">1 篇</span></div>
+      <div class="catgrid__body"><div class="catgrid__name">技术实践</div><div class="catgrid__desc">技术文章</div></div>
+    </a>
+    <a class="catgrid__item" href="#">
+      <div class="catgrid__media"><img src="/post-images/gridea-pro.jpg" alt=""><span class="catgrid__count">20 篇</span></div>
+      <div class="catgrid__body"><div class="catgrid__name">Gridea Pro</div><div class="catgrid__desc">产品与开发日志</div></div>
+    </a>
+    <a class="catgrid__item" href="#">
+      <div class="catgrid__media"><img src="/post-images/how-we-become-ourselves.jpg" alt=""><span class="catgrid__count">6 篇</span></div>
+      <div class="catgrid__body"><div class="catgrid__name">人文社科</div><div class="catgrid__desc">读书与思想笔记</div></div>
+    </a>
+    <a class="catgrid__item" href="#">
+      <div class="catgrid__media"><div class="catgrid__fallback">深</div><span class="catgrid__count">1 篇</span></div>
+      <div class="catgrid__body"><div class="catgrid__name">深度思考</div><div class="catgrid__desc">慢下来想清楚的那些事</div></div>
+    </a>
+    <a class="catgrid__item" href="#">
+      <div class="catgrid__media"><div class="catgrid__fallback">健</div><span class="catgrid__count">5 篇</span></div>
+      <div class="catgrid__body"><div class="catgrid__name">健康科普</div><div class="catgrid__desc">身体是怎么运作的</div></div>
+    </a>
+    <a class="catgrid__item" href="#">
+      <div class="catgrid__media"><div class="catgrid__fallback">A</div><span class="catgrid__count">2 篇</span></div>
+      <div class="catgrid__body"><div class="catgrid__name">AI 趋势</div><div class="catgrid__desc">模型、产品与行业观察</div></div>
+    </a>
+    <a class="catgrid__item" href="#">
+      <div class="catgrid__media"><div class="catgrid__fallback">D</div><span class="catgrid__count">1 篇</span></div>
+      <div class="catgrid__body"><div class="catgrid__name">Deep Dive</div><div class="catgrid__desc">一次只说透一件事</div></div>
+    </a>
+  </div>
+</div>
+
+<div class="proto-rule"><hr></div>
+
+<!-- ============ 总览 2 ============ -->
+<div class="proto-label">
+  <h2>总览 2 · 横向列表</h2>
+  <p>每行一个分类，左侧 76px 缩略图，中间名称和完整描述，右侧篇数胶囊。
+     描述能完整展示（网格里只能放一行），扫视更快；封面退为辅助信息，存在感弱一些。</p>
+</div>
+<div class="proto-wrap">
+  <div class="page-header">
+    <h1 class="page-title">分类</h1>
+    <p class="page-subtitle meta-text">共 7 个分类</p>
+  </div>
+  <div class="catrow">
+    <a class="catrow__item" href="#">
+      <div class="catrow__thumb"><img src="/post-images/wails-boot.jpeg" alt=""></div>
+      <div class="catrow__body"><div class="catrow__name">技术实践</div><div class="catrow__desc">技术文章</div></div>
+      <span class="catrow__count">1 篇</span>
+    </a>
+    <a class="catrow__item" href="#">
+      <div class="catrow__thumb"><img src="/post-images/gridea-pro.jpg" alt=""></div>
+      <div class="catrow__body"><div class="catrow__name">Gridea Pro</div><div class="catrow__desc">产品与开发日志</div></div>
+      <span class="catrow__count">20 篇</span>
+    </a>
+    <a class="catrow__item" href="#">
+      <div class="catrow__thumb"><img src="/post-images/how-we-become-ourselves.jpg" alt=""></div>
+      <div class="catrow__body"><div class="catrow__name">人文社科</div><div class="catrow__desc">读书与思想笔记</div></div>
+      <span class="catrow__count">6 篇</span>
+    </a>
+    <a class="catrow__item" href="#">
+      <div class="catrow__fallback">深</div>
+      <div class="catrow__body"><div class="catrow__name">深度思考</div><div class="catrow__desc">慢下来想清楚的那些事</div></div>
+      <span class="catrow__count">1 篇</span>
+    </a>
+    <a class="catrow__item" href="#">
+      <div class="catrow__fallback">健</div>
+      <div class="catrow__body"><div class="catrow__name">健康科普</div><div class="catrow__desc">身体是怎么运作的</div></div>
+      <span class="catrow__count">5 篇</span>
+    </a>
+    <a class="catrow__item" href="#">
+      <div class="catrow__fallback">A</div>
+      <div class="catrow__body"><div class="catrow__name">AI 趋势</div><div class="catrow__desc">模型、产品与行业观察</div></div>
+      <span class="catrow__count">2 篇</span>
+    </a>
+    <a class="catrow__item" href="#">
+      <div class="catrow__fallback">D</div>
+      <div class="catrow__body"><div class="catrow__name">Deep Dive</div><div class="catrow__desc">一次只说透一件事</div></div>
+      <span class="catrow__count">1 篇</span>
+    </a>
+  </div>
+</div>
+
+<div style="height:120px"></div>
+</body>
+</html>
