@@ -9,61 +9,243 @@
 <link rel="apple-touch-icon" href="/media/notify/icon-v2-180.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="通知">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="theme-color" content="#141413">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#F4F1EA" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1A1918" media="(prefers-color-scheme: dark)">
 <style>
-  :root { color-scheme: dark; }
-  * { box-sizing: border-box; }
+  :root {
+    --paper: #F4F1EA;
+    --paper-2: #EBE6DA;
+    --ink: #1A1918;
+    --ink-2: #5E5A52;
+    --ink-3: #9A948A;
+    --rule: rgba(26, 25, 24, .12);
+    --clay: #D97757;
+    --clay-deep: #C15F3C;
+    --glow: rgba(217, 119, 87, .22);
+    --serif: ui-serif, "New York", "Iowan Old Style", Georgia, serif;
+    --sans: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", sans-serif;
+    --mono: ui-monospace, "SF Mono", Menlo, monospace;
+    color-scheme: light dark;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #1A1918;
+      --paper-2: #24221F;
+      --ink: #F2EEE6;
+      --ink-2: #B3ADA2;
+      --ink-3: #7A746B;
+      --rule: rgba(242, 238, 230, .12);
+      --glow: rgba(217, 119, 87, .18);
+    }
+  }
+
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html, body { margin: 0; background: var(--paper); }
   body {
-    margin: 0; min-height: 100vh; background: #141413; color: #f0eee6;
-    font: 16px/1.6 -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
-    padding: calc(env(safe-area-inset-top) + 48px) 24px calc(env(safe-area-inset-bottom) + 32px);
+    min-height: 100vh; min-height: 100dvh;
+    color: var(--ink); font: 400 16px/1.65 var(--sans);
+    -webkit-font-smoothing: antialiased;
+    padding: calc(env(safe-area-inset-top) + 28px) 28px calc(env(safe-area-inset-bottom) + 28px);
+    position: relative; overflow-x: hidden;
   }
-  main { max-width: 440px; margin: 0 auto; }
-  img.logo { width: 64px; height: 64px; border-radius: 14px; display: block; margin-bottom: 24px; }
-  h1 { font-size: 26px; font-weight: 600; margin: 0 0 8px; }
-  p { color: #b0aea5; margin: 0 0 16px; }
-  .status { font-size: 15px; padding: 12px 0; border-top: 1px solid #2c2c2a; border-bottom: 1px solid #2c2c2a; margin: 24px 0; }
-  .status b { color: #f0eee6; font-weight: 500; }
-  button {
-    width: 100%; border: 0; border-radius: 12px; padding: 14px; margin-bottom: 12px;
-    font: 500 17px/1 inherit; font-family: inherit; background: #D97757; color: #fff;
+  /* 纸面颗粒 */
+  body::before {
+    content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 0; opacity: .5;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.5 0 0 0 0 0.45 0 0 0 0 0.4 0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
-  button.secondary { background: #2c2c2a; color: #f0eee6; }
-  button:disabled { opacity: .5; }
-  textarea {
-    width: 100%; height: 132px; border: 1px solid #2c2c2a; border-radius: 12px; padding: 12px;
-    background: #1c1c1b; color: #b0aea5; font: 12px/1.5 ui-monospace, Menlo, monospace; resize: none;
+  main {
+    position: relative; z-index: 1; max-width: 420px; margin: 0 auto;
+    display: flex; flex-direction: column; min-height: calc(100dvh - env(safe-area-inset-top) - env(safe-area-inset-bottom) - 56px);
   }
-  ol { color: #b0aea5; padding-left: 20px; margin: 0; }
-  ol li { margin-bottom: 8px; }
-  .hidden { display: none; }
+
+  /* 刊头 */
+  .masthead {
+    display: flex; justify-content: space-between; align-items: baseline;
+    font: 500 11px/1 var(--sans); letter-spacing: .22em; text-transform: uppercase; color: var(--ink-3);
+    padding-bottom: 12px; border-bottom: 1px solid var(--rule);
+  }
+  .masthead em { font: italic 400 13px/1 var(--serif); letter-spacing: 0; text-transform: none; }
+
+  /* 信号主视觉 */
+  .signal { position: relative; width: 196px; height: 196px; margin: 24px auto 18px; }
+  .signal::before {
+    content: ""; position: absolute; inset: -30px; border-radius: 50%;
+    background: radial-gradient(closest-side, var(--glow), transparent 72%);
+  }
+  .ring {
+    position: absolute; left: 50%; top: 50%; border-radius: 50%;
+    border: 1px solid var(--rule); transform: translate(-50%, -50%);
+  }
+  .ring.r1 { width: 112px; height: 112px; }
+  .ring.r2 { width: 154px; height: 154px; }
+  .ring.r3 { width: 196px; height: 196px; }
+  .pulse {
+    position: absolute; left: 50%; top: 50%; width: 90px; height: 90px; border-radius: 50%;
+    border: 1.5px solid var(--clay); transform: translate(-50%, -50%) scale(1); opacity: 0;
+  }
+  .icon {
+    position: absolute; left: 50%; top: 50%; width: 80px; height: 80px; transform: translate(-50%, -50%);
+    border-radius: 19px; display: block;
+    box-shadow: 0 1px 0 rgba(255,255,255,.35) inset, 0 18px 40px -14px rgba(193, 95, 60, .55), 0 2px 6px rgba(26,25,24,.12);
+  }
+  body[data-state="on"] .pulse { animation: pulse 3.2s cubic-bezier(.2,.6,.3,1) infinite; }
+  body[data-state="on"] .pulse.p2 { animation-delay: 1.07s; }
+  body[data-state="on"] .pulse.p3 { animation-delay: 2.13s; }
+  body[data-state="on"] .ring { border-color: rgba(217, 119, 87, .28); }
+  body[data-state="denied"] .icon,
+  body[data-state="unsupported"] .icon { filter: grayscale(.85); opacity: .7; }
+  @keyframes pulse {
+    0%   { transform: translate(-50%, -50%) scale(1);   opacity: .7; }
+    100% { transform: translate(-50%, -50%) scale(2.3); opacity: 0; }
+  }
+
+  /* 标题 */
+  h1 {
+    margin: 0; text-align: center;
+    font: 600 34px/1.15 var(--sans); letter-spacing: -.01em;
+  }
+  h1 .latin { font: italic 400 34px/1 var(--serif); color: var(--clay-deep); margin-right: .12em; }
+  body[data-state="on"] .lede { display: none; }
+  .lede { margin: 12px auto 0; max-width: 300px; text-align: center; color: var(--ink-2); font-size: 15px; }
+
+  /* 状态账目 */
+  .ledger { margin: 26px 0 22px; border-top: 1px solid var(--rule); }
+  .ledger-row {
+    display: flex; justify-content: space-between; align-items: baseline; gap: 16px;
+    padding: 14px 0; border-bottom: 1px solid var(--rule); font-size: 15px;
+  }
+  .ledger-row dt { color: var(--ink-3); }
+  .ledger-row dd { margin: 0; text-align: right; font-weight: 500; }
+  .dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; margin-right: 8px; vertical-align: 1px; background: var(--ink-3); }
+  .dot.on { background: #3E9B5F; box-shadow: 0 0 0 4px rgba(62,155,95,.14); }
+  .dot.warn { background: var(--clay); box-shadow: 0 0 0 4px rgba(217,119,87,.16); }
+  .note { margin: -12px 0 24px; color: var(--ink-2); font-size: 14px; }
+
+  /* 按钮 */
+  .btn {
+    display: block; width: 100%; border: 0; border-radius: 14px; padding: 17px 20px;
+    font: 600 17px/1 var(--sans); letter-spacing: .02em; cursor: pointer;
+    background: var(--ink); color: var(--paper);
+    transition: transform .15s ease, opacity .2s ease, background .2s ease;
+  }
+  .btn.primary { background: var(--clay); color: #fff; box-shadow: 0 10px 24px -12px rgba(193,95,60,.8); }
+  .btn.quiet { background: transparent; color: var(--ink-2); border: 1px solid var(--rule); font-weight: 500; box-shadow: none; }
+  .btn:active { transform: scale(.98); }
+  .btn:disabled { opacity: .45; }
+  #result + .btn { margin-top: 12px; }
+
+  /* 订阅凭证（票据） */
+  .ticket {
+    position: relative; margin: 4px 0 20px; padding: 20px 20px 18px;
+    background: var(--paper-2); border-radius: 4px;
+  }
+  .ticket::before, .ticket::after {
+    content: ""; position: absolute; left: 0; right: 0; height: 8px;
+    background: radial-gradient(circle at 6px 0, var(--paper) 4.5px, transparent 5px) 0 0 / 12px 8px repeat-x;
+  }
+  .ticket::before { top: 0; }
+  .ticket::after { bottom: 0; transform: rotate(180deg); }
+  .ticket-head {
+    display: flex; justify-content: space-between; align-items: baseline;
+    font: 500 11px/1 var(--sans); letter-spacing: .2em; text-transform: uppercase; color: var(--ink-3);
+    padding: 6px 0 14px; border-bottom: 1px dashed var(--rule);
+  }
+  .ticket-head em { font: italic 400 13px/1 var(--serif); letter-spacing: 0; text-transform: none; color: var(--clay-deep); }
+  .ticket dl { margin: 14px 0 4px; font: 400 13px/1.5 var(--mono); }
+  .ticket dl div { display: flex; gap: 12px; padding: 3px 0; }
+  .ticket dt { width: 64px; flex: none; color: var(--ink-3); font-family: var(--sans); }
+  .ticket dd { margin: 0; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .ticket textarea { position: absolute; opacity: 0; pointer-events: none; height: 1px; width: 1px; }
+  .hint { margin: 14px 0 0; text-align: center; font-size: 13px; color: var(--ink-3); }
+
+  /* 安装引导 */
+  .steps { list-style: none; margin: 36px 0 0; padding: 0; border-top: 1px solid var(--rule); counter-reset: s; }
+  .steps li {
+    counter-increment: s; display: grid; grid-template-columns: 44px 1fr; align-items: baseline;
+    padding: 18px 0; border-bottom: 1px solid var(--rule); font-size: 16px;
+  }
+  .steps li::before { content: "0" counter(s); font: italic 400 22px/1 var(--serif); color: var(--clay-deep); }
+  .steps small { display: block; color: var(--ink-3); font-size: 13px; margin-top: 2px; }
+  .nowrap { white-space: nowrap; }
+  .glyph { display: inline-block; width: 18px; height: 18px; vertical-align: -3px; margin: 0 2px; color: #0A84FF; }
+
+  footer {
+    margin-top: auto; padding-top: 32px; text-align: center;
+    font-size: 12px; line-height: 1.7; color: var(--ink-3);
+  }
+  footer em { font: italic 400 13px/1 var(--serif); }
+
+  .hidden { display: none !important; }
+
+  /* 载入：错落浮现 */
+  .rise { opacity: 0; transform: translateY(10px); animation: rise .7s cubic-bezier(.2,.7,.2,1) forwards; }
+  .d1 { animation-delay: .05s; } .d2 { animation-delay: .15s; } .d3 { animation-delay: .25s; }
+  .d4 { animation-delay: .35s; } .d5 { animation-delay: .45s; }
+  @keyframes rise { to { opacity: 1; transform: none; } }
+  @media (prefers-reduced-motion: reduce) {
+    .rise { animation: none; opacity: 1; transform: none; }
+    body[data-state="on"] .pulse { animation: none; }
+  }
 </style>
 </head>
-<body>
+<body data-state="checking">
 <main>
-  <img class="logo" src="/media/notify/icon-v2-180.png" alt="">
-  <h1>Claude 通知</h1>
-  <p>Mac 上的 Claude Code 完成任务时，会通过这里给你发系统通知。</p>
+  <header class="masthead rise d1">
+    <span>Claude · Notify</span>
+    <em id="today"></em>
+  </header>
 
-  <section id="install" class="hidden">
-    <div class="status"><b>需要先添加到主屏幕</b><br>iOS 只允许主屏幕上的网页 App 接收通知。</div>
-    <ol>
-      <li>用 Safari 打开本页</li>
-      <li>点底部「分享」→「添加到主屏幕」</li>
-      <li>从主屏幕的「通知」图标打开，再回到这里</li>
+  <div class="signal rise d2" aria-hidden="true">
+    <span class="ring r3"></span><span class="ring r2"></span><span class="ring r1"></span>
+    <span class="pulse p1"></span><span class="pulse p2"></span><span class="pulse p3"></span>
+    <img class="icon" src="/media/notify/icon-v2-180.png" alt="">
+  </div>
+
+  <h1 class="rise d3"><span class="latin">Claude</span>通知</h1>
+  <p class="lede rise d3">Mac 上的 Claude Code 做完事情，会把结果推送到这台手机。</p>
+
+  <!-- 未添加到主屏幕 -->
+  <section id="install" class="hidden rise d4">
+    <ol class="steps">
+      <li><span>用 Safari 打开本页<small>其他浏览器无法添加网页 App</small></span></li>
+      <li><span>点底部
+        <svg class="glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M8 7l4-4 4 4"/><path d="M6 11H5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-8a1 1 0 0 0-1-1h-1"/></svg>
+        分享，<span class="nowrap">选「添加到主屏幕」<svg class="glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="4" y="4" width="16" height="16" rx="4"/><path d="M12 8.5v7M8.5 12h7"/></svg></span>
+        <small>iOS 只允许主屏幕上的网页 App 接收通知</small></span></li>
+      <li><span>从主屏幕的「通知」打开<small>回到这一页，开启通知</small></span></li>
     </ol>
   </section>
 
-  <section id="app" class="hidden">
-    <div class="status" id="state">正在检查…</div>
-    <button id="enable">开启通知</button>
+  <!-- 主屏幕 App 内 -->
+  <section id="app" class="hidden rise d4">
+    <dl class="ledger">
+      <div class="ledger-row"><dt>通知权限</dt><dd id="perm"><span class="dot"></span>检查中</dd></div>
+      <div class="ledger-row"><dt>推送订阅</dt><dd id="subState"><span class="dot"></span>检查中</dd></div>
+    </dl>
+    <p id="note" class="note hidden"></p>
+
     <div id="result" class="hidden">
-      <p>把下面这段订阅信息复制给 Claude（粘贴到对话里即可），只需做一次。</p>
-      <textarea id="sub" readonly></textarea>
-      <button id="copy" class="secondary">复制订阅信息</button>
+      <div class="ticket">
+        <div class="ticket-head"><span>订阅凭证</span><em id="ticketNo"></em></div>
+        <dl>
+          <div><dt>推送服务</dt><dd id="tHost"></dd></div>
+          <div><dt>端点</dt><dd id="tEndpoint"></dd></div>
+          <div><dt>密钥</dt><dd id="tKeys"></dd></div>
+        </dl>
+        <textarea id="sub" readonly tabindex="-1" aria-hidden="true"></textarea>
+      </div>
+      <button id="copy" class="btn primary">复制订阅凭证</button>
+      <p class="hint" id="copyHint">复制后粘贴给 Claude，只需做一次</p>
     </div>
+
+    <button id="enable" class="btn primary">开启通知</button>
   </section>
+
+  <footer class="rise d5">
+    推送经 Apple 加密转发，私钥只保存在你的 Mac 上<br>
+    <em>are.ink</em>
+  </footer>
 </main>
 
 <script>
@@ -72,6 +254,11 @@ var VAPID_PUBLIC_KEY = 'BD6z3BuvQP_tWDFJAJjn4-DYw8cenio3Woucqb5vk5eIwDVKYUVAES3K
 var SCOPE = '/media/notify/';
 
 function $(id) { return document.getElementById(id); }
+
+(function () {
+  var d = new Date();
+  $('today').textContent = d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+})();
 
 function urlBase64ToUint8Array(s) {
   var pad = '='.repeat((4 - s.length % 4) % 4);
@@ -88,69 +275,121 @@ function sameKey(sub) {
   return a.length === b.length && a.every(function (v, i) { return v === b[i]; });
 }
 
-function showSub(sub, text) {
-  $('state').innerHTML = '<b>' + text + '</b>';
-  $('sub').value = JSON.stringify(sub);
-  $('result').classList.remove('hidden');
-  $('enable').textContent = '重新订阅';
-  $('enable').classList.add('secondary');
+function row(id, dot, text) {
+  $(id).innerHTML = '<span class="dot ' + (dot || '') + '"></span>' + text;
+}
+
+function note(text) {
+  if (text) { $('note').textContent = text; $('note').classList.remove('hidden'); }
+  else { $('note').classList.add('hidden'); }
+}
+
+// 统一的状态切换：checking / off / on / denied / unsupported / error
+function setState(state, detail) {
+  document.body.setAttribute('data-state', state);
+  var perm = window.Notification ? Notification.permission : 'default';
+  row('perm', perm === 'granted' ? 'on' : perm === 'denied' ? 'warn' : '',
+      perm === 'granted' ? '已允许' : perm === 'denied' ? '已拒绝' : '未请求');
+  var enable = $('enable');
+  enable.classList.remove('hidden');
+  enable.className = 'btn primary';
+  enable.textContent = '开启通知';
+  enable.disabled = false;
+  $('result').classList.add('hidden');
+  note('');
+
+  if (state === 'on') {
+    row('subState', 'on', '已生效');
+    $('result').classList.remove('hidden');
+    enable.className = 'btn quiet';
+    enable.textContent = '重新订阅';
+  } else if (state === 'off') {
+    row('subState', '', '未开启');
+    note('点下方按钮，在系统弹窗里选「允许」。');
+  } else if (state === 'denied') {
+    row('subState', 'warn', '不可用');
+    note('通知权限被拒绝了。到「设置 → 通知 → 通知」里重新允许，再回到这里。');
+    enable.classList.add('hidden');
+  } else if (state === 'unsupported') {
+    row('subState', 'warn', '不支持');
+    note('需要 iOS 16.4 以上，并且从主屏幕打开。');
+    enable.disabled = true;
+  } else if (state === 'error') {
+    row('subState', 'warn', '失败');
+    note(detail || '出了点问题，请重试。');
+  } else {
+    row('subState', '', '检查中');
+  }
+}
+
+function showSub(sub) {
+  var json = sub.toJSON ? sub.toJSON() : sub;
+  $('sub').value = JSON.stringify(json);
+  var url = new URL(json.endpoint);
+  var path = url.pathname.replace(/^\//, '');
+  $('tHost').textContent = url.host;
+  $('tEndpoint').textContent = path.slice(0, 10) + '…' + path.slice(-6);
+  $('tKeys').textContent = 'p256dh · auth ✓';
+  $('ticketNo').textContent = 'No. ' + path.slice(-4).toUpperCase();
+  setState('on');
 }
 
 var standalone = window.navigator.standalone || window.matchMedia('(display-mode: standalone)').matches;
 var supported = 'serviceWorker' in navigator && 'PushManager' in window && 'Notification' in window;
 
 if (!standalone && /iPhone|iPad/.test(navigator.userAgent)) {
+  document.body.setAttribute('data-state', 'install');
   $('install').classList.remove('hidden');
 } else if (!supported) {
   $('app').classList.remove('hidden');
-  $('state').innerHTML = '<b>当前环境不支持网页推送</b><br>需要 iOS 16.4 以上，并从主屏幕打开。';
-  $('enable').disabled = true;
+  setState('unsupported');
 } else {
   $('app').classList.remove('hidden');
+  setState('checking');
   navigator.serviceWorker.register(SCOPE + 'sw.js', { scope: SCOPE }).then(function (reg) {
     return reg.pushManager.getSubscription().then(function (sub) {
-      if (sub && sameKey(sub) && Notification.permission === 'granted') {
-        showSub(sub, '✅ 已开启通知');
-      } else if (Notification.permission === 'denied') {
-        $('state').innerHTML = '<b>通知权限已被拒绝</b><br>到「设置 → 通知 → 通知」里重新允许。';
-      } else {
-        $('state').innerHTML = '<b>尚未开启</b><br>点下面的按钮，在弹窗里选「允许」。';
-      }
+      if (sub && sameKey(sub) && Notification.permission === 'granted') showSub(sub);
+      else if (Notification.permission === 'denied') setState('denied');
+      else setState('off');
     });
   }).catch(function (e) {
-    $('state').innerHTML = '<b>Service Worker 注册失败</b><br>' + e;
+    setState('error', 'Service Worker 注册失败：' + e);
   });
 }
 
 $('enable').addEventListener('click', function () {
   $('enable').disabled = true;
+  $('enable').textContent = '正在开启…';
   Notification.requestPermission().then(function (perm) {
+    if (perm === 'denied') { setState('denied'); return null; }
     if (perm !== 'granted') throw new Error('没有获得通知权限');
-    return navigator.serviceWorker.ready;
-  }).then(function (reg) {
-    // 先退掉旧订阅，保证用的是当前公钥
-    return reg.pushManager.getSubscription().then(function (old) {
-      return old ? old.unsubscribe() : null;
-    }).then(function () {
-      return reg.pushManager.subscribe({
-        userVisibleOnly: true,
-        applicationServerKey: urlBase64ToUint8Array(VAPID_PUBLIC_KEY)
+    return navigator.serviceWorker.ready.then(function (reg) {
+      // 先退掉旧订阅，保证用的是当前公钥
+      return reg.pushManager.getSubscription().then(function (old) {
+        return old ? old.unsubscribe() : null;
+      }).then(function () {
+        return reg.pushManager.subscribe({
+          userVisibleOnly: true,
+          applicationServerKey: urlBase64ToUint8Array(VAPID_PUBLIC_KEY)
+        });
       });
-    });
-  }).then(function (sub) {
-    showSub(sub, '✅ 已开启通知');
+    }).then(showSub);
   }).catch(function (e) {
-    $('state').innerHTML = '<b>开启失败</b><br>' + e.message;
-  }).then(function () {
-    $('enable').disabled = false;
+    setState('error', '开启失败：' + e.message);
   });
 });
 
 $('copy').addEventListener('click', function () {
   var text = $('sub').value;
   (navigator.clipboard ? navigator.clipboard.writeText(text) : Promise.reject())
-    .catch(function () { $('sub').select(); document.execCommand('copy'); })
-    .then(function () { $('copy').textContent = '已复制'; });
+    .catch(function () {
+      var t = $('sub'); t.removeAttribute('readonly'); t.select(); document.execCommand('copy'); t.setAttribute('readonly', '');
+    })
+    .then(function () {
+      $('copy').textContent = '已复制';
+      $('copyHint').textContent = '粘贴到和 Claude 的对话里就行';
+      setTimeout(function () { $('copy').textContent = '复制订阅凭证'; }, 2400);
+    });
 });
 </script>
 </body>
