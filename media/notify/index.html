@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Claude 通知</title>
+<link rel="manifest" href="/media/notify/manifest.json">
+<link rel="apple-touch-icon" href="/media/notify/icon-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="通知">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#141413">
+<style>
+  :root { color-scheme: dark; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; min-height: 100vh; background: #141413; color: #f0eee6;
+    font: 16px/1.6 -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
+    padding: calc(env(safe-area-inset-top) + 48px) 24px calc(env(safe-area-inset-bottom) + 32px);
+  }
+  main { max-width: 440px; margin: 0 auto; }
+  img.logo { width: 64px; height: 64px; border-radius: 14px; display: block; margin-bottom: 24px; }
+  h1 { font-size: 26px; font-weight: 600; margin: 0 0 8px; }
+  p { color: #b0aea5; margin: 0 0 16px; }
+  .status { font-size: 15px; padding: 12px 0; border-top: 1px solid #2c2c2a; border-bottom: 1px solid #2c2c2a; margin: 24px 0; }
+  .status b { color: #f0eee6; font-weight: 500; }
+  button {
+    width: 100%; border: 0; border-radius: 12px; padding: 14px; margin-bottom: 12px;
+    font: 500 17px/1 inherit; font-family: inherit; background: #D97757; color: #fff;
+  }
+  button.secondary { background: #2c2c2a; color: #f0eee6; }
+  button:disabled { opacity: .5; }
+  textarea {
+    width: 100%; height: 132px; border: 1px solid #2c2c2a; border-radius: 12px; padding: 12px;
+    background: #1c1c1b; color: #b0aea5; font: 12px/1.5 ui-monospace, Menlo, monospace; resize: none;
+  }
+  ol { color: #b0aea5; padding-left: 20px; margin: 0; }
+  ol li { margin-bottom: 8px; }
+  .hidden { display: none; }
+</style>
+</head>
+<body>
+<main>
+  <img class="logo" src="/media/notify/icon-180.png" alt="">
+  <h1>Claude 通知</h1>
+  <p>Mac 上的 Claude Code 完成任务时，会通过这里给你发系统通知。</p>
+
+  <section id="install" class="hidden">
+    <div class="status"><b>需要先添加到主屏幕</b><br>iOS 只允许主屏幕上的网页 App 接收通知。</div>
+    <ol>
+      <li>用 Safari 打开本页</li>
+      <li>点底部「分享」→「添加到主屏幕」</li>
+      <li>从主屏幕的「通知」图标打开，再回到这里</li>
+    </ol>
+  </section>
+
+  <section id="app" class="hidden">
+    <div class="status" id="state">正在检查…</div>
+    <button id="enable">开启通知</button>
+    <div id="result" class="hidden">
+      <p>把下面这段订阅信息复制给 Claude（粘贴到对话里即可），只需做一次。</p>
+      <textarea id="sub" readonly></textarea>
+      <button id="copy" class="secondary">复制订阅信息</button>
+    </div>
+  </section>
+</main>
+
+<script>
+// 公钥可以公开；私钥只在 Mac 本地（~/.config/notify/vapid_private.pem）
+var VAPID_PUBLIC_KEY = 'BD6z3BuvQP_tWDFJAJjn4-DYw8cenio3Woucqb5vk5eIwDVKYUVAES3KlNiN3HwMURdbfiUkvH6mfjB4zoh2uhY';
+var SCOPE = '/media/notify/';
+
+function $(id) { return document.getElementById(id); }
+
+function urlBase64ToUint8Array(s) {
+  var pad = '='.repeat((4 - s.length % 4) % 4);
+  var raw = atob((s + pad).replace(/-/g, '+').replace(/_/g, '/'));
+  var out = new Uint8Array(raw.length);
+  for (var i = 0; i < raw.length; i++) out[i] = raw.charCodeAt(i);
+  return out;
+}
+
+function sameKey(sub) {
+  var k = sub.options && sub.options.applicationServerKey;
+  if (!k) return true;
+  var a = new Uint8Array(k), b = urlBase64ToUint8Array(VAPID_PUBLIC_KEY);
+  return a.length === b.length && a.every(function (v, i) { return v === b[i]; });
+}
+
+function showSub(sub, text) {
+  $('state').innerHTML = '<b>' + text + '</b>';
+  $('sub').value = JSON.stringify(sub);
+  $('result').classList.remove('hidden');
+  $('enable').textContent = '重新订阅';
+  $('enable').classList.add('secondary');
+}
+
+var standalone = window.navigator.standalone || window.matchMedia('(display-mode: standalone)').matches;
+var supported = 'serviceWorker' in navigator && 'PushManager' in window && 'Notification' in window;
+
+if (!standalone && /iPhone|iPad/.test(navigator.userAgent)) {
+  $('install').classList.remove('hidden');
+} else if (!supported) {
+  $('app').classList.remove('hidden');
+  $('state').innerHTML = '<b>当前环境不支持网页推送</b><br>需要 iOS 16.4 以上，并从主屏幕打开。';
+  $('enable').disabled = true;
+} else {
+  $('app').classList.remove('hidden');
+  navigator.serviceWorker.register(SCOPE + 'sw.js', { scope: SCOPE }).then(function (reg) {
+    return reg.pushManager.getSubscription().then(function (sub) {
+      if (sub && sameKey(sub) && Notification.permission === 'granted') {
+        showSub(sub, '✅ 已开启通知');
+      } else if (Notification.permission === 'denied') {
+        $('state').innerHTML = '<b>通知权限已被拒绝</b><br>到「设置 → 通知 → 通知」里重新允许。';
+      } else {
+        $('state').innerHTML = '<b>尚未开启</b><br>点下面的按钮，在弹窗里选「允许」。';
+      }
+    });
+  }).catch(function (e) {
+    $('state').innerHTML = '<b>Service Worker 注册失败</b><br>' + e;
+  });
+}
+
+$('enable').addEventListener('click', function () {
+  $('enable').disabled = true;
+  Notification.requestPermission().then(function (perm) {
+    if (perm !== 'granted') throw new Error('没有获得通知权限');
+    return navigator.serviceWorker.ready;
+  }).then(function (reg) {
+    // 先退掉旧订阅，保证用的是当前公钥
+    return reg.pushManager.getSubscription().then(function (old) {
+      return old ? old.unsubscribe() : null;
+    }).then(function () {
+      return reg.pushManager.subscribe({
+        userVisibleOnly: true,
+        applicationServerKey: urlBase64ToUint8Array(VAPID_PUBLIC_KEY)
+      });
+    });
+  }).then(function (sub) {
+    showSub(sub, '✅ 已开启通知');
+  }).catch(function (e) {
+    $('state').innerHTML = '<b>开启失败</b><br>' + e.message;
+  }).then(function () {
+    $('enable').disabled = false;
+  });
+});
+
+$('copy').addEventListener('click', function () {
+  var text = $('sub').value;
+  (navigator.clipboard ? navigator.clipboard.writeText(text) : Promise.reject())
+    .catch(function () { $('sub').select(); document.execCommand('copy'); })
+    .then(function () { $('copy').textContent = '已复制'; });
+});
+</script>
+</body>
+</html>
