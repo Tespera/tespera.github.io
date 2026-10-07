@@ -10,7 +10,7 @@ self.addEventListener('push', function (event) {
   // iOS 要求每条推送都必须显示通知，否则会撤销订阅，所以解析失败也要兜底显示。
   event.waitUntil(self.registration.showNotification(data.title || 'Claude 通知', {
     body: data.body || '',
-    icon: '/media/notify/icon-192.png',
+    icon: '/media/notify/icon-v2-192.png',
     tag: data.tag,
     data: { url: data.url || '/media/notify/' }
   }));
