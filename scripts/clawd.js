@@ -11,6 +11,8 @@
 
   var horizon = document.querySelector('[data-clawd-horizon]');
   if (!horizon) return;
+  // 视频与脚本同属主题资源：/scripts/clawd.js → /media/clawd/
+  var MEDIA_BASE = new URL('../media/clawd/', document.currentScript.src).href;
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
   var crab = horizon.querySelector('.clawd');
@@ -55,7 +57,29 @@
     });
   }
 
-  function crabWidth() { return crab.offsetWidth; }
+  // 螃蟹宽度由 CSS 决定（桌面 / 移动端不同）；藏起来时量不到，临时以不可见方式展开再量
+  function crabWidth() {
+    if (!horizon.hidden) return crab.offsetWidth;
+    horizon.style.visibility = 'hidden';
+    horizon.hidden = false;
+    var w = crab.offsetWidth;
+    horizon.hidden = true;
+    horizon.style.visibility = '';
+    return w;
+  }
+
+  function loadVideo() {
+    if (video.firstChild) return;
+    // Safari 用 HEVC 透明视频（mov），其余浏览器用 VP9 透明视频（webm）；顺序不能换
+    [['clawd-laptop.mov', 'video/quicktime'], ['clawd-laptop.webm', 'video/webm']].forEach(function (f) {
+      var source = document.createElement('source');
+      source.src = MEDIA_BASE + f[0];
+      source.type = f[1];
+      video.appendChild(source);
+    });
+    video.preload = 'auto';
+    video.load();
+  }
 
   function topObstruction() {
     // 固定 / 粘性定位的页头会盖住视口上沿，线要在它下面
@@ -69,12 +93,14 @@
     return bottom;
   }
 
-  function isPinned(el) {
-    for (; el && el !== document.body; el = el.parentElement) {
-      var pos = getComputedStyle(el).position;
-      if (pos === 'fixed' || pos === 'sticky') return true;
-    }
-    return false;
+  // 是否属于固定 / 粘性定位的浮层（页头、折叠菜单、弹窗等），这些不算页面里的线和障碍
+  function isPinned(el, cache) {
+    if (!el || el === document.body) return false;
+    if (cache && cache.has(el)) return cache.get(el);
+    var pos = getComputedStyle(el).position;
+    var pinned = pos === 'fixed' || pos === 'sticky' || isPinned(el.parentElement, cache);
+    if (cache) cache.set(el, pinned);
+    return pinned;
   }
 
   // 视口内所有横线：{ el, edge: 'top' | 'bottom', y, left, right }
@@ -96,12 +122,14 @@
         lines.push({ el: el, edge: 'bottom', y: r.bottom - bb, left: r.left, right: r.right });
       }
     }
-    return lines.filter(function (l) { return !isPinned(l.el); });
+    var pinned = new Map();
+    return lines.filter(function (l) { return !isPinned(l.el, pinned); });
   }
 
   // 视口内会被螃蟹挡住的东西：文字行 + 图片等
   function collectObstacles(viewTop, viewBottom) {
     var rects = [];
+    var pinned = new Map();
     function keep(r) {
       if (r.width && r.height && r.bottom > viewTop && r.top < viewBottom) rects.push(r);
     }
@@ -112,6 +140,7 @@
         if (!p || horizon.contains(p)) return NodeFilter.FILTER_REJECT;
         var pr = p.getBoundingClientRect();
         if (pr.bottom < viewTop || pr.top > viewBottom) return NodeFilter.FILTER_REJECT;
+        if (isPinned(p, pinned)) return NodeFilter.FILTER_REJECT;
         return NodeFilter.FILTER_ACCEPT;
       }
     });
@@ -121,7 +150,7 @@
       Array.prototype.forEach.call(range.getClientRects(), keep);
     }
     document.querySelectorAll(MEDIA).forEach(function (el) {
-      if (!horizon.contains(el)) keep(el.getBoundingClientRect());
+      if (!horizon.contains(el) && !isPinned(el, pinned)) keep(el.getBoundingClientRect());
     });
     return rects;
   }
@@ -228,7 +257,7 @@
     place(spot);
     setX(rand(0, Math.max(0, spanWidth - crabWidth())), 0);
     face(Math.random() < 0.5 ? -1 : 1);
-    if (video.preload === 'none') video.preload = 'auto';
+    loadVideo();
     play();
     crab.classList.remove('is-sinking');
     // 先让初始位置生效，再加 is-up，升起动画才会播放
