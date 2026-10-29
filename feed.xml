@@ -380,6 +380,171 @@
       <enclosure url="https://are.ink/post-images/ai-era-indie-blog-gridea-pro-strategy.jpg" length="0" type="image/jpeg"></enclosure>
     </item>
     <item>
+      <title>Claude 里的小螃蟹，现在住在我博客的里</title>
+      <link>https://are.ink/post/clawd-crab/</link>
+      <guid isPermaLink="true">https://are.ink/post/clawd-crab/</guid>
+      <pubDate>Thu, 29 Oct 2026 06:01:25 +0100</pubDate>
+      <description><![CDATA[<p>如果你最近在我的博客里多停留了一会儿，可能见过它：一只橙色的像素风小螃蟹，会从某条分隔线下面悄悄冒出来，在空白处走两步，掏出笔记本敲一会儿，或者举起一块写着「述尔」的小牌子，过一阵又缩回线下。</p>
+<p>是不是很可爱？</p>
+<p>它叫 Clawd，是 Anthropic 的吉祥物。</p>
+<p><img src="https://are.ink/post-images/clawd-crab-actions.gif" alt="小螃蟹的六种动作" /></p>
+<p>这篇说说它从哪来、会做什么，以及怎么把它放到你自己的网站上。</p>
+<h2 id="-claude-app-">它从 Claude App 里来</h2>
+<p>Claude 的桌面 App 里藏着一个横版闯关小游戏，叫 Clawd Quest：操控小螃蟹跑跳、捡东西、完成一个个小任务——比如「天空忘了醒来，去把五颗日出火花找回来」（原文：<em>The sky forgot to wake. Gather the five sunrise sparks.</em>）。</p>
+<p>它有生命值、有计分、有背景音乐，还有一个 Ultra 模式。这个游戏设计得相当用心。</p>
+<p>翻 App 的安装包时我发现，游戏里小螃蟹的动作并不是视频或图片，而是<strong>用文本编码的像素画</strong>：每个动作是一张很小的网格（比如 24×17 格），配一个三五种颜色的调色板；第一帧记下整张网格，之后每一帧只记录「哪几个格子变了色」。这样一来，25 套动作加起来只有一百多 KB，压缩后传输不到 40KB。</p>
+<p>既然是数据，就可以拿出来用代码重新画。我从中挑了 20 套：走路、横着爬、跑、东张西望、敲笔记本、敲台式机、草裙舞、冥想、思考、头顶亮灯泡、挥手、转晕……又按同样的格式画了两套原创动作：</p>
+<ul>
+<li><strong>看书</strong>：双钳捧起一本蓝封面的书，眼睛垂下来一行一行扫读，读完翻页；</li>
+<li><strong>举牌</strong>：举着一块木框小牌子上下晃。牌子上的字可以配置，在我这里写的是手绘的 9×9 像素字「述尔」。</li>
+</ul>
+<h2 id="heading">它会做什么</h2>
+<p><strong>自己找地方站。</strong> 每次出场，它会扫描当前屏幕里所有的横线——标题下的分隔线、文章里的 <code>&lt;hr&gt;</code>、列表的底线，以及图片、代码框的上边缘——找出线上方不压文字的那一段空白，从线下冒出来。</p>
+<p><img src="https://are.ink/post-images/clawd-crab-lines.png" alt="它能站的几种横线" /></p>
+<p><strong>按空间挑动作。</strong> 举牌、亮灯泡这类个子高的动作，只在上方空间够的地方做；当前位置放不下，它会先走到空旷的地方再做。</p>
+<p><img src="https://are.ink/post-images/clawd-crab-read.gif" alt="看书" /></p>
+<p><strong>跟着线走。</strong> 页面滚动时它站在线上跟着走；图片加载导致排版变化时也会跟着挪；线滚出屏幕后才退场，下次在新的屏幕里重新找线。</p>
+<p><strong>会互动。</strong> 鼠标主动凑过去，它要么挥手，要么转身就跑，身后没地方跑就钻回线下、从另一头冒出来；连着被追几次会转晕；站着不动时眼睛跟着鼠标转；点它一下会蹦起来，有时还撒一把彩带。</p>
+<p><img src="https://are.ink/post-images/clawd-crab-interact.png" alt="鼠标互动" /></p>
+<h2 id="heading-1">设计上的考虑</h2>
+<p>做这只螃蟹时，我给自己定了一条原则：<strong>它是页面的住客，不是页面的主角。</strong> 博客是拿来读的，螃蟹再可爱也不能抢正文的戏。下面这些取舍都从这条出发。</p>
+<p><strong>站在线上，而不是飘在角落。</strong> 网页上常见的看板娘、宠物挂件大多固定在屏幕一角，和内容没有关系。而文章页本来就有很多横线：分隔线、列表底线、图片和代码框的边缘。让它把这些线当地面，它就像真的住在页面里，而不是贴在玻璃上。</p>
+<p><strong>只在看得见的地方出现。</strong> 每次都在当前屏幕里找线，而不是固定在页脚——放在页脚的话，大多数人根本滚不到那里。线滚出屏幕它才退场，滚动时跟着线走，不会悬在半空。</p>
+<p><strong>不挡内容。</strong> 只站在上方没有文字的那段空白里；个子高的动作要上方留足空间才做；它本身不拦截点击，下面的链接照样能点。屏幕里没有合适的线时（比如长文正文中间），它就先不出来。</p>
+<p><strong>出现要克制。</strong> 每次出场只做三五个短动作，然后缩回线下，隔几秒到十几秒再随机出现。大部分时间它不在，偶尔出现才有惊喜，一直在动反而让人烦。</p>
+<p><strong>互动只回应「主动」的靠近。</strong> 滚动页面时，鼠标和螃蟹的相对位置也会变，但那不是读者想逗它。所以只有鼠标真的在移动、并且朝它靠近时，它才挥手或逃跑，不会一滚动就跑掉。</p>
+<p><strong>像素要清楚。</strong> 像素画最怕被缩放糊掉，所以它按屏幕的物理像素取整倍数绘制，视网膜屏上边缘依然锐利。牌子上的字用比螃蟹细一倍的像素画，字能看清，牌子也不会比螃蟹还抢眼。</p>
+<p><strong>尊重访客的设置。</strong> 访客在系统里开启了「减少动态效果」时，它不会出现。</p>
+<h2 id="heading-2">怎么用</h2>
+<p>代码已开源在 GitHub：<a href="https://github.com/Tespera/clawd-crab">Tespera/clawd-crab</a>。</p>
+<p><strong>任何网页，一行接入：</strong></p>
+<pre><code class="language-html">&lt;script src=&quot;https://cdn.jsdelivr.net/gh/Tespera/clawd-crab@0.1/dist/clawd-crab.iife.js&quot; data-sign=&quot;HELLO&quot; defer&gt;&lt;/script&gt;
+</code></pre>
+<p>脚本走 jsDelivr 的 CDN，国内也能访问；样式和像素数据都打包在这一个文件里，不需要额外的 CSS。</p>
+<p><strong>配置都写在这个标签上</strong>，常用的几项：</p>
+<table>
+<thead>
+<tr>
+<th>写法</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data-sign=&quot;HELLO&quot;</code></td>
+<td>牌子上的字；<code>data-sign=&quot;false&quot;</code> 关掉举牌</td>
+</tr>
+<tr>
+<td><code>data-actions=&quot;walk,read,sign&quot;</code></td>
+<td>只表演这几个动作</td>
+</tr>
+<tr>
+<td><code>data-exclude=&quot;desktop,hula&quot;</code></td>
+<td>去掉这几个动作</td>
+</tr>
+<tr>
+<td><code>data-interactive=&quot;false&quot;</code></td>
+<td>关掉鼠标互动</td>
+</tr>
+<tr>
+<td><code>data-scale=&quot;1.75&quot;</code></td>
+<td>螃蟹大小（桌面端），手机端用 <code>data-mobile-scale</code></td>
+</tr>
+<tr>
+<td><code>data-ignore=&quot;.no-clawd&quot;</code></td>
+<td>这些元素不当地平线</td>
+</tr>
+</tbody>
+</table>
+<p><code>data-actions</code> 和 <code>data-exclude</code> 里用的动作名称如下：</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>动作</th>
+<th>名称</th>
+<th>动作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>walk</code></td>
+<td>走路</td>
+<td><code>turning</code></td>
+<td>转身</td>
+</tr>
+<tr>
+<td><code>crabWalk</code></td>
+<td>横着爬</td>
+<td><code>point</code></td>
+<td>指方向</td>
+</tr>
+<tr>
+<td><code>lookAround</code></td>
+<td>东张西望</td>
+<td><code>dance</code></td>
+<td>跳舞</td>
+</tr>
+<tr>
+<td><code>laptop</code></td>
+<td>敲笔记本</td>
+<td><code>meditate</code></td>
+<td>冥想</td>
+</tr>
+<tr>
+<td><code>read</code></td>
+<td>看书</td>
+<td><code>thinking</code></td>
+<td>思考</td>
+</tr>
+<tr>
+<td><code>sign</code></td>
+<td>举牌</td>
+<td><code>lightbulb</code></td>
+<td>亮灯泡</td>
+</tr>
+<tr>
+<td><code>desktop</code></td>
+<td>敲台式机</td>
+<td><code>excited</code></td>
+<td>兴奋</td>
+</tr>
+<tr>
+<td><code>hula</code></td>
+<td>草裙舞</td>
+<td><code>hop</code></td>
+<td>蹦跳</td>
+</tr>
+<tr>
+<td><code>sway</code></td>
+<td>摇摆</td>
+<td><code>wave</code></td>
+<td>挥手</td>
+</tr>
+</tbody>
+</table>
+<p>冒出、缩回、站立，以及鼠标互动时的反应（逃跑、转晕、撒彩带）不在这张表里，始终都有；不想要互动就用 <code>data-interactive=&quot;false&quot;</code> 关掉。</p>
+<p><strong>牌子上的字</strong>：内置了英文字母、数字和常用符号的 5×7 像素字体，直接写就行。中文需要自己提供点阵（每个字一组字符串，<code>#</code> 是笔画），仓库的 README 里有写法。</p>
+<p><strong>前端工程里用：</strong></p>
+<pre><code class="language-ts">import { mountClawd } from 'clawd-crab';
+
+const clawd = mountClawd({ sign: 'HELLO', exclude: ['desktop'] });
+// 页面卸载时
+clawd.destroy();
+</code></pre>
+<p>Electron 这类基于网页的 App 同理；原生 App 可以放在 WebView 里用。</p>
+<h2 id="heading-3">关于版权</h2>
+<p>项目代码以 MIT 协议开源。但除了「看书」「举牌」两套是我画的，其余像素素材都来自 Claude App，Clawd 是 Anthropic 的吉祥物，这些素材的版权归 Anthropic 所有，并不在 MIT 授权范围内。放在个人博客上玩玩问题不大，商用之前请自己确认清楚。</p>
+<p>最后，如果你在这页的某条线上看到了它，试着把鼠标慢慢挪过去。</p>
+]]></description>
+      <category>Claude</category>
+      <category>Anthropic</category>
+      <category>Gridea Pro</category>
+      <category>主题开发</category>
+      <category>开发手记</category>
+      <enclosure url="https://are.ink/post-images/clawd-crab.webp" length="0" type="image/webp"></enclosure>
+    </item>
+    <item>
       <title>我蒸馏了自己，并让 AI 用我的决策习惯进行决策</title>
       <link>https://are.ink/post/distilling-myself/</link>
       <guid isPermaLink="true">https://are.ink/post/distilling-myself/</guid>
@@ -1665,130 +1830,6 @@ sudo postmap hash:/etc/postfix/generic
       <category>感冒</category>
       <category>健康</category>
       <category>科普</category>
-    </item>
-    <item>
-      <title>我们如何成为自己</title>
-      <link>https://are.ink/post/how-we-become-ourselves/</link>
-      <guid isPermaLink="true">https://are.ink/post/how-we-become-ourselves/</guid>
-      <pubDate>Wed, 22 Apr 2026 14:30:00 +0200</pubDate>
-      <description><![CDATA[<p>「做自己」这三个字，你一定听过很多遍。</p>
-<p>它出现在毕业典礼的演讲里、出现在情感博主的推送里、出现在运动品牌的 slogan 里、出现在朋友劝你的时候、出现在你想安慰一个刚失恋的人的时候。</p>
-<p>它已经成了这个时代最默认的生活建议之一，流行到几乎不需要再解释。</p>
-<!-- more -->
-<p>但有一件事，你可能从来没有认真想过——</p>
-<p><strong>那个「自己」，到底是谁？</strong></p>
-<p>是你现在的样子，还是某个藏在深处等着被发现的样子？<br />
-是你一个人安静时候的你，还是你在朋友面前的你？<br />
-是你清醒时想做的事，还是你喝醉以后才敢说出口的话？<br />
-是你小时候梦里想成为的那个人，还是你现在已经变成的这个人？</p>
-<p>如果此刻让你回答一句——我到底是谁？</p>
-<p>你其实答不上来。</p>
-<p>不是不愿意答。</p>
-<p><strong>是真的答不上来。</strong></p>
-<hr />
-<p>你过了三十岁、三十五岁、四十岁。你该做的事基本都做了，不该做的也做过一些。你有了一份还过得去的工作、一段还算稳定的关系、一个不算太糟的朋友圈。但你就是隐隐觉得，这些东西不完全属于你。有些是你小时候被灌输的，有些是你长大之后从别人身上学来的，有些你自己都说不清是从哪里来的。</p>
-<p>所以你才终于开始回头问自己——</p>
-<p>我到底想要什么？<br />
-我到底是谁？</p>
-<p>而你越追问——</p>
-<p><strong>越答不上来。</strong></p>
-<hr />
-<p>这个问题，不是从来都在的。</p>
-<p>如果你回到一百年前的乡下，随便问一个农民「你是谁」，他不会愣住，也不会躺在床上整晚想这件事。他会告诉你：我是张家的长子，是李村的人，是种了三十亩地的庄稼汉，是两个孩子的父亲，是村口老庙香火会的理事。</p>
-<p>他的身份，不是他想出来的。</p>
-<p>是他被生下来就装在身上的。村庄、家族、土地、手艺、祠堂——这些东西联合起来，替他把「我是谁」这个问题提前回答好了。他只需要认真活好其中的每一重身份。</p>
-<p>他当然也有自己的烦恼。但他的烦恼是具体的：这一季的麦子、父亲的病、儿子的婚事。</p>
-<p>他不会为「我是谁」失眠。</p>
-<p><strong>失眠的是我们。</strong></p>
-<hr />
-<p>过去两三百年里，有一件事一点一点地发生了。</p>
-<p>城市化把人从村庄里抽走了。工业化让手艺和职业不再是祖传的。高铁和互联网让家族散落到各个城市、各个大陆。每一份稳定的工作都在被重新发明，每一段关系都在变成临时的，每一个人都被教会要“独立”、要“自由”、要“做自己”。</p>
-<p>到最后，每一个人都变成了一个可以被单独抽出来的原子——没有村庄、没有祠堂、没有祖传的手艺、没有一条能替你回答「你是谁」的现成轨道。</p>
-<p>然后世界对你说：你现在自由了，你可以自己决定你想成为什么人。</p>
-<p>这听起来当然很诱人。</p>
-<p>但它也意味着另一件很重的事：那些原本由一整个村庄、一整个家族、一整个共同体共同承担的问题——你是谁，你要去哪里，你为什么存在——现在全都压在了你一个人身上。</p>
-<p>你一个人，躺在床上，要回答几百代人从来不曾独自回答过的问题。</p>
-<p>你回答不出来，不是因为你不够努力。</p>
-<p>也不是因为你不够聪明。</p>
-<p><strong>是因为这个任务，从一开始就不是设计给一个人独自完成的。</strong></p>
-<hr />
-<p>更让人难受的是，最近这十几年，又有一个新的东西加了进来。</p>
-<p>算法。</p>
-<p>你以为你是在探索自己、寻找自己——你刷视频、点赞、保存、搜索、关注那些你觉得「有共鸣」的内容。但其实你的每一次点击、每一秒停留，都在给算法喂料。</p>
-<p>算法用这些料，一点一点拼出一个「更懂你」的版本，然后把这个版本再推回到你眼前。</p>
-<p>你爱看的东西，会被喂得更多。<br />
-你一次偶然的愤怒，会被反复强化成一种人设。<br />
-你某个月里多停留了几秒的画面，三个月后会变成你整个信息流的主色调。</p>
-<p>你以为你看到的世界是客观的。</p>
-<p>其实那是算法和你共同雕刻出来的一面镜子。</p>
-<p>你以为镜子里的那个人就是「真实的你」。</p>
-<p>其实那只是一个在你和算法的共同作用下被加工出来的幻影——一个更容易停在屏幕前、更容易被投放广告、更容易被继续喂养的你。</p>
-<p>然后你带着这个幻影继续追问：「我到底是谁？」</p>
-<p>难怪找不到答案。</p>
-<p><strong>你追问的那个人，本来就不是你自己。</strong></p>
-<hr />
-<p>所以，我们回到那个最原始的问题——</p>
-<p>我们到底怎么成为自己？</p>
-<p>大多数人的第一反应是：向内看。冥想、独处、写日记、读心理学、上课程、和自己对话。</p>
-<p>这些事情不是没用。但如果你只是做这些，过了一段时间你会发现，你似乎离「真实的自己」并没有更近一步。你的日记越写越乱，你的冥想越做越焦虑，你越是跟自己对话，越搞不清楚哪一个声音才算是你。</p>
-<p>这不怪你。</p>
-<p>这是因为，当你向内挖的时候，心里其实一直藏了一个假设——</p>
-<p>你在假设，在某个很深的地方，有一个真实的、完整的、等着被你发现的“真我”。只要你挖得够深、够诚实、够久，它就会浮出水面。</p>
-<p>这个假设可能本身就是错的。</p>
-<p>那个所谓的「真我」有可能根本不存在。</p>
-<p>不是被掩埋了。是从来没有。</p>
-<p>你身上的每一样东西——你的语言、你的偏好、你的情绪模式、你的羞耻感、你的兴奋点——都是你在一段一段具体的关系里、一段一段具体的时间里，从外面一点一点接收、回应、内化进来的。</p>
-<p><strong>把外面的东西全部剥掉，剩下的不是“真实的你”，是一个连「自己」这两个字都念不出来的生物。</strong></p>
-<p>你不是往里挖就能找到自己的。</p>
-<p>自己不在里面。</p>
-<hr />
-<p>那自己在哪里？</p>
-<p>这个问题如果换一种问法，可能更容易被回答：</p>
-<p><strong>一个人，到底是通过什么变成他自己的？</strong></p>
-<p>你回想一下你身边那些让你觉得「特别是他自己」的人。不是最成功的那些，也不是最有名的那些。是那种你一想到他，脑子里就浮现出一个非常具体的形象、一种非常有个性的做事方式、一种你一眼就能认出是他的气场的人。</p>
-<p>他们是怎么变成那样的？</p>
-<p>你仔细想一下，你会发现一件事——</p>
-<p>这些人，几乎都不是通过「向内挖掘」变成他们自己的。</p>
-<p>他们是在做一件他们真的在乎的事的过程中，一点一点变成了自己。</p>
-<p>一个做了二十年木工的人，在一块一块木头里，变成了自己。<br />
-一个带了十几届学生的老师，在一届一届学生的笑和哭里，变成了自己。<br />
-一个坚持写了十年小众博客的人，在没有几个读者的评论区里，变成了自己。<br />
-一个把半辈子花在一种冷门疾病上的研究者，在那个几乎没人关心的领域里，变成了自己。<br />
-一个独居者收留了一群流浪猫，在每一只走失又回来的猫身上，变成了自己。</p>
-<p>他们不是先想清楚了「我是谁」，才决定去做这件事的。</p>
-<p>他们是在做这件事的过程里，被这件事一块一块塑造成了现在的样子。</p>
-<p><strong>自己不是你找到的。</strong></p>
-<p><strong>自己是你长出来的。</strong></p>
-<hr />
-<p>所以，如果要说有什么可以带走的东西，可能是这样——</p>
-<p>别再一个人躺在床上，跟「我是谁」这个问题死磕了。</p>
-<p>这个问题太重。它不是设计给一个人独自扛的。</p>
-<p>不是让你放弃思考。是让你承认一件事：一个人是不可能只靠想，就想成自己的。</p>
-<p>你要走出去。</p>
-<p>去认真做一件事。一件你可能做不好、可能要花十年才能摸到门槛、可能永远换不到钱、但你真的舍不得放下的事。在这件事里，你会被它一天一天塑造。</p>
-<p>去认真待一个人，或者几个人。不是那种可以随时拉黑的关系，是那种对方看得见你、也愿意纠正你的关系。在这种关系里，你会第一次知道被另一个人准确地看见是什么感觉。</p>
-<p>去承担一份具体的责任。不是朋友圈宣言，不是立 flag，是那种真的需要你每天起来处理的、麻烦的、没法摆脱的责任。在这种责任里，你会发现你以为的「自己」和真的自己之间的距离。</p>
-<p>去待在一个你愿意被观看、被评价、甚至被提醒的共同体里。这不舒服。但这是你长成一个真实的人的最低条件之一。</p>
-<p>这些东西不会给你一个漂亮的答案。</p>
-<p>但它们会把「我是谁」这个问题，从你一个人的床头，慢慢搬回到一张你和这个世界共同织的网里——</p>
-<p>在那张网里，这个问题不会再像现在这样沉重。</p>
-<hr />
-<p>其实我越来越觉得——</p>
-<p>一个人最后变成什么样，不是他想出来的。</p>
-<p><strong>是他爱的东西塑造出来的。</strong></p>
-<p>你不用再拼命往里挖了。挖不到的。</p>
-<p>你只需要认真地去爱一些东西——一件事、一个人、一个地方、一门手艺、一段长到看不见尽头的承诺——然后在这些东西里，让自己一天一天被它们雕。</p>
-<p>雕到某一天，你会忘了「我是谁」这个问题。</p>
-<p>你不再问了。</p>
-<p>然后某个午后，你在做一件很普通的事，比如给一盆花换土，比如陪一个人走一段路，比如坐在桌前写第一千篇没人看的博客。</p>
-<p>你会忽然停下来，看着自己的手。</p>
-<p>然后心里会冒出一句话——</p>
-<p><strong>原来这就是我啊。</strong></p>
-]]></description>
-      <category>哲学思辨</category>
-      <category>自我</category>
-      <category>人生思考</category>
-      <enclosure url="https://are.ink/post-images/how-we-become-ourselves.jpg" length="0" type="image/jpeg"></enclosure>
     </item>
   </channel>
 </rss>

@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link rel="stylesheet" href="/styles/main.min.css">
+
+
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+
+
+<style>:root { --heatmap-color: #39d353; }</style>
+
+
+
+<script>
+  (function () {
+    try {
+      var saved = localStorage.getItem('flavor-theme');
+      var theme = saved || 'dark';
+      if (theme === 'light') {
+        document.documentElement.classList.add('theme-light');
+      }
+    } catch (e) { }
+  })();
+</script>
+  <meta name="generator" content="Gridea Pro 1.3.0-beta.2">
+  <title>Claude 里的小螃蟹，现在住在我博客的里 | 述尔</title>
+  
+<meta property="og:title" content="Claude 里的小螃蟹，现在住在我博客的里" />
+<meta property="og:type" content="article" />
+
+<meta property="og:image" content="/post-images/clawd-crab.webp" />
+
+
+<meta name="description" content="如果你最近在我的博客里多停留了一会儿，可能见过它：一只橙色的像素风小螃蟹，会从某条分隔线下面悄悄冒出来，在空白处走两步，掏出笔记本敲一会儿，或者举起一块写着「述尔」的小牌子，过一阵又缩回线下。 是不是很可爱？ 它叫 Clawd，是 Anthropic 的吉祥物。 这篇说说它从哪来、会做什么，以&amp;hellip;">
+<meta name="keywords" content="述尔，Gridea  Pro，Gridea，静态博客，AI，产品经理">
+<link rel="canonical" href="https://are.ink/post/clawd-crab/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Claude 里的小螃蟹，现在住在我博客的里","url":"https://are.ink/post/clawd-crab/","description":"如果你最近在我的博客里多停留了一会儿，可能见过它：一只橙色的像素风小螃蟹，会从某条分隔线下面悄悄冒出来，在空白处走两步，掏出笔记本敲一会儿，或者举起一块写着「述尔」的小牌子，过一阵又缩回线下。 是不是很可爱？ 它叫 Clawd，是 Anthropic 的吉祥物。 这篇说说它从哪来、会做什么，以\u0026hellip;","image":"/post-images/clawd-crab.webp","datePublished":"2026-10-29T06:01:25+01:00","dateModified":"2026-10-29T07:11:58+01:00","author":{"@type":"Person","name":"述尔"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/images/avatar.png"},"name":"述尔"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://are.ink","name":"述尔","position":1},{"@type":"ListItem","item":"https://are.ink/post/clawd-crab/","name":"Claude 里的小螃蟹，现在住在我博客的里","position":2}]}</script>
+<meta property="og:title" content="Claude 里的小螃蟹，现在住在我博客的里">
+<meta property="og:description" content="如果你最近在我的博客里多停留了一会儿，可能见过它：一只橙色的像素风小螃蟹，会从某条分隔线下面悄悄冒出来，在空白处走两步，掏出笔记本敲一会儿，或者举起一块写着「述尔」的小牌子，过一阵又缩回线下。 是不是很可爱？ 它叫 Clawd，是 Anthropic 的吉祥物。 这篇说说它从哪来、会做什么，以&amp;hellip;">
+<meta property="og:url" content="https://are.ink/post/clawd-crab/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="述尔">
+<meta property="og:image" content="/post-images/clawd-crab.webp">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://are.ink/post/clawd-crab/">
+<meta name="twitter:title" content="Claude 里的小螃蟹，现在住在我博客的里">
+<meta name="twitter:description" content="如果你最近在我的博客里多停留了一会儿，可能见过它：一只橙色的像素风小螃蟹，会从某条分隔线下面悄悄冒出来，在空白处走两步，掏出笔记本敲一会儿，或者举起一块写着「述尔」的小牌子，过一阵又缩回线下。 是不是很可爱？ 它叫 Clawd，是 Anthropic 的吉祥物。 这篇说说它从哪来、会做什么，以&amp;hellip;">
+<meta name="twitter:image" content="/post-images/clawd-crab.webp">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1SBXPCEK36"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-1SBXPCEK36');</script>
+<meta name="google-site-verification" content="googlea4223896f417412f.html">
+<script>var _hmt=_hmt||[];(function(){var hm=document.createElement("script");hm.src="https://hm.baidu.com/hm.js?4b792e215f23cf68ed571462a263feb3";var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(hm,s);})();</script>
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#000000">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="述尔">
+<link rel="apple-touch-icon" sizes="180x180" href="https://cdn.jsdelivr.net/gh/Tespera/Assets@main/images/icons/icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192" href="https://cdn.jsdelivr.net/gh/Tespera/Assets@main/images/icons/icon-192x192.png">
+<meta name="msapplication-TileColor" content="#000000">
+<meta name="msapplication-TileImage" content="/images/icons/icon-192x192.png">
+<script>if('serviceWorker' in navigator){navigator.serviceWorker.register('/sw.js')}</script>
+</head>
+<body class="flavor-theme">
+
+  <header class="site-header" id="siteHeader">
+  <div class="header-inner">
+    <div class="top-bar">
+
+      
+      <div class="top-bar__left">
+        
+        <a href="https://are.ink" class="site-avatar-link" aria-label="返回首页">
+          <img class="site-avatar" src="https://cdn.jsdelivr.net/gh/Tespera/Assets@main/images/avatar.png" alt="述尔" />
+        </a>
+        
+        <a href="https://are.ink" class="site-name-link">述尔</a>
+      </div>
+
+      
+      <nav class="top-bar__nav" id="sectionBar">
+        
+        
+        <a class="nav-item" href="/">首页</a>
+        
+        <a class="nav-item" href="/post">博客</a>
+        
+        <a class="nav-item" href="/memos">闪念</a>
+        
+        <a class="nav-item" href="/archives">归档</a>
+        
+        <a class="nav-item" href="/categories">分类</a>
+        
+        <a class="nav-item" href="/tags">标签</a>
+        
+        <a class="nav-item" href="/links">友链</a>
+        
+        <a class="nav-item" href="/post/about">关于</a>
+        
+        
+      </nav>
+
+      
+      <div class="top-bar__right">
+        <button class="btn-icon btn-search search-btn" id="btnSearch" type="button" aria-label="搜索">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+        </button>
+        <button class="btn-icon theme-toggle theme-toggle-sun" id="themeToggleSun" type="button"
+          aria-label="切换到浅色模式">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 1C12.5523 1 13 1.44772 13 2V4C13 4.55228 12.5523 5 12 5C11.4477 5 11 4.55228 11 4V2C11 1.44772 11.4477 1 12 1Z"></path>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M7 12C7 9.23858 9.23858 7 12 7C14.7614 7 17 9.23858 17 12C17 14.7614 14.7614 17 12 17C9.23858 17 7 14.7614 7 12ZM12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9Z"></path>
+            <path d="M13 20C13 19.4477 12.5523 19 12 19C11.4477 19 11 19.4477 11 20V22C11 22.5523 11.4477 23 12 23C12.5523 23 13 22.5523 13 22V20Z"></path>
+            <path d="M4.22282 4.22289C4.61335 3.83236 5.24651 3.83236 5.63704 4.22289L7.04704 5.63289C7.43756 6.02341 7.43756 6.65658 7.04704 7.0471C6.65651 7.43762 6.02335 7.43762 5.63283 7.0471L4.22282 5.6371C3.8323 5.24658 3.8323 4.61341 4.22282 4.22289Z"></path>
+            <path d="M18.367 16.9529C17.9765 16.5623 17.3433 16.5623 16.9528 16.9529C16.5623 17.3434 16.5623 17.9766 16.9528 18.3671L18.3628 19.7771C18.7533 20.1676 19.3865 20.1676 19.777 19.7771C20.1675 19.3866 20.1675 18.7534 19.777 18.3629L18.367 16.9529Z"></path>
+            <path d="M1 12C1 11.4477 1.44772 11 2 11H4C4.55228 11 5 11.4477 5 12C5 12.5523 4.55228 13 4 13H2C1.44772 13 1 12.5523 1 12Z"></path>
+            <path d="M20 11C19.4477 11 19 11.4477 19 12C19 12.5523 19.4477 13 20 13H22C22.5523 13 23 12.5523 23 12C23 11.4477 22.5523 11 22 11H20Z"></path>
+            <path d="M7.04704 16.9529C7.43756 17.3434 7.43756 17.9766 7.04704 18.3671L5.63704 19.7771C5.24651 20.1676 4.61335 20.1676 4.22282 19.7771C3.8323 19.3866 3.8323 18.7534 4.22283 18.3629L5.63283 16.9529C6.02335 16.5623 6.65651 16.5623 7.04704 16.9529Z"></path>
+            <path d="M19.777 5.6371C20.1675 5.24657 20.1675 4.61341 19.777 4.22289C19.3865 3.83236 18.7533 3.83236 18.3628 4.22289L16.9528 5.63289C16.5623 6.02341 16.5623 6.65658 16.9528 7.0471C17.3433 7.43762 17.9765 7.43762 18.367 7.0471L19.777 5.6371Z"></path>
+          </svg>
+        </button>
+        <button class="btn-icon theme-toggle theme-toggle-moon" id="themeToggleMoon" type="button"
+          aria-label="切换到深色模式">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C10.0222 2 8.08879 2.58649 6.4443 3.6853C4.79981 4.78412 3.51809 6.3459 2.76121 8.17317C2.00433 10.0004 1.8063 12.0111 2.19215 13.9509C2.578 15.8907 3.53041 17.6725 4.92894 19.0711C6.32746 20.4696 8.10929 21.422 10.0491 21.8079C11.9889 22.1937 13.9996 21.9957 15.8268 21.2388C17.6541 20.4819 19.2159 19.2002 20.3147 17.5557C21.4135 15.9112 22 13.9778 22 12C22 11.5955 21.7564 11.2309 21.3827 11.0761C21.009 10.9213 20.5789 11.0069 20.2929 11.2929C19.287 12.2988 17.9226 12.864 16.5 12.864C15.0774 12.864 13.713 12.2988 12.7071 11.2929C11.7012 10.287 11.136 8.92261 11.136 7.5C11.136 6.07739 11.7012 4.71304 12.7071 3.70711C12.9931 3.42111 13.0787 2.99099 12.9239 2.61732C12.7691 2.24364 12.4045 2 12 2ZM7.55544 5.34824C8.27036 4.87055 9.05353 4.51389 9.87357 4.28778C9.39271 5.27979 9.13604 6.37666 9.13604 7.5C9.13604 9.45304 9.91189 11.3261 11.2929 12.7071C12.6739 14.0881 14.547 14.864 16.5 14.864C17.6233 14.864 18.7202 14.6073 19.7122 14.1264C19.4861 14.9465 19.1295 15.7296 18.6518 16.4446C17.7727 17.7602 16.5233 18.7855 15.0615 19.391C13.5997 19.9965 11.9911 20.155 10.4393 19.8463C8.88743 19.5376 7.46197 18.7757 6.34315 17.6569C5.21447 16.538 4.4624 15.1126 4.15372 13.5607C3.84504 12.0089 4.00347 10.4003 4.60897 8.93853C5.21447 7.47672 6.23985 6.22729 7.55544 5.34824Z"></path>
+            <path d="M19 2C19.5523 2 20 2.44772 20 3V4H21C21.5523 4 22 4.44772 22 5C22 5.55228 21.5523 6 21 6H20V7C20 7.55228 19.5523 8 19 8C18.4477 8 18 7.55228 18 7V6H17C16.4477 6 16 5.55228 16 5C16 4.44772 16.4477 4 17 4H18V3C18 2.44772 18.4477 2 19 2Z"></path>
+          </svg>
+        </button>
+        <button class="btn-icon btn-nav-toggle mobile-only" id="btnNavToggle" type="button" aria-label="切换导航">
+          <div class="hamburger" id="hamburger">
+            <span class="hamburger__line hamburger__line--top"></span>
+            <span class="hamburger__line hamburger__line--bottom"></span>
+          </div>
+        </button>
+      </div>
+
+    </div>
+  </div>
+</header>
+
+
+<div class="header-spacer"></div>
+
+<script>
+(function(){
+  var btn = document.getElementById('btnNavToggle');
+  var nav = document.getElementById('sectionBar');
+  var hamburger = document.getElementById('hamburger');
+  if (btn && nav) {
+    btn.addEventListener('click', function(){
+      nav.classList.toggle('top-bar__nav--open');
+      if (hamburger) hamburger.classList.toggle('is-active');
+    });
+    nav.querySelectorAll('.nav-item').forEach(function(item){
+      item.addEventListener('click', function(){
+        nav.classList.remove('top-bar__nav--open');
+        if (hamburger) hamburger.classList.remove('is-active');
+      });
+    });
+  }
+
+  var root = document.documentElement;
+  var applyTheme = function(theme, persist){
+    if (theme === 'light') {
+      root.classList.add('theme-light');
+    } else {
+      root.classList.remove('theme-light');
+    }
+    if (persist) {
+      try { localStorage.setItem('flavor-theme', theme); } catch (e) {}
+    }
+  };
+  document.querySelectorAll('.theme-toggle').forEach(function(el){
+    el.addEventListener('click', function(){
+      applyTheme(root.classList.contains('theme-light') ? 'dark' : 'light', true);
+    });
+  });
+})();
+</script>
+
+  <main class="site-main" role="main">
+    
+<article class="article-container">
+  <header class="article-header">
+    <h1 class="article-title">Claude 里的小螃蟹，现在住在我博客的里</h1>
+    <div class="article-meta">
+      
+      
+      <a href="/category/Tech/" class="article-meta__category">技术实践</a>
+      
+      
+      <span class="article-meta__sep">·</span>
+      
+      <span class="article-meta__item">2026年10月29日</span>
+      
+      <span class="article-meta__sep">·</span>
+      <span class="article-meta__item">5 分钟阅读</span>
+      
+    </div>
+    
+    <div class="article-header__tags">
+      
+      <a href="/tag/claude/" class="tag-pill tag-pill--sm">Claude</a>
+      
+      <a href="/tag/anthropic/" class="tag-pill tag-pill--sm">Anthropic</a>
+      
+      <a href="/tag/gridea-pro/" class="tag-pill tag-pill--sm">Gridea Pro</a>
+      
+      <a href="/tag/theme-dev/" class="tag-pill tag-pill--sm">主题开发</a>
+      
+      <a href="/tag/dev-notes/" class="tag-pill tag-pill--sm">开发手记</a>
+      
+    </div>
+    
+  </header>
+
+  
+  <div class="article-feature">
+    <img src="https://cdn.jsdelivr.net/gh/Tespera/Assets@main/post-images/clawd-crab.webp" alt="Claude 里的小螃蟹，现在住在我博客的里" />
+  </div>
+  
+
+  <div class="article-content">
+    <p>如果你最近在我的博客里多停留了一会儿，可能见过它：一只橙色的像素风小螃蟹，会从某条分隔线下面悄悄冒出来，在空白处走两步，掏出笔记本敲一会儿，或者举起一块写着「述尔」的小牌子，过一阵又缩回线下。</p>
+<p>是不是很可爱？</p>
+<p>它叫 Clawd，是 Anthropic 的吉祥物。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Tespera/Assets@main/post-images/clawd-crab-actions.gif" alt="小螃蟹的六种动作" /></p>
+<p>这篇说说它从哪来、会做什么，以及怎么把它放到你自己的网站上。</p>
+<h2 id="-claude-app-">它从 Claude App 里来</h2>
+<p>Claude 的桌面 App 里藏着一个横版闯关小游戏，叫 Clawd Quest：操控小螃蟹跑跳、捡东西、完成一个个小任务——比如「天空忘了醒来，去把五颗日出火花找回来」（原文：<em>The sky forgot to wake. Gather the five sunrise sparks.</em>）。</p>
+<p>它有生命值、有计分、有背景音乐，还有一个 Ultra 模式。这个游戏设计得相当用心。</p>
+<p>翻 App 的安装包时我发现，游戏里小螃蟹的动作并不是视频或图片，而是<strong>用文本编码的像素画</strong>：每个动作是一张很小的网格（比如 24×17 格），配一个三五种颜色的调色板；第一帧记下整张网格，之后每一帧只记录「哪几个格子变了色」。这样一来，25 套动作加起来只有一百多 KB，压缩后传输不到 40KB。</p>
+<p>既然是数据，就可以拿出来用代码重新画。我从中挑了 20 套：走路、横着爬、跑、东张西望、敲笔记本、敲台式机、草裙舞、冥想、思考、头顶亮灯泡、挥手、转晕……又按同样的格式画了两套原创动作：</p>
+<ul>
+<li><strong>看书</strong>：双钳捧起一本蓝封面的书，眼睛垂下来一行一行扫读，读完翻页；</li>
+<li><strong>举牌</strong>：举着一块木框小牌子上下晃。牌子上的字可以配置，在我这里写的是手绘的 9×9 像素字「述尔」。</li>
+</ul>
+<h2 id="heading">它会做什么</h2>
+<p><strong>自己找地方站。</strong> 每次出场，它会扫描当前屏幕里所有的横线——标题下的分隔线、文章里的 <code>&lt;hr&gt;</code>、列表的底线，以及图片、代码框的上边缘——找出线上方不压文字的那一段空白，从线下冒出来。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Tespera/Assets@main/post-images/clawd-crab-lines.png" alt="它能站的几种横线" /></p>
+<p><strong>按空间挑动作。</strong> 举牌、亮灯泡这类个子高的动作，只在上方空间够的地方做；当前位置放不下，它会先走到空旷的地方再做。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Tespera/Assets@main/post-images/clawd-crab-read.gif" alt="看书" /></p>
+<p><strong>跟着线走。</strong> 页面滚动时它站在线上跟着走；图片加载导致排版变化时也会跟着挪；线滚出屏幕后才退场，下次在新的屏幕里重新找线。</p>
+<p><strong>会互动。</strong> 鼠标主动凑过去，它要么挥手，要么转身就跑，身后没地方跑就钻回线下、从另一头冒出来；连着被追几次会转晕；站着不动时眼睛跟着鼠标转；点它一下会蹦起来，有时还撒一把彩带。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Tespera/Assets@main/post-images/clawd-crab-interact.png" alt="鼠标互动" /></p>
+<h2 id="heading-1">设计上的考虑</h2>
+<p>做这只螃蟹时，我给自己定了一条原则：<strong>它是页面的住客，不是页面的主角。</strong> 博客是拿来读的，螃蟹再可爱也不能抢正文的戏。下面这些取舍都从这条出发。</p>
+<p><strong>站在线上，而不是飘在角落。</strong> 网页上常见的看板娘、宠物挂件大多固定在屏幕一角，和内容没有关系。而文章页本来就有很多横线：分隔线、列表底线、图片和代码框的边缘。让它把这些线当地面，它就像真的住在页面里，而不是贴在玻璃上。</p>
+<p><strong>只在看得见的地方出现。</strong> 每次都在当前屏幕里找线，而不是固定在页脚——放在页脚的话，大多数人根本滚不到那里。线滚出屏幕它才退场，滚动时跟着线走，不会悬在半空。</p>
+<p><strong>不挡内容。</strong> 只站在上方没有文字的那段空白里；个子高的动作要上方留足空间才做；它本身不拦截点击，下面的链接照样能点。屏幕里没有合适的线时（比如长文正文中间），它就先不出来。</p>
+<p><strong>出现要克制。</strong> 每次出场只做三五个短动作，然后缩回线下，隔几秒到十几秒再随机出现。大部分时间它不在，偶尔出现才有惊喜，一直在动反而让人烦。</p>
+<p><strong>互动只回应「主动」的靠近。</strong> 滚动页面时，鼠标和螃蟹的相对位置也会变，但那不是读者想逗它。所以只有鼠标真的在移动、并且朝它靠近时，它才挥手或逃跑，不会一滚动就跑掉。</p>
+<p><strong>像素要清楚。</strong> 像素画最怕被缩放糊掉，所以它按屏幕的物理像素取整倍数绘制，视网膜屏上边缘依然锐利。牌子上的字用比螃蟹细一倍的像素画，字能看清，牌子也不会比螃蟹还抢眼。</p>
+<p><strong>尊重访客的设置。</strong> 访客在系统里开启了「减少动态效果」时，它不会出现。</p>
+<h2 id="heading-2">怎么用</h2>
+<p>代码已开源在 GitHub：<a href="https://github.com/Tespera/clawd-crab">Tespera/clawd-crab</a>。</p>
+<p><strong>任何网页，一行接入：</strong></p>
+<pre><code class="language-html">&lt;script src=&quot;https://cdn.jsdelivr.net/gh/Tespera/clawd-crab@0.1/dist/clawd-crab.iife.js&quot; data-sign=&quot;HELLO&quot; defer&gt;&lt;/script&gt;
+</code></pre>
+<p>脚本走 jsDelivr 的 CDN，国内也能访问；样式和像素数据都打包在这一个文件里，不需要额外的 CSS。</p>
+<p><strong>配置都写在这个标签上</strong>，常用的几项：</p>
+<table>
+<thead>
+<tr>
+<th>写法</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data-sign=&quot;HELLO&quot;</code></td>
+<td>牌子上的字；<code>data-sign=&quot;false&quot;</code> 关掉举牌</td>
+</tr>
+<tr>
+<td><code>data-actions=&quot;walk,read,sign&quot;</code></td>
+<td>只表演这几个动作</td>
+</tr>
+<tr>
+<td><code>data-exclude=&quot;desktop,hula&quot;</code></td>
+<td>去掉这几个动作</td>
+</tr>
+<tr>
+<td><code>data-interactive=&quot;false&quot;</code></td>
+<td>关掉鼠标互动</td>
+</tr>
+<tr>
+<td><code>data-scale=&quot;1.75&quot;</code></td>
+<td>螃蟹大小（桌面端），手机端用 <code>data-mobile-scale</code></td>
+</tr>
+<tr>
+<td><code>data-ignore=&quot;.no-clawd&quot;</code></td>
+<td>这些元素不当地平线</td>
+</tr>
+</tbody>
+</table>
+<p><code>data-actions</code> 和 <code>data-exclude</code> 里用的动作名称如下：</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>动作</th>
+<th>名称</th>
+<th>动作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>walk</code></td>
+<td>走路</td>
+<td><code>turning</code></td>
+<td>转身</td>
+</tr>
+<tr>
+<td><code>crabWalk</code></td>
+<td>横着爬</td>
+<td><code>point</code></td>
+<td>指方向</td>
+</tr>
+<tr>
+<td><code>lookAround</code></td>
+<td>东张西望</td>
+<td><code>dance</code></td>
+<td>跳舞</td>
+</tr>
+<tr>
+<td><code>laptop</code></td>
+<td>敲笔记本</td>
+<td><code>meditate</code></td>
+<td>冥想</td>
+</tr>
+<tr>
+<td><code>read</code></td>
+<td>看书</td>
+<td><code>thinking</code></td>
+<td>思考</td>
+</tr>
+<tr>
+<td><code>sign</code></td>
+<td>举牌</td>
+<td><code>lightbulb</code></td>
+<td>亮灯泡</td>
+</tr>
+<tr>
+<td><code>desktop</code></td>
+<td>敲台式机</td>
+<td><code>excited</code></td>
+<td>兴奋</td>
+</tr>
+<tr>
+<td><code>hula</code></td>
+<td>草裙舞</td>
+<td><code>hop</code></td>
+<td>蹦跳</td>
+</tr>
+<tr>
+<td><code>sway</code></td>
+<td>摇摆</td>
+<td><code>wave</code></td>
+<td>挥手</td>
+</tr>
+</tbody>
+</table>
+<p>冒出、缩回、站立，以及鼠标互动时的反应（逃跑、转晕、撒彩带）不在这张表里，始终都有；不想要互动就用 <code>data-interactive=&quot;false&quot;</code> 关掉。</p>
+<p><strong>牌子上的字</strong>：内置了英文字母、数字和常用符号的 5×7 像素字体，直接写就行。中文需要自己提供点阵（每个字一组字符串，<code>#</code> 是笔画），仓库的 README 里有写法。</p>
+<p><strong>前端工程里用：</strong></p>
+<pre><code class="language-ts">import { mountClawd } from 'clawd-crab';
+
+const clawd = mountClawd({ sign: 'HELLO', exclude: ['desktop'] });
+// 页面卸载时
+clawd.destroy();
+</code></pre>
+<p>Electron 这类基于网页的 App 同理；原生 App 可以放在 WebView 里用。</p>
+<h2 id="heading-3">关于版权</h2>
+<p>项目代码以 MIT 协议开源。但除了「看书」「举牌」两套是我画的，其余像素素材都来自 Claude App，Clawd 是 Anthropic 的吉祥物，这些素材的版权归 Anthropic 所有，并不在 MIT 授权范围内。放在个人博客上玩玩问题不大，商用之前请自己确认清楚。</p>
+<p>最后，如果你在这页的某条线上看到了它，试着把鼠标慢慢挪过去。</p>
+
+  </div>
+
+  
+  <nav class="post-nav">
+    
+    <a href="/post/ai-era-indie-blog-gridea-pro-strategy/" class="post-nav-card post-nav-card--prev">
+      
+      <div class="post-nav-card__img">
+        <img src="https://cdn.jsdelivr.net/gh/Tespera/Assets@main/post-images/ai-era-indie-blog-gridea-pro-strategy.jpg" alt="AI 时代独立博客生态与 Gridea Pro 战略定位分析" loading="lazy" />
+      </div>
+      
+      <div class="post-nav-card__body">
+        <span class="post-nav-card__label meta-text">上一篇</span>
+        <span class="post-nav-card__title">AI 时代独立博客生态与 Gridea Pro 战略定位分析</span>
+      </div>
+      <span class="post-nav-card__arrow">&larr;</span>
+    </a>
+    
+    
+    <a href="/post/distilling-myself/" class="post-nav-card post-nav-card--next">
+      <div class="post-nav-card__body">
+        <span class="post-nav-card__label meta-text">下一篇</span>
+        <span class="post-nav-card__title">我蒸馏了自己，并让 AI 用我的决策习惯进行决策</span>
+      </div>
+      
+      <div class="post-nav-card__img">
+        <img src="https://cdn.jsdelivr.net/gh/Tespera/Assets@main/post-images/distilling-myself.webp" alt="我蒸馏了自己，并让 AI 用我的决策习惯进行决策" loading="lazy" />
+      </div>
+      
+      <span class="post-nav-card__arrow">&rarr;</span>
+    </a>
+    
+  </nav>
+
+  
+  
+
+
+  
+    <section class="comment-section">
+  <h2 class="comment-section__title">评论</h2>
+  <div id="vcomments"></div>
+  <link rel="stylesheet" href="https://unpkg.com/valine@1/dist/Valine.min.css">
+  <script src="https://unpkg.com/valine@1/dist/Valine.min.js"></script>
+  <script>
+    new Valine({
+      el: '#vcomments',
+      appId: 'dAWkPrxZg50VZ7iV39rrZL5U-MdYXbMMI',
+      appKey: 'YCfYt8rhK8d0mh9vr42YTaA1',
+      serverURLs: 'https://dawkprxz.api.lncldglobal.com',
+      avatar: 'mp',
+      placeholder: '说点什么吧…'
+    });
+    // Valine 内置 locale 不支持覆盖，手动替换 placeholder
+    var linkInput = document.querySelector('#vcomments .vlink');
+    if (linkInput) linkInput.placeholder = '网址(https://)';
+  </script>
+</section>
+
+  
+
+
+
+</article>
+
+  </main>
+
+  <footer class="site-footer">
+  <div class="footer-inner">
+
+    
+    
+    <nav class="footer-nav" aria-label="页脚导航">
+      
+      <a class="footer-nav__link" href="/">首页</a>
+      
+      <a class="footer-nav__link" href="/post">博客</a>
+      
+      <a class="footer-nav__link" href="/memos">闪念</a>
+      
+      <a class="footer-nav__link" href="/archives">归档</a>
+      
+      <a class="footer-nav__link" href="/categories">分类</a>
+      
+      <a class="footer-nav__link" href="/tags">标签</a>
+      
+      <a class="footer-nav__link" href="/links">友链</a>
+      
+      <a class="footer-nav__link" href="/post/about">关于</a>
+      
+    </nav>
+    
+
+    
+    <div class="footer-social">
+      
+      <a class="footer-social__link" href="https://github.com/Tespera" target="_blank" rel="noopener noreferrer"
+        aria-label="GitHub">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path
+            d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+        </svg>
+      </a>
+      
+      
+      <a class="footer-social__link" href="https://x.com" target="_blank" rel="noopener noreferrer"
+        aria-label="Twitter/X">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path
+            d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+        </svg>
+      </a>
+      
+      
+      <a class="footer-social__link" href="https://weibo.com" target="_blank" rel="noopener noreferrer"
+        aria-label="微博">
+        <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor">
+          <path d="M10.878 1.093a4.23 4.23 0 0 1 4.031 1.305 4.22 4.22 0 0 1 .886 4.14v.001a.612.612 0 0 1-1.166-.377 3.01 3.01 0 0 0-3.495-3.873.611.611 0 1 1-.256-1.196M3.753 9.465c.548-1.11 1.972-1.74 3.233-1.411 1.304.338 1.971 1.568 1.437 2.764-.541 1.221-2.095 1.875-3.416 1.449-1.271-.411-1.812-1.67-1.254-2.802m2.658.567c.16.066.365-.009.458-.168.088-.16.03-.34-.129-.397-.156-.062-.353.013-.446.168-.09.154-.041.333.117.397m-1.607 1.314c.413.188.963.009 1.219-.4.252-.413.12-.883-.296-1.062-.41-.172-.94.005-1.194.402-.256.4-.135.874.271 1.06"/>
+          <path d="m12.014 7.238.005.001c.919.285 1.941.974 1.939 2.188 0 2.007-2.895 4.535-7.246 4.535C3.393 13.962 0 12.352 0 9.708c0-1.385.876-2.985 2.384-4.493C4.4 3.199 6.751 2.28 7.634 3.165c.39.392.427 1.065.177 1.87-.132.405.38.182.38.182 1.63-.682 3.051-.722 3.57.02.278.397.252.951-.004 1.594-.116.293.035.34.257.407m-10.4 3.101c.172 1.738 2.46 2.936 5.109 2.674 2.647-.26 4.656-1.883 4.482-3.623-.17-1.738-2.458-2.937-5.107-2.674-2.647.263-4.656 1.883-4.484 3.623m11.681-6.484a2.06 2.06 0 0 0-1.962-.634.526.526 0 1 0 .219 1.031 1.008 1.008 0 0 1 1.17 1.296.528.528 0 0 0 1.005.325 2.06 2.06 0 0 0-.432-2.018"/>
+        </svg>
+      </a>
+      
+      <a class="footer-social__link" href="/feed.xml" aria-label="RSS">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M6.18 15.64a2.18 2.18 0 110 4.36 2.18 2.18 0 010-4.36zM4 4.44A15.56 15.56 0 0119.56 20h-2.83A12.73 12.73 0 004 7.27V4.44zm0 5.66a9.9 9.9 0 019.9 9.9h-2.83A7.07 7.07 0 004 12.93V10.1z"/>
+        </svg>
+      </a>
+    </div>
+
+    
+    <div class="footer-copyright">
+      <p>&copy; 2026 述尔. All rights reserved.</p>
+    </div>
+
+    
+    
+
+    
+    <div class="footer-powered">
+      <span>Powered by <a href="https://gridea.pro" target="_blank" rel="noopener noreferrer">Gridea Pro</a></span>
+    </div>
+
+  </div>
+</footer>
+
+  
+  
+<script src="/scripts/clawd-crab.js" data-sign="述尔" defer></script>
+
+  
+
+  
+  <div class="search-overlay" id="searchOverlay" style="display:none;">
+  <div class="search-modal">
+    <div class="search-header">
+      <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+      <input type="text" class="search-input" id="searchInput" placeholder="搜索文章..." autocomplete="off" />
+      <span class="search-kbd">&#8984;K</span>
+      <button class="search-close" id="searchClose" type="button" aria-label="关闭搜索">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+    <div class="search-results" id="searchResults"></div>
+  </div>
+</div>
+
+<script src="/scripts/search.js"></script>
+  
+
+  
+
+  
+
+  
+
+<script>console.log("\n%c ✦ Gridea Pro v1.3.0-beta.2 %c · Theme: flavor-theme v1.0.0 · https://gridea.pro %c\n","color:#fadfa3;background:#111111;padding:9px 14px;border-radius:4px 0 0 4px;font-weight:500;font-size:12px","color:#e05c00;background:#fff3ec;padding:9px 14px;border-radius:0 4px 4px 0;font-size:11px","")</script>
+</body>
+</html>
