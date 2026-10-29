@@ -7,6 +7,7 @@
 <link rel="stylesheet" href="/styles/main.min.css">
 
 
+
 <link rel="icon" href="/favicon.ico" type="image/x-icon">
 
 
@@ -38,7 +39,7 @@
 <meta name="description" content="试想一下，你的静态博客跑了大半年，文章越写越多，图片也越来越多。 某天你注意到一个问题：站点仓库已经 800MB 了，git clone 要等两分钟，Vercel 构建时间从 30 秒涨到了 3 分钟。你翻了一下站点文件，绝大部分体积都是图片。 更尴尬的是，来自东南亚的读者可能会反馈：你的文章写得很好，但站点、图片都加载太慢了，经常转半天圈才出来。 问题的根源很简单——**图片和站点代码&amp;hellip;">
 <meta name="keywords" content="述尔，Gridea  Pro，Gridea，静态博客，AI，产品经理">
 <link rel="canonical" href="https://are.ink/post/gridea-pro-cdn/">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"从零实现 CDN 图床：Gridea Pro 如何让图片管理彻底自动化","url":"https://are.ink/post/gridea-pro-cdn/","description":"试想一下，你的静态博客跑了大半年，文章越写越多，图片也越来越多。 某天你注意到一个问题：站点仓库已经 800MB 了，git clone 要等两分钟，Vercel 构建时间从 30 秒涨到了 3 分钟。你翻了一下站点文件，绝大部分体积都是图片。 更尴尬的是，来自东南亚的读者可能会反馈：你的文章写得很好，但站点、图片都加载太慢了，经常转半天圈才出来。 问题的根源很简单——**图片和站点代码\u0026hellip;","image":"/post-images/gridea-pro-cdn.png","datePublished":"2026-03-12T20:00:00+08:00","dateModified":"2026-03-15T22:24:25+08:00","author":{"@type":"Person","name":"述尔"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/images/avatar.png"},"name":"述尔"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"从零实现 CDN 图床：Gridea Pro 如何让图片管理彻底自动化","url":"https://are.ink/post/gridea-pro-cdn/","description":"试想一下，你的静态博客跑了大半年，文章越写越多，图片也越来越多。 某天你注意到一个问题：站点仓库已经 800MB 了，git clone 要等两分钟，Vercel 构建时间从 30 秒涨到了 3 分钟。你翻了一下站点文件，绝大部分体积都是图片。 更尴尬的是，来自东南亚的读者可能会反馈：你的文章写得很好，但站点、图片都加载太慢了，经常转半天圈才出来。 问题的根源很简单——**图片和站点代码\u0026hellip;","image":"/post-images/gridea-pro-cdn.png","datePublished":"2026-03-12T20:00:00+01:00","dateModified":"2026-03-15T22:24:25+01:00","author":{"@type":"Person","name":"述尔"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/images/avatar.png"},"name":"述尔"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://are.ink","name":"述尔","position":1},{"@type":"ListItem","item":"https://are.ink/post/gridea-pro-cdn/","name":"从零实现 CDN 图床：Gridea Pro 如何让图片管理彻底自动化","position":2}]}</script>
 <meta property="og:title" content="从零实现 CDN 图床：Gridea Pro 如何让图片管理彻底自动化">
 <meta property="og:description" content="试想一下，你的静态博客跑了大半年，文章越写越多，图片也越来越多。 某天你注意到一个问题：站点仓库已经 800MB 了，git clone 要等两分钟，Vercel 构建时间从 30 秒涨到了 3 分钟。你翻了一下站点文件，绝大部分体积都是图片。 更尴尬的是，来自东南亚的读者可能会反馈：你的文章写得很好，但站点、图片都加载太慢了，经常转半天圈才出来。 问题的根源很简单——**图片和站点代码&amp;hellip;">
@@ -540,6 +541,24 @@ blog/images/{year}/{month}/{filename}{.suffix}    → blog/images/2026/03/cover.
 
   </div>
 </footer>
+
+  
+  
+<div class="clawd-horizon" data-clawd-horizon aria-hidden="true" hidden>
+  <div class="clawd">
+    <div class="clawd__body">
+      <div class="clawd__sprite">
+        <video muted loop playsinline preload="none" tabindex="-1" disablepictureinpicture>
+          <source src="https://cdn.jsdelivr.net/gh/Tespera/Assets@main/media/clawd/clawd-laptop.mov" type="video/quicktime">
+          <source src="https://cdn.jsdelivr.net/gh/Tespera/Assets@main/media/clawd/clawd-laptop.webm" type="video/webm">
+        </video>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="/scripts/clawd.js" defer></script>
+
+  
 
   
   <div class="search-overlay" id="searchOverlay" style="display:none;">

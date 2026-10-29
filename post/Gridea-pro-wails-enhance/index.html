@@ -7,6 +7,7 @@
 <link rel="stylesheet" href="/styles/main.min.css">
 
 
+
 <link rel="icon" href="/favicon.ico" type="image/x-icon">
 
 
@@ -38,7 +39,7 @@
 <meta name="description" content="在开发 Gridea Pro 的过程中，我们选择 Wails 作为跨平台桌面应用开发框架。Wails 允许我们使用 Go 编写后端逻辑，使用现代 Web 技术（Vue3, TypeScript）构建前端界面，这对于 Go 开发者来说是一个极具吸引力的组合。 然而，随着系统复杂度的增加，我们遇到了典型的架构挑战：如何在前端（JS/TS）与后端（Go）之间构&amp;hellip;">
 <meta name="keywords" content="述尔，Gridea  Pro，Gridea，静态博客，AI，产品经理">
 <link rel="canonical" href="https://are.ink/post/Gridea-pro-wails-enhance/">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"深入解析 Gridea Pro 架构演进：打造健壮的 Wails 应用后端","url":"https://are.ink/post/Gridea-pro-wails-enhance/","description":"在开发 Gridea Pro 的过程中，我们选择 Wails 作为跨平台桌面应用开发框架。Wails 允许我们使用 Go 编写后端逻辑，使用现代 Web 技术（Vue3, TypeScript）构建前端界面，这对于 Go 开发者来说是一个极具吸引力的组合。 然而，随着系统复杂度的增加，我们遇到了典型的架构挑战：如何在前端（JS/TS）与后端（Go）之间构\u0026hellip;","image":"/post-images/Gridea-pro-wails-enhance.jpg","datePublished":"2026-02-15T14:15:00+08:00","dateModified":"2026-03-10T13:41:07+08:00","author":{"@type":"Person","name":"述尔"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/images/avatar.png"},"name":"述尔"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"深入解析 Gridea Pro 架构演进：打造健壮的 Wails 应用后端","url":"https://are.ink/post/Gridea-pro-wails-enhance/","description":"在开发 Gridea Pro 的过程中，我们选择 Wails 作为跨平台桌面应用开发框架。Wails 允许我们使用 Go 编写后端逻辑，使用现代 Web 技术（Vue3, TypeScript）构建前端界面，这对于 Go 开发者来说是一个极具吸引力的组合。 然而，随着系统复杂度的增加，我们遇到了典型的架构挑战：如何在前端（JS/TS）与后端（Go）之间构\u0026hellip;","image":"/post-images/Gridea-pro-wails-enhance.jpg","datePublished":"2026-02-15T14:15:00+01:00","dateModified":"2026-03-10T13:41:07+01:00","author":{"@type":"Person","name":"述尔"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/images/avatar.png"},"name":"述尔"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://are.ink","name":"述尔","position":1},{"@type":"ListItem","item":"https://are.ink/post/Gridea-pro-wails-enhance/","name":"深入解析 Gridea Pro 架构演进：打造健壮的 Wails 应用后端","position":2}]}</script>
 <meta property="og:title" content="深入解析 Gridea Pro 架构演进：打造健壮的 Wails 应用后端">
 <meta property="og:description" content="在开发 Gridea Pro 的过程中，我们选择 Wails 作为跨平台桌面应用开发框架。Wails 允许我们使用 Go 编写后端逻辑，使用现代 Web 技术（Vue3, TypeScript）构建前端界面，这对于 Go 开发者来说是一个极具吸引力的组合。 然而，随着系统复杂度的增加，我们遇到了典型的架构挑战：如何在前端（JS/TS）与后端（Go）之间构&amp;hellip;">
@@ -481,6 +482,24 @@ func (f *ThemeFacade) SaveThemeConfigFromFrontend(config domain.ThemeConfig) err
 
   </div>
 </footer>
+
+  
+  
+<div class="clawd-horizon" data-clawd-horizon aria-hidden="true" hidden>
+  <div class="clawd">
+    <div class="clawd__body">
+      <div class="clawd__sprite">
+        <video muted loop playsinline preload="none" tabindex="-1" disablepictureinpicture>
+          <source src="https://cdn.jsdelivr.net/gh/Tespera/Assets@main/media/clawd/clawd-laptop.mov" type="video/quicktime">
+          <source src="https://cdn.jsdelivr.net/gh/Tespera/Assets@main/media/clawd/clawd-laptop.webm" type="video/webm">
+        </video>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="/scripts/clawd.js" defer></script>
+
+  
 
   
   <div class="search-overlay" id="searchOverlay" style="display:none;">

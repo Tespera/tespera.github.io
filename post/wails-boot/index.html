@@ -7,6 +7,7 @@
 <link rel="stylesheet" href="/styles/main.min.css">
 
 
+
 <link rel="icon" href="/favicon.ico" type="image/x-icon">
 
 
@@ -38,7 +39,7 @@
 <meta name="description" content="在开发跨平台桌面应用时，菜单栏（Menu Bar）是用户体验的核心组成部分。Gridea Pro 作为一款基于 Wails 开发的现代化应用，近期对后端的启动逻辑（Boot）和菜单系统进行了深度重构。本文将分享这一过程中的技术决策、踩坑经验以及最终的最佳实践方案。 背景：为什么重构？ 在早期的开发中，我们的 boot.go 承担了过多的职责：初始化配置、启动 Http Server、&amp;hellip;">
 <meta name="keywords" content="述尔，Gridea  Pro，Gridea，静态博客，AI，产品经理">
 <link rel="canonical" href="https://are.ink/post/wails-boot/">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Wails 应用实战：重构 Boot 启动逻辑与原生菜单国际化最佳实践","url":"https://are.ink/post/wails-boot/","description":"在开发跨平台桌面应用时，菜单栏（Menu Bar）是用户体验的核心组成部分。Gridea Pro 作为一款基于 Wails 开发的现代化应用，近期对后端的启动逻辑（Boot）和菜单系统进行了深度重构。本文将分享这一过程中的技术决策、踩坑经验以及最终的最佳实践方案。 背景：为什么重构？ 在早期的开发中，我们的 boot.go 承担了过多的职责：初始化配置、启动 Http Server、\u0026hellip;","image":"/post-images/wails-boot.jpeg","datePublished":"2026-02-28T14:04:39+08:00","dateModified":"2026-03-10T13:41:07+08:00","author":{"@type":"Person","name":"述尔"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/images/avatar.png"},"name":"述尔"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Wails 应用实战：重构 Boot 启动逻辑与原生菜单国际化最佳实践","url":"https://are.ink/post/wails-boot/","description":"在开发跨平台桌面应用时，菜单栏（Menu Bar）是用户体验的核心组成部分。Gridea Pro 作为一款基于 Wails 开发的现代化应用，近期对后端的启动逻辑（Boot）和菜单系统进行了深度重构。本文将分享这一过程中的技术决策、踩坑经验以及最终的最佳实践方案。 背景：为什么重构？ 在早期的开发中，我们的 boot.go 承担了过多的职责：初始化配置、启动 Http Server、\u0026hellip;","image":"/post-images/wails-boot.jpeg","datePublished":"2026-02-28T14:04:39+01:00","dateModified":"2026-03-10T13:41:07+01:00","author":{"@type":"Person","name":"述尔"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/images/avatar.png"},"name":"述尔"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://are.ink","name":"述尔","position":1},{"@type":"ListItem","item":"https://are.ink/post/wails-boot/","name":"Wails 应用实战：重构 Boot 启动逻辑与原生菜单国际化最佳实践","position":2}]}</script>
 <meta property="og:title" content="Wails 应用实战：重构 Boot 启动逻辑与原生菜单国际化最佳实践">
 <meta property="og:description" content="在开发跨平台桌面应用时，菜单栏（Menu Bar）是用户体验的核心组成部分。Gridea Pro 作为一款基于 Wails 开发的现代化应用，近期对后端的启动逻辑（Boot）和菜单系统进行了深度重构。本文将分享这一过程中的技术决策、踩坑经验以及最终的最佳实践方案。 背景：为什么重构？ 在早期的开发中，我们的 boot.go 承担了过多的职责：初始化配置、启动 Http Server、&amp;hellip;">
@@ -473,6 +474,24 @@ windowMenu.AddText(T(&quot;window.zoom&quot;), nil, func(_ *menu.CallbackData) {
 
   </div>
 </footer>
+
+  
+  
+<div class="clawd-horizon" data-clawd-horizon aria-hidden="true" hidden>
+  <div class="clawd">
+    <div class="clawd__body">
+      <div class="clawd__sprite">
+        <video muted loop playsinline preload="none" tabindex="-1" disablepictureinpicture>
+          <source src="https://cdn.jsdelivr.net/gh/Tespera/Assets@main/media/clawd/clawd-laptop.mov" type="video/quicktime">
+          <source src="https://cdn.jsdelivr.net/gh/Tespera/Assets@main/media/clawd/clawd-laptop.webm" type="video/webm">
+        </video>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="/scripts/clawd.js" defer></script>
+
+  
 
   
   <div class="search-overlay" id="searchOverlay" style="display:none;">

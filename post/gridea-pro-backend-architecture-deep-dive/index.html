@@ -7,6 +7,7 @@
 <link rel="stylesheet" href="/styles/main.min.css">
 
 
+
 <link rel="icon" href="/favicon.ico" type="image/x-icon">
 
 
@@ -38,7 +39,7 @@
 <meta name="description" content="引言 Gridea Pro 是一款基于 Wails 框架构建的桌面端静态博客管理工具。用户在本地编辑文章、配置主题，系统将全部内容渲染为静态 HTML 后部署到 GitHub Pages、Gitee Pages 或 Vercel 等托管平台。 这套系统在工程上面临一个有趣的矛盾：它是一个桌面应用，数据持久化在本地 JSON 文件中，没有传统意义上的数据库；但它又包含一个完整的**&amp;hellip;">
 <meta name="keywords" content="述尔，Gridea  Pro，Gridea，静态博客，AI，产品经理">
 <link rel="canonical" href="https://are.ink/post/gridea-pro-backend-architecture-deep-dive/">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Gridea Pro 后端架构深度解析：一个桌面端静态博客系统的工程哲学","url":"https://are.ink/post/gridea-pro-backend-architecture-deep-dive/","description":"引言 Gridea Pro 是一款基于 Wails 框架构建的桌面端静态博客管理工具。用户在本地编辑文章、配置主题，系统将全部内容渲染为静态 HTML 后部署到 GitHub Pages、Gitee Pages 或 Vercel 等托管平台。 这套系统在工程上面临一个有趣的矛盾：它是一个桌面应用，数据持久化在本地 JSON 文件中，没有传统意义上的数据库；但它又包含一个完整的**\u0026hellip;","image":"/post-images/gridea-pro-backend-architecture-deep-dive.jpg","datePublished":"2026-03-07T17:16:29+08:00","dateModified":"2026-03-14T20:38:04+08:00","author":{"@type":"Person","name":"述尔"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/images/avatar.png"},"name":"述尔"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Gridea Pro 后端架构深度解析：一个桌面端静态博客系统的工程哲学","url":"https://are.ink/post/gridea-pro-backend-architecture-deep-dive/","description":"引言 Gridea Pro 是一款基于 Wails 框架构建的桌面端静态博客管理工具。用户在本地编辑文章、配置主题，系统将全部内容渲染为静态 HTML 后部署到 GitHub Pages、Gitee Pages 或 Vercel 等托管平台。 这套系统在工程上面临一个有趣的矛盾：它是一个桌面应用，数据持久化在本地 JSON 文件中，没有传统意义上的数据库；但它又包含一个完整的**\u0026hellip;","image":"/post-images/gridea-pro-backend-architecture-deep-dive.jpg","datePublished":"2026-03-07T17:16:29+01:00","dateModified":"2026-03-14T20:38:04+01:00","author":{"@type":"Person","name":"述尔"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/images/avatar.png"},"name":"述尔"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://are.ink","name":"述尔","position":1},{"@type":"ListItem","item":"https://are.ink/post/gridea-pro-backend-architecture-deep-dive/","name":"Gridea Pro 后端架构深度解析：一个桌面端静态博客系统的工程哲学","position":2}]}</script>
 <meta property="og:title" content="Gridea Pro 后端架构深度解析：一个桌面端静态博客系统的工程哲学">
 <meta property="og:description" content="引言 Gridea Pro 是一款基于 Wails 框架构建的桌面端静态博客管理工具。用户在本地编辑文章、配置主题，系统将全部内容渲染为静态 HTML 后部署到 GitHub Pages、Gitee Pages 或 Vercel 等托管平台。 这套系统在工程上面临一个有趣的矛盾：它是一个桌面应用，数据持久化在本地 JSON 文件中，没有传统意义上的数据库；但它又包含一个完整的**&amp;hellip;">
@@ -658,6 +659,24 @@ deploy.GitProvider.Deploy()                    [Deploy 层]
 
   </div>
 </footer>
+
+  
+  
+<div class="clawd-horizon" data-clawd-horizon aria-hidden="true" hidden>
+  <div class="clawd">
+    <div class="clawd__body">
+      <div class="clawd__sprite">
+        <video muted loop playsinline preload="none" tabindex="-1" disablepictureinpicture>
+          <source src="https://cdn.jsdelivr.net/gh/Tespera/Assets@main/media/clawd/clawd-laptop.mov" type="video/quicktime">
+          <source src="https://cdn.jsdelivr.net/gh/Tespera/Assets@main/media/clawd/clawd-laptop.webm" type="video/webm">
+        </video>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="/scripts/clawd.js" defer></script>
+
+  
 
   
   <div class="search-overlay" id="searchOverlay" style="display:none;">

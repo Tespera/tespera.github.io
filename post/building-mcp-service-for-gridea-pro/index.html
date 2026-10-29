@@ -7,6 +7,7 @@
 <link rel="stylesheet" href="/styles/main.min.css">
 
 
+
 <link rel="icon" href="/favicon.ico" type="image/x-icon">
 
 
@@ -36,7 +37,7 @@
 <meta name="description" content="作为一个独立开发者，我一直在想：能不能让 AI 直接操作我的博客？ 不是那种“帮我写个草稿我再复制粘贴”的伪自动化，而是真正的 AI 原生工作流——AI 理解我的站点结构、读我的闪念、帮我组织内容、一键发布。 这篇文章记录了我为 Gridea Pro 实现 MCP (Model Context Protocol) 服务的完整过程。从零到一，28 个 Tools、3 个 Resources&amp;hellip;">
 <meta name="keywords" content="述尔，Gridea  Pro，Gridea，静态博客，AI，产品经理">
 <link rel="canonical" href="https://are.ink/post/building-mcp-service-for-gridea-pro/">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"从零构建 MCP 服务：让 AI 直接操作你的博客","url":"https://are.ink/post/building-mcp-service-for-gridea-pro/","description":"作为一个独立开发者，我一直在想：能不能让 AI 直接操作我的博客？ 不是那种“帮我写个草稿我再复制粘贴”的伪自动化，而是真正的 AI 原生工作流——AI 理解我的站点结构、读我的闪念、帮我组织内容、一键发布。 这篇文章记录了我为 Gridea Pro 实现 MCP (Model Context Protocol) 服务的完整过程。从零到一，28 个 Tools、3 个 Resources\u0026hellip;","datePublished":"2026-02-13T13:58:00+08:00","dateModified":"2026-03-10T23:32:25+08:00","author":{"@type":"Person","name":"述尔"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/images/avatar.png"},"name":"述尔"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"从零构建 MCP 服务：让 AI 直接操作你的博客","url":"https://are.ink/post/building-mcp-service-for-gridea-pro/","description":"作为一个独立开发者，我一直在想：能不能让 AI 直接操作我的博客？ 不是那种“帮我写个草稿我再复制粘贴”的伪自动化，而是真正的 AI 原生工作流——AI 理解我的站点结构、读我的闪念、帮我组织内容、一键发布。 这篇文章记录了我为 Gridea Pro 实现 MCP (Model Context Protocol) 服务的完整过程。从零到一，28 个 Tools、3 个 Resources\u0026hellip;","datePublished":"2026-02-13T13:58:00+01:00","dateModified":"2026-03-10T23:32:25+01:00","author":{"@type":"Person","name":"述尔"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/images/avatar.png"},"name":"述尔"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://are.ink","name":"述尔","position":1},{"@type":"ListItem","item":"https://are.ink/post/building-mcp-service-for-gridea-pro/","name":"从零构建 MCP 服务：让 AI 直接操作你的博客","position":2}]}</script>
 <meta property="og:title" content="从零构建 MCP 服务：让 AI 直接操作你的博客">
 <meta property="og:description" content="作为一个独立开发者，我一直在想：能不能让 AI 直接操作我的博客？ 不是那种“帮我写个草稿我再复制粘贴”的伪自动化，而是真正的 AI 原生工作流——AI 理解我的站点结构、读我的闪念、帮我组织内容、一键发布。 这篇文章记录了我为 Gridea Pro 实现 MCP (Model Context Protocol) 服务的完整过程。从零到一，28 个 Tools、3 个 Resources&amp;hellip;">
@@ -602,6 +603,24 @@ s.mcpServer.AddTool(listPostsTool(), listPostsHandler(s.services.Post))
 
   </div>
 </footer>
+
+  
+  
+<div class="clawd-horizon" data-clawd-horizon aria-hidden="true" hidden>
+  <div class="clawd">
+    <div class="clawd__body">
+      <div class="clawd__sprite">
+        <video muted loop playsinline preload="none" tabindex="-1" disablepictureinpicture>
+          <source src="https://cdn.jsdelivr.net/gh/Tespera/Assets@main/media/clawd/clawd-laptop.mov" type="video/quicktime">
+          <source src="https://cdn.jsdelivr.net/gh/Tespera/Assets@main/media/clawd/clawd-laptop.webm" type="video/webm">
+        </video>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="/scripts/clawd.js" defer></script>
+
+  
 
   
   <div class="search-overlay" id="searchOverlay" style="display:none;">

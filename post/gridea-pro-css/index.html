@@ -7,6 +7,7 @@
 <link rel="stylesheet" href="/styles/main.min.css">
 
 
+
 <link rel="icon" href="/favicon.ico" type="image/x-icon">
 
 
@@ -38,7 +39,7 @@
 <meta name="description" content="在开发与适配 Gridea Pro 主题的过程中，不可避免地会遇到各种各样出乎意料的问题。最近在尝试适配并修复 letters-theme （一个基于 letters.thedankoe.com 的极简 Newsletter 风格主题）时，就遭遇了一次经典的“样式失效”事件。 整个排查过程不仅涉及到前后端模板与 CSS 对应关系的审查，还暴露了渲染引擎在处理静态资源时的隐秘逻辑，最后更是遭遇&amp;hellip;">
 <meta name="keywords" content="述尔，Gridea  Pro，Gridea，静态博客，AI，产品经理">
 <link rel="canonical" href="https://are.ink/post/gridea-pro-css/">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"记一次 Gridea Pro 主题 CSS 样式加载与布局损坏的深度排查之旅","url":"https://are.ink/post/gridea-pro-css/","description":"在开发与适配 Gridea Pro 主题的过程中，不可避免地会遇到各种各样出乎意料的问题。最近在尝试适配并修复 letters-theme （一个基于 letters.thedankoe.com 的极简 Newsletter 风格主题）时，就遭遇了一次经典的“样式失效”事件。 整个排查过程不仅涉及到前后端模板与 CSS 对应关系的审查，还暴露了渲染引擎在处理静态资源时的隐秘逻辑，最后更是遭遇\u0026hellip;","image":"/post-images/gridea-pro-css.jpg","datePublished":"2026-03-02T19:04:52+08:00","dateModified":"2026-03-10T23:53:59+08:00","author":{"@type":"Person","name":"述尔"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/images/avatar.png"},"name":"述尔"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"记一次 Gridea Pro 主题 CSS 样式加载与布局损坏的深度排查之旅","url":"https://are.ink/post/gridea-pro-css/","description":"在开发与适配 Gridea Pro 主题的过程中，不可避免地会遇到各种各样出乎意料的问题。最近在尝试适配并修复 letters-theme （一个基于 letters.thedankoe.com 的极简 Newsletter 风格主题）时，就遭遇了一次经典的“样式失效”事件。 整个排查过程不仅涉及到前后端模板与 CSS 对应关系的审查，还暴露了渲染引擎在处理静态资源时的隐秘逻辑，最后更是遭遇\u0026hellip;","image":"/post-images/gridea-pro-css.jpg","datePublished":"2026-03-02T19:04:52+01:00","dateModified":"2026-03-10T23:53:59+01:00","author":{"@type":"Person","name":"述尔"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/images/avatar.png"},"name":"述尔"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://are.ink","name":"述尔","position":1},{"@type":"ListItem","item":"https://are.ink/post/gridea-pro-css/","name":"记一次 Gridea Pro 主题 CSS 样式加载与布局损坏的深度排查之旅","position":2}]}</script>
 <meta property="og:title" content="记一次 Gridea Pro 主题 CSS 样式加载与布局损坏的深度排查之旅">
 <meta property="og:description" content="在开发与适配 Gridea Pro 主题的过程中，不可避免地会遇到各种各样出乎意料的问题。最近在尝试适配并修复 letters-theme （一个基于 letters.thedankoe.com 的极简 Newsletter 风格主题）时，就遭遇了一次经典的“样式失效”事件。 整个排查过程不仅涉及到前后端模板与 CSS 对应关系的审查，还暴露了渲染引擎在处理静态资源时的隐秘逻辑，最后更是遭遇&amp;hellip;">
@@ -425,6 +426,24 @@
 
   </div>
 </footer>
+
+  
+  
+<div class="clawd-horizon" data-clawd-horizon aria-hidden="true" hidden>
+  <div class="clawd">
+    <div class="clawd__body">
+      <div class="clawd__sprite">
+        <video muted loop playsinline preload="none" tabindex="-1" disablepictureinpicture>
+          <source src="https://cdn.jsdelivr.net/gh/Tespera/Assets@main/media/clawd/clawd-laptop.mov" type="video/quicktime">
+          <source src="https://cdn.jsdelivr.net/gh/Tespera/Assets@main/media/clawd/clawd-laptop.webm" type="video/webm">
+        </video>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="/scripts/clawd.js" defer></script>
+
+  
 
   
   <div class="search-overlay" id="searchOverlay" style="display:none;">
