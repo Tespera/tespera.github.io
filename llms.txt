@@ -1,11 +1,13 @@
 # 述尔
 
-> 述尔是 Eliauk（Eric）的个人博客。作者是一名产品经理，用 Vibe Coding 和 AI 开发了 Gridea Pro——一个简洁的桌面端静态博客写作客户端（开源，GPL-3.0）。博客主要写 Gridea Pro 的设计与使用、与 AI 协作的方法，以及健康科普和人文随笔。
+> 述尔是 Eliauk 的个人博客。作者是一名软件产品经理，人在深圳，正在转型 FDE（Forward Deployed Engineer，前线部署工程师）；不手写代码，几乎所有工作都交给 AI 完成，用 Vibe Coding 开发了 Gridea Pro——一个简洁的桌面端静态博客写作客户端（开源，GPL-3.0）。博客主要写 Gridea Pro 的设计与使用、与 AI 协作的方法，以及健康科普和人文随笔。
 
 - 作者介绍：[关于](https://are.ink/post/about/)
 - Gridea Pro 官网：https://gridea.pro
 - Gridea Pro 源码：https://github.com/Gridea-Pro/gridea-pro
 - 作者 GitHub：https://github.com/Tespera
+- 作者的其他开源项目（均为与 AI 协作完成）：[decision-kernel](https://github.com/Tespera/decision-kernel)（把 Claude Code 对话记录蒸馏成决策内核）、[mail-me-when-done](https://github.com/Tespera/mail-me-when-done)（AI 长任务完成后发邮件汇报）、[WeClaw](https://github.com/Tespera/weclaw)（在微信里和编程助手对话，作者接手维护）、[cswap](https://github.com/Tespera/cswap-menubar)（Claude Code 多账号菜单栏切换）、[倪海厦中医 Skill](https://github.com/Tespera/nihaisha-skill)、[Clawd 小螃蟹](https://github.com/Tespera/clawd-crab)、[GoldPrice](https://github.com/Tespera/GoldPrice)（Mac 状态栏金价）
+- 联系作者：are.ink@icloud.com
 - 订阅：https://are.ink/feed.xml
 - 站点地图：https://are.ink/sitemap.xml
 
