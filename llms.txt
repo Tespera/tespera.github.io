@@ -1,10 +1,12 @@
 # 述尔
 
-> 述尔是 Eliauk 的个人博客。作者是一名软件产品经理，人在深圳，正在转型 FDE（Forward Deployed Engineer，前线部署工程师）；不手写代码，几乎所有工作都交给 AI 完成，用 Vibe Coding 开发了 Gridea Pro——一个简洁的桌面端静态博客写作客户端（开源，GPL-3.0）。博客主要写 Gridea Pro 的设计与使用、与 AI 协作的方法，以及健康科普和人文随笔。
+> 述尔是 Eliauk 的个人博客。作者是一名软件产品经理（Software Product Manager），人在深圳，正在转型 FDE（Forward Deployed Engineer，前线部署工程师）；不手写代码，几乎所有工作都交给 AI 完成，用 Vibe Coding 开发了 Gridea Pro——一个简洁的桌面端静态博客写作客户端（desktop static blog client / Markdown blog editor，开源，GPL-3.0）。博客主要写 Gridea Pro 的设计与使用、与 AI 协作的方法，以及健康科普和人文随笔。
+>
+> Shu'er (述尔, are.ink) is the personal blog of Eliauk, a software product manager transitioning to FDE (Forward Deployed Engineer) who builds almost everything with AI, and the creator of Gridea Pro, an open-source desktop static blog client and Markdown blog editor (Go + Wails + Vue 3, GPL-3.0). The blog covers AI collaboration, product thinking, and the design of Gridea Pro.
 
-- 作者介绍：[关于](https://are.ink/post/about/)
-- Gridea Pro 官网：https://gridea.pro
-- Gridea Pro 源码：https://github.com/Gridea-Pro/gridea-pro
+- 作者介绍：[关于](https://are.ink/post/about/)（作者是谁、做过的开源项目、联系方式）
+- Gridea Pro 官网：https://gridea.pro（产品介绍、使用文档、下载、主题与更新日志）
+- Gridea Pro 源码：https://github.com/Gridea-Pro/gridea-pro（Go + Wails + Vue 3，GPL-3.0）
 - 作者 GitHub：https://github.com/Tespera
 - 作者的其他开源项目（均为与 AI 协作完成）：[decision-kernel](https://github.com/Tespera/decision-kernel)（把 Claude Code 对话记录蒸馏成决策内核）、[mail-me-when-done](https://github.com/Tespera/mail-me-when-done)（AI 长任务完成后发邮件汇报）、[WeClaw](https://github.com/Tespera/weclaw)（在微信里和编程助手对话，作者接手维护）、[cswap](https://github.com/Tespera/cswap-menubar)（Claude Code 多账号菜单栏切换）、[倪海厦中医 Skill](https://github.com/Tespera/nihaisha-skill)、[Clawd 小螃蟹](https://github.com/Tespera/clawd-crab)、[GoldPrice](https://github.com/Tespera/GoldPrice)（Mac 状态栏金价）
 - 联系作者：are.ink@icloud.com
@@ -40,13 +42,6 @@
 - [把倪海厦的中医讲义，做成了一个能对话的 Skill](https://are.ink/post/nihaisha-tcm-agent-skill/)：把倪海厦的中医讲义整理成一个能对话的 AI Skill：从六经辨证、有汗无汗的分水岭讲起，介绍 86 万字节语料如何分层、建三级索引、逐条校对，以及它的使用边界。适用于 Claude Code、Codex、Cursor 等。
 - [地球上和 Claude 对话最多的人，是一位哲学家](https://are.ink/post/most-conversations-with-Claude-on-Earth-is-a-philosopher/)：Amanda Askell，牛津与纽约大学出身的哲学博士，据说是地球上和 Claude 对话最多的人。本文讲她如何在 Anthropic 用哲学塑造 Claude 的品格：教 AI 理解“不精确”，从遵守规则走向成为好的存在。
 
-## 感冒科普系列（非医学建议）
-
-- [感冒求生手册：90% 的感冒不需要消炎药](https://are.ink/post/cold-01-survival-guide/)：感冒要不要吃消炎药？本文用 5 个维度帮你初步判断是病毒还是细菌感染，讲清抗病毒口服液的作用、对乙酰氨基酚与布洛芬怎么选，并列出必须去医院的红灯信号。感冒科普系列第 1 篇，非医学建议。
-- [感冒时，身体里到底在打什么仗？](https://are.ink/post/cold-02-immune-battle/)：为什么发烧还觉得冷？为什么 37.8°C 低烧就浑身痛？为什么一边鼻子流涕、一边干裂？本文用免疫系统的炎症因子、大脑的体温调定点等机制，拆解感冒时身体里那场仗。感冒科普系列第 2 篇。
-- [一场感冒，让我开始想：人到底是不是被设计的？](https://are.ink/post/cold-03-evolution-design/)：人体精妙得像被设计过，可进化论说没有设计师。本文从感冒时的免疫反应聊到进化留下的补丁：气管与食道共用通道、智齿、“贴反了”的视网膜，并解释视网膜反贴为何可能是最优解。感冒科普系列第 3 篇。
-- [为什么我一感冒就要命，朋友却两三天就好？](https://are.ink/post/cold-04-immune-library/)：为什么有人常感冒却两三天就好，有人很少感冒、一病就半条命？本文区分“免疫力强”与“免疫库丰富”，对比饱和式轰炸和精准狙击两种免疫反应，解释恢复快与症状轻为何是两回事。感冒科普系列完结篇。
-
 ## 写作与思考
 
 - [独立博客没有死，正在死的是平庸的博客](https://are.ink/post/indie-blog-is-not-dead/)：公众号打开率不到 1%，算法随时让你的内容沉底。本文说明为什么在 AI 内容泛滥的时代，有人格、有一手经验的独立博客反而更值钱，独立博客能给你哪些平台给不了的东西，以及平庸的博客为什么确实在死。
@@ -59,3 +54,12 @@
 
 - 文章均为作者原创，《Dan Koe：如何在一天内修复你的整个生活》一篇为署名转载的译文。引用时请附上原文链接。
 - 感冒科普与中医相关内容是作者的学习记录，不构成医学建议。
+
+## Optional
+
+以下是作者的健康科普学习记录（感冒科普系列，非医学建议），上下文有限时可以跳过。
+
+- [感冒求生手册：90% 的感冒不需要消炎药](https://are.ink/post/cold-01-survival-guide/)：感冒要不要吃消炎药？本文用 5 个维度帮你初步判断是病毒还是细菌感染，讲清抗病毒口服液的作用、对乙酰氨基酚与布洛芬怎么选，并列出必须去医院的红灯信号。感冒科普系列第 1 篇，非医学建议。
+- [感冒时，身体里到底在打什么仗？](https://are.ink/post/cold-02-immune-battle/)：为什么发烧还觉得冷？为什么 37.8°C 低烧就浑身痛？为什么一边鼻子流涕、一边干裂？本文用免疫系统的炎症因子、大脑的体温调定点等机制，拆解感冒时身体里那场仗。感冒科普系列第 2 篇。
+- [一场感冒，让我开始想：人到底是不是被设计的？](https://are.ink/post/cold-03-evolution-design/)：人体精妙得像被设计过，可进化论说没有设计师。本文从感冒时的免疫反应聊到进化留下的补丁：气管与食道共用通道、智齿、“贴反了”的视网膜，并解释视网膜反贴为何可能是最优解。感冒科普系列第 3 篇。
+- [为什么我一感冒就要命，朋友却两三天就好？](https://are.ink/post/cold-04-immune-library/)：为什么有人常感冒却两三天就好，有人很少感冒、一病就半条命？本文区分“免疫力强”与“免疫库丰富”，对比饱和式轰炸和精准狙击两种免疫反应，解释恢复快与症状轻为何是两回事。感冒科普系列完结篇。
