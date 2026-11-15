@@ -26,35 +26,29 @@
     } catch (e) { }
   })();
 </script>
-  <meta name="generator" content="Gridea Pro 1.3.0-beta.1">
+  <meta name="generator" content="Gridea Pro 0.0.0-dev">
   <title>Gridea Pro MCP 的设计理念与技术取舍 | 述尔</title>
   
-<meta property="og:title" content="Gridea Pro MCP 的设计理念与技术取舍" />
-<meta property="og:type" content="article" />
-
-<meta property="og:image" content="/post-images/gridea-pro-mcp-design-philosophy.png" />
-
-
-<meta name="description" content="当我们决定为一个桌面博客客户端实现 MCP 服务时，面对的不仅是“如何让 AI 调用几个 API”的技术问题，更是一系列关于信任边界、能力暴露、人机协作模式的设计抉择。这篇文章记录了这些抉择背后的思考。 一、为什么是 MCP，而不是 REST API 或插件系统 在 AI 辅助写作的浪潮中，大多数工具选择了两条路径：要么在应用内嵌入一个 AI 聊天窗口，要么暴露一套 REST &amp;hellip;">
+<meta name="description" content="为什么 Gridea Pro 选择 MCP，而不是 REST API 或内嵌 AI？本文讲清 MCP 服务背后的设计取舍：独立二进制解耦、工具/资源/提示词三层能力、读写分级的信任梯度、两步确认，以及面向意图的接口设计。">
 <meta name="keywords" content="述尔，Gridea  Pro，Gridea，静态博客，AI，产品经理">
 <link rel="canonical" href="https://are.ink/post/gridea-pro-mcp-design-philosophy/">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Gridea Pro MCP 的设计理念与技术取舍","url":"https://are.ink/post/gridea-pro-mcp-design-philosophy/","description":"当我们决定为一个桌面博客客户端实现 MCP 服务时，面对的不仅是“如何让 AI 调用几个 API”的技术问题，更是一系列关于信任边界、能力暴露、人机协作模式的设计抉择。这篇文章记录了这些抉择背后的思考。 一、为什么是 MCP，而不是 REST API 或插件系统 在 AI 辅助写作的浪潮中，大多数工具选择了两条路径：要么在应用内嵌入一个 AI 聊天窗口，要么暴露一套 REST \u0026hellip;","image":"/post-images/gridea-pro-mcp-design-philosophy.png","datePublished":"2026-03-11T04:00:00+01:00","dateModified":"2026-03-10T13:41:07+01:00","author":{"@type":"Person","name":"述尔"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/images/avatar.png"},"name":"述尔"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Gridea Pro MCP 的设计理念与技术取舍","url":"https://are.ink/post/gridea-pro-mcp-design-philosophy/","description":"为什么 Gridea Pro 选择 MCP，而不是 REST API 或内嵌 AI？本文讲清 MCP 服务背后的设计取舍：独立二进制解耦、工具/资源/提示词三层能力、读写分级的信任梯度、两步确认，以及面向意图的接口设计。","image":"https://are.ink/post-images/gridea-pro-mcp-design-philosophy-cover.webp","datePublished":"2026-03-11T04:00:00+01:00","dateModified":"2026-03-10T13:41:07+01:00","author":{"@type":"Person","name":"Eliauk","url":"https://are.ink/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://are.ink/images/avatar.png"},"name":"述尔"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://are.ink","name":"述尔","position":1},{"@type":"ListItem","item":"https://are.ink/post/gridea-pro-mcp-design-philosophy/","name":"Gridea Pro MCP 的设计理念与技术取舍","position":2}]}</script>
 <meta property="og:title" content="Gridea Pro MCP 的设计理念与技术取舍">
-<meta property="og:description" content="当我们决定为一个桌面博客客户端实现 MCP 服务时，面对的不仅是“如何让 AI 调用几个 API”的技术问题，更是一系列关于信任边界、能力暴露、人机协作模式的设计抉择。这篇文章记录了这些抉择背后的思考。 一、为什么是 MCP，而不是 REST API 或插件系统 在 AI 辅助写作的浪潮中，大多数工具选择了两条路径：要么在应用内嵌入一个 AI 聊天窗口，要么暴露一套 REST &amp;hellip;">
+<meta property="og:description" content="为什么 Gridea Pro 选择 MCP，而不是 REST API 或内嵌 AI？本文讲清 MCP 服务背后的设计取舍：独立二进制解耦、工具/资源/提示词三层能力、读写分级的信任梯度、两步确认，以及面向意图的接口设计。">
 <meta property="og:url" content="https://are.ink/post/gridea-pro-mcp-design-philosophy/">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="述尔">
-<meta property="og:image" content="/post-images/gridea-pro-mcp-design-philosophy.png">
+<meta property="og:image" content="https://are.ink/post-images/gridea-pro-mcp-design-philosophy-cover.webp">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:url" content="https://are.ink/post/gridea-pro-mcp-design-philosophy/">
 <meta name="twitter:title" content="Gridea Pro MCP 的设计理念与技术取舍">
-<meta name="twitter:description" content="当我们决定为一个桌面博客客户端实现 MCP 服务时，面对的不仅是“如何让 AI 调用几个 API”的技术问题，更是一系列关于信任边界、能力暴露、人机协作模式的设计抉择。这篇文章记录了这些抉择背后的思考。 一、为什么是 MCP，而不是 REST API 或插件系统 在 AI 辅助写作的浪潮中，大多数工具选择了两条路径：要么在应用内嵌入一个 AI 聊天窗口，要么暴露一套 REST &amp;hellip;">
-<meta name="twitter:image" content="/post-images/gridea-pro-mcp-design-philosophy.png">
+<meta name="twitter:description" content="为什么 Gridea Pro 选择 MCP，而不是 REST API 或内嵌 AI？本文讲清 MCP 服务背后的设计取舍：独立二进制解耦、工具/资源/提示词三层能力、读写分级的信任梯度、两步确认，以及面向意图的接口设计。">
+<meta name="twitter:image" content="https://are.ink/post-images/gridea-pro-mcp-design-philosophy-cover.webp">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-1SBXPCEK36"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-1SBXPCEK36');</script>
-<meta name="google-site-verification" content="googlea4223896f417412f.html">
 <script>var _hmt=_hmt||[];(function(){var hm=document.createElement("script");hm.src="https://hm.baidu.com/hm.js?4b792e215f23cf68ed571462a263feb3";var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(hm,s);})();</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://are.ink/#author","name":"Eliauk","alternateName":["Eric","Tespera"],"url":"https://are.ink/post/about/","jobTitle":"产品经理","description":"产品经理，博客「述尔」的作者，用 Vibe Coding 和 AI 开发了开源静态博客客户端 Gridea Pro。","sameAs":["https://github.com/Tespera"],"knowsAbout":["产品设计","AI 编程","Vibe Coding","静态博客","Gridea Pro"]},{"@type":"SoftwareApplication","@id":"https://gridea.pro/#software","name":"Gridea Pro","url":"https://gridea.pro","applicationCategory":"DeveloperApplication","operatingSystem":"macOS, Windows, Linux","description":"一个简洁的桌面端静态博客写作客户端。内置编辑器、多主题支持、一键部署——让你专注于内容本身。","author":{"@id":"https://are.ink/#author"},"sameAs":["https://github.com/Gridea-Pro/gridea-pro"],"license":"https://www.gnu.org/licenses/gpl-3.0.html"}]}</script>
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#000000">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -204,7 +198,7 @@
       <span class="article-meta__item">2026年03月11日</span>
       
       <span class="article-meta__sep">·</span>
-      <span class="article-meta__item">9 分钟阅读</span>
+      <span class="article-meta__item">10 分钟阅读</span>
       
     </div>
     
@@ -224,7 +218,7 @@
 
   
   <div class="article-feature">
-    <img src="https://cdn.jsdelivr.net/gh/Tespera/Assets@main/post-images/gridea-pro-mcp-design-philosophy.png" alt="Gridea Pro MCP 的设计理念与技术取舍" />
+    <img src="https://cdn.jsdelivr.net/gh/Tespera/Assets@main/post-images/gridea-pro-mcp-design-philosophy-cover.webp" alt="Gridea Pro MCP 的设计理念与技术取舍" />
   </div>
   
 
@@ -273,6 +267,7 @@
 <hr />
 <h2 id="heading-2">四、安全设计：信任的梯度</h2>
 <p>让 AI 操作用户数据，最敏感的问题不是技术实现，而是信任。Gridea Pro MCP 的安全设计基于一个前提：<strong>信任不是二元的开关，而是连续的梯度。</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Tespera/Assets@main/post-images/gridea-pro-mcp-design-philosophy-trust.webp" alt="Gridea Pro MCP 的四层信任梯度：读写分级、两步确认、能力隔离、敏感字段脱敏" /></p>
 <h3 id="heading-3">第一层：读操作自由，写操作谨慎</h3>
 <p>查看文章列表、读取站点配置 —— 这些读操作没有副作用，无需确认。但任何写操作都需要经过 AI 的判断，而删除操作则进一步要求用户显式确认。这不是技术限制，而是对操作风险的分级响应。</p>
 <h3 id="heading-4">第二层：两步确认，而非权限模型</h3>
@@ -353,7 +348,7 @@
     <a href="/post/most-conversations-with-Claude-on-Earth-is-a-philosopher/" class="post-nav-card post-nav-card--prev">
       
       <div class="post-nav-card__img">
-        <img src="https://cdn.jsdelivr.net/gh/Tespera/Assets@main/post-images/most-conversations-with-Claude-on-Earth-is-a-philosopher.png" alt="地球上和 Claude 对话最多的人，是一位哲学家" loading="lazy" />
+        <img src="https://cdn.jsdelivr.net/gh/Tespera/Assets@main/post-images/most-conversations-with-Claude-on-Earth-is-a-philosopher-cover.webp" alt="地球上和 Claude 对话最多的人，是一位哲学家" loading="lazy" />
       </div>
       
       <div class="post-nav-card__body">
@@ -371,7 +366,7 @@
       </div>
       
       <div class="post-nav-card__img">
-        <img src="https://cdn.jsdelivr.net/gh/Tespera/Assets@main/post-images/procedura-justice-and-substantive-justice.png" alt="程序正义与实体正义：在规则与良知之间寻找文明的支点" loading="lazy" />
+        <img src="https://cdn.jsdelivr.net/gh/Tespera/Assets@main/post-images/procedura-justice-and-substantive-justice-cover.webp" alt="程序正义与实体正义：在规则与良知之间寻找文明的支点" loading="lazy" />
       </div>
       
       <span class="post-nav-card__arrow">&rarr;</span>
@@ -528,6 +523,6 @@
 
   
 
-<script>console.log("\n%c ✦ Gridea Pro v1.3.0-beta.1 %c · Theme: flavor-theme v1.0.0 · https://gridea.pro %c\n","color:#fadfa3;background:#111111;padding:9px 14px;border-radius:4px 0 0 4px;font-weight:500;font-size:12px","color:#e05c00;background:#fff3ec;padding:9px 14px;border-radius:0 4px 4px 0;font-size:11px","")</script>
+<script>console.log("\n%c ✦ Gridea Pro v0.0.0-dev %c · Theme: flavor-theme v1.0.0 · https://gridea.pro %c\n","color:#fadfa3;background:#111111;padding:9px 14px;border-radius:4px 0 0 4px;font-weight:500;font-size:12px","color:#e05c00;background:#fff3ec;padding:9px 14px;border-radius:0 4px 4px 0;font-size:11px","")</script>
 </body>
 </html>

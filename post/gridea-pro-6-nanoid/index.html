@@ -26,35 +26,29 @@
     } catch (e) { }
   })();
 </script>
-  <meta name="generator" content="Gridea Pro 1.3.0-beta.1">
+  <meta name="generator" content="Gridea Pro 0.0.0-dev">
   <title>Gridea Pro 架构演进：为什么我们选择 6位 NanoID？ | 述尔</title>
   
-<meta property="og:title" content="Gridea Pro 架构演进：为什么我们选择 6位 NanoID？" />
-<meta property="og:type" content="article" />
-
-<meta property="og:image" content="/post-images/gridea-pro-6-nanoid.jpeg" />
-
-
-<meta name="description" content="在构建和维护 Gridea Pro 这样一款优秀的本地静态博客生成器时，随着系统复杂度的提升和用户数据量的增长，底层技术架构的演进是不可避免的。最近，我们进行了一项非常核心的底层改造：将系统中各类实体（分类、标签、日记、评论以及文章本身）的主键 ID 生成策略，全面统一为 6 位的 NanoID。 这项改动不仅解决了诸多历史技术债，更为平台未来的数据扩展和跨平台同步奠定了坚实的基础。今天&amp;hellip;">
+<meta name="description" content="Gridea Pro 为什么把分类、标签、文章等全部实体的 ID 统一为 6 位 NanoID？本文对比自增 ID、UUID、ShortID 与 NanoID，算清 62 字符 6 位的碰撞概率，并复盘从旧数据迁移到新 ID 的完整改造过程。">
 <meta name="keywords" content="述尔，Gridea  Pro，Gridea，静态博客，AI，产品经理">
 <link rel="canonical" href="https://are.ink/post/gridea-pro-6-nanoid/">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Gridea Pro 架构演进：为什么我们选择 6位 NanoID？","url":"https://are.ink/post/gridea-pro-6-nanoid/","description":"在构建和维护 Gridea Pro 这样一款优秀的本地静态博客生成器时，随着系统复杂度的提升和用户数据量的增长，底层技术架构的演进是不可避免的。最近，我们进行了一项非常核心的底层改造：将系统中各类实体（分类、标签、日记、评论以及文章本身）的主键 ID 生成策略，全面统一为 6 位的 NanoID。 这项改动不仅解决了诸多历史技术债，更为平台未来的数据扩展和跨平台同步奠定了坚实的基础。今天\u0026hellip;","image":"/post-images/gridea-pro-6-nanoid.jpeg","datePublished":"2026-03-03T11:29:53+01:00","dateModified":"2026-03-06T19:28:56+01:00","author":{"@type":"Person","name":"述尔"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/images/avatar.png"},"name":"述尔"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Gridea Pro 架构演进：为什么我们选择 6位 NanoID？","url":"https://are.ink/post/gridea-pro-6-nanoid/","description":"Gridea Pro 为什么把分类、标签、文章等全部实体的 ID 统一为 6 位 NanoID？本文对比自增 ID、UUID、ShortID 与 NanoID，算清 62 字符 6 位的碰撞概率，并复盘从旧数据迁移到新 ID 的完整改造过程。","image":"https://are.ink/post-images/gridea-pro-6-nanoid-cover.webp","datePublished":"2026-03-03T11:29:53+01:00","dateModified":"2026-11-15T06:00:00+01:00","author":{"@type":"Person","name":"Eliauk","url":"https://are.ink/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://are.ink/images/avatar.png"},"name":"述尔"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://are.ink","name":"述尔","position":1},{"@type":"ListItem","item":"https://are.ink/post/gridea-pro-6-nanoid/","name":"Gridea Pro 架构演进：为什么我们选择 6位 NanoID？","position":2}]}</script>
 <meta property="og:title" content="Gridea Pro 架构演进：为什么我们选择 6位 NanoID？">
-<meta property="og:description" content="在构建和维护 Gridea Pro 这样一款优秀的本地静态博客生成器时，随着系统复杂度的提升和用户数据量的增长，底层技术架构的演进是不可避免的。最近，我们进行了一项非常核心的底层改造：将系统中各类实体（分类、标签、日记、评论以及文章本身）的主键 ID 生成策略，全面统一为 6 位的 NanoID。 这项改动不仅解决了诸多历史技术债，更为平台未来的数据扩展和跨平台同步奠定了坚实的基础。今天&amp;hellip;">
+<meta property="og:description" content="Gridea Pro 为什么把分类、标签、文章等全部实体的 ID 统一为 6 位 NanoID？本文对比自增 ID、UUID、ShortID 与 NanoID，算清 62 字符 6 位的碰撞概率，并复盘从旧数据迁移到新 ID 的完整改造过程。">
 <meta property="og:url" content="https://are.ink/post/gridea-pro-6-nanoid/">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="述尔">
-<meta property="og:image" content="/post-images/gridea-pro-6-nanoid.jpeg">
+<meta property="og:image" content="https://are.ink/post-images/gridea-pro-6-nanoid-cover.webp">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:url" content="https://are.ink/post/gridea-pro-6-nanoid/">
 <meta name="twitter:title" content="Gridea Pro 架构演进：为什么我们选择 6位 NanoID？">
-<meta name="twitter:description" content="在构建和维护 Gridea Pro 这样一款优秀的本地静态博客生成器时，随着系统复杂度的提升和用户数据量的增长，底层技术架构的演进是不可避免的。最近，我们进行了一项非常核心的底层改造：将系统中各类实体（分类、标签、日记、评论以及文章本身）的主键 ID 生成策略，全面统一为 6 位的 NanoID。 这项改动不仅解决了诸多历史技术债，更为平台未来的数据扩展和跨平台同步奠定了坚实的基础。今天&amp;hellip;">
-<meta name="twitter:image" content="/post-images/gridea-pro-6-nanoid.jpeg">
+<meta name="twitter:description" content="Gridea Pro 为什么把分类、标签、文章等全部实体的 ID 统一为 6 位 NanoID？本文对比自增 ID、UUID、ShortID 与 NanoID，算清 62 字符 6 位的碰撞概率，并复盘从旧数据迁移到新 ID 的完整改造过程。">
+<meta name="twitter:image" content="https://are.ink/post-images/gridea-pro-6-nanoid-cover.webp">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-1SBXPCEK36"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-1SBXPCEK36');</script>
-<meta name="google-site-verification" content="googlea4223896f417412f.html">
 <script>var _hmt=_hmt||[];(function(){var hm=document.createElement("script");hm.src="https://hm.baidu.com/hm.js?4b792e215f23cf68ed571462a263feb3";var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(hm,s);})();</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://are.ink/#author","name":"Eliauk","alternateName":["Eric","Tespera"],"url":"https://are.ink/post/about/","jobTitle":"产品经理","description":"产品经理，博客「述尔」的作者，用 Vibe Coding 和 AI 开发了开源静态博客客户端 Gridea Pro。","sameAs":["https://github.com/Tespera"],"knowsAbout":["产品设计","AI 编程","Vibe Coding","静态博客","Gridea Pro"]},{"@type":"SoftwareApplication","@id":"https://gridea.pro/#software","name":"Gridea Pro","url":"https://gridea.pro","applicationCategory":"DeveloperApplication","operatingSystem":"macOS, Windows, Linux","description":"一个简洁的桌面端静态博客写作客户端。内置编辑器、多主题支持、一键部署——让你专注于内容本身。","author":{"@id":"https://are.ink/#author"},"sameAs":["https://github.com/Gridea-Pro/gridea-pro"],"license":"https://www.gnu.org/licenses/gpl-3.0.html"}]}</script>
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#000000">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -66,6 +60,7 @@
 <meta name="msapplication-TileColor" content="#000000">
 <meta name="msapplication-TileImage" content="/images/icons/icon-192x192.png">
 <script>if('serviceWorker' in navigator){navigator.serviceWorker.register('/sw.js')}</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.47/dist/katex.min.css" crossorigin="anonymous">
 </head>
 <body class="flavor-theme">
 
@@ -204,7 +199,7 @@
       <span class="article-meta__item">2026年03月03日</span>
       
       <span class="article-meta__sep">·</span>
-      <span class="article-meta__item">4 分钟阅读</span>
+      <span class="article-meta__item">6 分钟阅读</span>
       
     </div>
     
@@ -224,7 +219,7 @@
 
   
   <div class="article-feature">
-    <img src="https://cdn.jsdelivr.net/gh/Tespera/Assets@main/post-images/gridea-pro-6-nanoid.jpeg" alt="Gridea Pro 架构演进：为什么我们选择 6位 NanoID？" />
+    <img src="https://cdn.jsdelivr.net/gh/Tespera/Assets@main/post-images/gridea-pro-6-nanoid-cover.webp" alt="Gridea Pro 架构演进：为什么我们选择 6位 NanoID？" />
   </div>
   
 
@@ -239,8 +234,8 @@
 <li><strong>数据脆弱性</strong>：用户修改了分类的名称或是 Slug，文章引用的关联就会断裂，导致渲染找不到分类。</li>
 <li><strong>缺乏唯一性</strong>：不同板块的数据极易发生碰撞。</li>
 </ol>
-<p>为了解决这个问题，引入唯一的、不可变的 ID 成了必然之选。我们对比了行业内常见的三种主流方案。</p>
-<h2 id="-id-">二、三种主流 ID 方案深度对比</h2>
+<p>为了解决这个问题，引入唯一的、不可变的 ID 成了必然之选。我们对比了行业内常见的四种方案。</p>
+<h2 id="-id-">二、四种 ID 方案对比</h2>
 <h3 id="1--id-auto-increment-id">1. 数据库自增 ID (Auto-Increment ID)</h3>
 <p>这是关系型数据库最经典的方案。</p>
 <ul>
@@ -274,14 +269,25 @@
 </li>
 </ul>
 <p>我们需要一种既具备 UUID 的“去中心化、低碰撞率”特性，又更加精简和优雅的方案。</p>
-<h3 id="3-nanoid">3. NanoID：完美的技术折中</h3>
+<h3 id="3-shortid">3. ShortID：已经停止维护的前辈</h3>
+<p>ShortID 曾是 Node.js 社区生成短 ID 的首选，Gridea Pro 的前端早期也重度依赖它，临时文章文件名就是用它生成的。</p>
+<ul>
+<li><strong>优点</strong>：用法极简，能直接生成 7～10 个字符的 URL 友好短 ID。</li>
+<li><strong>致命弱点</strong>：
+<ul>
+<li><strong>已停止维护</strong>：作者本人已在仓库中声明弃用，并建议迁移到 NanoID。</li>
+<li><strong>随机性偏弱</strong>：早期实现依赖 Worker ID 和环境推测，随机源强度不如加密级随机数，在大量离线生成的场景下存在理论碰撞隐患。</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-nanoid">4. NanoID：完美的技术折中</h3>
 <p><a href="https://github.com/ai/nanoid">NanoID</a> 是近年来非常受推崇的唯一 ID 生成方案。</p>
 <pre><code class="language-text">示例：7kPg3X  （我们在 Gridea 中自定义的 6位长度）
 </code></pre>
 <ul>
 <li><strong>核心优势与技术深度</strong>：
 <ul>
-<li><strong>精简而安全</strong>：NanoID 使用了更大的字母表（Alphabet），通常包含 <code>A-Za-z0-9_~</code>。这意味着在同样的长度下，它能承载比 UUID (主要含有 Hex 字符 <code>0-9a-f</code> 和连字符) 更多的熵（信息量）。</li>
+<li><strong>精简而安全</strong>：NanoID 使用了更大的字母表（Alphabet），默认字母表是 <code>A-Za-z0-9_-</code>。这意味着在同样的长度下，它能承载比 UUID (主要含有 Hex 字符 <code>0-9a-f</code> 和连字符) 更多的熵（信息量）。</li>
 <li><strong>长度可定制</strong>：基于博客系统有限的实体数据量（普通博客极少超过十万级别的文章和标签），我们在 Gridea Pro 中将其长度定死为 <strong>6 位</strong>。</li>
 <li><strong>URL 绝对安全且极好</strong>：由纯粹的英文字母和数字组成，放入链接、路由参数、甚至 HTML <code>id</code> 属性中都天然合规。</li>
 <li><strong>算法优秀</strong>：默认使用硬件随机数生成器（Crypto），保证了在并发情况下的不可预测性。</li>
@@ -291,13 +297,37 @@
 <h2 id="-gridea-pro-">三、我们如何在 Gridea Pro 中实施改造？</h2>
 <p>为了在架构中全面落地 NanoID，我们执行了极为严谨的三步走策略：</p>
 <h3 id="1--nanoid-">1. 确立统一的 NanoID 算法规范</h3>
-<p>在 Go 后端和前端（Vue + TypeScript）两端，我们统一了字母表和长度约束。<br />
-去掉了容易混淆的字符（如 O 和 0，I 和 l），保障生成算法的绝对一致性：</p>
+<p>在 Go 后端和前端（Vue + TypeScript）两端，我们统一了字母表和长度约束：只用数字加大小写字母共 62 个字符，去掉了 NanoID 默认字母表里的 <code>-</code> 和 <code>_</code>，放进 URL、文件名、HTML <code>id</code> 属性都不需要任何转义，也不会被某些 Markdown 解析器误处理。</p>
 <pre><code class="language-go">// 后端规范核心
-var Alphabet = &quot;0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz&quot;
-var Size = 6
+const alphabet = &quot;0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ&quot;
+id, _ := gonanoid.Generate(alphabet, 6)
 </code></pre>
 <p>这样生成出来的 ID 具备了极佳的视觉紧凑感，例如：<code>A3x9P1</code>、<code>z2Rk8Y</code>。</p>
+<h4 id="6-">6 位真的够用吗？算一笔碰撞账</h4>
+<p>62 个字符、6 位长度，组合总数是 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>62</mn><mn>6</mn></msup><mo>=</mo><mn>56</mn><mo separator="true">,</mo><mn>800</mn><mo separator="true">,</mo><mn>235</mn><mo separator="true">,</mo><mn>584</mn></mrow><annotation encoding="application/x-tex">62^6 = 56,800,235,584</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord">6</span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">6</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8389em;vertical-align:-0.1944em;"></span><span class="mord">56</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">800</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">235</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">584</span></span></span></span>，约 568 亿。按生日悖论估算，n 个 ID 中出现重复的概率约为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>n</mi><mn>2</mn></msup><mi mathvariant="normal">/</mi><mo stretchy="false">(</mo><mn>2</mn><mo>×</mo><msup><mn>62</mn><mn>6</mn></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">n^2 / (2 \times 62^6)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0641em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mord">/</span><span class="mopen">(</span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1.0641em;vertical-align:-0.25em;"></span><span class="mord">6</span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">6</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>：</p>
+<table>
+<thead>
+<tr>
+<th>站点里的实体总数</th>
+<th>出现一次碰撞的概率</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1,000</td>
+<td>约 0.0009%</td>
+</tr>
+<tr>
+<td>10,000</td>
+<td>约 0.09%</td>
+</tr>
+<tr>
+<td>33,700</td>
+<td>约 1%</td>
+</tr>
+</tbody>
+</table>
+<p>一个个人博客的文章、标签、分类、闪念加起来，通常在几千这个量级。6 位是在“足够短”和“足够安全”之间刻意选的平衡点。</p>
 <h3 id="2-">2. 深入实体层的模型重构</h3>
 <p>我们将原先缺乏 UUID 的实体（如 <code>Post</code>、<code>Category</code>、<code>Tag</code>）全部补充上不可变的 <code>ID</code> 字段。<br />
 关联方式也从原始的 <code>slug</code> 软绑定，变更为强逻辑的 <code>ID</code> 引用。例如，过去一篇文章引用分类的方式可能是记录下 分类的标识符 <code>[&quot;daily-notes&quot;]</code>，现在变更为存放分类的核心 ID <code>[&quot;8aYpq2&quot;]</code>。一旦分配，哪怕分类名从“日常”修改为了“随笔”，底层结构也坚不可摧。</p>
@@ -311,6 +341,8 @@ var Size = 6
 <li>为他们补齐并回写 6位 NanoID。<br />
 从而实现了在新老版本交接的过程中，对用户做到 <strong>“完全零感知”</strong> 的平滑切换。</li>
 </ul>
+<h3 id="4-">4. 顺手卸掉的依赖</h3>
+<p>统一之后，前端卸载了 <code>uuid</code> 和 <code>shortid</code> 两个依赖，只在 <code>src/utils/id.ts</code> 里保留一个 <code>generateId()</code>；后端也不再直接调用 <code>google/uuid</code>。开发者再也不用排查 <code>post-xx-uuid</code> 与 <code>shortid-xx</code> 混杂的各种边界情况，数据文件和最终渲染出的站点路由都保持一致的格式。</p>
 <h2 id="heading">四、写在最后</h2>
 <p>统一 ID 生成规范看似是一个不起眼的后端细节，实质上是现代软件工程防范“墨菲定律”的必经之路。</p>
 <p>从 <code>Date</code> 到冗余设计的 <code>CreatedAt</code> 反序列化防腐层的构建；从依赖不可靠的字符串 Name 变为硬核的 NanoID；技术上的每一步“大费周章”，都只会为了一个核心目的——<strong>让创作者能毫不妥协地、长久地拥有和管理自己的内容资产。</strong></p>
@@ -324,7 +356,7 @@ var Size = 6
     <a href="/post/gridea-pro-vs-hexo-vs-hugo/" class="post-nav-card post-nav-card--prev">
       
       <div class="post-nav-card__img">
-        <img src="https://cdn.jsdelivr.net/gh/Tespera/Assets@main/post-images/gridea-pro-vs-hexo-vs-hugo.jpg" alt="Gridea Pro vs Hexo vs Hugo — 深度对比分析报告" loading="lazy" />
+        <img src="https://cdn.jsdelivr.net/gh/Tespera/Assets@main/post-images/gridea-pro-vs-hexo-vs-hugo-cover.webp" alt="Gridea Pro vs Hexo vs Hugo — 深度对比分析报告" loading="lazy" />
       </div>
       
       <div class="post-nav-card__body">
@@ -335,14 +367,14 @@ var Size = 6
     </a>
     
     
-    <a href="/post/global-intelligence-crisis-2028-end-of-middle-class-future/" class="post-nav-card post-nav-card--next">
+    <a href="/post/dan-koe/" class="post-nav-card post-nav-card--next">
       <div class="post-nav-card__body">
         <span class="post-nav-card__label meta-text">下一篇</span>
-        <span class="post-nav-card__title">《2028年全球智力危机》：当人类智力不再稀缺 中产阶级的黄昏到来？</span>
+        <span class="post-nav-card__title">Dan Koe《如何在一天内修复你的整个生活》（精译版）</span>
       </div>
       
       <div class="post-nav-card__img">
-        <img src="https://cdn.jsdelivr.net/gh/Tespera/Assets@main/post-images/global-intelligence-crisis-2028-end-of-middle-class-future.jpg" alt="《2028年全球智力危机》：当人类智力不再稀缺 中产阶级的黄昏到来？" loading="lazy" />
+        <img src="https://cdn.jsdelivr.net/gh/Tespera/Assets@main/post-images/dan-koe-cover.webp" alt="Dan Koe《如何在一天内修复你的整个生活》（精译版）" loading="lazy" />
       </div>
       
       <span class="post-nav-card__arrow">&rarr;</span>
@@ -499,6 +531,6 @@ var Size = 6
 
   
 
-<script>console.log("\n%c ✦ Gridea Pro v1.3.0-beta.1 %c · Theme: flavor-theme v1.0.0 · https://gridea.pro %c\n","color:#fadfa3;background:#111111;padding:9px 14px;border-radius:4px 0 0 4px;font-weight:500;font-size:12px","color:#e05c00;background:#fff3ec;padding:9px 14px;border-radius:0 4px 4px 0;font-size:11px","")</script>
+<script>console.log("\n%c ✦ Gridea Pro v0.0.0-dev %c · Theme: flavor-theme v1.0.0 · https://gridea.pro %c\n","color:#fadfa3;background:#111111;padding:9px 14px;border-radius:4px 0 0 4px;font-weight:500;font-size:12px","color:#e05c00;background:#fff3ec;padding:9px 14px;border-radius:0 4px 4px 0;font-size:11px","")</script>
 </body>
 </html>

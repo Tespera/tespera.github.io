@@ -26,35 +26,29 @@
     } catch (e) { }
   })();
 </script>
-  <meta name="generator" content="Gridea Pro 1.3.0-beta.1">
+  <meta name="generator" content="Gridea Pro 0.0.0-dev">
   <title>从零实现 CDN 图床：Gridea Pro 如何让图片管理彻底自动化 | 述尔</title>
   
-<meta property="og:title" content="从零实现 CDN 图床：Gridea Pro 如何让图片管理彻底自动化" />
-<meta property="og:type" content="article" />
-
-<meta property="og:image" content="/post-images/gridea-pro-cdn.png" />
-
-
-<meta name="description" content="试想一下，你的静态博客跑了大半年，文章越写越多，图片也越来越多。 某天你注意到一个问题：站点仓库已经 800MB 了，git clone 要等两分钟，Vercel 构建时间从 30 秒涨到了 3 分钟。你翻了一下站点文件，绝大部分体积都是图片。 更尴尬的是，来自东南亚的读者可能会反馈：你的文章写得很好，但站点、图片都加载太慢了，经常转半天圈才出来。 问题的根源很简单——**图片和站点代码&amp;hellip;">
+<meta name="description" content="静态博客仓库被图片撑到几百 MB、海外访问又慢？本文介绍 Gridea Pro 如何把图片自动上传到 CDN 图床：路径模板、保持目录结构、智能去重、单文件失败不中断部署，以及为什么不在编辑器里实时上传。">
 <meta name="keywords" content="述尔，Gridea  Pro，Gridea，静态博客，AI，产品经理">
 <link rel="canonical" href="https://are.ink/post/gridea-pro-cdn/">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"从零实现 CDN 图床：Gridea Pro 如何让图片管理彻底自动化","url":"https://are.ink/post/gridea-pro-cdn/","description":"试想一下，你的静态博客跑了大半年，文章越写越多，图片也越来越多。 某天你注意到一个问题：站点仓库已经 800MB 了，git clone 要等两分钟，Vercel 构建时间从 30 秒涨到了 3 分钟。你翻了一下站点文件，绝大部分体积都是图片。 更尴尬的是，来自东南亚的读者可能会反馈：你的文章写得很好，但站点、图片都加载太慢了，经常转半天圈才出来。 问题的根源很简单——**图片和站点代码\u0026hellip;","image":"/post-images/gridea-pro-cdn.png","datePublished":"2026-03-12T20:00:00+01:00","dateModified":"2026-03-15T22:24:25+01:00","author":{"@type":"Person","name":"述尔"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/images/avatar.png"},"name":"述尔"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"从零实现 CDN 图床：Gridea Pro 如何让图片管理彻底自动化","url":"https://are.ink/post/gridea-pro-cdn/","description":"静态博客仓库被图片撑到几百 MB、海外访问又慢？本文介绍 Gridea Pro 如何把图片自动上传到 CDN 图床：路径模板、保持目录结构、智能去重、单文件失败不中断部署，以及为什么不在编辑器里实时上传。","image":"https://are.ink/post-images/gridea-pro-cdn-cover.webp","datePublished":"2026-03-12T20:00:00+01:00","dateModified":"2026-03-15T22:24:25+01:00","author":{"@type":"Person","name":"Eliauk","url":"https://are.ink/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://are.ink/images/avatar.png"},"name":"述尔"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://are.ink","name":"述尔","position":1},{"@type":"ListItem","item":"https://are.ink/post/gridea-pro-cdn/","name":"从零实现 CDN 图床：Gridea Pro 如何让图片管理彻底自动化","position":2}]}</script>
 <meta property="og:title" content="从零实现 CDN 图床：Gridea Pro 如何让图片管理彻底自动化">
-<meta property="og:description" content="试想一下，你的静态博客跑了大半年，文章越写越多，图片也越来越多。 某天你注意到一个问题：站点仓库已经 800MB 了，git clone 要等两分钟，Vercel 构建时间从 30 秒涨到了 3 分钟。你翻了一下站点文件，绝大部分体积都是图片。 更尴尬的是，来自东南亚的读者可能会反馈：你的文章写得很好，但站点、图片都加载太慢了，经常转半天圈才出来。 问题的根源很简单——**图片和站点代码&amp;hellip;">
+<meta property="og:description" content="静态博客仓库被图片撑到几百 MB、海外访问又慢？本文介绍 Gridea Pro 如何把图片自动上传到 CDN 图床：路径模板、保持目录结构、智能去重、单文件失败不中断部署，以及为什么不在编辑器里实时上传。">
 <meta property="og:url" content="https://are.ink/post/gridea-pro-cdn/">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="述尔">
-<meta property="og:image" content="/post-images/gridea-pro-cdn.png">
+<meta property="og:image" content="https://are.ink/post-images/gridea-pro-cdn-cover.webp">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:url" content="https://are.ink/post/gridea-pro-cdn/">
 <meta name="twitter:title" content="从零实现 CDN 图床：Gridea Pro 如何让图片管理彻底自动化">
-<meta name="twitter:description" content="试想一下，你的静态博客跑了大半年，文章越写越多，图片也越来越多。 某天你注意到一个问题：站点仓库已经 800MB 了，git clone 要等两分钟，Vercel 构建时间从 30 秒涨到了 3 分钟。你翻了一下站点文件，绝大部分体积都是图片。 更尴尬的是，来自东南亚的读者可能会反馈：你的文章写得很好，但站点、图片都加载太慢了，经常转半天圈才出来。 问题的根源很简单——**图片和站点代码&amp;hellip;">
-<meta name="twitter:image" content="/post-images/gridea-pro-cdn.png">
+<meta name="twitter:description" content="静态博客仓库被图片撑到几百 MB、海外访问又慢？本文介绍 Gridea Pro 如何把图片自动上传到 CDN 图床：路径模板、保持目录结构、智能去重、单文件失败不中断部署，以及为什么不在编辑器里实时上传。">
+<meta name="twitter:image" content="https://are.ink/post-images/gridea-pro-cdn-cover.webp">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-1SBXPCEK36"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-1SBXPCEK36');</script>
-<meta name="google-site-verification" content="googlea4223896f417412f.html">
 <script>var _hmt=_hmt||[];(function(){var hm=document.createElement("script");hm.src="https://hm.baidu.com/hm.js?4b792e215f23cf68ed571462a263feb3";var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(hm,s);})();</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://are.ink/#author","name":"Eliauk","alternateName":["Eric","Tespera"],"url":"https://are.ink/post/about/","jobTitle":"产品经理","description":"产品经理，博客「述尔」的作者，用 Vibe Coding 和 AI 开发了开源静态博客客户端 Gridea Pro。","sameAs":["https://github.com/Tespera"],"knowsAbout":["产品设计","AI 编程","Vibe Coding","静态博客","Gridea Pro"]},{"@type":"SoftwareApplication","@id":"https://gridea.pro/#software","name":"Gridea Pro","url":"https://gridea.pro","applicationCategory":"DeveloperApplication","operatingSystem":"macOS, Windows, Linux","description":"一个简洁的桌面端静态博客写作客户端。内置编辑器、多主题支持、一键部署——让你专注于内容本身。","author":{"@id":"https://are.ink/#author"},"sameAs":["https://github.com/Gridea-Pro/gridea-pro"],"license":"https://www.gnu.org/licenses/gpl-3.0.html"}]}</script>
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#000000">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -228,7 +222,7 @@
 
   
   <div class="article-feature">
-    <img src="https://cdn.jsdelivr.net/gh/Tespera/Assets@main/post-images/gridea-pro-cdn.png" alt="从零实现 CDN 图床：Gridea Pro 如何让图片管理彻底自动化" />
+    <img src="https://cdn.jsdelivr.net/gh/Tespera/Assets@main/post-images/gridea-pro-cdn-cover.webp" alt="从零实现 CDN 图床：Gridea Pro 如何让图片管理彻底自动化" />
   </div>
   
 
@@ -363,6 +357,7 @@ blog/images/{year}/{month}/{filename}{.suffix}    → blog/images/2026/03/cover.
 4. 用户访问线上站点
    → 图片从 jsDelivr CDN 全球节点加载，速度飞快
 </code></pre>
+<p><img src="https://cdn.jsdelivr.net/gh/Tespera/Assets@main/post-images/gridea-pro-cdn-flow.webp" alt="Gridea Pro CDN 图床工作流：写作、预览、部署时自动改写地址并增量上传，读者从 jsDelivr 加载图片" /></p>
 <p>全程只需要一次点击。没有手动上传，没有路径拼接，没有遗漏担忧。</p>
 <hr />
 <h2 id="heading-8">五、前端体验的细节打磨</h2>
@@ -407,6 +402,10 @@ blog/images/{year}/{month}/{filename}{.suffix}    → blog/images/2026/03/cover.
     
     <a href="/post/migrating-from-gridea-to-gridea-pro/" class="post-nav-card post-nav-card--prev">
       
+      <div class="post-nav-card__img">
+        <img src="https://cdn.jsdelivr.net/gh/Tespera/Assets@main/post-images/migrating-from-gridea-to-gridea-pro-cover.webp" alt="从 Gridea 迁移到 Gridea Pro：零风险完整指南" loading="lazy" />
+      </div>
+      
       <div class="post-nav-card__body">
         <span class="post-nav-card__label meta-text">上一篇</span>
         <span class="post-nav-card__title">从 Gridea 迁移到 Gridea Pro：零风险完整指南</span>
@@ -422,7 +421,7 @@ blog/images/{year}/{month}/{filename}{.suffix}    → blog/images/2026/03/cover.
       </div>
       
       <div class="post-nav-card__img">
-        <img src="https://cdn.jsdelivr.net/gh/Tespera/Assets@main/post-images/most-conversations-with-Claude-on-Earth-is-a-philosopher.png" alt="地球上和 Claude 对话最多的人，是一位哲学家" loading="lazy" />
+        <img src="https://cdn.jsdelivr.net/gh/Tespera/Assets@main/post-images/most-conversations-with-Claude-on-Earth-is-a-philosopher-cover.webp" alt="地球上和 Claude 对话最多的人，是一位哲学家" loading="lazy" />
       </div>
       
       <span class="post-nav-card__arrow">&rarr;</span>
@@ -579,6 +578,6 @@ blog/images/{year}/{month}/{filename}{.suffix}    → blog/images/2026/03/cover.
 
   
 
-<script>console.log("\n%c ✦ Gridea Pro v1.3.0-beta.1 %c · Theme: flavor-theme v1.0.0 · https://gridea.pro %c\n","color:#fadfa3;background:#111111;padding:9px 14px;border-radius:4px 0 0 4px;font-weight:500;font-size:12px","color:#e05c00;background:#fff3ec;padding:9px 14px;border-radius:0 4px 4px 0;font-size:11px","")</script>
+<script>console.log("\n%c ✦ Gridea Pro v0.0.0-dev %c · Theme: flavor-theme v1.0.0 · https://gridea.pro %c\n","color:#fadfa3;background:#111111;padding:9px 14px;border-radius:4px 0 0 4px;font-weight:500;font-size:12px","color:#e05c00;background:#fff3ec;padding:9px 14px;border-radius:0 4px 4px 0;font-size:11px","")</script>
 </body>
 </html>

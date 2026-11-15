@@ -72,6 +72,7 @@
 </tr>
 </tbody>
 </table>
+<p><img src="https://are.ink/post-images/ai-era-indie-blog-gridea-pro-strategy-clicks.webp" alt="AI 摘要截走搜索点击：60% 搜索零点击，移动端 77%；有 AI 摘要时点击率从 15% 降到 8%，只有 1% 点开引用来源" /></p>
 <p>一位旅行博主的话很有代表性：“AI Overview 加上 Google 的其他变化，导致人们不再找到像我这样网站上的内容了。”</p>
 <h3 id="13-ai-">1.3 反转叙事：AI 时代的博客反而更有价值</h3>
 <p>悖论在于——AI 泛滥恰恰让真正有深度的人类创作变得更加珍贵：</p>
@@ -377,7 +378,7 @@
       <category>AI</category>
       <category>AGI</category>
       <category>趋势</category>
-      <enclosure url="https://are.ink/post-images/ai-era-indie-blog-gridea-pro-strategy.jpg" length="0" type="image/jpeg"></enclosure>
+      <enclosure url="https://are.ink/post-images/ai-era-indie-blog-gridea-pro-strategy-cover.webp" length="0" type="image/webp"></enclosure>
     </item>
     <item>
       <title>Claude 里的小螃蟹，现在住在我博客的里</title>
@@ -525,7 +526,9 @@
 </table>
 <p>冒出、缩回、站立，以及鼠标互动时的反应（逃跑、转晕、撒彩带）不在这张表里，始终都有；不想要互动就用 <code>data-interactive=&quot;false&quot;</code> 关掉。</p>
 <p><strong>牌子上的字</strong>：内置了英文字母、数字和常用符号的 5×7 像素字体，直接写就行。中文需要自己提供点阵（每个字一组字符串，<code>#</code> 是笔画），仓库的 README 里有写法。</p>
-<p><strong>前端工程里用：</strong></p>
+<p><strong>前端工程里用：</strong> 还没发布到 npm，先从 GitHub 安装：</p>
+<pre><code class="language-bash">pnpm add github:Tespera/clawd-crab#v0.1.0
+</code></pre>
 <pre><code class="language-ts">import { mountClawd } from 'clawd-crab';
 
 const clawd = mountClawd({ sign: 'HELLO', exclude: ['desktop'] });
@@ -818,7 +821,7 @@ clawd.destroy();
 <p>把这批测试全跑一遍，失败的修掉，做完邮件通知我。</p>
 </blockquote>
 <p>第二天早上，邮箱里会有这么一封信：</p>
-<p><img src="https://are.ink/post-images/mail-me-when-done-demo.png" alt="邮件效果" /></p>
+<p><img src="https://are.ink/post-images/mail-me-when-done-demo.webp" alt="邮件效果" /></p>
 <p>干了什么、结果如何、关键截图、卡在哪，都在里面。任务完成有彩纸庆贺横幅；失败也会发，横幅换成一条断裂的红墨线，内容变成事故报告。发信的不是哪个云服务，是我这台 Mac 自己——用的是 macOS 出厂自带、绝大多数人从没用过的 Postfix。</p>
 <p>整套东西打包成了一个开源项目，装好只要几分钟：</p>
 <pre><code class="language-bash">git clone https://github.com/tespera/mail-me-when-done.git
@@ -829,7 +832,7 @@ cd mail-me-when-done
 <p>下面说说这东西是怎么来的。</p>
 <h2 id="heading-1">起因是一行提示</h2>
 <p>我的终端每次打开都有这么一行：</p>
-<p><img src="https://are.ink/post-images/mail-me-when-done-terminal.png" alt="You have new mail" /></p>
+<p><img src="https://are.ink/post-images/mail-me-when-done-terminal.webp" alt="You have new mail" /></p>
 <p>挂了快一个月。它不烦人，就安安静静待在那，像旅馆前台给你留了张字条。但心里始终有个疑问：我从没在这台 Mac 上装过任何邮件服务，谁在给我的终端发邮件？</p>
 <p>有天让 Claude Code 查了一下，结果是这样的：</p>
 <ul>
@@ -916,6 +919,7 @@ sudo postmap hash:/etc/postfix/generic
       <category>macOS</category>
       <category>Postfix</category>
       <category>教程</category>
+      <enclosure url="https://are.ink/post-images/mail-me-when-done-cover.webp" length="0" type="image/webp"></enclosure>
     </item>
     <item>
       <title>我一天做了两百个决定，然后开始怀疑自己的脑子</title>
@@ -923,11 +927,11 @@ sudo postmap hash:/etc/postfix/generic
       <guid isPermaLink="true">https://are.ink/post/two-hundred-decisions-a-day/</guid>
       <pubDate>Wed, 12 Aug 2026 18:15:06 +0200</pubDate>
       <description><![CDATA[<p>今天下班前，我干了件闲事：把这一天和 AI 的对话记录从头翻了一遍，数我拍了多少次板。</p>
-<p><span style="color: #52C41A"><strong>三个技术方案里选一个，算一次。五处“这样改行不行”，算五次。一份分析看完说“结论站不住，重来”，也算一次。数到第四个会话窗口我放弃了——照这个密度推下去，一天两百个只多不少。</strong></span></p>
-<p><span style="color: #4096ff">这个数字解释了一件我最近一直没想通的事：我明明一行代码没写，没开一个会，没有任何东西能填进“今天的产出”那一栏，为什么每天下班，累得像跑完半马。</span></p>
+<p><strong>三个技术方案里选一个，算一次。五处“这样改行不行”，算五次。一份分析看完说“结论站不住，重来”，也算一次。数到第四个会话窗口我放弃了——照这个密度推下去，一天两百个只多不少。</strong></p>
+<p>这个数字解释了一件我最近一直没想通的事：我明明一行代码没写，没开一个会，没有任何东西能填进“今天的产出”那一栏，为什么每天下班，累得像跑完半马。</p>
 <!-- more -->
-<p>手上没干活，脑子却被掏空了。于是一个念头冒出来——我记得之前看到过一个观点：<span style="background-image: linear-gradient(132deg, #ff416c 0%, #ff4b2b 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent"><strong>人在处理信息和做决定时会消耗大脑的认知功能，导致后续的决策质量降低，这种现象也被称为「决策疲劳」。而认知功能也恰恰是前额叶所掌管的部分。做决策是要消耗前额叶的。</strong></span>现在 AI 把决策密度提高了十倍，那我的前额叶，是不是正在被这些批量生产的方案、问题和待办事项，一点点磨损？</p>
-<p><mark style="background-color: #ffff00">这个担心听起来很有道理。所以我又在 Claude Code 里专门跟 Fable 5 聊了这个事情，然后发现，事情和我以为的完全不一样。</mark></p>
+<p>手上没干活，脑子却被掏空了。于是一个念头冒出来——我记得之前看到过一个观点：**人在处理信息和做决定时会消耗大脑的认知功能，导致后续的决策质量降低，这种现象也被称为「决策疲劳」。而认知功能也恰恰是前额叶所掌管的部分。做决策是要消耗前额叶的。**现在 AI 把决策密度提高了十倍，那我的前额叶，是不是正在被这些批量生产的方案、问题和待办事项，一点点磨损？</p>
+<p>这个担心听起来很有道理。所以我又在 Claude Code 里专门跟 Fable 5 聊了这个事情，然后发现，事情和我以为的完全不一样。</p>
 <h2 id="-">「意志力是块肌肉」—— 一个塌了一半的比喻</h2>
 <p>“决策消耗意志力”这个说法，有一个很体面的学术出身。</p>
 <p>上世纪九十年代末，心理学家 Roy Baumeister 做了一个著名的实验：让一组人抵抗刚烤好的巧克力饼干的诱惑、只能吃萝卜，另一组人随便吃。随后两组人去解一道无解的几何题。吃萝卜的那组平均八分钟就放弃了，吃饼干的那组坚持了十九分钟。结论呼之欲出：自控和决策消耗某种共同的心理资源，用掉了就少了——这就是“自我损耗”（ego depletion）理论。它太符合直觉了，以至于后来衍生出整套流行文化：意志力是肌肉、决策疲劳、乔布斯为了省决策只穿同一款衣服、法官在饭前更倾向于驳回假释。</p>
@@ -950,6 +954,7 @@ sudo postmap hash:/etc/postfix/generic
 <p>想明白这一点之后，我对自己工作流的理解变了。</p>
 <p>我曾以为那些规矩是在“节省精力”，现在看，它们真正的作用是<strong>对抗退场</strong>——既然疲劳不可避免、钝化才是真敌人，那设计的目标就不是少做决策，而是把认真花在值得认真的地方。</p>
 <p>比如分级。我现在给决策划了一条线：可逆的，授权 AI 按默认规则处理，我不看；不可逆的——动架构、删数据、对外发布——必须上升到我，而且我要能说出“为什么是这个方案”才放行。这条线的意义不在效率，在于它保住了少数决策的介入深度。两百个决策里如果有一百八十个根本不该到我面前，剩下二十个我才有力气真的想。</p>
+<p><img src="https://are.ink/post-images/two-hundred-decisions-a-day-funnel.webp" alt="一天约 200 个决定按能否撤回分流：可逆的约 180 个交给 AI，不可逆的约 20 个由我拍板" /></p>
 <p>比如把纠正沉淀成规则。同一个坑，AI 犯到第三次，我就把它写进配置文件里，一行规则加一句为什么。这件事表面上是在调教 AI，实际上是在给我自己减负：每一条沉淀下来的规则，都是一类我从此不用再重复判断的事。前额叶最擅长的是处理新问题，最不该被浪费在重复问题上。</p>
 <p>比如强制说理。我给 AI 立过一条规矩：被我质疑的时候，不许条件反射式认错，有把握就顶回来，把证据摆出来。这条规矩的受益人其实是我—— 一个只会顺着我的系统，会以最快的速度把我训练成不思考的人。我需要它偶尔顶撞我，就像机长需要副驾驶敢于喊出“你低了”。</p>
 <p>这些东西加起来，像是给前额叶造了一副外骨骼：骨骼不替你走路，但它决定你的力气花在哪一步上。</p>
@@ -967,6 +972,7 @@ sudo postmap hash:/etc/postfix/generic
       <category>AI</category>
       <category>科普</category>
       <category>哲学思辨</category>
+      <enclosure url="https://are.ink/post-images/two-hundred-decisions-a-day.webp" length="0" type="image/webp"></enclosure>
     </item>
     <item>
       <title>把倪海厦的中医讲义，做成了一个能对话的 Skill</title>
@@ -1172,6 +1178,7 @@ sudo postmap hash:/etc/postfix/generic
 </tr>
 </tbody>
 </table>
+<p><img src="https://are.ink/post-images/nihaisha-tcm-agent-skill-layers.webp" alt="倪海厦中医 Skill 的分层结构：契约层覆盖路由、认知、工具、语料四层" /></p>
 <p>每一层只干一件事。<strong>路由层不存放任何知识</strong>，它只知道“这个问题该去哪里找”，本身压在 2.3k token 以内。这就是触发开销从 21 万降到 2.3k 的来源。</p>
 <h3 id="heading-6">寻址：三级索引</h3>
 <p>光把大文件切小没用，切完还是不知道读哪一份。切分只解决“读不动”，不解决“不知道读哪”。</p>
@@ -1227,6 +1234,7 @@ sudo postmap hash:/etc/postfix/generic
       <category>Claude</category>
       <category>架构设计</category>
       <category>科普</category>
+      <enclosure url="https://are.ink/post-images/nihaisha-tcm-agent-skill-cover.webp" length="0" type="image/webp"></enclosure>
     </item>
     <item>
       <title>为什么我一感冒就要命，朋友却两三天就好？</title>
@@ -1274,7 +1282,7 @@ sudo postmap hash:/etc/postfix/generic
 </li>
 </ol>
 <p>我和朋友的差别，就出在这里：</p>
-<p><img src="https://are.ink/post-images/cold-07-immune-strategies.png" alt="两种作战风格对比" /></p>
+<p><img src="https://are.ink/post-images/cold-07-immune-strategies.webp" alt="两种作战风格对比" /></p>
 <h3 id="heading-2">我的战术：饱和式轰炸</h3>
 <p>我平时不怎么生病，意味着我的物理防线（皮肤、黏膜）守得很好，<strong>但同时我的免疫系统缺乏实战演练</strong>——抗体数据库里几乎没有近年来流行的病毒档案。</p>
 <p>当一种新变种病毒突破我的防线时，我的免疫系统在数据库里<strong>找不到匹配的抗体图纸</strong>。后天免疫干瞪眼。</p>
@@ -1368,6 +1376,7 @@ sudo postmap hash:/etc/postfix/generic
       <category>健康</category>
       <category>科普</category>
       <category>免疫</category>
+      <enclosure url="https://are.ink/post-images/cold-04-immune-library-cover.webp" length="0" type="image/webp"></enclosure>
     </item>
     <item>
       <title>一场感冒，让我开始想：人到底是不是被设计的？</title>
@@ -1433,7 +1442,7 @@ sudo postmap hash:/etc/postfix/generic
 <p>如果“翻正”过来，我们可能不仅得不到完美视力，反而会瞎。</p>
 </blockquote>
 <p>来对比一下：</p>
-<p><img src="https://are.ink/post-images/cold-05-eye-comparison.png" alt="章鱼眼 vs 人眼" /></p>
+<p><img src="https://are.ink/post-images/cold-05-eye-comparison.webp" alt="章鱼眼 vs 人眼" /></p>
 <h3 id="heading-3">为啥人眼必须“贴反”？三个硬核理由</h3>
 <p><strong>① 极致耗能：感光细胞需要“水冷散热”</strong><br />
 人的视杆细胞和视锥细胞，是<strong>全身耗氧量最高的细胞之一</strong>。它们工作起来就像高功率显卡。</p>
@@ -1448,7 +1457,7 @@ sudo postmap hash:/etc/postfix/generic
 <p>所以让透明的神经线挡在前面，是<strong>最不坏的选择</strong>。</p>
 <h3 id="heading-4">但神经线挡在前面也会散射光啊？</h3>
 <p>——这就是大自然最惊艳的一笔：</p>
-<p><img src="https://are.ink/post-images/cold-06-muller-cells.png" alt="穆勒细胞光纤" /></p>
+<p><img src="https://are.ink/post-images/cold-06-muller-cells.webp" alt="穆勒细胞光纤" /></p>
 <p>2007 年，科学家在显微镜下发现了一种叫 <strong>穆勒细胞（Müller cells）</strong> 的管状细胞，纵向穿插在视网膜的神经层里。它的作用——</p>
 <p><strong>和现代通信工程里的“光导纤维”几乎一模一样</strong>。</p>
 <p>它们像一根根微型漏斗，把前方射入的光线<strong>精准收集</strong>，再<strong>零损耗</strong>地穿过那一层乱糟糟的神经线，<strong>直接打到背后的感光细胞</strong>上。</p>
@@ -1489,6 +1498,7 @@ sudo postmap hash:/etc/postfix/generic
       <category>科普</category>
       <category>进化论</category>
       <category>哲学思辨</category>
+      <enclosure url="https://are.ink/post-images/cold-03-evolution-design-cover.webp" length="0" type="image/webp"></enclosure>
     </item>
     <item>
       <title>感冒时，身体里到底在打什么仗？</title>
@@ -1560,7 +1570,7 @@ sudo postmap hash:/etc/postfix/generic
 <h2 id="heading-2">三、为啥发着烧还觉得冷？大脑里的“智能空调”</h2>
 <p>这是整篇文章里最反直觉的一段，也是最有意思的一段。</p>
 <p>明明体温计显示 38.5°C 了，远高于正常体温，但你裹了三床被子还在打哆嗦——这不是错觉，这是大脑里的“恒温器”被调包了。</p>
-<p><img src="https://are.ink/post-images/cold-03-thermostat.png" alt="大脑里的智能空调" /></p>
+<p><img src="https://are.ink/post-images/cold-03-thermostat.webp" alt="大脑里的智能空调" /></p>
 <p>可以把人体想象成一个装了智能空调的房间，<strong>下丘脑</strong>就是这台空调的恒温器：</p>
 <h3 id="--37c">状态 ①：正常 37°C</h3>
 <p>恒温器目标 = 37°C，体温 = 37°C。两边匹配，你不冷不热。</p>
@@ -1609,7 +1619,7 @@ sudo postmap hash:/etc/postfix/generic
 右边鼻子干得发辣，每呼吸一次都火辣辣地刺痛。”</p>
 </blockquote>
 <p>这不是你的鼻子坏了，这是<strong>鼻周期（Nasal Cycle）被感冒放大了</strong>。</p>
-<p><img src="https://are.ink/post-images/cold-04-nasal-cycle.png" alt="鼻周期" /></p>
+<p><img src="https://are.ink/post-images/cold-04-nasal-cycle.webp" alt="鼻周期" /></p>
 <p>健康状态下，你的两个鼻孔<strong>根本就不是同时 100% 工作的</strong>——它们是轮班制：</p>
 <ul>
 <li>每隔几个小时，自主神经系统让一侧鼻腔血管轻微充血（休息），另一侧血管收缩（工作）</li>
@@ -1668,6 +1678,7 @@ sudo postmap hash:/etc/postfix/generic
       <category>健康</category>
       <category>科普</category>
       <category>免疫</category>
+      <enclosure url="https://are.ink/post-images/cold-02-immune-battle-cover.webp" length="0" type="image/webp"></enclosure>
     </item>
     <item>
       <title>感冒求生手册：90% 的感冒不需要消炎药</title>
@@ -1712,7 +1723,7 @@ sudo postmap hash:/etc/postfix/generic
 <hr />
 <h2 id="5-">二、5 个维度，自己先做个初步判断</h2>
 <p>医生靠化验单，我们普通人靠观察。下面这五个维度，是日常生活里<strong>最实用的初筛思路</strong>：</p>
-<p><img src="https://are.ink/post-images/cold-01-virus-vs-bacteria.png" alt="病毒 vs 细菌 5 维度对比" /></p>
+<p><img src="https://are.ink/post-images/cold-01-virus-vs-bacteria.webp" alt="病毒 vs 细菌 5 维度对比" /></p>
 <h3 id="1-">1. 症状是“全身”还是“局部”？</h3>
 <ul>
 <li><strong>病毒</strong>爱搞“地毯式轰炸”：除了打喷嚏鼻塞，还伴随<strong>全身肌肉酸痛、乏力、头痛</strong>，整个人像被卡车碾过。</li>
@@ -1738,7 +1749,7 @@ sudo postmap hash:/etc/postfix/generic
 <li><strong>病毒</strong>有“自限性”：第 2–3 天最难受，然后开始走下坡路，<strong>5–7 天</strong>自然恢复。</li>
 <li><strong>细菌</strong>经常拖过 10 天还不好，或者出现非常典型的**“双相加重”**——本来感觉快好了，突然又烧起来、咳嗽更凶、开始吐黄脓痰。这往往意味着病毒把你免疫力打开了缺口，细菌趁虚而入。</li>
 </ul>
-<p><img src="https://are.ink/post-images/cold-02-disease-curve.png" alt="感冒病程曲线" /></p>
+<p><img src="https://are.ink/post-images/cold-02-disease-curve.webp" alt="感冒病程曲线" /></p>
 <p>把这两条线刻在脑子里：<br />
 <strong>蓝线见顶就开始下降，是病毒；红线下来后又拱起一个包，是细菌偷袭。</strong></p>
 <h3 id="5--1">5. 化验单（最客观的标准）</h3>
@@ -1830,6 +1841,7 @@ sudo postmap hash:/etc/postfix/generic
       <category>感冒</category>
       <category>健康</category>
       <category>科普</category>
+      <enclosure url="https://are.ink/post-images/cold-01-survival-guide-cover.webp" length="0" type="image/webp"></enclosure>
     </item>
   </channel>
 </rss>
