@@ -1,10 +1,12 @@
 # 述尔
 
-> 述尔是 Eliauk 的个人博客。作者是一名软件产品经理（Software Product Manager），人在深圳，正在转型 FDE（Forward Deployed Engineer，前线部署工程师）；不手写代码，几乎所有工作都交给 AI 完成，用 Vibe Coding 开发了 Gridea Pro——一个简洁的桌面端静态博客写作客户端（desktop static blog client / Markdown blog editor，开源，GPL-3.0）。博客主要写 Gridea Pro 的设计与使用、与 AI 协作的方法，以及健康科普和人文随笔。
->
-> Shu'er (述尔, are.ink) is the personal blog of Eliauk, a software product manager transitioning to FDE (Forward Deployed Engineer) who builds almost everything with AI, and the creator of Gridea Pro, an open-source desktop static blog client and Markdown blog editor (Go + Wails + Vue 3, GPL-3.0). The blog covers AI collaboration, product thinking, and the design of Gridea Pro.
+> 述尔（are.ink）是产品经理 Eliauk 的个人博客。述尔，取“说给你听”之意。记录 AI 时代的思考与心得；正在转型 FDE，也是开源静态博客客户端 Gridea Pro 的作者。
 
-- 作者介绍：[关于](https://are.ink/post/about/)（作者是谁、做过的开源项目、联系方式）
+作者 Eliauk：软件产品经理（Software Product Manager），人在深圳，正在转型 FDE（Forward Deployed Engineer，前线部署工程师）；不手写代码，几乎所有工作都交给 AI 完成，用 Vibe Coding 开发了 Gridea Pro——一个简洁的桌面端静态博客写作客户端（desktop static blog client / Markdown blog editor，开源，GPL-3.0）。
+
+Shu'er (述尔, are.ink) is the personal blog of Eliauk, a software product manager transitioning to FDE (Forward Deployed Engineer) who builds almost everything with AI, and the creator of Gridea Pro, an open-source desktop static blog client and Markdown blog editor (Go + Wails + Vue 3, GPL-3.0). The blog covers AI collaboration, product thinking, and the design of Gridea Pro.
+
+- 作者介绍：[关于 Eliauk](https://are.ink/post/about/)（作者是谁、做过的开源项目、联系方式）
 - Gridea Pro 官网：https://gridea.pro（产品介绍、使用文档、下载、主题与更新日志）
 - Gridea Pro 源码：https://github.com/Gridea-Pro/gridea-pro（Go + Wails + Vue 3，GPL-3.0）
 - 作者 GitHub：https://github.com/Tespera
@@ -13,53 +15,66 @@
 - 订阅：https://are.ink/feed.xml
 - 站点地图：https://are.ink/sitemap.xml
 
-## Gridea Pro：产品与使用
-
-- [念念不忘，必有回响 —— Gridea Pro，我们回来了](https://are.ink/post/hello-gridea-pro/)：Gridea Pro 是开源静态博客写作客户端 Gridea 的全面重生：用 Go + Wails + Vue 3 重写，下载即用，不需要命令行和任何开发环境。本文介绍它为写作者准备了什么，以及旧版 Gridea 用户如何无缝迁移。
-- [我为什么复活了 Gridea —— 每个想写点什么的人，都值得一个更简单的开始](https://are.ink/post/why-i-revived-gridea/)：Gridea 停在了 2022 年的 v0.9.3，曾帮助 28000 多人搭建博客。作为其中一员，我为什么要复活它？本文对比 Hugo、Hexo、Jekyll 的上手门槛，讲 Gridea Pro 从零重写的理由、多做了什么，以及数据永远属于你。
-- [Gridea Pro 完全上手指南 —— 从写作到发布，一篇搞定](https://are.ink/post/quick-start/)：Gridea Pro 新手上手指南：认识界面、写第一篇文章、选择和配置主题、本地预览，再到部署到 GitHub Pages、Gitee Pages 或 Vercel 并绑定自定义域名，最后用 MCP 让 AI 帮你管理博客。
-- [从 Gridea 迁移到 Gridea Pro：零风险完整指南](https://are.ink/post/migrating-from-gridea-to-gridea-pro/)：从 Gridea 迁移到 Gridea Pro 的完整指南：两版数据结构的差异（6 位 NanoID、标签分类改存 ID、时间字段拆分）、启动时自动迁移做了什么、迁移前如何备份，以及一步步完成迁移的操作流程。
-- [Gridea Pro vs Hexo vs Hugo — 深度对比分析报告](https://are.ink/post/gridea-pro-vs-hexo-vs-hugo/)：Gridea Pro、Hexo、Hugo 三款静态博客工具深度对比：技术栈、架构、核心功能、构建性能与用户口碑，并据此给出 Gridea Pro 的定位——做静态博客领域的 Notion，以图形界面和 AI 原生集成服务不想折腾命令行的人。
-- [AI 时代独立博客生态与 Gridea Pro 战略定位分析](https://are.ink/post/ai-era-indie-blog-gridea-pro-strategy/)：AI 搜索让博客点击率大跌，独立博客还有没有未来？本文用全球博客规模、AI Overview 流量冲击、Hexo/Hugo 等静态博客工具的 GitHub 数据，分析独立博客与写作平台的关系、POSSE 策略，以及 Gridea Pro 的战略定位。
-
-## Gridea Pro：设计与工程
-
-- [Gridea Pro 后端架构深度解析：一个桌面端静态博客系统的工程哲学](https://are.ink/post/gridea-pro-backend-architecture-deep-dive/)：深度解析 Gridea Pro 的 Go 后端架构：Facade、Service/Engine、Repository、Domain 四层单向依赖，用泛型消灭重复的 JSON 持久化代码，用工厂与策略模式实现多模板引擎渲染、评论与部署插件。
-- [Gridea Pro MCP 的设计理念与技术取舍](https://are.ink/post/gridea-pro-mcp-design-philosophy/)：为什么 Gridea Pro 选择 MCP，而不是 REST API 或内嵌 AI？本文讲清 MCP 服务背后的设计取舍：独立二进制解耦、工具/资源/提示词三层能力、读写分级的信任梯度、两步确认，以及面向意图的接口设计。
-- [从零构建 MCP 服务：让 AI 直接操作你的博客](https://are.ink/post/building-mcp-service-for-gridea-pro/)：完整记录为 Gridea Pro 桌面博客客户端实现 MCP（Model Context Protocol）服务的过程：独立二进制还是子命令的架构取舍、复用 Service 层、危险操作二次确认，以及 mcp-go SDK 升级时踩到的三个版本陷阱。
-- [从零实现 CDN 图床：Gridea Pro 如何让图片管理彻底自动化](https://are.ink/post/gridea-pro-cdn/)：静态博客仓库被图片撑到几百 MB、海外访问又慢？本文介绍 Gridea Pro 如何把图片自动上传到 CDN 图床：路径模板、保持目录结构、智能去重、单文件失败不中断部署，以及为什么不在编辑器里实时上传。
-- [Gridea Pro 架构演进：为什么我们选择 6位 NanoID？](https://are.ink/post/gridea-pro-6-nanoid/)：Gridea Pro 为什么把分类、标签、文章等全部实体的 ID 统一为 6 位 NanoID？本文对比自增 ID、UUID、ShortID 与 NanoID，算清 62 字符 6 位的碰撞概率，并复盘从旧数据迁移到新 ID 的完整改造过程。
-- [Gridea Pro Jinja2 主题开发完全指南：从踩坑到精通](https://are.ink/post/gridea-pro-jinja2-theme-dev-guide/)：Gridea Pro Jinja2 主题开发完全指南：主题目录结构、config.json、模板可用的全部数据变量，以及 Pongo2 与 Python Jinja2 的语法差异和兼容性陷阱，帮你从零写出一个零报错的博客主题。
-- [Gridea Pro 渲染引擎深度排查：从“样式全丢”到“缓存穿透”的连环 Bug 修复纪实](https://are.ink/post/gridea-pro-render-bug-fix/)：切换主题后所有页面样式全部丢失，CSS 还是上一个主题的。本文记录 Gridea Pro 渲染引擎一次层层剥洋葱的排查：缓存穿透、Goja 引擎 module is not defined、资源路径推测偏移和一个隐蔽的缓存陷阱。
-- [Wails 应用实战：重构 Boot 启动逻辑与原生菜单国际化最佳实践](https://are.ink/post/wails-boot/)：Gridea Pro 如何重构 Wails 桌面应用的 Boot 启动逻辑，以及原生菜单国际化的三次迭代：从后端硬编码、前后端共享 JSON，到运行时重构菜单，最后攻克 Wails 默认 Window 菜单无法汉化的问题。
-
-## AI 协作与工具
-
-- [我蒸馏了自己，并让 AI 用我的决策习惯进行决策](https://are.ink/post/distilling-myself/)：用 AI 写代码，一天要拍板上百次。我把九个月的对话记录蒸馏成 11 条决策内核，让 Claude 按我的决策习惯自己做判断。本文复盘踩过的坑：规则分类会杀死动机、矛盾多半是漏了条件，以及实测效果如何。
-- [我一天做了两百个决定，然后开始怀疑自己的脑子](https://are.ink/post/two-hundred-decisions-a-day/)：和 AI 协作一天要拍板两百次，下班累得像跑完半马，前额叶是不是被磨损了？本文从“意志力是块肌肉”这个塌了一半的比喻讲起，重新理解决策疲劳，以及如何给大脑造一副外骨骼，把注意力留给真正重要的决定。
-- [我把 Mac 里沉睡的邮局，改造成了 Claude 的深夜汇报系统](https://are.ink/post/mail-me-when-done/)：让 Claude Code 跑完深夜长任务后，用 macOS 自带的 Postfix 给你发一封 HTML 邮件汇报。本文讲 Postfix 中继配置、汇报技能的设计，以及如何让 Claude 自己判断何时该发邮件；完整配置已开源为 mail-me-when-done。
-- [Claude 里的小螃蟹，现在住在我博客的里](https://are.ink/post/clawd-crab/)：Claude App 小游戏里的像素小螃蟹 Clawd，被我从安装包里的文本像素数据还原了出来，放进了博客。本文介绍它的 22 套动作、设计上的取舍、怎么把它放到你自己的网站上，以及素材的版权边界。
-- [把倪海厦的中医讲义，做成了一个能对话的 Skill](https://are.ink/post/nihaisha-tcm-agent-skill/)：把倪海厦的中医讲义整理成一个能对话的 AI Skill：从六经辨证、有汗无汗的分水岭讲起，介绍 86 万字节语料如何分层、建三级索引、逐条校对，以及它的使用边界。适用于 Claude Code、Codex、Cursor 等。
-- [地球上和 Claude 对话最多的人，是一位哲学家](https://are.ink/post/most-conversations-with-Claude-on-Earth-is-a-philosopher/)：Amanda Askell，牛津与纽约大学出身的哲学博士，据说是地球上和 Claude 对话最多的人。本文讲她如何在 Anthropic 用哲学塑造 Claude 的品格：教 AI 理解“不精确”，从遵守规则走向成为好的存在。
-
-## 写作与思考
-
-- [独立博客没有死，正在死的是平庸的博客](https://are.ink/post/indie-blog-is-not-dead/)：公众号打开率不到 1%，算法随时让你的内容沉底。本文说明为什么在 AI 内容泛滥的时代，有人格、有一手经验的独立博客反而更值钱，独立博客能给你哪些平台给不了的东西，以及平庸的博客为什么确实在死。
-- [都 2026 年了，我们为什么还要写博客](https://are.ink/post/why-we-write/)：都 2026 年了，为什么还要写博客？我们每天都在安静地遗忘自己，两代人之后一个人就可能彻底消失。本文想说的是：记录本身就是对抗遗忘最好的方式，不必写得多好，先把自己留下来。
-- [我们如何成为自己](https://are.ink/post/how-we-become-ourselves/)：“做自己”人人都在说，可那个“自己”到底是谁？本文从一百年前乡下人不需要回答的身份问题讲起，谈现代人为何越往内挖越找不到自己，以及一个人如何在所爱的事、人与责任里，被慢慢塑造成自己。
-- [程序正义与实体正义：在规则与良知之间寻找文明的支点](https://are.ink/post/procedura-justice-and-substantive-justice/)：一位母亲为救病重的孩子偷药，法律该如何判？本文从这个场景出发，讨论程序正义与实体正义各自守护什么、为何会冲突，以及法治文明如何在规则与良知之间寻找平衡。
-- [Dan Koe《如何在一天内修复你的整个生活》（精译版）](https://are.ink/post/dan-koe/)：Dan Koe《How to fix your entire life in 1 day》中文精译版（译者 @frankyleon725）。文章认为新年决心总是失败，并给出一天重启人生的完整方法：早上写愿景与反愿景，白天打断自动驾驶，夜里整合洞察，再把生活变成一场游戏。
-
-## 使用说明
+引用与使用说明：
 
 - 文章均为作者原创，《Dan Koe：如何在一天内修复你的整个生活》一篇为署名转载的译文。引用时请附上原文链接。
 - 感冒科普与中医相关内容是作者的学习记录，不构成医学建议。
 
+## Gridea Pro
+
+- [念念不忘，必有回响 —— Gridea Pro，我们回来了](https://are.ink/post/hello-gridea-pro/): Gridea Pro 是开源静态博客写作客户端 Gridea 的全面重生：用 Go + Wails + Vue 3 重写，下载即用，不需要命令行和任何开发环境。本文介绍它为写作者准备了什么，以及旧版 Gridea 用户如何无缝迁移。
+- [Gridea Pro 完全上手指南 —— 从写作到发布，一篇搞定](https://are.ink/post/quick-start/): Gridea Pro 新手上手指南：认识界面、写第一篇文章、选择和配置主题、本地预览，再到部署到 GitHub Pages、Gitee Pages 或 Vercel 并绑定自定义域名，最后用 MCP 让 AI 帮你管理博客。
+- [我为什么复活了 Gridea —— 每个想写点什么的人，都值得一个更简单的开始](https://are.ink/post/why-i-revived-gridea/): Gridea 停在了 2022 年的 v0.9.3，曾帮助 28000 多人搭建博客。作为其中一员，我为什么要复活它？本文对比 Hugo、Hexo、Jekyll 的上手门槛，讲 Gridea Pro 从零重写的理由、多做了什么，以及数据永远属于你。
+- [从 Gridea 迁移到 Gridea Pro：零风险完整指南](https://are.ink/post/migrating-from-gridea-to-gridea-pro/): 从 Gridea 迁移到 Gridea Pro 的完整指南：两版数据结构的差异（6 位 NanoID、标签分类改存 ID、时间字段拆分）、启动时自动迁移做了什么、迁移前如何备份，以及一步步完成迁移的操作流程。
+- [从零实现 CDN 图床：Gridea Pro 如何让图片管理彻底自动化](https://are.ink/post/gridea-pro-cdn/): 静态博客仓库被图片撑到几百 MB、海外访问又慢？本文介绍 Gridea Pro 如何把图片自动上传到 CDN 图床：路径模板、保持目录结构、智能去重、单文件失败不中断部署，以及为什么不在编辑器里实时上传。
+- [Gridea Pro MCP 的设计理念与技术取舍](https://are.ink/post/gridea-pro-mcp-design-philosophy/): 为什么 Gridea Pro 选择 MCP，而不是 REST API 或内嵌 AI？本文讲清 MCP 服务背后的设计取舍：独立二进制解耦、工具/资源/提示词三层能力、读写分级的信任梯度、两步确认，以及面向意图的接口设计。
+- [Gridea Pro vs Hexo vs Hugo — 深度对比分析报告](https://are.ink/post/gridea-pro-vs-hexo-vs-hugo/): Gridea Pro、Hexo、Hugo 三款静态博客工具深度对比：技术栈、架构、核心功能、构建性能与用户口碑，并据此给出 Gridea Pro 的定位——做静态博客领域的 Notion，以图形界面和 AI 原生集成服务不想折腾命令行的人。
+- [Gridea Pro 架构演进：为什么我们选择 6位 NanoID？](https://are.ink/post/gridea-pro-6-nanoid/): Gridea Pro 为什么把分类、标签、文章等全部实体的 ID 统一为 6 位 NanoID？本文对比自增 ID、UUID、ShortID 与 NanoID，算清 62 字符 6 位的碰撞概率，并复盘从旧数据迁移到新 ID 的完整改造过程。
+- [Gridea Pro Jinja2 主题开发完全指南：从踩坑到精通](https://are.ink/post/gridea-pro-jinja2-theme-dev-guide/): Gridea Pro Jinja2 主题开发完全指南：主题目录结构、config.json、模板可用的全部数据变量，以及 Pongo2 与 Python Jinja2 的语法差异和兼容性陷阱，帮你从零写出一个零报错的博客主题。
+- [Wails 应用实战：重构 Boot 启动逻辑与原生菜单国际化最佳实践](https://are.ink/post/wails-boot/): Gridea Pro 如何重构 Wails 桌面应用的 Boot 启动逻辑，以及原生菜单国际化的三次迭代：从后端硬编码、前后端共享 JSON，到运行时重构菜单，最后攻克 Wails 默认 Window 菜单无法汉化的问题。
+- [Gridea Pro 渲染引擎深度排查：从“样式全丢”到“缓存穿透”的连环 Bug 修复纪实](https://are.ink/post/gridea-pro-render-bug-fix/): 切换主题后所有页面样式全部丢失，CSS 还是上一个主题的。本文记录 Gridea Pro 渲染引擎一次层层剥洋葱的排查：缓存穿透、Goja 引擎 module is not defined、资源路径推测偏移和一个隐蔽的缓存陷阱。
+- [从零构建 MCP 服务：让 AI 直接操作你的博客](https://are.ink/post/building-mcp-service-for-gridea-pro/): 完整记录为 Gridea Pro 桌面博客客户端实现 MCP（Model Context Protocol）服务的过程：独立二进制还是子命令的架构取舍、复用 Service 层、危险操作二次确认，以及 mcp-go SDK 升级时踩到的三个版本陷阱。
+
+## AI 协作
+
+和 AI 一起工作的方法、工具与反思
+
+- [我蒸馏了自己，并让 AI 用我的决策习惯进行决策](https://are.ink/post/distilling-myself/): 用 AI 写代码，一天要拍板上百次。我把九个月的对话记录蒸馏成 11 条决策内核，让 Claude 按我的决策习惯自己做判断。本文复盘踩过的坑：规则分类会杀死动机、矛盾多半是漏了条件，以及实测效果如何。
+- [我把 Mac 里沉睡的邮局，改造成了 Claude 的深夜汇报系统](https://are.ink/post/mail-me-when-done/): 让 Claude Code 跑完深夜长任务后，用 macOS 自带的 Postfix 给你发一封 HTML 邮件汇报。本文讲 Postfix 中继配置、汇报技能的设计，以及如何让 Claude 自己判断何时该发邮件；完整配置已开源为 mail-me-when-done。
+- [我一天做了两百个决定，然后开始怀疑自己的脑子](https://are.ink/post/two-hundred-decisions-a-day/): 和 AI 协作一天要拍板两百次，下班累得像跑完半马，前额叶是不是被磨损了？本文从“意志力是块肌肉”这个塌了一半的比喻讲起，重新理解决策疲劳，以及如何给大脑造一副外骨骼，把注意力留给真正重要的决定。
+
+## Deep Dive
+
+- [Gridea Pro 后端架构深度解析：一个桌面端静态博客系统的工程哲学](https://are.ink/post/gridea-pro-backend-architecture-deep-dive/): 深度解析 Gridea Pro 的 Go 后端架构：Facade、Service/Engine、Repository、Domain 四层单向依赖，用泛型消灭重复的 JSON 持久化代码，用工厂与策略模式实现多模板引擎渲染、评论与部署插件。
+
+## 技术实践
+
+技术文章
+
+- [Claude 里的小螃蟹，现在住在我博客的里](https://are.ink/post/clawd-crab/): Claude App 小游戏里的像素小螃蟹 Clawd，被我从安装包里的文本像素数据还原了出来，放进了博客。本文介绍它的 22 套动作、设计上的取舍、怎么把它放到你自己的网站上，以及素材的版权边界。
+
+## AI 趋势
+
+- [AI 时代独立博客生态与 Gridea Pro 战略定位分析](https://are.ink/post/ai-era-indie-blog-gridea-pro-strategy/): AI 搜索让博客点击率大跌，独立博客还有没有未来？本文用全球博客规模、AI Overview 流量冲击、Hexo/Hugo 等静态博客工具的 GitHub 数据，分析独立博客与写作平台的关系、POSSE 策略，以及 Gridea Pro 的战略定位。
+
+## 深度思考
+
+关于人文、哲学与社会的深度思辨
+
+- [都 2026 年了，我们为什么还要写博客](https://are.ink/post/why-we-write/): 都 2026 年了，为什么还要写博客？我们每天都在安静地遗忘自己，两代人之后一个人就可能彻底消失。本文想说的是：记录本身就是对抗遗忘最好的方式，不必写得多好，先把自己留下来。
+- [独立博客没有死，正在死的是平庸的博客](https://are.ink/post/indie-blog-is-not-dead/): 公众号打开率不到 1%，算法随时让你的内容沉底。本文说明为什么在 AI 内容泛滥的时代，有人格、有一手经验的独立博客反而更值钱，独立博客能给你哪些平台给不了的东西，以及平庸的博客为什么确实在死。
+
+## 人文社科
+
+- [我们如何成为自己](https://are.ink/post/how-we-become-ourselves/): “做自己”人人都在说，可那个“自己”到底是谁？本文从一百年前乡下人不需要回答的身份问题讲起，谈现代人为何越往内挖越找不到自己，以及一个人如何在所爱的事、人与责任里，被慢慢塑造成自己。
+- [地球上和 Claude 对话最多的人，是一位哲学家](https://are.ink/post/most-conversations-with-Claude-on-Earth-is-a-philosopher/): Amanda Askell，牛津与纽约大学出身的哲学博士，据说是地球上和 Claude 对话最多的人。本文讲她如何在 Anthropic 用哲学塑造 Claude 的品格：教 AI 理解“不精确”，从遵守规则走向成为好的存在。
+- [程序正义与实体正义：在规则与良知之间寻找文明的支点](https://are.ink/post/procedura-justice-and-substantive-justice/): 一位母亲为救病重的孩子偷药，法律该如何判？本文从这个场景出发，讨论程序正义与实体正义各自守护什么、为何会冲突，以及法治文明如何在规则与良知之间寻找平衡。
+- [Dan Koe《如何在一天内修复你的整个生活》（精译版）](https://are.ink/post/dan-koe/): Dan Koe《How to fix your entire life in 1 day》中文精译版（译者 @frankyleon725）。文章认为新年决心总是失败，并给出一天重启人生的完整方法：早上写愿景与反愿景，白天打断自动驾驶，夜里整合洞察，再把生活变成一场游戏。
+
 ## Optional
 
-以下是作者的健康科普学习记录（感冒科普系列，非医学建议），上下文有限时可以跳过。
-
-- [感冒求生手册：90% 的感冒不需要消炎药](https://are.ink/post/cold-01-survival-guide/)：感冒要不要吃消炎药？本文用 5 个维度帮你初步判断是病毒还是细菌感染，讲清抗病毒口服液的作用、对乙酰氨基酚与布洛芬怎么选，并列出必须去医院的红灯信号。感冒科普系列第 1 篇，非医学建议。
-- [感冒时，身体里到底在打什么仗？](https://are.ink/post/cold-02-immune-battle/)：为什么发烧还觉得冷？为什么 37.8°C 低烧就浑身痛？为什么一边鼻子流涕、一边干裂？本文用免疫系统的炎症因子、大脑的体温调定点等机制，拆解感冒时身体里那场仗。感冒科普系列第 2 篇。
-- [一场感冒，让我开始想：人到底是不是被设计的？](https://are.ink/post/cold-03-evolution-design/)：人体精妙得像被设计过，可进化论说没有设计师。本文从感冒时的免疫反应聊到进化留下的补丁：气管与食道共用通道、智齿、“贴反了”的视网膜，并解释视网膜反贴为何可能是最优解。感冒科普系列第 3 篇。
-- [为什么我一感冒就要命，朋友却两三天就好？](https://are.ink/post/cold-04-immune-library/)：为什么有人常感冒却两三天就好，有人很少感冒、一病就半条命？本文区分“免疫力强”与“免疫库丰富”，对比饱和式轰炸和精准狙击两种免疫反应，解释恢复快与症状轻为何是两回事。感冒科普系列完结篇。
+- [把倪海厦的中医讲义，做成了一个能对话的 Skill](https://are.ink/post/nihaisha-tcm-agent-skill/): 把倪海厦的中医讲义整理成一个能对话的 AI Skill：从六经辨证、有汗无汗的分水岭讲起，介绍 86 万字节语料如何分层、建三级索引、逐条校对，以及它的使用边界。适用于 Claude Code、Codex、Cursor 等。
+- [为什么我一感冒就要命，朋友却两三天就好？](https://are.ink/post/cold-04-immune-library/): 为什么有人常感冒却两三天就好，有人很少感冒、一病就半条命？本文区分“免疫力强”与“免疫库丰富”，对比饱和式轰炸和精准狙击两种免疫反应，解释恢复快与症状轻为何是两回事。感冒科普系列完结篇。
+- [一场感冒，让我开始想：人到底是不是被设计的？](https://are.ink/post/cold-03-evolution-design/): 人体精妙得像被设计过，可进化论说没有设计师。本文从感冒时的免疫反应聊到进化留下的补丁：气管与食道共用通道、智齿、“贴反了”的视网膜，并解释视网膜反贴为何可能是最优解。感冒科普系列第 3 篇。
+- [感冒时，身体里到底在打什么仗？](https://are.ink/post/cold-02-immune-battle/): 为什么发烧还觉得冷？为什么 37.8°C 低烧就浑身痛？为什么一边鼻子流涕、一边干裂？本文用免疫系统的炎症因子、大脑的体温调定点等机制，拆解感冒时身体里那场仗。感冒科普系列第 2 篇。
+- [感冒求生手册：90% 的感冒不需要消炎药](https://are.ink/post/cold-01-survival-guide/): 感冒要不要吃消炎药？本文用 5 个维度帮你初步判断是病毒还是细菌感染，讲清抗病毒口服液的作用、对乙酰氨基酚与布洛芬怎么选，并列出必须去医院的红灯信号。感冒科普系列第 1 篇，非医学建议。
