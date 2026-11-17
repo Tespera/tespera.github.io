@@ -32,7 +32,7 @@
 <meta name="description" content="静态博客仓库被图片撑到几百 MB、海外访问又慢？本文介绍 Gridea Pro 如何把图片自动上传到 CDN 图床：路径模板、保持目录结构、智能去重、单文件失败不中断部署，以及为什么不在编辑器里实时上传。">
 <meta name="keywords" content="述尔, Eliauk, 产品经理, Product Manager, AI, FDE, Forward Deployed Engineer, Gridea Pro, Gridea, 静态博客, Static Blog, 静态博客客户端, Static Blog Client, Vibe Coding">
 <link rel="canonical" href="https://are.ink/post/gridea-pro-cdn/">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"从零实现 CDN 图床：Gridea Pro 如何让图片管理彻底自动化","url":"https://are.ink/post/gridea-pro-cdn/","description":"静态博客仓库被图片撑到几百 MB、海外访问又慢？本文介绍 Gridea Pro 如何把图片自动上传到 CDN 图床：路径模板、保持目录结构、智能去重、单文件失败不中断部署，以及为什么不在编辑器里实时上传。","image":"https://are.ink/post-images/gridea-pro-cdn-cover.webp","datePublished":"2026-03-12T20:00:00+08:00","dateModified":"2026-03-15T22:24:25+08:00","author":{"@type":"Person","name":"Eliauk","url":"https://are.ink/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://are.ink/images/avatar.png"},"name":"述尔"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"从零实现 CDN 图床：Gridea Pro 如何让图片管理彻底自动化","url":"https://are.ink/post/gridea-pro-cdn/","description":"静态博客仓库被图片撑到几百 MB、海外访问又慢？本文介绍 Gridea Pro 如何把图片自动上传到 CDN 图床：路径模板、保持目录结构、智能去重、单文件失败不中断部署，以及为什么不在编辑器里实时上传。","image":"https://are.ink/post-images/gridea-pro-cdn-cover.webp","datePublished":"2026-03-12T20:00:00+01:00","dateModified":"2026-03-15T22:24:25+01:00","author":{"@type":"Person","name":"Eliauk","url":"https://are.ink/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://are.ink/images/avatar.png"},"name":"述尔"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://are.ink","name":"述尔","position":1},{"@type":"ListItem","item":"https://are.ink/post/gridea-pro-cdn/","name":"从零实现 CDN 图床：Gridea Pro 如何让图片管理彻底自动化","position":2}]}</script>
 <meta property="og:title" content="从零实现 CDN 图床：Gridea Pro 如何让图片管理彻底自动化">
 <meta property="og:description" content="静态博客仓库被图片撑到几百 MB、海外访问又慢？本文介绍 Gridea Pro 如何把图片自动上传到 CDN 图床：路径模板、保持目录结构、智能去重、单文件失败不中断部署，以及为什么不在编辑器里实时上传。">
@@ -83,17 +83,17 @@
         
         <a class="nav-item" href="/">首页</a>
         
-        <a class="nav-item" href="/post">博客</a>
+        <a class="nav-item" href="/post/">博客</a>
         
-        <a class="nav-item" href="/memos">闪念</a>
+        <a class="nav-item" href="/memos/">闪念</a>
         
-        <a class="nav-item" href="/archives">归档</a>
+        <a class="nav-item" href="/archives/">归档</a>
         
-        <a class="nav-item" href="/tags">标签</a>
+        <a class="nav-item" href="/tags/">标签</a>
         
-        <a class="nav-item" href="/links">友链</a>
+        <a class="nav-item" href="/links/">友链</a>
         
-        <a class="nav-item" href="/post/about">关于</a>
+        <a class="nav-item" href="/post/about/">关于</a>
         
         
       </nav>
@@ -497,17 +497,17 @@ blog/images/{year}/{month}/{filename}{.suffix}    → blog/images/2026/03/cover.
       
       <a class="footer-nav__link" href="/">首页</a>
       
-      <a class="footer-nav__link" href="/post">博客</a>
+      <a class="footer-nav__link" href="/post/">博客</a>
       
-      <a class="footer-nav__link" href="/memos">闪念</a>
+      <a class="footer-nav__link" href="/memos/">闪念</a>
       
-      <a class="footer-nav__link" href="/archives">归档</a>
+      <a class="footer-nav__link" href="/archives/">归档</a>
       
-      <a class="footer-nav__link" href="/tags">标签</a>
+      <a class="footer-nav__link" href="/tags/">标签</a>
       
-      <a class="footer-nav__link" href="/links">友链</a>
+      <a class="footer-nav__link" href="/links/">友链</a>
       
-      <a class="footer-nav__link" href="/post/about">关于</a>
+      <a class="footer-nav__link" href="/post/about/">关于</a>
       
     </nav>
     

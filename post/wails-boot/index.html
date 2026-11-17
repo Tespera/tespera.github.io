@@ -32,7 +32,7 @@
 <meta name="description" content="Gridea Pro 如何重构 Wails 桌面应用的 Boot 启动逻辑，以及原生菜单国际化的三次迭代：从后端硬编码、前后端共享 JSON，到运行时重构菜单，最后攻克 Wails 默认 Window 菜单无法汉化的问题。">
 <meta name="keywords" content="述尔, Eliauk, 产品经理, Product Manager, AI, FDE, Forward Deployed Engineer, Gridea Pro, Gridea, 静态博客, Static Blog, 静态博客客户端, Static Blog Client, Vibe Coding">
 <link rel="canonical" href="https://are.ink/post/wails-boot/">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Wails 应用实战：重构 Boot 启动逻辑与原生菜单国际化最佳实践","url":"https://are.ink/post/wails-boot/","description":"Gridea Pro 如何重构 Wails 桌面应用的 Boot 启动逻辑，以及原生菜单国际化的三次迭代：从后端硬编码、前后端共享 JSON，到运行时重构菜单，最后攻克 Wails 默认 Window 菜单无法汉化的问题。","image":"https://are.ink/post-images/wails-boot-cover.webp","datePublished":"2026-02-28T14:04:39+08:00","dateModified":"2026-03-10T13:41:07+08:00","author":{"@type":"Person","name":"Eliauk","url":"https://are.ink/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://are.ink/images/avatar.png"},"name":"述尔"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Wails 应用实战：重构 Boot 启动逻辑与原生菜单国际化最佳实践","url":"https://are.ink/post/wails-boot/","description":"Gridea Pro 如何重构 Wails 桌面应用的 Boot 启动逻辑，以及原生菜单国际化的三次迭代：从后端硬编码、前后端共享 JSON，到运行时重构菜单，最后攻克 Wails 默认 Window 菜单无法汉化的问题。","image":"https://are.ink/post-images/wails-boot-cover.webp","datePublished":"2026-02-28T14:04:39+01:00","dateModified":"2026-03-10T13:41:07+01:00","author":{"@type":"Person","name":"Eliauk","url":"https://are.ink/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://are.ink/images/avatar.png"},"name":"述尔"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://are.ink","name":"述尔","position":1},{"@type":"ListItem","item":"https://are.ink/post/wails-boot/","name":"Wails 应用实战：重构 Boot 启动逻辑与原生菜单国际化最佳实践","position":2}]}</script>
 <meta property="og:title" content="Wails 应用实战：重构 Boot 启动逻辑与原生菜单国际化最佳实践">
 <meta property="og:description" content="Gridea Pro 如何重构 Wails 桌面应用的 Boot 启动逻辑，以及原生菜单国际化的三次迭代：从后端硬编码、前后端共享 JSON，到运行时重构菜单，最后攻克 Wails 默认 Window 菜单无法汉化的问题。">
@@ -83,17 +83,17 @@
         
         <a class="nav-item" href="/">首页</a>
         
-        <a class="nav-item" href="/post">博客</a>
+        <a class="nav-item" href="/post/">博客</a>
         
-        <a class="nav-item" href="/memos">闪念</a>
+        <a class="nav-item" href="/memos/">闪念</a>
         
-        <a class="nav-item" href="/archives">归档</a>
+        <a class="nav-item" href="/archives/">归档</a>
         
-        <a class="nav-item" href="/tags">标签</a>
+        <a class="nav-item" href="/tags/">标签</a>
         
-        <a class="nav-item" href="/links">友链</a>
+        <a class="nav-item" href="/links/">友链</a>
         
-        <a class="nav-item" href="/post/about">关于</a>
+        <a class="nav-item" href="/post/about/">关于</a>
         
         
       </nav>
@@ -425,17 +425,17 @@ windowMenu.AddText(T(&quot;window.zoom&quot;), nil, func(_ *menu.CallbackData) {
       
       <a class="footer-nav__link" href="/">首页</a>
       
-      <a class="footer-nav__link" href="/post">博客</a>
+      <a class="footer-nav__link" href="/post/">博客</a>
       
-      <a class="footer-nav__link" href="/memos">闪念</a>
+      <a class="footer-nav__link" href="/memos/">闪念</a>
       
-      <a class="footer-nav__link" href="/archives">归档</a>
+      <a class="footer-nav__link" href="/archives/">归档</a>
       
-      <a class="footer-nav__link" href="/tags">标签</a>
+      <a class="footer-nav__link" href="/tags/">标签</a>
       
-      <a class="footer-nav__link" href="/links">友链</a>
+      <a class="footer-nav__link" href="/links/">友链</a>
       
-      <a class="footer-nav__link" href="/post/about">关于</a>
+      <a class="footer-nav__link" href="/post/about/">关于</a>
       
     </nav>
     

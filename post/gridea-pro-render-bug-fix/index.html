@@ -32,7 +32,7 @@
 <meta name="description" content="切换主题后所有页面样式全部丢失，CSS 还是上一个主题的。本文记录 Gridea Pro 渲染引擎一次层层剥洋葱的排查：缓存穿透、Goja 引擎 module is not defined、资源路径推测偏移和一个隐蔽的缓存陷阱。">
 <meta name="keywords" content="述尔, Eliauk, 产品经理, Product Manager, AI, FDE, Forward Deployed Engineer, Gridea Pro, Gridea, 静态博客, Static Blog, 静态博客客户端, Static Blog Client, Vibe Coding">
 <link rel="canonical" href="https://are.ink/post/gridea-pro-render-bug-fix/">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Gridea Pro 渲染引擎深度排查：从“样式全丢”到“缓存穿透”的连环 Bug 修复纪实","url":"https://are.ink/post/gridea-pro-render-bug-fix/","description":"切换主题后所有页面样式全部丢失，CSS 还是上一个主题的。本文记录 Gridea Pro 渲染引擎一次层层剥洋葱的排查：缓存穿透、Goja 引擎 module is not defined、资源路径推测偏移和一个隐蔽的缓存陷阱。","image":"https://are.ink/post-images/gridea-pro-render-bug-fix-cover.webp","datePublished":"2026-02-27T19:28:10+08:00","dateModified":"2026-03-10T13:41:07+08:00","author":{"@type":"Person","name":"Eliauk","url":"https://are.ink/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://are.ink/images/avatar.png"},"name":"述尔"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Gridea Pro 渲染引擎深度排查：从“样式全丢”到“缓存穿透”的连环 Bug 修复纪实","url":"https://are.ink/post/gridea-pro-render-bug-fix/","description":"切换主题后所有页面样式全部丢失，CSS 还是上一个主题的。本文记录 Gridea Pro 渲染引擎一次层层剥洋葱的排查：缓存穿透、Goja 引擎 module is not defined、资源路径推测偏移和一个隐蔽的缓存陷阱。","image":"https://are.ink/post-images/gridea-pro-render-bug-fix-cover.webp","datePublished":"2026-02-27T19:28:10+01:00","dateModified":"2026-03-10T13:41:07+01:00","author":{"@type":"Person","name":"Eliauk","url":"https://are.ink/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://are.ink/images/avatar.png"},"name":"述尔"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://are.ink","name":"述尔","position":1},{"@type":"ListItem","item":"https://are.ink/post/gridea-pro-render-bug-fix/","name":"Gridea Pro 渲染引擎深度排查：从“样式全丢”到“缓存穿透”的连环 Bug 修复纪实","position":2}]}</script>
 <meta property="og:title" content="Gridea Pro 渲染引擎深度排查：从“样式全丢”到“缓存穿透”的连环 Bug 修复纪实">
 <meta property="og:description" content="切换主题后所有页面样式全部丢失，CSS 还是上一个主题的。本文记录 Gridea Pro 渲染引擎一次层层剥洋葱的排查：缓存穿透、Goja 引擎 module is not defined、资源路径推测偏移和一个隐蔽的缓存陷阱。">
@@ -83,17 +83,17 @@
         
         <a class="nav-item" href="/">首页</a>
         
-        <a class="nav-item" href="/post">博客</a>
+        <a class="nav-item" href="/post/">博客</a>
         
-        <a class="nav-item" href="/memos">闪念</a>
+        <a class="nav-item" href="/memos/">闪念</a>
         
-        <a class="nav-item" href="/archives">归档</a>
+        <a class="nav-item" href="/archives/">归档</a>
         
-        <a class="nav-item" href="/tags">标签</a>
+        <a class="nav-item" href="/tags/">标签</a>
         
-        <a class="nav-item" href="/links">友链</a>
+        <a class="nav-item" href="/links/">友链</a>
         
-        <a class="nav-item" href="/post/about">关于</a>
+        <a class="nav-item" href="/post/about/">关于</a>
         
         
       </nav>
@@ -436,17 +436,17 @@ if errLess == nil {
       
       <a class="footer-nav__link" href="/">首页</a>
       
-      <a class="footer-nav__link" href="/post">博客</a>
+      <a class="footer-nav__link" href="/post/">博客</a>
       
-      <a class="footer-nav__link" href="/memos">闪念</a>
+      <a class="footer-nav__link" href="/memos/">闪念</a>
       
-      <a class="footer-nav__link" href="/archives">归档</a>
+      <a class="footer-nav__link" href="/archives/">归档</a>
       
-      <a class="footer-nav__link" href="/tags">标签</a>
+      <a class="footer-nav__link" href="/tags/">标签</a>
       
-      <a class="footer-nav__link" href="/links">友链</a>
+      <a class="footer-nav__link" href="/links/">友链</a>
       
-      <a class="footer-nav__link" href="/post/about">关于</a>
+      <a class="footer-nav__link" href="/post/about/">关于</a>
       
     </nav>
     
