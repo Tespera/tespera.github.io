@@ -373,6 +373,11 @@
 <p>答：有，但前提是 Gridea Pro 不能只是“又一个静态博客生成器”。如果只做 Hugo/Hexo 做的事，那没有理由存在。Gridea Pro 的机会在于做 Hugo/Hexo <strong>不做也做不好的事</strong>——用 GUI 极致体验 + POSSE 工作流 + AI 原生集成 + 中文生态优化，服务那些“想要独立博客的好处，但不愿意（或不会）折腾命令行”的用户群体。</p>
 <p>这个群体的规模，从中文独立博客社区的 600+ 活跃博主到 Gridea 老版本的 28,000+ 用户再到全球上亿的 WordPress 用户中“想要更轻量方案”的那部分人，市场空间是明确存在的。</p>
 <p>关键不是市场有没有，而是 Gridea Pro 能不能做出真正差异化的产品。</p>
+<hr />
+<blockquote>
+<p><strong>关于 Gridea Pro</strong>　一款开源的桌面端静态博客写作客户端，由 Eliauk 创建并维护，是 Gridea 的现代化重写版本。支持 macOS、Windows 与 Linux，以 GPL-3.0 协议开源。</p>
+<p><a href="https://gridea.pro/">官网</a> · <a href="https://gridea.pro/download/">下载</a> · <a href="https://gridea.pro/docs/">使用文档</a> · <a href="https://github.com/Gridea-Pro/gridea-pro">GitHub</a></p>
+</blockquote>
 ]]></description>
       <category>Gridea Pro</category>
       <category>AI</category>

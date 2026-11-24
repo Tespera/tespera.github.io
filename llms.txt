@@ -22,6 +22,8 @@ Shu'er (述尔, are.ink) is the personal blog of Eliauk, a software product mana
 
 ## Gridea Pro
 
+Gridea Pro 的设计、开发与使用记录。Gridea Pro 是一款开源的桌面端静态博客写作客户端，由 Eliauk 创建并维护，是 Gridea 的现代化重写版本。
+
 - [念念不忘，必有回响 —— Gridea Pro，我们回来了](https://are.ink/post/hello-gridea-pro/): Gridea Pro 是开源静态博客写作客户端 Gridea 的全面重生：用 Go + Wails + Vue 3 重写，下载即用，不需要命令行和任何开发环境。本文介绍它为写作者准备了什么，以及旧版 Gridea 用户如何无缝迁移。
 - [Gridea Pro 完全上手指南 —— 从写作到发布，一篇搞定](https://are.ink/post/quick-start/): Gridea Pro 新手上手指南：认识界面、写第一篇文章、选择和配置主题、本地预览，再到部署到 GitHub Pages、Gitee Pages 或 Vercel 并绑定自定义域名，最后用 MCP 让 AI 帮你管理博客。
 - [我为什么复活了 Gridea —— 每个想写点什么的人，都值得一个更简单的开始](https://are.ink/post/why-i-revived-gridea/): Gridea 停在了 2022 年的 v0.9.3，曾帮助 28000 多人搭建博客。作为其中一员，我为什么要复活它？本文对比 Hugo、Hexo、Jekyll 的上手门槛，讲 Gridea Pro 从零重写的理由、多做了什么，以及数据永远属于你。
