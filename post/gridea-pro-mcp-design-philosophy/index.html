@@ -32,7 +32,7 @@
 <meta name="description" content="为什么 Gridea Pro 选择 MCP，而不是 REST API 或内嵌 AI？本文讲清 MCP 服务背后的设计取舍：独立二进制解耦、工具/资源/提示词三层能力、读写分级的信任梯度、两步确认，以及面向意图的接口设计。">
 <meta name="keywords" content="述尔, Eliauk, 产品经理, Product Manager, AI, FDE, Forward Deployed Engineer, Gridea Pro, Gridea, 静态博客, Static Blog, 静态博客客户端, Static Blog Client, Vibe Coding">
 <link rel="canonical" href="https://are.ink/post/gridea-pro-mcp-design-philosophy/">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Gridea Pro MCP 的设计理念与技术取舍","url":"https://are.ink/post/gridea-pro-mcp-design-philosophy/","description":"为什么 Gridea Pro 选择 MCP，而不是 REST API 或内嵌 AI？本文讲清 MCP 服务背后的设计取舍：独立二进制解耦、工具/资源/提示词三层能力、读写分级的信任梯度、两步确认，以及面向意图的接口设计。","image":"https://are.ink/post-images/gridea-pro-mcp-design-philosophy-cover.webp","datePublished":"2026-03-11T04:00:00+08:00","dateModified":"2026-03-10T13:41:07+08:00","author":{"@type":"Person","name":"Eliauk","url":"https://are.ink/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://are.ink/images/avatar.png"},"name":"述尔"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Gridea Pro MCP 的设计理念与技术取舍","url":"https://are.ink/post/gridea-pro-mcp-design-philosophy/","description":"为什么 Gridea Pro 选择 MCP，而不是 REST API 或内嵌 AI？本文讲清 MCP 服务背后的设计取舍：独立二进制解耦、工具/资源/提示词三层能力、读写分级的信任梯度、两步确认，以及面向意图的接口设计。","image":"https://are.ink/post-images/gridea-pro-mcp-design-philosophy-cover.webp","datePublished":"2026-03-11T04:00:00+08:00","dateModified":"2026-11-24T00:18:07+08:00","author":{"@type":"Person","name":"Eliauk","url":"https://are.ink/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://are.ink/images/avatar.png"},"name":"述尔"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://are.ink","name":"述尔","position":1},{"@type":"ListItem","item":"https://are.ink/post/gridea-pro-mcp-design-philosophy/","name":"Gridea Pro MCP 的设计理念与技术取舍","position":2}]}</script>
 <meta property="og:title" content="Gridea Pro MCP 的设计理念与技术取舍">
 <meta property="og:description" content="为什么 Gridea Pro 选择 MCP，而不是 REST API 或内嵌 AI？本文讲清 MCP 服务背后的设计取舍：独立二进制解耦、工具/资源/提示词三层能力、读写分级的信任梯度、两步确认，以及面向意图的接口设计。">
@@ -218,7 +218,7 @@
   
 
   <div class="article-content">
-    <p>当我们决定为一个桌面博客客户端实现 MCP 服务时，面对的不仅是“如何让 AI 调用几个 API”的技术问题，更是一系列关于信任边界、能力暴露、人机协作模式的设计抉择。这篇文章记录了这些抉择背后的思考。</p>
+    <p>当我们决定为一个桌面博客客户端实现 MCP 服务时，面对的不仅是“如何让 AI 调用几个 API”的技术问题，更是一系列关于信任边界、能力暴露、人机协作模式的设计抉择。这篇文章记录了这些抉择背后的思考；具体的实现过程和踩过的坑，见<a href="/post/building-mcp-service-for-gridea-pro/">《从零构建 MCP 服务：让 AI 直接操作你的博客》</a>。</p>
 <hr />
 <h2 id="-mcp-rest-api-">一、为什么是 MCP，而不是 REST API 或插件系统</h2>
 <p>在 AI 辅助写作的浪潮中，大多数工具选择了两条路径：要么在应用内嵌入一个 AI 聊天窗口，要么暴露一套 REST API 供外部调用。我们都没有选。</p>

@@ -32,7 +32,7 @@
 <meta name="description" content="切换主题后所有页面样式全部丢失，CSS 还是上一个主题的。本文记录 Gridea Pro 渲染引擎一次层层剥洋葱的排查：缓存穿透、Goja 引擎 module is not defined、资源路径推测偏移和一个隐蔽的缓存陷阱。">
 <meta name="keywords" content="述尔, Eliauk, 产品经理, Product Manager, AI, FDE, Forward Deployed Engineer, Gridea Pro, Gridea, 静态博客, Static Blog, 静态博客客户端, Static Blog Client, Vibe Coding">
 <link rel="canonical" href="https://are.ink/post/gridea-pro-render-bug-fix/">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Gridea Pro 渲染引擎深度排查：从“样式全丢”到“缓存穿透”的连环 Bug 修复纪实","url":"https://are.ink/post/gridea-pro-render-bug-fix/","description":"切换主题后所有页面样式全部丢失，CSS 还是上一个主题的。本文记录 Gridea Pro 渲染引擎一次层层剥洋葱的排查：缓存穿透、Goja 引擎 module is not defined、资源路径推测偏移和一个隐蔽的缓存陷阱。","image":"https://are.ink/post-images/gridea-pro-render-bug-fix-cover.webp","datePublished":"2026-02-27T19:28:10+08:00","dateModified":"2026-03-10T13:41:07+08:00","author":{"@type":"Person","name":"Eliauk","url":"https://are.ink/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://are.ink/images/avatar.png"},"name":"述尔"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Gridea Pro 渲染引擎深度排查：从“样式全丢”到“缓存穿透”的连环 Bug 修复纪实","url":"https://are.ink/post/gridea-pro-render-bug-fix/","description":"切换主题后所有页面样式全部丢失，CSS 还是上一个主题的。本文记录 Gridea Pro 渲染引擎一次层层剥洋葱的排查：缓存穿透、Goja 引擎 module is not defined、资源路径推测偏移和一个隐蔽的缓存陷阱。","image":"https://are.ink/post-images/gridea-pro-render-bug-fix-cover.webp","datePublished":"2026-02-27T19:28:10+08:00","dateModified":"2026-11-23T23:54:26+08:00","author":{"@type":"Person","name":"Eliauk","url":"https://are.ink/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://are.ink/images/avatar.png"},"name":"述尔"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://are.ink","name":"述尔","position":1},{"@type":"ListItem","item":"https://are.ink/post/gridea-pro-render-bug-fix/","name":"Gridea Pro 渲染引擎深度排查：从“样式全丢”到“缓存穿透”的连环 Bug 修复纪实","position":2}]}</script>
 <meta property="og:title" content="Gridea Pro 渲染引擎深度排查：从“样式全丢”到“缓存穿透”的连环 Bug 修复纪实">
 <meta property="og:description" content="切换主题后所有页面样式全部丢失，CSS 还是上一个主题的。本文记录 Gridea Pro 渲染引擎一次层层剥洋葱的排查：缓存穿透、Goja 引擎 module is not defined、资源路径推测偏移和一个隐蔽的缓存陷阱。">
@@ -214,8 +214,7 @@
   
 
   <div class="article-content">
-    <h1 id="gridea-pro-renderer-bug-">Gridea Pro 渲染引擎(Renderer)深度排查：从“样式全丢”到“缓存穿透”的连环 Bug 修复纪实</h1>
-<p>在完善 Gridea Pro 主题适配及底层渲染逻辑（Renderer Layer）的过程中，系统有时会因为几个看似微小且毫无关联的代码缺陷，引发毁灭性的“灾难”——比如今天遇到的“不管切换到哪个主题，所有页面样式全部丢失”的诡异现象。</p>
+    <p>在完善 Gridea Pro 主题适配及底层渲染逻辑（Renderer Layer）的过程中，系统有时会因为几个看似微小且毫无关联的代码缺陷，引发毁灭性的“灾难”——比如今天遇到的“不管切换到哪个主题，所有页面样式全部丢失”的诡异现象。</p>
 <p>这篇手记详细记录了本次长达数小时、犹如剥洋葱般层层深入的源码级排查过程。我们一共揪出了 4 个深藏在静态资源处理（<code>renderer_assets.go</code>）中的致命 Bug，并逐一进行了修复。</p>
 <hr />
 <h2 id="-css">现象描述：“皇帝的新衣”——全线崩溃的 CSS</h2>

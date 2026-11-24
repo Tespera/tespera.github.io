@@ -32,7 +32,7 @@
 <meta name="description" content="深度解析 Gridea Pro 的 Go 后端架构：Facade、Service/Engine、Repository、Domain 四层单向依赖，用泛型消灭重复的 JSON 持久化代码，用工厂与策略模式实现多模板引擎渲染、评论与部署插件。">
 <meta name="keywords" content="述尔, Eliauk, 产品经理, Product Manager, AI, FDE, Forward Deployed Engineer, Gridea Pro, Gridea, 静态博客, Static Blog, 静态博客客户端, Static Blog Client, Vibe Coding">
 <link rel="canonical" href="https://are.ink/post/gridea-pro-backend-architecture-deep-dive/">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Gridea Pro 后端架构深度解析：一个桌面端静态博客系统的工程哲学","url":"https://are.ink/post/gridea-pro-backend-architecture-deep-dive/","description":"深度解析 Gridea Pro 的 Go 后端架构：Facade、Service/Engine、Repository、Domain 四层单向依赖，用泛型消灭重复的 JSON 持久化代码，用工厂与策略模式实现多模板引擎渲染、评论与部署插件。","image":"https://are.ink/post-images/gridea-pro-backend-architecture-deep-dive-cover.webp","datePublished":"2026-03-07T17:16:29+08:00","dateModified":"2026-03-14T20:38:04+08:00","author":{"@type":"Person","name":"Eliauk","url":"https://are.ink/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://are.ink/images/avatar.png"},"name":"述尔"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Gridea Pro 后端架构深度解析：一个桌面端静态博客系统的工程哲学","url":"https://are.ink/post/gridea-pro-backend-architecture-deep-dive/","description":"深度解析 Gridea Pro 的 Go 后端架构：Facade、Service/Engine、Repository、Domain 四层单向依赖，用泛型消灭重复的 JSON 持久化代码，用工厂与策略模式实现多模板引擎渲染、评论与部署插件。","image":"https://are.ink/post-images/gridea-pro-backend-architecture-deep-dive-cover.webp","datePublished":"2026-03-07T17:16:29+08:00","dateModified":"2026-11-23T23:50:15+08:00","author":{"@type":"Person","name":"Eliauk","url":"https://are.ink/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://are.ink/images/avatar.png"},"name":"述尔"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://are.ink","name":"述尔","position":1},{"@type":"ListItem","item":"https://are.ink/post/gridea-pro-backend-architecture-deep-dive/","name":"Gridea Pro 后端架构深度解析：一个桌面端静态博客系统的工程哲学","position":2}]}</script>
 <meta property="og:title" content="Gridea Pro 后端架构深度解析：一个桌面端静态博客系统的工程哲学">
 <meta property="og:description" content="深度解析 Gridea Pro 的 Go 后端架构：Facade、Service/Engine、Repository、Domain 四层单向依赖，用泛型消灭重复的 JSON 持久化代码，用工厂与策略模式实现多模板引擎渲染、评论与部署插件。">
@@ -224,7 +224,7 @@
 <p>本文将从分层结构、领域建模、泛型持久化、多引擎渲染、插件化扩展等五个维度，深入分析 Gridea Pro 后端的架构设计思路与实现细节。</p>
 <hr />
 <h2 id="heading-1">一、分层架构：四层边界，单向依赖</h2>
-<p><img src="https://cdn.jsdelivr.net/gh/Tespera/Assets@main/post-images/gridea-pro-backend-architecture-deep-dive-layers.webp" alt="" /></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Tespera/Assets@main/post-images/gridea-pro-backend-architecture-deep-dive-layers.webp" alt="Gridea Pro 后端四层架构手绘图：门面层（Facade）→ 服务/引擎层（Service / Engine）→ 数据访问层（Repository）→ 领域层（Domain），请求自上而下单向流动" /></p>
 <p>Gridea Pro 后端采用经典的四层架构，自上而下依次为：</p>
 <pre><code>Facade → Service / Engine → Repository → Domain
 </code></pre>
